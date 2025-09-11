@@ -15,7 +15,7 @@
           hostSpecificHomeConfig = ./home-manager/hosts/lemp10.nix;
           enableGui = true;
           enableSystem = true;
-          defaultUsername = "yutkat";
+          defaultUsername = "th3g3ntl3man";
         };
         "X1C10" = {
           system = "x86_64-linux";
