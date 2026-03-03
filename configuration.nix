@@ -20,7 +20,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -78,20 +78,39 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
 
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  programs.zsh.enable = true;
+let
+  home-manager = builtins.fetchTarball https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz;
+in
+{
+  imports =
+    [
+      (import "${home-manager}/nixos")
+    ];
 
-  users.defaultUserShell = pkgs.zsh;
-
-  users.users.th3g3ntl3man = {
+  users.users.th3g3ntl3man.isNormalUser = true;
+  home-manager.users.th3g3ntl3man = { pkgs, ... }: {
     isNormalUser = true;
     description = "The Gentleman";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-      kdePackages.kate
-    #  thunderbird
-    ];
+    home.packages = [ pkgs.atool pkgs.httpie ];
+    programs.zsh.enable = true;
+
+    # The state version is required and should stay at the version you
+    # originally installed.
+    home.stateVersion = "25.11";
   };
+}
+
+  # Define a user account. Don't forget to set a password with ‘passwd’.
+
+  users.defaultUserShell = pkgs.zsh;
+
+  # users.users.th3g3ntl3man = {
+  #   packages = with pkgs; [
+  #     kdePackages.kate
+  #   #  thunderbird
+  #   ];
+  # };
 
   # Install firefox.
   programs.firefox.enable = true;
@@ -142,7 +161,7 @@
     nerd-fonts._0xproto
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
-    noto-fonts   
+    noto-fonts
     ntfs3g
     openssh
     orca-slicer
