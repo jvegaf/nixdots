@@ -3,16 +3,27 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
+let
+  home-manager = builtins.fetchTarball "https://github.com/nix-community/home-manager/archive/release-25.11.tar.gz";
+in
 {
-  imports = [
-    # Include the results of the hardware scan.
-    ./hardware-configuration.nix
-  ];
+  imports =
+    [ # Include the results of the hardware scan.
+      ./hardware-configuration.nix
+      (import "${home-manager}/nixos")
+    ];
+
+  home-manager.useUserPackages = true;
+  # home-manager.useGlobalPkgs = true;
+  home-manager.backupFileExtension = "backup";
+  home-manager.users.th3g3ntl3man = import ./home.nix;
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+  # Use latest kernel.
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -20,10 +31,7 @@
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-  nix.settings.experimental-features = [
-    "nix-command"
-    "flakes"
-  ];
+
   # Enable networking
   networking.networkmanager.enable = true;
 
@@ -46,12 +54,11 @@
   };
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
   services.xserver.enable = true;
 
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
+  # Enable the XFCE Desktop Environment.
+  services.xserver.displayManager.lightdm.enable = true;
+  services.xserver.desktopManager.xfce.enable = true;
 
   # Configure keymap in X11
   services.xserver.xkb = {
@@ -82,20 +89,12 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  programs.zsh.enable = true;
-
-  users.defaultUserShell = pkgs.zsh;
-
   users.users.th3g3ntl3man = {
     isNormalUser = true;
     description = "The Gentleman";
-    extraGroups = [
-      "networkmanager"
-      "wheel"
-    ];
+    extraGroups = [ "networkmanager" "wheel" ];
     packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
+    #  thunderbird
     ];
   };
 
@@ -105,98 +104,82 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  environment.sessionVariables = rec {
-    TERMINAL = "alacritty";
-    EDITOR = "nvim";
-    XDG_BIN_HOME = "$HOME/.local/bin";
-    PATH = [
-      "${XDG_BIN_HOME}"
-    ];
-  };
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    _1password-gui
-    alacritty
-    bat
-    bat-extras.core
-    curl
-    evince
-    eza
-    fastfetch
-    fd
-    foliate
-    fzf
-    gh
-    git
-    git-extras
-    git-lfs
-    glow
-    gnome-disk-utility
-    gnome-keyring
-    home-manager
-    kdePackages.filelight
-    kitty
-    lazydocker
-    lazygit
-    localsend
-    luarocks
-    mise
-    nh
-    neovim
-    nerd-fonts._0xproto
-    nerd-fonts.fantasque-sans-mono
-    nerd-fonts.jetbrains-mono
-    noto-fonts
-    ntfs3g
-    openssh
-    orca-slicer
-    platformio-core
-    qbittorrent
-    ripgrep
-    rofi
-    rustup
-    sad
-    starship
-    stow
-    tealdeer
-    telegram-desktop
-    tmux
-    unar
-    unrar
-    unzip
-    uv
-    vim
-    wget
-    wl-clipboard
-    yazi
-    yaziPlugins.compress
-    yaziPlugins.diff
-    yaziPlugins.dupes
-    yaziPlugins.git
-    yaziPlugins.glow
-    yaziPlugins.jump-to-char
-    yaziPlugins.lazygit
-    yaziPlugins.lsar
-    yaziPlugins.mediainfo
-    yaziPlugins.mime-ext
-    yaziPlugins.mount
-    yaziPlugins.ouch
-    yaziPlugins.piper
-    yaziPlugins.relative-motions
-    yaziPlugins.smart-enter
-    yaziPlugins.smart-filter
-    yaziPlugins.smart-paste
-    yaziPlugins.starship
-    yaziPlugins.sudo
-    yaziPlugins.vcs-files
-    zip
-    zoxide
-    zsh
-    zstd
-  ];
+  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
+  #  wget
+  curl
+  wget
+  _1password-gui
+  kitty
+  tmux
+  eza
+  alacritty
+  rofi
+  gh
+  git
+  git-extras
+  git-lfs
+  gnome-keyring
+  lazygit
+  luarocks
+  neovim
+  nerd-fonts.fantasque-sans-mono
+  nerd-fonts.jetbrains-mono
+  ntfs3g
+  openssh
+  wireguard-tools
+  power-profiles-daemon
+  orca-slicer
+  prusa-slicer
+  platformio-core
+  qbittorrent
+  ripgrep
+  rofi
+  rustup
+  sad
+  starship
+  sad
+  tealdeer
+  unar
+  unrar
+  unzip
+  uv
+  xsel
+  xclip
+  yazi
+  yaziPlugins.compress
+  yaziPlugins.diff
+  yaziPlugins.dupes
+  yaziPlugins.git
+  yaziPlugins.glow
+  yaziPlugins.jump-to-char
+  yaziPlugins.lazygit
+  yaziPlugins.lsar
+  yaziPlugins.mediainfo
+  yaziPlugins.mime-ext
+  yaziPlugins.mount
+  yaziPlugins.ouch
+  yaziPlugins.piper
+  yaziPlugins.relative-motions
+  yaziPlugins.smart-enter
+  yaziPlugins.smart-filter
+  yaziPlugins.smart-paste
+  yaziPlugins.starship
+  yaziPlugins.sudo
+  yaziPlugins.vcs-files
+  zoxide
+  zsh
+ ];
 
+  programs._1password.enable = true;
+  programs._1password-gui = {
+    enable = true;
+    # Certain features, including CLI integration and system authentication support,
+    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
+    polkitPolicyOwners = [ "th3g3ntl3man" ];
+  };
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -208,7 +191,7 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  services.openssh.enable = true;
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
