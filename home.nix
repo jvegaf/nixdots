@@ -15,7 +15,7 @@
 			nrs = "sudo nixos-rebuild switch";
 			neh = "sudo nvim /etc/nixos/home.nix";
 			nec = "sudo nvim /etc/nixos/configuration.nix";
-			ngc = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3"
+			ngc = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3";
 		};
 	};
 }

@@ -32,7 +32,8 @@
     # libnotify
     #
     # nodePackages.nodejs
-    # pnpm
+    nodejs_24
+    pnpm
     # yarn
 
 

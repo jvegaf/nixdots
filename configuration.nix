@@ -87,9 +87,11 @@ in
 
   # Enable touchpad support (enabled default in most desktopManager).
   # services.xserver.libinput.enable = true;
+  programs.zsh.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.th3g3ntl3man = {
+    shell = pkgs.zsh;
     isNormalUser = true;
     description = "The Gentleman";
     extraGroups = [ "networkmanager" "wheel" ];
@@ -97,6 +99,8 @@ in
     #  thunderbird
     ];
   };
+
+
 
   # Install firefox.
   programs.firefox.enable = true;
