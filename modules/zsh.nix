@@ -21,13 +21,20 @@
         v = "nvim";
         se = "sudoedit";
         y = "yazi";
+	rmd = "rm -rf";
+	dots = "cd ~/nixdots";
 
+	g = "lazygit";
         gs = "git status";
         ga = "git add";
         gc = "git commit";
-        gp = "git push";
+        gps = "git push";
+	gpl = "git pull";
+	gco = "git checkout";
 
         ".." = "cd ..";
+        "..." = "cd ../..";
+        "...." = "cd ../../..";
       };
 
     history.size = 10000;

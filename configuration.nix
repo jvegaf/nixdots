@@ -113,19 +113,18 @@ in
   environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
-  curl
-  wget
   _1password-gui
-  kitty
-  tmux
-  eza
   alacritty
-  rofi
+  curl
+  eza
+  fd
+  fzf
   gh
   git
   git-extras
   git-lfs
   gnome-keyring
+  kitty
   lazygit
   luarocks
   neovim
@@ -133,25 +132,26 @@ in
   nerd-fonts.jetbrains-mono
   ntfs3g
   openssh
-  wireguard-tools
-  power-profiles-daemon
   orca-slicer
-  prusa-slicer
   platformio-core
+  power-profiles-daemon
+  prusa-slicer
   qbittorrent
   ripgrep
   rofi
   rustup
   sad
   starship
-  sad
   tealdeer
+  tmux
   unar
   unrar
   unzip
   uv
-  xsel
+  wget
+  wireguard-tools
   xclip
+  xsel
   yazi
   yaziPlugins.compress
   yaziPlugins.diff
@@ -160,19 +160,13 @@ in
   yaziPlugins.glow
   yaziPlugins.jump-to-char
   yaziPlugins.lazygit
-  yaziPlugins.lsar
   yaziPlugins.mediainfo
-  yaziPlugins.mime-ext
-  yaziPlugins.mount
-  yaziPlugins.ouch
   yaziPlugins.piper
   yaziPlugins.relative-motions
   yaziPlugins.smart-enter
   yaziPlugins.smart-filter
   yaziPlugins.smart-paste
-  yaziPlugins.starship
   yaziPlugins.sudo
-  yaziPlugins.vcs-files
   zoxide
   zsh
  ];
@@ -192,6 +186,15 @@ in
   #   enableSSHSupport = true;
   # };
 
+  fonts = {
+    packages = [
+      pkgs.nerd-fonts.fantasque-sans-mono
+      pkgs.nerd-fonts.jetbrains-mono
+    ];
+
+    fontconfig.enable = true;
+  };
+
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
@@ -201,7 +204,7 @@ in
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
+  networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
