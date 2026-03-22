@@ -23,6 +23,10 @@
         y = "yazi";
 	rmd = "rm -rf";
 	dots = "cd ~/nixdots";
+	cdc = "cd ~/Code";
+
+	nxgb = "nix-collect-garbage -d";
+	nxclean = "nh clean all --keep 3";
 
 	g = "lazygit";
         gs = "git status";

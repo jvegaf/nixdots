@@ -13,6 +13,8 @@ in
       (import "${home-manager}/nixos")
     ];
 
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
   home-manager.useUserPackages = true;
   # home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "backup";
@@ -130,6 +132,7 @@ in
   neovim
   nerd-fonts.fantasque-sans-mono
   nerd-fonts.jetbrains-mono
+  nh
   ntfs3g
   openssh
   orca-slicer
@@ -194,6 +197,8 @@ in
 
     fontconfig.enable = true;
   };
+
+  programs.ssh.startAgent = true;
 
   # List services that you want to enable:
 
