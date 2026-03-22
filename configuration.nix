@@ -15,6 +15,8 @@ in
 
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
+
+
   home-manager.useUserPackages = true;
   # home-manager.useGlobalPkgs = true;
   home-manager.backupFileExtension = "backup";

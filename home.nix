@@ -1,5 +1,14 @@
-{ config, pkgs, ...}: {
+{ config, pkgs, ...}: 
+let
+  nvf = import (builtins.fetchTarball {
+    url = "https://github.com/notashelf/nvf/archive/refs/tags/v0.8.tar.gz";
+    # Optionally, you can add 'sha256' for verification and caching
+    # sha256 = "<sha256>";
+  });
+in
+{
 	imports = [
+                nvf.homeManagerModules.nvf
 	 	./modules
 		./home-packages.nix
 	];

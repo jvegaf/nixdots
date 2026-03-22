@@ -8,7 +8,8 @@
     ./git.nix
     # ./hyprland
     # ./lazygit.nix
-    ./neovim.nix
+    # ./neovim.nix
+    ./nvf-config.nix
     # ./obsidian.nix
     # ./ranger.nix
     ./starship.nix
