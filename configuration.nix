@@ -110,6 +110,11 @@ in
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  environment.variables = {
+    EDITOR = "nvim";
+    VISUAL = "nvim";
+  };
+
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
@@ -193,6 +198,8 @@ in
     packages = [
       pkgs.nerd-fonts.fantasque-sans-mono
       pkgs.nerd-fonts.jetbrains-mono
+      pkgs.open-sans
+      pkgs.noto-fonts
     ];
 
     fontconfig.enable = true;
