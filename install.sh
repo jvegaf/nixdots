@@ -227,10 +227,11 @@ select_host() {
 
     log_info "Select host to install:"
 
-    select h in "fs0ciety (laptop)" "h4z3 (VirtualBox)"; do
+    select h in "fs0ciety (laptop)" "h4z3 (VirtualBox)" "wh1t3r0s3 (VMWare)"; do
         case "$h" in
             "fs0ciety"*) HOSTNAME="fs0ciety" ;;
             "h4z3"*) HOSTNAME="h4z3" ;;
+            "wh1t3r0s3"*) HOSTNAME="wh1t3r0s3" ;;
         esac
         [[ -n "$HOSTNAME" ]] && break
     done
