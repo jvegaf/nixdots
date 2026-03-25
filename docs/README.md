@@ -6,7 +6,9 @@
 |-----------|-------------|
 | [install.md](./install.md) | Guía completa de instalación desde USB |
 | [disko.md](./disko.md) | Configuración de disco declarativo con Disko |
+| [razer-blade.md](./razer-blade.md) | Razer Blade 15 Advanced 2021 (RTX 3070) |
 | [h4z3.md](./h4z3.md) | Host VirtualBox (X11 + AwesomeWM) |
+| [wh1t3r0s3.md](./wh1t3r0s3.md) | Host VMware Workstation (X11 + AwesomeWM) |
 
 ---
 
@@ -51,7 +53,11 @@ nixdots/
     │   ├── configuration.nix
     │   ├── disko.nix
     │   └── hardware-configuration.nix
-    └── h4z3/            # Host VirtualBox
+    ├── h4z3/            # Host VirtualBox
+    │   ├── configuration.nix
+    │   ├── disko.nix
+    │   └── hardware-configuration.nix
+    └── wh1t3r0s3/       # Host VMware Workstation
         ├── configuration.nix
         ├── disko.nix
         └── hardware-configuration.nix
@@ -61,12 +67,15 @@ nixdots/
 
 ## Hosts
 
-### fs0ciety (Laptop)
+### fs0ciety (Laptop - Razer Blade 15 Advanced 2021)
 
+- **Hardware**: Razer Blade 15 Advanced 2021 (RTX 3070)
 - **Display Server**: Wayland
 - **Window Manager**: Hyprland
+- **GPU**: Intel UHD + NVIDIA RTX 3070 (PRIME sync)
 - **Disco**: `/dev/nvme0n1` (NVMe)
 - **Propósito**: Uso diario
+- **Documentación**: [razer-blade.md](./razer-blade.md)
 
 ### h4z3 (VirtualBox)
 
@@ -74,7 +83,15 @@ nixdots/
 - **Window Manager**: AwesomeWM
 - **Display Manager**: LightDM
 - **Disco**: `/dev/sda` (SATA virtual)
-- **Propósito**: Testing
+- **Propósito**: Testing VirtualBox
+
+### wh1t3r0s3 (VMware Workstation)
+
+- **Display Server**: X11
+- **Window Manager**: AwesomeWM
+- **Display Manager**: LightDM
+- **Disco**: `/dev/sda` (SCSI virtual)
+- **Propósito**: Testing VMware Workstation
 
 ---
 
@@ -84,6 +101,7 @@ nixdots/
 |--------|-------------|
 | `awesome.nix` | X11 + AwesomeWM (h4z3) |
 | `hyprland.nix` | Wayland + Hyprland (fs0ciety) |
+| `razer-blade.nix` | Razer Blade 15 (RTX 3070) configuración específica |
 | `audio.nix` | Configuración de audio (PipeWire) |
 | `bluetooth.nix` | Bluetooth |
 | `boot.nix` | Configuración de boot |

@@ -25,7 +25,9 @@ hosts/
 │   ├── disko.nix              # Configuración de disco
 │   ├── configuration.nix      # Importa disko.nix
 │   └── ...
-└── h4z3/
+├── h4z3/
+│   └── ...
+└── wh1t3r0s3/
     └── ...
 ```
 
@@ -126,6 +128,8 @@ hosts/
 | fs0ciety | /dev/nvme0n1 | root | 512MiB - 100% | Linux | ext4 | / |
 | h4z3 | /dev/sda | boot | 1MiB - 512MiB | EFI (EF00) | vfat | /boot |
 | h4z3 | /dev/sda | root | 512MiB - 100% | Linux | ext4 | / |
+| wh1t3r0s3 | /dev/sda | boot | 1MiB - 512MiB | EFI (EF00) | vfat | /boot |
+| wh1t3r0s3 | /dev/sda | root | 512MiB - 100% | Linux | ext4 | / |
 
 ## Comandos
 
@@ -149,6 +153,16 @@ sudo disko --mode format --flake .#h4z3
 sudo nixos-install --flake .#h4z3 --disk /dev/sda
 ```
 
+### wh1t3r0s3 (VMware SCSI)
+
+```bash
+# Formatear y instalar
+sudo disko --mode format --flake .#wh1t3r0s3
+
+# O con nixos-install
+sudo nixos-install --flake .#wh1t3r0s3 --disk /dev/sda
+```
+
 ### Solo particionar (sin instalar)
 
 ```bash
@@ -157,6 +171,9 @@ sudo disko --mode create --flake .#fs0ciety
 
 # h4z3
 sudo disko --mode create --flake .#h4z3
+
+# wh1t3r0s3
+sudo disko --mode create --flake .#wh1t3r0s3
 ```
 
 ### Montar particiones existentes
@@ -167,12 +184,22 @@ sudo disko --mode mount --flake .#fs0ciety
 
 # h4z3
 sudo disko --mode mount --flake .#h4z3
+
+# wh1t3r0s3
+sudo disko --mode mount --flake .#wh1t3r0s3
 ```
 
 ### Desmontar
 
 ```bash
+# fs0ciety
 sudo disko --mode umount --flake .#fs0ciety
+
+# h4z3
+sudo disko --mode umount --flake .#h4z3
+
+# wh1t3r0s3
+sudo disko --mode umount --flake .#wh1t3r0s3
 ```
 
 ## Opciones Comunes de Disko

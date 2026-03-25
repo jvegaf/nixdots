@@ -12,6 +12,7 @@
     ./net.nix
     ./nh.nix
     ./nix.nix
+    ./razer-blade.nix
     ./timezone.nix
     ./user.nix
     ./zram.nix

@@ -68,6 +68,10 @@ bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/inst
 # No interactivo: h4z3 (VirtualBox)
 bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/install.sh) \
     --host h4z3 --device /dev/sda -y
+
+# No interactivo: wh1t3r0s3 (VMware Workstation)
+bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/install.sh) \
+    --host wh1t3r0s3 --device /dev/sda -y
 ```
 
 ### Opción 2: Local (si ya tienes el repo clonado)
@@ -118,6 +122,10 @@ bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/inst
 # Instalación completa h4z3 (VirtualBox)
 bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/install.sh) \
     --host h4z3 --device /dev/sda -y
+
+# Instalación completa wh1t3r0s3 (VMware Workstation)
+bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/install.sh) \
+    --host wh1t3r0s3 --device /dev/sda -y
 
 # Solo formatear disco (útil para testing)
 bash <(curl -sL https://raw.githubusercontent.com/th3g3ntl3man/nixdots/main/install.sh) \
@@ -295,8 +303,17 @@ sudo nixos-install --flake .#fs0ciety --no-root-passwd
 └── /dev/sda2 → / (ext4, resto)
 ```
 
+### wh1t3r0s3 (VMware)
+
+```
+/dev/sda (GPT)
+├── /dev/sda1 → /boot (vfat, 512MiB)
+└── /dev/sda2 → / (ext4, resto)
+```
+
 ## Véase también
 
 - [docs/disko.md](./disko.md) - Configuración de disco
 - [docs/h4z3.md](./h4z3.md) - Host VirtualBox
+- [docs/wh1t3r0s3.md](./wh1t3r0s3.md) - Host VMware Workstation
 - [QUICKREF.md](../QUICKREF.md) - Comandos útiles

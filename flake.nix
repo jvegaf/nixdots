@@ -36,6 +36,7 @@
       hosts = [
         { hostname = "fs0ciety"; stateVersion = "25.11"; }
         { hostname = "h4z3"; stateVersion = "25.11"; }
+        { hostname = "wh1t3r0s3"; stateVersion = "25.11"; }
       ];
 
       makeSystem = { hostname, stateVersion }: nixpkgs.lib.nixosSystem {

@@ -43,8 +43,9 @@ Ctrl + e           → Fin de línea
 
 ```bash
 # Rebuilds
-sudo nixos-rebuild switch --flake ~/Code/nix/nixdots#fs0ciety   # Host principal
-sudo nixos-rebuild switch --flake ~/Code/nix/nixdots#h4z3       # Host VirtualBox
+sudo nixos-rebuild switch --flake ~/Code/nix/nixdots#fs0ciety    # Host principal
+sudo nixos-rebuild switch --flake ~/Code/nix/nixdots#h4z3        # Host VirtualBox
+sudo nixos-rebuild switch --flake ~/Code/nix/nixdots#wh1t3r0s3   # Host VMware
 home-manager switch --flake ~/Code/nix/nixdots#th3g3ntl3man
 nix flake update
 
@@ -55,6 +56,9 @@ nix build ~/Code/nix/nixdots#homeConfigurations.th3g3ntl3man.activationPackage
 
 # VirtualBox h4z3
 nix build .#nixosConfigurations.h4z3.config.system.build.isoImage
+
+# VMware wh1t3r0s3
+nix build .#nixosConfigurations.wh1t3r0s3.config.system.build.isoImage
 # Output: result/iso/
 
 # Instalación (desde USB con curl)
@@ -204,6 +208,7 @@ pkill waybar && waybar &
 - [docs/install.md](../docs/install.md) - Guía de instalación completa
 - [docs/disko.md](../docs/disko.md) - Configuración de disco con Disko
 - [docs/h4z3.md](../docs/h4z3.md) - Host VirtualBox
+- [docs/wh1t3r0s3.md](../docs/wh1t3r0s3.md) - Host VMware Workstation
 
 ### Documentación Externa
 - [Home Manager Manual](https://nix-community.github.io/home-manager/index.html)
