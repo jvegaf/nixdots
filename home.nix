@@ -1,14 +1,14 @@
 { config, pkgs, ...}: 
 let
-  nvf = import (builtins.fetchTarball {
-    url = "https://github.com/notashelf/nvf/archive/refs/tags/v0.8.tar.gz";
-    # Optionally, you can add 'sha256' for verification and caching
-    # sha256 = "<sha256>";
+  nixvim = import (builtins.fetchGit {
+    # url = "https://github.com/nix-community/nixvim";
+    url = "https://github.com/dc-tec/nixvim";
+    # When using a different channel you can use `ref = "nixos-<version>"` to set it here
   });
 in
 {
 	imports = [
-                nvf.homeManagerModules.nvf
+		nixvim.homeModules.nixvim
 	 	./modules
 		./home-packages.nix
 	];
@@ -27,4 +27,16 @@ in
 			ngc = "sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +3";
 		};
 	};
+
+	programs.ssh = {
+		enable = true;
+		extraConfig = ''
+			Host github.com
+			IdentityFile ~/.ssh/jvegaf_ed25519
+		'';
+	};
+
+	
+	programs.nixvim.imports = [ ./modules/nixvim.nix ];
+
 }

@@ -32,8 +32,17 @@
     # libnotify
     #
     # nodePackages.nodejs
+    tree-sitter
     nodejs_24
     pnpm
+    gcc
+    gnumake
+    cmake
+    nil # Language Server
+    statix # Lints and suggestions
+    deadnix # Find and remove unused
+    alejandra # Code Formatter
+    luarocks
     # yarn
 
 

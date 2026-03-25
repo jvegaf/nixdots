@@ -9,7 +9,8 @@
     # ./hyprland
     # ./lazygit.nix
     # ./neovim.nix
-    ./nvf-config.nix
+    # ./nixvim.nix
+    # ./nvf-config.nix
     # ./obsidian.nix
     # ./ranger.nix
     ./starship.nix

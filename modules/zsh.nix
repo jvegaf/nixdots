@@ -16,25 +16,41 @@
 
         pkgs = "nvim ${flakeDir}/nixos/packages.nix";
 
+        ls = "eza -lh --group-directories-first --icons=auto";
+        l = "ls";
+        ll = "ls -a";
+        lt = "eza --tree --level=2 --long --icons --git";
+        llt = "lt -a";
         rebuild = "sudo nixos-rebuild switch";
         r = "ranger";
         v = "nvim";
         se = "sudoedit";
         y = "yazi";
-	rmd = "rm -rf";
-	dots = "cd ~/nixdots";
-	cdc = "cd ~/Code";
+        rmd = "rm -rf";
+        dots = "cd ~/nixdots";
+        doc = "cd ~/Documents";
+        dw = "cd ~/Downloads";
+        dt = "cd ~/Desktop";
+        cdc = "cd ~/Code";
+        mx  = "tmux";
+        grep = "grep --color=auto";
+        "v." = "(nvim $PWD &>/dev/null &)";
+        "o." = "($FILE_MANAGER $PWD &>/dev/null &)";
+        ffe = "fastfetch";
+        bt = "btop";
+        jctl = "journalctl -p 3 -xb";
+        lzd = "lazydocker";
 
-	nxgb = "nix-collect-garbage -d";
-	nxclean = "nh clean all --keep 3";
+        nxgb = "nix-collect-garbage -d";
+        nxclean = "nh clean all --keep 3 && nh os switch";
 
-	g = "lazygit";
+        g = "lazygit";
         gs = "git status";
         ga = "git add";
         gc = "git commit";
         gps = "git push";
-	gpl = "git pull";
-	gco = "git checkout";
+        gpl = "git pull --rebase --autostash";
+        gco = "git checkout";
 
         ".." = "cd ..";
         "..." = "cd ../..";
@@ -46,9 +62,9 @@
 
     initContent = ''
       # Start Tmux automatically if not already running. No Tmux in TTY
-      if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
-        tmux attach-session -t default || tmux new-session -s default
-      fi
+      # if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
+      #   tmux attach-session -t default || tmux new-session -s default
+      # fi
 
       # Start UWSM
       # if uwsm check may-start > /dev/null && uwsm select; then

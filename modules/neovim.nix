@@ -3,9 +3,12 @@
     enable = true;
     extraPackages = with pkgs; [
       lua-language-server
-      python311Packages.python-lsp-server
+      # python311Packages.python-lsp-server
       nixd
       vimPlugins.nvim-treesitter-parsers.hyprlang
+      vimPlugins.nvim-treesitter-parsers.nix
+      vimPlugins.nvim-tree-lua
+      vimPlugins.vim-clang-format
     ];
   };
 }
