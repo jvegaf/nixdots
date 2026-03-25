@@ -30,6 +30,7 @@
     btop
     cliphist
     curl
+    delta  # Git diff viewer with syntax highlighting
     eza
     fastfetch
     fd
@@ -69,6 +70,7 @@
     unrar
     unzip
     w3m
+    wezterm
     wget
     wl-clipboard
     wtype
@@ -108,7 +110,10 @@
     yarn
 
     # WM stuff
+    dunst
     libsForQt5.xwaylandvideobridge
+    libsForQt5.breeze-qt5
+    libsForQt5.kvantum
     libnotify
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland

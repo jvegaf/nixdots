@@ -4,13 +4,29 @@
     systemd.enable = true;
     settings = {
       env = [
-        # Hint Electron apps to use Wayland
+        # Wayland settings
         "NIXOS_OZONE_WL,1"
         "XDG_CURRENT_DESKTOP,Hyprland"
         "XDG_SESSION_TYPE,wayland"
         "XDG_SESSION_DESKTOP,Hyprland"
-        "QT_QPA_PLATFORM,wayland"
-        "XDG_SCREENSHOTS_DIR,$HOME/screens"
+        "XDG_SCREENSHOTS_DIR,$HOME/Pictures"
+
+        # QT Platform
+        "QT_QPA_PLATFORM,wayland;xcb"
+        "QT_QPA_PLATFORMTHEME,qt5ct"
+
+        # AIDEV-NOTE: GTK theme
+        "GTK_THEME,Breeze-Dark:dark"
+
+        # Input method
+        "SDL_IBUS,1"
+
+        # NVIDIA specific
+        "__GLX_VENDOR_LIBRARY_NAME,nvidia"
+        "LIBVA_DRIVER_NAME,nvidia"
+
+        # Cursor
+        "XCURSOR_SIZE,24"
       ];
 
       monitor = ",1920x1080@60,auto,1";
@@ -20,9 +36,13 @@
       "$menu" = "wofi";
 
       exec-once = [
+        # Waybar startup
         "waybar"
+        # Clipboard management
         "wl-paste --type text --watch cliphist store"
         "wl-paste --type image --watch cliphist store"
+        # GNOME Keyring SSH
+        "dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
       ];
 
       general = {
@@ -62,12 +82,18 @@
       input = {
         kb_layout = "us,ru,il";
         kb_options = "grp:caps_toggle";
+
+        # AIDEV-NOTE: Natural scrolling and click method
+        scroll_method = "two_finger";
+        accel_profile = "flat";
+        repeat_rate = 50;
+        repeat_delay = 300;
       };
 
       gestures = {
         workspace_swipe = true;
         workspace_swipe_invert = false;
-        workspace_swipe_forever	= true;
+        workspace_swipe_forever = true;
       };
 
       dwindle = {
@@ -89,10 +115,12 @@
       windowrulev2 = [
         "bordersize 0, floating:0, onworkspace:w[t1]"
 
+        # Floating windows
         "float,class:(mpv)|(imv)|(showmethekey-gtk)"
         "move 990 60,size 900 170,pin,noinitialfocus,class:(showmethekey-gtk)"
         "noborder,nofocus,class:(showmethekey-gtk)"
 
+        # Workspace assignments
         "workspace 3,class:(obsidian)"
         "workspace 3,class:(zathura)"
         "workspace 4,class:(com.obsproject.Studio)"
@@ -100,9 +128,11 @@
         "workspace 5,class:(vesktop)"
         "workspace 6,class:(teams-for-linux)"
 
+        # Suppress events
         "suppressevent maximize, class:.*"
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
 
+        # XWayland bridge
         "opacity 0.0 override, class:^(xwaylandvideobridge)$"
         "noanim, class:^(xwaylandvideobridge)$"
         "noinitialfocus, class:^(xwaylandvideobridge)$"

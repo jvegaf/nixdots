@@ -1,4 +1,6 @@
 { pkgs, ... }:
+
+# AIDEV-NOTE: Hyprland keybindings with user customizations
 let
   booksDir = "$HOME/Downloads/books";
   booksScript = pkgs.writeScriptBin "open_books" ''
@@ -14,11 +16,28 @@ let
         echo "No book selected."
     fi
   '';
+
+  # Screenshot script using grimblast
+  screenshotScript = pkgs.writeScriptBin "screenshot" ''
+    #!/bin/sh
+    case "$1" in
+      area)
+        grimblast --notify --freeze copysave area
+        ;;
+      screen)
+        grimblast --notify copysave screen
+        ;;
+      window)
+        grimblast --notify copysave active
+        ;;
+    esac
+  '';
 in {
-  home.packages = [ booksScript ];
+  home.packages = [ booksScript screenshotScript ];
 
   wayland.windowManager.hyprland.settings = {
     bind = [
+      # AIDEV-NOTE: Window management
       "$mainMod SHIFT, Return, exec, $terminal"
       "$mainMod SHIFT, C, killactive,"
       "$mainMod SHIFT, Q, exit,"
@@ -27,6 +46,8 @@ in {
       "$mainMod,       D, exec, $menu --show drun"
       "$mainMod,       P, pin,"
       "$mainMod,       J, togglesplit,"
+
+      # AIDEV-NOTE: Custom binds from dotfiles
       "$mainMod,       E, exec, bemoji -cn"
       "$mainMod,       V, exec, cliphist list | $menu --dmenu | cliphist decode | wl-copy"
       "$mainMod,       B, exec, pkill -SIGUSR2 waybar"
@@ -34,10 +55,16 @@ in {
       "$mainMod,       L, exec, loginctl lock-session"
       "$mainMod,       P, exec, hyprpicker -an"
       "$mainMod,       N, exec, swaync-client -t"
-      ", Print, exec, grimblast --notify --freeze copysave area"
+
+      # AIDEV-NOTE: Screenshot binds
+      ", Print, exec, ${screenshotScript}/bin/screenshot area"
+      "$mainMod SHIFT, Print, exec, ${screenshotScript}/bin/screenshot screen"
+      "$mainMod,       Print, exec, ${screenshotScript}/bin/screenshot window"
+
+      # Books launcher
       "$mainMod,       W, exec, ${booksScript}/bin/open_books"
 
-      # Moving focus
+      # AIDEV-NOTE: Moving focus with vim-style
       "$mainMod, left, movefocus, l"
       "$mainMod, right, movefocus, r"
       "$mainMod, up, movefocus, u"
@@ -49,7 +76,7 @@ in {
       "$mainMod SHIFT, up,    swapwindow, u"
       "$mainMod SHIFT, down,  swapwindow, d"
 
-      # Resizeing windows                   X  Y
+      # Resizing windows
       "$mainMod CTRL, left,  resizeactive, -60 0"
       "$mainMod CTRL, right, resizeactive,  60 0"
       "$mainMod CTRL, up,    resizeactive,  0 -60"
@@ -79,9 +106,22 @@ in {
       "$mainMod SHIFT, 9, movetoworkspacesilent, 9"
       "$mainMod SHIFT, 0, movetoworkspacesilent, 10"
 
+      # AIDEV-NOTE: Move workspace to monitor
+      "$mainMod CTRL, F9, movecurrentworkspacetomonitor, l"
+      "$mainMod CTRL, F10, movecurrentworkspacetomonitor, r"
+      "$mainMod CTRL, F11, movecurrentworkspacetomonitor, u"
+      "$mainMod CTRL, F12, movecurrentworkspacetomonitor, d"
+
       # Scratchpad
       "$mainMod,       S, togglespecialworkspace,  magic"
       "$mainMod SHIFT, S, movetoworkspace, special:magic"
+
+      # AIDEV-NOTE: Fullscreen
+      "$mainMod SHIFT, F, fullscreen, 0"
+      "$mainMod CTRL, F, fullscreen, 1"
+
+      # AIDEV-NOTE: Center window
+      "$mainMod, C, centerwindow"
     ];
 
     # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -92,20 +132,34 @@ in {
 
     # Laptop multimedia keys for volume and LCD brightness
     bindel = [
+      # Volume controls
       ",XF86AudioRaiseVolume,  exec, wpctl set-volume -l 1 @DEFAULT_AUDIO_SINK@ 5%+"
       ",XF86AudioLowerVolume,  exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
       ",XF86AudioMute,         exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
       ",XF86AudioMicMute,      exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
+
+      # Brightness with mainMod
       "$mainMod, bracketright, exec, brightnessctl s 10%+"
       "$mainMod, bracketleft,  exec, brightnessctl s 10%-"
+
+      # Brightness without mainMod
+      ",XF86MonBrightnessUp,   exec, brightnessctl s 10%+"
+      ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
     ];
 
-    # Audio playback
+    # Audio playback controls
     bindl = [
       ", XF86AudioNext,  exec, playerctl next"
       ", XF86AudioPause, exec, playerctl play-pause"
       ", XF86AudioPlay,  exec, playerctl play-pause"
       ", XF86AudioPrev,  exec, playerctl previous"
+    ];
+
+    # AIDEV-NOTE: Layout and workspace binds
+    bind = [
+      # Next/Previous window
+      "$mainMod CTRL, Tab, nextwindow"
+      "$mainMod CTRL SHIFT, Tab, previouswindow"
     ];
   };
 }
