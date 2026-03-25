@@ -47,7 +47,7 @@ NC='\033[0m' # No Color
 
 # Defaults
 FLAKE_URL="github:th3g3ntl3man/nixdots"
-FLAKE_DIR="/tmp/nixdots"
+FLAKE_DIR="/home/nixos/nixdots"
 HOSTNAME=""
 DEVICE=""
 USERNAME="th3g3ntl3man"
