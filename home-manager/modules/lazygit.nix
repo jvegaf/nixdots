@@ -25,7 +25,7 @@
         defaultBgColor = [ "black" ];
 
         # guilt colors
-        selectedLineBgColor = [ "blue" ];
+        # selectedLineBgColor = [ "blue" ];
       };
 
       # Nested view options

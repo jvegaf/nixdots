@@ -1,14 +1,15 @@
+
 {
   imports = [
     # Terminal emulators
     ./alacritty.nix
-    ./wezterm
-    ./wezterm.nix
+   # ./wezterm
+   #./wezterm.nix
 
     # Programming & Utils
     ./bat.nix
-    ./fastfetch
-    ./fastfetch.nix
+   # ./fastfetch
+   # ./fastfetch.nix
 
     # Shell & Terminal tools
     ./zsh.nix
@@ -17,7 +18,7 @@
     ./starship.nix
 
     # Browsers
-    ./chromium.nix
+   # ./chromium.nix
     ./firefox.nix
 
     # File managers & explorers
@@ -25,16 +26,16 @@
     ./yazi.nix
 
     # UI & Display
-    ./hyprland
-    ./waybar
-    ./wofi
-    ./swaync
-    ./dunst.nix
+    # ./hyprland
+    # ./waybar
+    # ./wofi
+    # ./swaync
+    # ./dunst.nix
 
     # Theming
-    ./stylix.nix
-    ./gtk.nix
-    ./qt.nix
+    # ./stylix.nix
+    # ./gtk.nix
+    # ./qt.nix
     ./fontconfig.nix
 
     # Document viewers
