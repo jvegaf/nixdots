@@ -10,7 +10,7 @@
     ./kernel.nix
     ./mime.nix
     ./net.nix
-    # ./nh.nix
+    ./nh.nix
     ./nix.nix
     # ./razer-blade.nix
     ./timezone.nix

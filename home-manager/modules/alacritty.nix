@@ -6,6 +6,7 @@
 
       font = {
         builtin_box_drawing = true;
+	size = 14;
         normal = {
           style = lib.mkForce "Bold";
         };

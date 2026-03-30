@@ -22,7 +22,6 @@
   services.xserver.desktopManager.xfce.enable = true;
 
   programs.dconf.enable = true;
-  programs.ssh.startAgent = true;
   programs.firefox.enable = true;
   
   services.xserver.xkb = {

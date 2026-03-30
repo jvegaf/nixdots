@@ -17,6 +17,7 @@
     ./tmux.nix
     ./git.nix
     ./starship.nix
+    # ./nixvim.nix
 
     # Browsers
    # ./chromium.nix
@@ -24,7 +25,7 @@
 
     # File managers & explorers
     ./ranger.nix
-    ./yazi.nix
+    # ./yazi.nix
 
     # UI & Display
     # ./hyprland
@@ -47,6 +48,7 @@
 
     # Editors
     # ./neovim.nix
+    ./nixvim/nixvim.nix
     ./eza.nix
     # ./ideavim.nix
 

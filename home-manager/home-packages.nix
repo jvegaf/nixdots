@@ -1,9 +1,8 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: 
+{
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    # Packages in each category are sorted alphabetically
-
     # Desktop apps
     anki
     imv
@@ -18,12 +17,11 @@
     orca-slicer
     qbittorrent
     # evince
-    firefox
+   # firefox
 
     # CLI utils
     alacritty
     bat
-    bat-extras.core
     bc
     bottom
     brightnessctl
@@ -55,9 +53,9 @@
     ntfs3g
     openssh
     playerctl
+    ranger
     ripgrep
     rofi
-    showmethekey
     rustup
     sad
     starship
@@ -69,32 +67,33 @@
     unar
     unrar
     unzip
+    vim
     w3m
     wezterm
     wget
     # wl-clipboard
     wtype
-    yazi
-    yaziPlugins.compress
-    yaziPlugins.diff
-    yaziPlugins.dupes
-    yaziPlugins.git
-    yaziPlugins.glow
-    yaziPlugins.jump-to-char
-    yaziPlugins.lazygit
-    yaziPlugins.lsar
-    yaziPlugins.mediainfo
-    yaziPlugins.mime-ext
-    yaziPlugins.mount
-    yaziPlugins.ouch
-    yaziPlugins.piper
-    yaziPlugins.relative-motions
-    yaziPlugins.smart-enter
-    yaziPlugins.smart-filter
-    yaziPlugins.smart-paste
-    yaziPlugins.starship
-    yaziPlugins.sudo
-    yaziPlugins.vcs-files
+    # yazi
+    # yaziPlugins.compress
+    # yaziPlugins.diff
+    # yaziPlugins.dupes
+    # yaziPlugins.git
+    # yaziPlugins.glow
+    # yaziPlugins.jump-to-char
+    # yaziPlugins.lazygit
+    # yaziPlugins.lsar
+    # yaziPlugins.mediainfo
+    # yaziPlugins.mime-ext
+    # yaziPlugins.mount
+    # yaziPlugins.ouch
+    # yaziPlugins.piper
+    # yaziPlugins.relative-motions
+    # yaziPlugins.smart-enter
+    # yaziPlugins.smart-filter
+    # yaziPlugins.smart-paste
+    # yaziPlugins.starship
+    # yaziPlugins.sudo
+    # yaziPlugins.vcs-files
     yt-dlp
     zip
     zoxide

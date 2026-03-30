@@ -13,9 +13,10 @@
       }
     ];
 
+    colorschemes.vim.enable = true;
     # Si quieres cambiar alguna opción que Kickstart trae por defecto
     opts = {
-      relativenumber = true; # Kickstart suele traer 'number', pero quizás prefieres relativas
+      relativenumber = true;
     };
   };
 
