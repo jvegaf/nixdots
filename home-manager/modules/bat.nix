@@ -15,7 +15,6 @@
       "plain" = false;
       "italic-text" = "always";
       "paging" = "never";
-      "tabs" = 4;
       "language-token" = "bold";
       "grid-left" = "";
       "grid-right" = "";

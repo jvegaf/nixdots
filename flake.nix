@@ -10,16 +10,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    stylix = {
-      url = "github:danth/stylix/release-25.11";
-      inputs.nixpkgs.follows = "nixpkgs";
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      # If using a stable channel you can use `url = "github:nix-community/nixvim/nixos-<version>"`
     };
 
+
+    # stylix = {
+    #   url = "github:danth/stylix/release-25.11";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
     # Neovim configuration framework
-    nvf = {
-      url = "github:notashelf/nvf";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # Disko - declarative disk partitioning
     # disko = {
@@ -28,7 +30,7 @@
     # };
   };
 
-  outputs = { self, nixpkgs, home-manager, nvf, disko, ... }@inputs:
+  outputs = { self, nixpkgs, home-manager, nixvim, ... }@inputs:
     let
       system = "x86_64-linux";
       homeStateVersion = "25.11";
@@ -46,6 +48,9 @@
         };
 
         modules = [
+	  {
+            nixpkgs.config.allowUnfree = true;
+	  }
           ./hosts/${hostname}/configuration.nix
         ];
       };
@@ -69,7 +74,7 @@
         };
 
         modules = [
-          nvf.homeManagerModules.default
+	  nixvim.homeModules.nixvim
           ./home-manager/home.nix
         ];
       };

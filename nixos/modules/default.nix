@@ -1,7 +1,7 @@
 {
   imports = [
     ./audio.nix
-    ./awesome.nix
+    #./awesome.nix
     ./bluetooth.nix
     ./boot.nix
     ./env.nix
@@ -10,11 +10,14 @@
     ./kernel.nix
     ./mime.nix
     ./net.nix
-    ./nh.nix
+    # ./nh.nix
     ./nix.nix
     # ./razer-blade.nix
     ./timezone.nix
     ./user.nix
     ./zram.nix
+
+    ./1password.nix
+    ./fonts.nix
   ];
 }

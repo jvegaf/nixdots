@@ -6,14 +6,14 @@
     enable = true;
 
     # Subpixel rendering and hinting
-    antialias = true;
-    hinting = true;
-    hintstyle = "hintslight";
-    rgba = "rgb";
-    lcdfilter = "lcdnone";
+    #antialias = true;
+    hinting = "slight";
+    # hintstyle = "hintslight";
+    # rgba = "rgb";
+    # lcdfilter = "lcdnone";
 
     # DPI setting
-    dpi = 102;
+    # dpi = 102;
   };
 
   # Link custom fonts.conf if needed

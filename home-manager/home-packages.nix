@@ -8,16 +8,16 @@
     anki
     imv
     mpv
-    obsidian
+    # obsidian
     pavucontrol
-    telegram-desktop
-    _1password
+    # telegram-desktop
+    # _1password
     _1password-gui
     gnome-disk-utility
     localsend
     orca-slicer
     qbittorrent
-    evince
+    # evince
     firefox
 
     # CLI utils
@@ -72,7 +72,7 @@
     w3m
     wezterm
     wget
-    wl-clipboard
+    # wl-clipboard
     wtype
     yazi
     yaziPlugins.compress
@@ -103,20 +103,20 @@
 
     # Coding stuff
     platformio-core
-    openjdk23
+    # openjdk23
     nodejs
     python311
     pnpm
     yarn
 
     # WM stuff
-    dunst
-    libsForQt5.xwaylandvideobridge
-    libsForQt5.breeze-qt5
-    libsForQt5.kvantum
-    libnotify
-    xdg-desktop-portal-gtk
-    xdg-desktop-portal-hyprland
+    # dunst
+    # libsForQt5.xwaylandvideobridge
+    # libsForQt5.breeze-qt5
+    # libsForQt5.kvantum
+    # libnotify
+    # xdg-desktop-portal-gtk
+    # xdg-desktop-portal-hyprland
 
     # Fonts
     nerd-fonts._0xproto

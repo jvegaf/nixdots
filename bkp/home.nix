@@ -1,8 +1,8 @@
 { config, pkgs, ...}: 
 let
   nixvim = import (builtins.fetchGit {
-    # url = "https://github.com/nix-community/nixvim";
-    url = "https://github.com/dc-tec/nixvim";
+    url = "https://github.com/nix-community/nixvim";
+    # url = "https://github.com/dc-tec/nixvim";
     # When using a different channel you can use `ref = "nixos-<version>"` to set it here
   });
 in

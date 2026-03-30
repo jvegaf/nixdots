@@ -1,6 +1,7 @@
 
 {
   imports = [
+    ./ssh.nix
     # Terminal emulators
     ./alacritty.nix
    # ./wezterm
@@ -45,9 +46,9 @@
     ./lazygit.nix
 
     # Editors
-    ./neovim.nix
+    # ./neovim.nix
     ./eza.nix
-    ./ideavim.nix
+    # ./ideavim.nix
 
     # Disabled
     # ./obsidian.nix

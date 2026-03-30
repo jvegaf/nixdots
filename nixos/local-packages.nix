@@ -6,7 +6,7 @@
     # jre8
     # qemu
     # quickemu
-  _1password
+  _1password-cli
   _1password-gui
   alacritty
   curl

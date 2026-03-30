@@ -3,7 +3,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./local-packages.nix
+    ../../nixos/local-packages.nix
     ../../nixos/modules
     # AIDEV-NOTE: Razer Blade 15 Advanced 2021 (RTX 3070) specific config
   ];
@@ -21,7 +21,9 @@
   services.xserver.displayManager.lightdm.enable = true;
   services.xserver.desktopManager.xfce.enable = true;
 
-  programs.ssh.startAgent = true
+  programs.dconf.enable = true;
+  programs.ssh.startAgent = true;
+  programs.firefox.enable = true;
   
   services.xserver.xkb = {
     layout = "us";
