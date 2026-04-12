@@ -41,6 +41,7 @@
         bt = "btop";
         jctl = "journalctl -p 3 -xb";
         lzd = "lazydocker";
+	edalias = "nvim ~/nixdots/modules/home-manager/zsh.nix";
 
         nxgb = "nix-collect-garbage -d";
         nxclean = "nh clean all --keep 3 && nh os switch";
