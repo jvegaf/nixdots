@@ -13,8 +13,8 @@
       bind C-n next-window
 
       unbind-key C-b
-      set -g prefix C-a
-      bind-key C-a send-prefix
+      set -g prefix M-a
+      bind-key M-a send-prefix
 
       set-option -g allow-rename on
       set-option -g set-titles on

@@ -22,6 +22,7 @@
         lt = "eza --tree --level=2 --long --icons --git";
         llt = "lt -a";
         rebuild = "sudo nixos-rebuild switch";
+        freb = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety";
         r = "ranger";
         v = "nvim";
         se = "sudoedit";

@@ -165,7 +165,7 @@
     yaziPlugins.relative-motions
     # yaziPlugins.smart-enter
     yaziPlugins.smart-filter
-    yaziPlugins.smart-paste
+    # yaziPlugins.smart-paste
     # yaziPlugins.sudo
     zoxide
     zsh

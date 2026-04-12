@@ -2,6 +2,7 @@
 
 {
   imports = [
+    # config.nvf.homeManagerModules.default
     ./modules/home-manager
   ];
 

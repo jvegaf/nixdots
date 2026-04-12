@@ -1,6 +1,7 @@
 {
   programs.yazi = {
     enable = true;
+    shellWrapperName = "y";
 
     settings = {
       mgr = {
@@ -35,10 +36,10 @@
           on = [ "f" ];
           desc = "Jump to char";
         }
-        {
-          run = "plugin smart-paste";
-          on = [ "p" ];
-        }
+        # {
+        #   run = "plugin smart-paste";
+        #   on = [ "p" ];
+        # }
       ];
     };
   };
