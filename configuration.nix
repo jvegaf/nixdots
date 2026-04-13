@@ -8,6 +8,7 @@
     # Include the results of the hardware scan.
     # ./nixosModules
     ./hardware-configuration.nix
+    ./modules/home-manager/nvf-config.nix
   ];
 
   nix.settings.experimental-features = [
