@@ -1,68 +1,87 @@
-{ config, lib, ... }: {
+{ config, lib, ... }:
+{
   programs.nixvim = {
-    globals = {
-      mapleader = "\\";
-      maplocalleader = "\\";
-    };
-
-    keymaps = let
-      normal =
-        lib.mapAttrsToList
-        (key: action: {
+    keymaps = [
+      # Clear highlights on search when pressing <Esc> in normal mode
+      #  See `:help hlsearch`
+      {
+        mode = "n";
+        key = "<Esc>";
+        action = "<cmd>nohlsearch<CR>";
+      }
+      # Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+      # for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+      # is not what someone will guess without a bit more experience.
+      #
+      # NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+      # or just use <C-\><C-n> to exit terminal mode
+      {
+        mode = "t";
+        key = "<Esc><Esc>";
+        action = "<C-\\><C-n>";
+        options = {
+          desc = "Exit terminal mode";
+        };
+      }
+      # TIP: Disable arrow keys in normal mode
+      /*
+        {
           mode = "n";
-          inherit action key;
-        })
+          key = "<left>";
+          action = "<cmd>echo 'Use h to move!!'<CR>";
+        }
         {
-          # Open Neotree
-          "<leader>n" = ":Neotree<CR>";
-
-          # Esc to clear search results
-          "<esc>" = ":noh<CR>";
-
-          # fix Y behaviour
-          Y = "y$";
-
-          # back and fourth between the two most recent files
-          "<C-c>" = ":b#<CR>";
-
-          # close by Ctrl+x
-          "<C-x>" = ":close<CR>";
-
-          # save by \+s or Ctrl+s
-          "<leader>s" = ":w<CR>";
-          "<C-s>" = ":w<CR>";
-
-          # navigate windows
-          "<leader>h" = "<C-w>h";
-          "<leader>j" = "<C-w>j";
-          "<leader>k" = "<C-w>k";
-          "<leader>l" = "<C-w>l";
-
-          # resize with arrows
-          "<C-Up>" = ":resize -2<CR>";
-          "<C-Down>" = ":resize +2<CR>";
-          "<C-Left>" = ":vertical resize +2<CR>";
-          "<C-Right>" = ":vertical resize -2<CR>";
-
-          # move current line up/down
-          # M = Alt key
-          "<M-k>" = ":move-2<CR>";
-          "<M-j>" = ":move+<CR>";
-        };
-      visual =
-        lib.mapAttrsToList
-        (key: action: {
-          mode = "v";
-          inherit action key;
-        })
+          mode = "n";
+          key = "<right>";
+          action = "<cmd>echo 'Use l to move!!'<CR>";
+        }
         {
-          # move selected line / block of text in visual mode
-          "K" = ":m '<-2<CR>gv=gv";
-          "J" = ":m '>+1<CR>gv=gv";
+          mode = "n";
+          key = "<up>";
+          action = "<cmd>echo 'Use k to move!!'<CR>";
+        }
+        {
+          mode = "n";
+          key = "<down>";
+          action = "<cmd>echo 'Use j to move!!'<CR>";
+        }
+      */
+      # Keybinds to make split navigation easier.
+      #  Use CTRL+<hjkl> to switch between windows
+      #
+      #  See `:help wincmd` for a list of all window commands
+      {
+        mode = "n";
+        key = "<C-h>";
+        action = "<C-w><C-h>";
+        options = {
+          desc = "Move focus to the left window";
         };
-    in
-      config.nixvim.helpers.keymaps.mkKeymaps
-      {options.silent = true;}
-      (normal ++ visual);
+      }
+      {
+        mode = "n";
+        key = "<C-l>";
+        action = "<C-w><C-l>";
+        options = {
+          desc = "Move focus to the right window";
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-j>";
+        action = "<C-w><C-j>";
+        options = {
+          desc = "Move focus to the lower window";
+        };
+      }
+      {
+        mode = "n";
+        key = "<C-k>";
+        action = "<C-w><C-k>";
+        options = {
+          desc = "Move focus to the upper window";
+        };
+      }
+    ];
   };
 }

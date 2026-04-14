@@ -1,9 +1,28 @@
+{ ... }:
 {
   programs.nixvim = {
+    autoGroups = {
+      kickstart-highlight-yank = {
+        clear = true;
+      };
+    };
+
+    # [[ Basic Autocommands ]]
+    #  See `:help lua-guide-autocommands`
+    # https://nix-community.github.io/nixvim/NeovimOptions/autoCmd/index.html
     autoCmd = [
+      # Highlight when yanking (copying) text
+      #  Try it with `yap` in normal mode
+      #  See `:help vim.hl.on_yank()`
       {
-        event = [ "VimEnter" ];
-        command = ":TransparentEnable";
+        event = [ "TextYankPost" ];
+        desc = "Highlight when yanking (copying) text";
+        group = "kickstart-highlight-yank";
+        callback.__raw = ''
+          function()
+            vim.hl.on_yank()
+          end
+        '';
       }
     ];
   };

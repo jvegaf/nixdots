@@ -1,5 +1,15 @@
+{ ... }:
 {
   programs.nixvim = {
+    globals = {
+      # Set <space> as the leader key
+      # See `:help mapleader`
+      mapleader = " ";
+      maplocalleader = ",";
+
+      # Set to true if you have a Nerd Font installed and selected in the terminal
+      have_nerd_font = true;
+    };
 
     clipboard = {
       register = "unnamedplus";
@@ -58,7 +68,11 @@
 
       foldlevel = 99; # Folds with a level higher than this number will be closed
 
-      completeopt = ["menu" "menuone" "noselect"]; # For CMP plugin
+      completeopt = [
+        "menu"
+        "menuone"
+        "noselect"
+      ]; # For CMP plugin
     };
   };
 }
