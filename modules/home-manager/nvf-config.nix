@@ -110,6 +110,13 @@
             mode = "n";
             silent = true;
           }
+          {
+            key = "<leader>e";
+            action = ":Neotree focus<CR>";
+            mode = "n";
+            silent = true;
+            desc = "Neotree";
+          }
           # alejandra: off
         ];
 
