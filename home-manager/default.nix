@@ -1,12 +1,12 @@
 {
   imports = [
-    ./1password.nix
+    # ./1password.nix
     ./alacritty.nix
     ./bat.nix
     # ./chromium.nix
     ./eza.nix
     ./firefox.nix
-    ./fonts
+    # ./fonts.nix
     ./git.nix
     # ./hyprland
     # ./lazygit.nix
