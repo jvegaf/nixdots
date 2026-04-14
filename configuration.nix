@@ -9,6 +9,7 @@
     # ./nixosModules
     ./hardware-configuration.nix
     ./modules/home-manager/nvf-config.nix
+    ./modules/nixos/bluetooth.nix
   ];
 
   nix.settings.experimental-features = [

@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{pkgs, ...}: {
   programs.tmux = {
     enable = true;
     baseIndex = 1;
@@ -61,6 +61,13 @@
       tmuxPlugins.yank
       tmuxPlugins.tmux-which-key
       tmuxPlugins.mode-indicator
+      tmuxPlugins.battery
+      tmuxPlugins.continuum
+      tmuxPlugins.copycat
+      tmuxPlugins.cpu
+      tmuxPlugins.sensible
+      tmuxPlugins.resurrect
+      tmuxPlugins.net-speed
 
       # {
       #   plugin = tmuxPlugins.resurrect;
