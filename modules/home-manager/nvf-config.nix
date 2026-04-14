@@ -81,6 +81,12 @@
             silent = true;
           }
           {
+            key = "vv";
+            action = "V";
+            mode = "n";
+            silent = true;
+          }
+          {
             key = "<ESC>";
             action = ":nohlsearch<Bar>:echo<CR>";
             mode = "n";
@@ -117,7 +123,7 @@
           # the LSP API.
           enable = true;
 
-          formatOnSave = true;
+          formatOnSave = false;
           lspkind.enable = false;
           lightbulb.enable = true;
           lspsaga.enable = false;
@@ -249,11 +255,75 @@
 
         snippets.luasnip.enable = true;
 
-        filetree = {
-          nvimTree = {
-            enable = true;
-          };
-        };
+        # filetree.nvimTree = {
+        #   enable = true;
+        #   openOnSetup = true;
+        #
+        #   mappings = {
+        #     focus = "<leader>e";
+        #     toggle = null;
+        #     findFile = null;
+        #     refresh = null;
+        #   };
+        #
+        #   setupOpts = {
+        #     diagnostics = {
+        #       enable = true;
+        #       icons = {
+        #         hint = "";
+        #         info = "";
+        #         warning = "";
+        #         error = "";
+        #       };
+        #     };
+        #
+        #     renderer = {
+        #       group_empty = true;
+        #       highlight_git = true;
+        #       root_folder_modifier = ":~";
+        #       icons.glyphs.git = {
+        #         unstaged = "";
+        #         staged = "";
+        #         unmerged = "";
+        #         renamed = "➜";
+        #         untracked = "";
+        #         deleted = "";
+        #         ignored = "◌";
+        #       };
+        #     };
+        #
+        #     hijack_cursor = true;
+        #
+        #     update_focused_file = {
+        #       enable = true;
+        #       update_root = true;
+        #     };
+        #
+        #     modified.enable = true;
+        #
+        #     git.timeout = 500;
+        #
+        #     actions.open_file = {
+        #       quit_on_open = true;
+        #       resize_window = false;
+        #       window_picker.enable = true;
+        #     };
+        #
+        #     view = {
+        #       width = 40;
+        #       side = "left";
+        #       relativenumber = true;
+        #     };
+        #
+        #     tab.sync = {
+        #       open = true;
+        #       close = true;
+        #       ignore = [];
+        #     };
+        #   };
+        # };
+
+        filetree.neo-tree.enable = true;
 
         tabline = {
           nvimBufferline.enable = true;
@@ -267,6 +337,7 @@
         };
 
         telescope.enable = true;
+        telescope.setupOpts.pickers.colorscheme.enable_preview = true;
 
         git = {
           enable = true;
@@ -361,7 +432,7 @@
         };
 
         assistant = {
-          chatgpt.enable = true;
+          chatgpt.enable = false;
           copilot = {
             enable = false;
             cmp.enable = false;

@@ -14,27 +14,29 @@
     };
   };
 
-  outputs =
-    { nixpkgs, home-manager, nvf, ... }@inputs:
-    {
-      nixosConfigurations.fs0ciety = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-	  specialArgs = inputs;
-          modules = [
-	    nvf.nixosModules.default
-            ./configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              # home-manager.useUserPackages = true;
-              home-manager.users.th3g3ntl3man = ./home.nix;
-	      home-manager.backupFileExtension = "bkp";
+  outputs = {
+    nixpkgs,
+    home-manager,
+    nvf,
+    ...
+  } @ inputs: {
+    nixosConfigurations.fs0ciety = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      specialArgs = inputs;
+      modules = [
+        nvf.nixosModules.default
+        ./configuration.nix
+        home-manager.nixosModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          # home-manager.useUserPackages = true;
+          home-manager.users.th3g3ntl3man = ./home.nix;
+          home-manager.backupFileExtension = "bkp";
 
-
-              # Optionally, use home-manager.extraSpecialArgs to pass
-              # arguments to home.nix
-            }
-          ];
-      };
+          # Optionally, use home-manager.extraSpecialArgs to pass
+          # arguments to home.nix
+        }
+      ];
     };
+  };
 }

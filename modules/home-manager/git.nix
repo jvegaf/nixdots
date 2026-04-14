@@ -11,12 +11,17 @@
       enable = true;
     };
   };
-  
+
   programs.ssh = {
-      enable = true;
-      extraConfig = ''
-          Host github.com
-          IdentityFile ~/.ssh/jvegaf_ed25519
-      '';
+    enable = true;
+    enableDefaultConfig = false;
+
+    matchBlocks = {
+      "github" = {
+        host = "github.com";
+        identityFile = "~/.ssh/jvegaf_ed25519";
+        addKeysToAgent = "yes";
+      };
+    };
   };
 }
