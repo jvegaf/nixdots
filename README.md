@@ -1,5 +1,8 @@
 # NixDots - Configuración de Dotfiles en Nix
 
+## Lectura super recomendada
+- [NixOS & Flakes Book](https://nixos-and-flakes.thiscute.world)
+
 Mi configuración de sistema y dotfiles migrada a Nix flakes con Home Manager.
 
 ## 📁 Estructura del Proyecto
