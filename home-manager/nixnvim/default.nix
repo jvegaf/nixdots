@@ -5,31 +5,31 @@
   ...
 }:
 let
-  enable_nerd_fonts = false;
+  enable_nerd_fonts = true;
 in
 {
   imports = [
     # Plugins
-    ./config/plugins/kickstart/gitsigns.nix
-    ./config/plugins/kickstart/which-key.nix
-    ./config/plugins/kickstart/telescope.nix
-    ./config/plugins/kickstart/lsp.nix
-    ./config/plugins/kickstart/conform.nix
-    ./config/plugins/kickstart/blink-cmp.nix
-    ./config/plugins/kickstart/todo-comments.nix
-    ./config/plugins/kickstart/mini.nix
-    ./config/plugins/kickstart/treesitter.nix
+    ./plugins/gitsigns.nix
+    ./plugins/which-key.nix
+    ./plugins/telescope.nix
+    ./plugins/lsp.nix
+    ./plugins/conform.nix
+    ./plugins/blink-cmp.nix
+    ./plugins/todo-comments.nix
+    ./plugins/mini.nix
+    ./plugins/treesitter.nix
+    ./plugins/debug.nix
+    ./plugins/indent-blankline.nix
+    ./plugins/lint.nix
+    ./plugins/autopairs.nix
+    ./plugins/neo-tree.nix
 
     # NOTE: Add/Configure additional plugins for Kickstart.nixvim
     #
     #  Here are some example plugins that I've included in the Kickstart repository.
     #  Uncomment any of the lines below to enable them (you will need to restart nvim).
     #
-    # ./config/plugins/kickstart/debug.nix
-    # ./config/plugins/kickstart/indent-blankline.nix
-    # ./config/plugins/kickstart/lint.nix
-    # ./config/plugins/kickstart/autopairs.nix
-    # ./config/plugins/kickstart/neo-tree.nix
     #
     # NOTE: Configure your own plugins `see https://nix-community.github.io/nixvim/`
     # Add your plugins to ./config/plugins/custom and import them below

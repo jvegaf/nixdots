@@ -1,12 +1,10 @@
 {
   imports = [
     ./audio.nix
-    #./awesome.nix
     ./bluetooth.nix
     ./boot.nix
     ./env.nix
     ./desktop.nix
-    # ./home-manager.nix
     # ./hyprland.nix
     ./kernel.nix
     ./services.nix
@@ -14,10 +12,9 @@
     ./net.nix
     # ./nh.nix
     ./nix.nix
-    # ./nvf.nix
+    # ./1password.nix
     # ./razer-blade.nix
     ./timezone.nix
     ./user.nix
-    # ./zram.nix
   ];
 }

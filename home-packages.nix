@@ -4,7 +4,6 @@
 
   home.packages = with pkgs; [
     nil
-    _1password-gui
     alacritty
     eza
     fzf

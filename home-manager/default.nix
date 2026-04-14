@@ -1,6 +1,5 @@
 {
   imports = [
-    # ./1password.nix
     ./alacritty.nix
     ./bat.nix
     # ./chromium.nix
