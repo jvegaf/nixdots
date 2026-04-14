@@ -13,7 +13,6 @@
     kitty
     lazygit
     luarocks
-    neovim
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
     orca-slicer

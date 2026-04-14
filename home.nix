@@ -1,7 +1,8 @@
 { lib, inputs, ... }:
 {
   imports = [
-    inputs.nvf.homeManagerModules.default
+    # inputs.nvf.homeManagerModules.default
+    inputs.nixvim.homeModules.nixvim
     ./home-packages.nix
     ./home-manager
   ];

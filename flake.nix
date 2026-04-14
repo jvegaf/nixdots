@@ -7,30 +7,44 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nvf = {
-      url = "github:NotAShelf/nvf";
+    # nvf = {
+    #   url = "github:NotAShelf/nvf";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
   };
 
-  outputs = inputs@{ nixpkgs, home-manager, nvf, ...} : {
-    nixosConfigurations.fs0ciety = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = { inherit inputs; };
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          home-manager.extraSpecialArgs = { inherit inputs; };
-          # home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.th3g3ntl3man = ./home.nix;
-          home-manager.backupFileExtension = "backup";
+  outputs =
+    inputs@{
+      nixpkgs,
+      home-manager,
+      # nvf,
+      nixvim,
+      ...
+    }:
+    {
+      nixosConfigurations.fs0ciety = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; };
+        modules = [
+          ./configuration.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.extraSpecialArgs = { inherit inputs; };
+            # home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.th3g3ntl3man = ./home.nix;
+            home-manager.backupFileExtension = "backup";
 
-          # Optionally, use home-manager.extraSpecialArgs to pass
-          # arguments to home.nix
-        }
-      ];
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
+        ];
+      };
     };
-  };
 }

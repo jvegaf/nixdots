@@ -2,9 +2,10 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, inputs, pkgs, ... }:
 {
   imports = [
+    inputs.nixvim.nixosModules.nixvim
     ./hardware-configuration.nix
     ./modules
   ];
@@ -21,6 +22,7 @@
     fd
     gnome-keyring
     nh
+    neovim
     ntfs3g
     openssh
     power-profiles-daemon

@@ -16,5 +16,6 @@
     # ./razer-blade.nix
     ./timezone.nix
     ./user.nix
+    ./nixvim/nixvim.nix
   ];
 }
