@@ -5,19 +5,46 @@
       vim = {
         viAlias = true;
         vimAlias = true;
+
         debugMode = {
           enable = false;
           level = 16;
           logFile = "/tmp/nvim.log";
         };
 
+        extraPlugins = {
+          statuscol-nvim = {
+            package = pkgs.vimPlugins.statuscol-nvim;
+          };
+        };
+
+        luaConfigPost = ''
+          local builtin = require("statuscol.builtin")
+
+          require("statuscol").setup({
+            relculright = true,
+            segments = {
+              {
+                sign = { name = { "Diagnostic" }, maxwidth = 2, auto = true },
+                click = "v:lua.ScSa",
+              },
+              { text = { builtin.lnumfunc }, click = "v:lua.ScLa" },
+              { text = { builtin.foldfunc }, click = "v:lua.ScFa" },
+              {
+                sign = { name = { ".*" }, maxwidth = 1, colwidth = 1, auto = true },
+                click = "v:lua.ScSa",
+              },
+            },
+          })
+        '';
+
         # vim.opts and vim.options are aliased
         opts = {
-          # clipboard = "unammedplus";
+          clipboard = "unnamedplus";
           cmdheight = 2;
           expandtab = true;
           foldcolumn = "1";
-          foldlevel = 10;
+          foldlevel = 99;
           foldlevelstart = 99;
           shiftwidth = 2;
           smartcase = true;
@@ -62,6 +89,18 @@
           {
             key = "<C-a>";
             action = "gg<S-v>G";
+            mode = "n";
+            silent = true;
+          }
+          {
+            key = "zR";
+            action = "<cmd>lua require('ufo').openAllFolds()<CR>";
+            mode = "n";
+            silent = true;
+          }
+          {
+            key = "zM";
+            action = "<cmd>lua require('ufo').closeAllFolds()<CR>";
             mode = "n";
             silent = true;
           }
