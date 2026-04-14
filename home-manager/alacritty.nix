@@ -1,4 +1,5 @@
-{ lib, ... }: {
+{ lib, ... }:
+{
   programs.alacritty = {
     enable = true;
     settings = {
@@ -6,10 +7,10 @@
 
       font = {
         builtin_box_drawing = true;
-	size = 14;
+        size = 14;
         normal = {
           style = lib.mkForce "Bold";
-	  family = "Fantasque SansM Nerd Font";
+          family = "Fantasque SansM Nerd Font";
         };
       };
     };

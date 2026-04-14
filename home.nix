@@ -1,9 +1,9 @@
-{ config, pkgs, ... }:
-
+{ lib, inputs, ... }:
 {
   imports = [
-    # config.nvf.homeManagerModules.default
-    ./modules/home-manager
+    inputs.nvf.homeManagerModules.default
+    ./home-packages.nix
+    ./home-manager
   ];
 
   # Home Manager needs a bit of information about you and the

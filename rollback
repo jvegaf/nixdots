@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+cd ~/nixdots
+# Switch to the previous commit
+git checkout HEAD^1
+# Deploy the flake.nix located in the current directory,
+# with the nixosConfiguration's name `my-nixos`
+sudo nixos-rebuild switch --flake .#fs0ciety
+
+
+
+# vim: ft=sh

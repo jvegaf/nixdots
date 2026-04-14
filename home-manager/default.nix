@@ -1,18 +1,18 @@
 {
   imports = [
-    # ./1password.nix
+    ./1password.nix
     ./alacritty.nix
     ./bat.nix
     # ./chromium.nix
     ./eza.nix
     ./firefox.nix
-    # ./fonts
+    ./fonts
     ./git.nix
     # ./hyprland
     # ./lazygit.nix
     # ./neovim.nix
     # ./nixvim.nix
-    # ./nvf-config.nix
+    ./nvf-config.nix
     # ./obsidian.nix
     # ./ranger.nix
     ./starship.nix
