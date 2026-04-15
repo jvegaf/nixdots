@@ -1,7 +1,7 @@
-{ lib, ... }:
+{ inputs, ... }:
 {
   imports = [
-    # inputs.nvf.homeManagerModules.default
+    inputs.nvf.homeManagerModules.default
     ./home-packages.nix
     ./home-manager
   ];

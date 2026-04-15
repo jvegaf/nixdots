@@ -6,6 +6,7 @@
     nil
     alacritty
     eza
+    neovim
     fzf
     git
     git-extras

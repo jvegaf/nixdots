@@ -7,7 +7,6 @@
   imports = [
     ./hardware-configuration.nix
     ./modules
-    ./modules/nixvim/nixvim.nix
   ];
 
 
@@ -22,7 +21,6 @@
     fd
     gnome-keyring
     nh
-    # neovim
     ntfs3g
     openssh
     power-profiles-daemon

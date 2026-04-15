@@ -7,13 +7,8 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nvf = {
-    #   url = "github:NotAShelf/nvf";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
-    nixvim = {
-      url = "github:nix-community/nixvim";
+    nvf = {
+      url = "github:NotAShelf/nvf";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -23,8 +18,7 @@
     inputs@{
       nixpkgs,
       home-manager,
-      # nvf,
-      nixvim,
+      nvf,
       ...
     }:
     {
@@ -32,7 +26,6 @@
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [
-          nixvim.nixosModules.nixvim
           ./configuration.nix
           home-manager.nixosModules.home-manager
           {
