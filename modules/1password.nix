@@ -1,5 +1,9 @@
-{ ... }:
+{ config, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    _1password-gui
+  ];
+
   programs._1password.enable = true;
   programs._1password-gui = {
     enable = true;
@@ -9,7 +13,7 @@
     polkitPolicyOwners = [ "th3g3ntl3man" ];
   };
 
-  config.environment.etc = {
+  environment.etc = {
     "1password/custom_allowed_browsers" = {
       text = ''
         firefox

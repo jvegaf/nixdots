@@ -1,4 +1,5 @@
 return {
+  {
   'nvim-mini/mini.surround',
   opts = {
     mappings = {
@@ -11,4 +12,18 @@ return {
       update_n_lines = 'gsn',
     },
   },
+},
+  {
+    'nvim-mini/mini.comment',
+    opts = {},
+  },
+  {
+    'nvim-mini/mini.diff',
+    opts = {},
+  },
+  {
+    'nvim-mini/mini.hipatterns',
+    opts = {},
+  },
+
 }

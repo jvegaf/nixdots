@@ -41,7 +41,7 @@
         bt = "btop";
         jctl = "journalctl -p 3 -xb";
         lzd = "lazydocker";
-	edalias = "nvim ~/nixdots/modules/home-manager/zsh.nix";
+	      edalias = "nvim ~/nixdots/home-manager/zsh.nix";
 
         nxgb = "nix-collect-garbage -d";
         nxclean = "nh clean all --keep 3";
@@ -49,6 +49,7 @@
         g = "lazygit";
         gs = "git status";
         ga = "git add";
+        gaa = "git add .";
         gc = "git commit";
         gps = "git push";
         gpl = "git pull --rebase --autostash";

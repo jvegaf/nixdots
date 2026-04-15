@@ -6,53 +6,13 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./packages.nix
     ./modules
   ];
 
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    pciutils
-    lshw
-    nvtopPackages.nvidia
-    nmap
-    _1password-gui
-    curl
-    fd
-    gnome-keyring
-    nh
-    ntfs3g
-    openssh
-    power-profiles-daemon
-    wget
-    wl-clipboard
-    xclip
-    xsel
-  ];
 
 
-  programs._1password.enable = true;
-  programs._1password-gui = {
-    enable = true;
-    # Certain features, including CLI integration and system authentication support,
-    # require enabling PolKit integration on some desktop environments (e.g. Plasma).
-    # polkitPolicyOwners = [ "${user}" ];
-    polkitPolicyOwners = [ "th3g3ntl3man" ];
-  };
-
-  environment.etc = {
-    "1password/custom_allowed_browsers" = {
-      text = ''
-        firefox
-        chromium
-      '';
-      mode = "0755";
-    };
-  };
 
 
   # This value determines the NixOS release from which the default

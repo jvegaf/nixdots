@@ -6,6 +6,7 @@
     nil
     alejandra
     alacritty
+    codex
     eza
     filezilla
     fzf
