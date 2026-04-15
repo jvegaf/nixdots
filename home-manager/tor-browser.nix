@@ -4,7 +4,5 @@
     tor-browser
   ];
 
-  programs.tor-browser = {
-    enable = true;
-  };
+  programs.tor-browser.enable = true;
 }
