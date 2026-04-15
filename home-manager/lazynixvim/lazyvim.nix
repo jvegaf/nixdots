@@ -4,4 +4,4 @@
     enable = true;
     configFiles = ./my-lazyvim;
   };
-};
+}

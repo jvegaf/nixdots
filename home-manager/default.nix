@@ -6,14 +6,11 @@
     # ./chromium.nix
     ./eza.nix
     ./firefox.nix
-    # ./fonts.nix
+    ./fonts.nix
     ./git.nix
     # ./hyprland
-    # ./lazygit.nix
-    # ./neovim.nix
-    ./nvf.nix
+    ./lazygit.nix
     # ./obsidian.nix
-    # ./ranger.nix
     ./starship.nix
     # ./stylix.nix
     # ./swaync

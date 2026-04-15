@@ -33,18 +33,18 @@ return {
   --     prompts = prompts, -- Custom prompts
   --   },
   -- },
-  {
-    'folke/sidekick.nvim',
-    opts = {
-      -- add any options here
-      cli = {
-        mux = {
-          backend = 'tmux',
-          enabled = true,
-        },
-      },
-    },
-  },
+  -- {
+  --   'folke/sidekick.nvim',
+  --   opts = {
+  --     -- add any options here
+  --     cli = {
+  --       mux = {
+  --         backend = 'tmux',
+  --         enabled = true,
+  --       },
+  --     },
+  --   },
+  -- },
   -- {
   --   'iamcco/markdown-preview.nvim',
   --   cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },

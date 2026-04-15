@@ -16,6 +16,10 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
+    pciutils
+    lshw
+    nvtopPackages.nvidia
+    nmap
     _1password-gui
     curl
     fd

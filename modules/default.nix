@@ -5,7 +5,7 @@
     ./boot.nix
     ./env.nix
     ./desktop.nix
-    # ./nixvim/nixvim.nix
+    ./graphics.nix
     # ./hyprland.nix
     ./kernel.nix
     ./services.nix

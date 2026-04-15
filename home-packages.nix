@@ -1,4 +1,4 @@
-{ pkgs, ... }: 
+{ pkgs, ... }:
 {
   nixpkgs.config.allowUnfree = true;
 
@@ -6,7 +6,7 @@
     nil
     alacritty
     eza
-    neovim
+    # neovim
     fzf
     git
     git-extras
@@ -14,9 +14,11 @@
     kitty
     lazygit
     luarocks
+    open-sans
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
     orca-slicer
+    opencode
     platformio-core
     prusa-slicer
     qbittorrent
@@ -33,20 +35,6 @@
     uv
     wireguard-tools
     yazi
-    # yaziPlugins.compress
-    # yaziPlugins.diff
-    # yaziPlugins.dupes
-    # yaziPlugins.git
-    # yaziPlugins.glow
-    # yaziPlugins.jump-to-char
-    # yaziPlugins.lazygit
-    # yaziPlugins.mediainfo
-    # yaziPlugins.piper
-    # yaziPlugins.relative-motions
-    # yaziPlugins.smart-enter
-    # yaziPlugins.smart-filter
-    # yaziPlugins.smart-paste
-    # yaziPlugins.sudo
     zoxide
     zsh
     zed-editor
