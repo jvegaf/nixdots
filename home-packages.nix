@@ -29,6 +29,7 @@
     rustup
     sad
     starship
+    stylua
     speedtest-cli
     sshfs
     tealdeer

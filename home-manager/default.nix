@@ -1,5 +1,6 @@
 {
   imports = [
+    # ./android-studio.nix
     ./lazynixvim/lazyvim.nix
     ./alacritty.nix
     ./bat.nix

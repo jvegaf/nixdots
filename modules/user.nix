@@ -10,11 +10,16 @@
       "wheel"
       "input"
        "uucp"
+       "kvm"
+       "libvirtd"
     ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
     #   kdePackages.kate
     # #  thunderbird
     # ];
+
   };
+
+  virtualisation.libvirtd.enable = true;
 }
