@@ -1,5 +1,6 @@
 {
   imports = [
+    ./lazynixvim/lazyvim.nix
     ./alacritty.nix
     ./bat.nix
     # ./chromium.nix

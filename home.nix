@@ -1,7 +1,8 @@
 { inputs, ... }:
 {
   imports = [
-    inputs.nvf.homeManagerModules.default
+    # inputs.nvf.homeManagerModules.default
+    inputs.lazyvim.homeManagerModules.default 
     ./home-packages.nix
     ./home-manager
   ];
