@@ -11,6 +11,7 @@
     # ./hyprland
     ./lazygit.nix
     # ./obsidian.nix
+    ./opencode.nix
     ./starship.nix
     # ./stylix.nix
     # ./swaync

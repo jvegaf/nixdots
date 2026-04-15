@@ -4,9 +4,10 @@
 
   home.packages = with pkgs; [
     nil
+    alejandra
     alacritty
     eza
-    # neovim
+    filezilla
     fzf
     git
     git-extras
@@ -27,6 +28,8 @@
     rustup
     sad
     starship
+    speedtest-cli
+    sshfs
     tealdeer
     tmux
     unar

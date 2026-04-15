@@ -5,6 +5,7 @@
     ./boot.nix
     ./env.nix
     ./desktop.nix
+    ./docker.nix
     ./graphics.nix
     # ./hyprland.nix
     ./kernel.nix

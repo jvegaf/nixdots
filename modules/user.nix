@@ -9,6 +9,7 @@
       "networkmanager"
       "wheel"
       "input"
+       "uucp"
     ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
