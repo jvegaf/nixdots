@@ -27,6 +27,7 @@
         v = "nvim";
         se = "sudoedit";
         y = "yazi";
+        b = "bat";
         rmd = "rm -rf";
         dots = "cd ~/nixdots";
         doc = "cd ~/Documents";

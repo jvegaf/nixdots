@@ -15,7 +15,7 @@
     ./net.nix
     # ./nh.nix
     ./nix.nix
-    # ./1password.nix
+    ./ollama.nix
     # ./razer-blade.nix
     ./timezone.nix
     ./user.nix
