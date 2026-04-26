@@ -17,7 +17,7 @@
     # ./stylix.nix
     # ./swaync
     ./tmux.nix
-    ./tor-browser.nix
+    # ./tor-browser.nix
     # ./waybar
     # ./wofi
     ./yazi.nix

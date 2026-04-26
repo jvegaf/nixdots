@@ -34,6 +34,7 @@
     sshfs
     tealdeer
     tmux
+    tor-browser
     unar
     unrar
     unzip
