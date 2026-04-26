@@ -6,8 +6,8 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./packages.nix
-    ./modules
+    ./nixos/packages.nix
+    ./nixos/modules
   ];
 
 

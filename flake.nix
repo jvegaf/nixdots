@@ -7,10 +7,6 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nvf = {
-    #   url = "github:NotAShelf/nvf";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
     lazyvim = {
       url = "github:pfassina/lazyvim-nix";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -23,7 +19,6 @@
       nixpkgs,
       home-manager,
       lazyvim,
-      # nvf,
       ...
     }:
     {
@@ -37,7 +32,7 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
             # home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.th3g3ntl3man = ./home.nix;
+            home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
             home-manager.backupFileExtension = "backup";
 
             # Optionally, use home-manager.extraSpecialArgs to pass

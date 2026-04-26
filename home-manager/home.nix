@@ -2,9 +2,9 @@
 {
   imports = [
     # inputs.nvf.homeManagerModules.default
-    inputs.lazyvim.homeManagerModules.default 
+    inputs.lazyvim.homeManagerModules.default
     ./home-packages.nix
-    ./home-manager
+    ./modules
   ];
 
   # Home Manager needs a bit of information about you and the
