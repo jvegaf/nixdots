@@ -11,6 +11,7 @@
     codex
     eza
     filezilla
+    freecad
     fzf
     git
     git-extras
@@ -55,7 +56,7 @@
    #  mpv
    #  # obsidian
    #  pavucontrol
-   #  # telegram-desktop
+   telegram-desktop
    #  # _1password
    #  _1password-gui
    #  gnome-disk-utility
