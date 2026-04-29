@@ -6,6 +6,8 @@
     nil
     alejandra
     alacritty
+    bat
+    btop
     codex
     eza
     filezilla
@@ -22,7 +24,6 @@
     orca-slicer
     opencode
     platformio-core
-    prusa-slicer
     qbittorrent
     ripgrep
     rofi
