@@ -128,10 +128,10 @@
       action = "<cmd>UrlView lazy<cr>";
       key = "<leader>zu";
     }
-    {
-      action = "<cmd>NvimTreeFocus<cr>";
-      key = "<leader>e";
-    }
+    # {
+    #   action = "<cmd>NvimTreeFocus<cr>";
+    #   key = "<leader>e";
+    # }
     {
       action = "<cmd>TSJToggle<cr>";
       key = "<leader>j";
@@ -146,6 +146,7 @@
     lualine.enable = true;
     bufferline.enable = true;
     treesitter.enable = true;
+    lastplace.enable = true;
     which-key = {
       enable = true;
     };
@@ -184,7 +185,7 @@
       keymaps = {
         "<leader>e" = {
           options.desc = "file browser";
-          action = "<cmd>NeovimTreeFocus<cr>";
+          action = "<cmd>NvimTreeFocus<cr>";
         };
       };
     };
@@ -202,6 +203,37 @@
     };
 
     nvim-ufo.enable = true;
+
+    snacks = {
+      enable = true;
+      settings = {
+        bigfile = {
+          enabled = true;
+        };
+        notifier = {
+          enabled = true;
+          timeout = 3000;
+        };
+        quickfile = {
+          enabled = true;
+        };
+        statuscolumn = {
+          enabled = true;
+        };
+        words = {
+          debounce = 100;
+          enabled = true;
+        };
+      };
+    };
+
+    conform-nvim = {
+      enable = true;
+      settings = {
+        autoInstall.enable = true;
+      };
+    };
+          
 
     # Dev
     lsp = {

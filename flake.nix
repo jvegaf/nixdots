@@ -29,7 +29,7 @@
           home-manager.nixosModules.home-manager
           {
             home-manager.extraSpecialArgs = { inherit inputs; };
-            # home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
             home-manager.backupFileExtension = "backup";

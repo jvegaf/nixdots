@@ -17,6 +17,7 @@
     kitty
     lazygit
     luarocks
+    luaPackages.tree-sitter-cli
     open-sans
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
