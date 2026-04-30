@@ -3,16 +3,14 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    nil
-    alejandra
     alacritty
-    bat
-    btop
+    # bat
+    # btop
     codex
     eza
     filezilla
     freecad
-    fzf
+    # fzf
     git
     git-extras
     git-lfs
@@ -36,6 +34,7 @@
     sshfs
     tealdeer
     tmux
+    telegram-desktop
     tor-browser
     unar
     unrar
@@ -47,6 +46,19 @@
     zsh
     zed-editor
 
+    omnix
+
+    # Unix tools
+    fd
+    sd
+    tree
+    gnumake
+
+    # Nix dev
+    cachix
+    nil # Nix language server
+    nix-info
+    nixpkgs-fmt
 
    #
    #
@@ -56,7 +68,6 @@
    #  mpv
    #  # obsidian
    #  pavucontrol
-   telegram-desktop
    #  # _1password
    #  _1password-gui
    #  gnome-disk-utility
@@ -174,4 +185,12 @@
    #  bemoji
    #  nix-prefetch-scripts
   ];
+
+
+  programs = {
+    bat.enable = true;
+    fzf.enable = true;
+    jq.enable = true;
+    btop.enable = true;
+  };
 }

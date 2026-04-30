@@ -1,7 +1,7 @@
 {
   imports = [
     # ./android-studio.nix
-    ./lazynixvim/lazyvim.nix
+    # ./lazynixvim/lazyvim.nix
     ./alacritty.nix
     ./bat.nix
     # ./chromium.nix
@@ -10,6 +10,7 @@
     ./fonts.nix
     ./git.nix
     # ./hyprland
+    ./neovim
     ./lazygit.nix
     # ./obsidian.nix
     ./opencode.nix

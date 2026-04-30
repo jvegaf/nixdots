@@ -10,15 +10,14 @@
     pciutils
     lshw
     nvtopPackages.nvidia
+    nvtopPackages.intel
     nmap
     curl
-    fd
     gnome-keyring
     nh
     ntfs3g
     openssh
     power-profiles-daemon
-    tree
     wget
     wl-clipboard
     xclip

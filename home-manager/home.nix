@@ -1,8 +1,6 @@
 { inputs, ... }:
 {
   imports = [
-    # inputs.nvf.homeManagerModules.default
-    inputs.lazyvim.homeManagerModules.default
     ./home-packages.nix
     ./modules
   ];
@@ -26,19 +24,11 @@
   # You can update Home Manager without changing this value. See
   # the Home Manager release notes for a list of state version
   # changes in each release.
-  home.stateVersion = "25.11";
+  home.stateVersion = "26.05";
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  # programs.emacs = {
-  #   enable = true;
-  #   extraPackages = epkgs: [
-  #     epkgs.nix-mode
-  #     epkgs.magit
-  #   ];
-  # };
-  #
   # services.gpg-agent = {
   #   enable = true;
   #   defaultCacheTtl = 1800;

@@ -7,7 +7,7 @@
       modesetting.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = true;
-      open = false; # Use the proprietary driver.
+      open = true; # Use the proprietary driver.
       nvidiaSettings = true;
       prime = {
         offload.enable = true;
