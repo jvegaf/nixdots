@@ -10,7 +10,7 @@
     ./nixos/modules
   ];
 
-
+programs.creality-print.enable = true;
 
 
 

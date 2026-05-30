@@ -8,6 +8,7 @@
     ./desktop.nix
     ./docker.nix
     ./graphics.nix
+    ./creality-print.nix
     # ./hyprland.nix
     ./kernel.nix
     ./services.nix
