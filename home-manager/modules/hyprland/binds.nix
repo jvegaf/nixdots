@@ -20,23 +20,23 @@
 
   wayland.windowManager.hyprland.settings = {
     bind = [
-      "$mainMod SHIFT, Return, exec, $terminal"
-      "$mainMod SHIFT, C, killactive,"
+      "$mainMod, Return, exec, $terminal"
+      "$mainMod,       Q, killactive,"
       "$mainMod SHIFT, Q, exit,"
       "$mainMod,       R, exec, $fileManager"
       "$mainMod,       F, togglefloating,"
       "$mainMod,       D, exec, $menu --show drun"
+      "$mainMod,       B, exec, firefox"
       "$mainMod,       P, pin,"
       "$mainMod,       J, togglesplit,"
       "$mainMod,       E, exec, bemoji -cn"
       "$mainMod,       V, exec, cliphist list | $menu --dmenu | cliphist decode | wl-copy"
-      "$mainMod,       B, exec, pkill -SIGUSR2 waybar"
-      "$mainMod SHIFT, B, exec, pkill -SIGUSR1 waybar"
+      "$mainMod,       W, exec, pkill -SIGUSR2 waybar"
+      "$mainMod SHIFT, W, exec, pkill -SIGUSR1 waybar"
       "$mainMod,       L, exec, loginctl lock-session"
       "$mainMod,       P, exec, hyprpicker -an"
       "$mainMod,       N, exec, swaync-client -t"
       ", Print, exec, grimblast --notify --freeze copysave area"
-      # "$mainMod,       W, exec, ${booksScript}/bin/open_books"
 
       # Moving focus
       "$mainMod, left, movefocus, l"

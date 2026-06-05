@@ -15,7 +15,7 @@
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
 
-      monitor = ",1920x1080@60,auto,1";
+      monitor = ",preferred,auto,1.33";
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
       "$fileManager" = "$terminal -e sh -c 'ranger'";
@@ -28,10 +28,10 @@
       ];
 
       general = {
-        gaps_in = 0;
-        gaps_out = 0;
+        gaps_in = 05;
+        gaps_out = 10;
 
-        border_size = 5;
+        border_size = 2;
 
         "col.active_border" = "rgba(d65d0eff) rgba(98971aff) 45deg";
         "col.inactive_border" = "rgba(3c3836ff)";
@@ -43,22 +43,45 @@
       };
 
       decoration = {
-        rounding = 0;
+        rounding = 12;
 
         active_opacity = 1.0;
-        inactive_opacity = 1.0;
+        inactive_opacity = 0.7;
 
         shadow = {
-          enabled = false;
+          enabled = true;
         };
 
         blur = {
-          enabled = false;
+          enabled = true;
         };
       };
 
       animations = {
-        enabled = false;
+        enabled = true;
+        # animation = "windowsIn,1,5,default,popin 0%";
+        # animation = "windowsOut,1,5,default,popin";
+        # animation = "windowsMove,1,5,default,slide";
+        # animation = "layersIn,1,4,default,slide";
+        # animation = "layersOut,1,4,default,slide";
+        # animation = "fadeIn,1,8,default";
+        # animation = "fadeOut,1,8,default";
+        # animation = "fadeSwitch,1,8,default";
+        # animation = "fadeShadow,1,8,default";
+        # animation = "fadeDim,1,8,default";
+        # animation = "fadeLayersIn,1,8,default";
+        # animation = "fadeLayersOut,1,8,default";
+        # animation = "fadePopupsIn,1,5,default";
+        # animation = "fadePopupsOut,1,5,default";
+        # animation = "fadeDpms,1,10,default";
+        # animation = "border,1,20,default";
+        # animation = "borderangle,1,20,default,once";
+        # animation = "workspacesIn, 1,5,default,slide";
+        # animation = "workspacesOut, 1,5,default,slide";
+        # animation = "specialWorkspaceIn,1,5,default,fade";
+        # animation = "specialWorkspaceOut,1,5,default,fade";
+        # animation = "zoomFactor,1,10,default";
+        # animation = "monitorAdded,1,10,default";
       };
 
       input = {
