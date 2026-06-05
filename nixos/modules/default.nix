@@ -9,7 +9,7 @@
     ./docker.nix
     ./graphics.nix
     ./creality-print.nix
-    # ./hyprland.nix
+    ./hyprland.nix
     ./kernel.nix
     ./services.nix
     # ./mime.nix

@@ -8,4 +8,6 @@
       "${XDG_BIN_HOME}"
     ];
   };
+
+  environment.pathsToLink = [ "/share/applications" "/share/xdg-desktop-portal"];
 }

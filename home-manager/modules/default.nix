@@ -9,21 +9,21 @@
     ./firefox.nix
     ./fonts.nix
     ./git.nix
-    # ./hyprland
+    ./hyprland
     ./neovim
     ./lazygit.nix
     # ./obsidian.nix
     ./opencode.nix
     ./starship.nix
     # ./stylix.nix
-    # ./swaync
+    ./swaync
     ./tmux.nix
     ./ssh.nix
     # ./tor-browser.nix
-    # ./waybar
-    # ./wofi
+    ./waybar
+    ./wofi
     ./yazi.nix
-    # ./zathura.nix
+    ./zathura.nix
     ./zsh.nix
   ];
 }

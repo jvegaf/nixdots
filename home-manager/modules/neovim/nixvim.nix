@@ -128,10 +128,10 @@
       action = "<cmd>UrlView lazy<cr>";
       key = "<leader>zu";
     }
-    # {
-    #   action = "<cmd>NvimTreeFocus<cr>";
-    #   key = "<leader>e";
-    # }
+    {
+      action = "<cmd>NvimTreeFocus<cr>";
+      key = "<leader>e";
+    }
     {
       action = "<cmd>TSJToggle<cr>";
       key = "<leader>j";

@@ -2,6 +2,8 @@
   wayland.windowManager.hyprland = {
     enable = true;
     systemd.enable = true;
+    package = null;
+    portalPackage = null;
     settings = {
       env = [
         # Hint Electron apps to use Wayland
@@ -60,15 +62,15 @@
       };
 
       input = {
-        kb_layout = "us,ru,il";
-        kb_options = "grp:caps_toggle";
+        kb_layout = "us";
+        # kb_options = "grp:caps_toggle";
       };
 
-      gestures = {
-        workspace_swipe = true;
-        workspace_swipe_invert = false;
-        workspace_swipe_forever	= true;
-      };
+      # gestures = {
+      #   workspace_swipe = true;
+      #   workspace_swipe_invert = false;
+      #   workspace_swipe_forever	= true;
+      # };
 
       dwindle = {
         pseudotile = true;
@@ -86,30 +88,30 @@
         disable_hyprland_logo = true;
       };
 
-      windowrulev2 = [
-        "bordersize 0, floating:0, onworkspace:w[t1]"
-
-        "float,class:(mpv)|(imv)|(showmethekey-gtk)"
-        "move 990 60,size 900 170,pin,noinitialfocus,class:(showmethekey-gtk)"
-        "noborder,nofocus,class:(showmethekey-gtk)"
-
-        "workspace 3,class:(obsidian)"
-        "workspace 3,class:(zathura)"
-        "workspace 4,class:(com.obsproject.Studio)"
-        "workspace 5,class:(telegram)"
-        "workspace 5,class:(vesktop)"
-        "workspace 6,class:(teams-for-linux)"
-
-        "suppressevent maximize, class:.*"
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-
-        "opacity 0.0 override, class:^(xwaylandvideobridge)$"
-        "noanim, class:^(xwaylandvideobridge)$"
-        "noinitialfocus, class:^(xwaylandvideobridge)$"
-        "maxsize 1 1, class:^(xwaylandvideobridge)$"
-        "noblur, class:^(xwaylandvideobridge)$"
-        "nofocus, class:^(xwaylandvideobridge)$"
-      ];
+      # windowrule = [
+      #   "bordersize 0, floating:0, onworkspace:w[t1]"
+      #
+      #   "float,class:(mpv)|(imv)|(showmethekey-gtk)"
+      #   "move 990 60,size 900 170,pin,noinitialfocus,class:(showmethekey-gtk)"
+      #   "noborder,nofocus,class:(showmethekey-gtk)"
+      #
+      #   "workspace 3,class:(obsidian)"
+      #   "workspace 3,class:(zathura)"
+      #   "workspace 4,class:(com.obsproject.Studio)"
+      #   "workspace 5,class:(telegram)"
+      #   "workspace 5,class:(vesktop)"
+      #   "workspace 6,class:(teams-for-linux)"
+      #
+      #   "suppressevent maximize, class:.*"
+      #   "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+      #
+      #   "opacity 0.0 override, class:^(xwaylandvideobridge)$"
+      #   "noanim, class:^(xwaylandvideobridge)$"
+      #   "noinitialfocus, class:^(xwaylandvideobridge)$"
+      #   "maxsize 1 1, class:^(xwaylandvideobridge)$"
+      #   "noblur, class:^(xwaylandvideobridge)$"
+      #   "nofocus, class:^(xwaylandvideobridge)$"
+      # ];
 
       workspace = [
         "w[tv1], gapsout:0, gapsin:0"
