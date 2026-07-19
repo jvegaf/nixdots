@@ -61,7 +61,7 @@ in
         # Support background shell commands
         "opencode-pty"
 
-        "oh-my-opencode@latest"
+        # "oh-my-opencode@latest"
         "@simonwjackson/opencode-direnv@latest"
       ];
     };
@@ -74,7 +74,7 @@ in
       superpowers = superpowers.skills;
     };
 
-    rules = builtins.readFile ../ai-tools/base.md;
+    context = builtins.readFile ../ai-tools/base.md;
   };
   # };
 }

@@ -22,7 +22,7 @@
         lt = "eza --tree --level=2 --long --icons --git";
         llt = "lt -a";
         rebuild = "sudo nixos-rebuild switch";
-        freb = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety";
+        freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade";
         r = "ranger";
         v = "nvim";
         se = "sudoedit";
@@ -34,7 +34,7 @@
         dw = "cd ~/Downloads";
         dt = "cd ~/Desktop";
         cdc = "cd ~/Code";
-        mx  = "tmux";
+        mx = "tmux";
         grep = "grep --color=auto";
         "v." = "(nvim $PWD &>/dev/null &)";
         "o." = "($FILE_MANAGER $PWD &>/dev/null &)";
@@ -42,7 +42,7 @@
         bt = "btop";
         jctl = "journalctl -p 3 -xb";
         lzd = "lazydocker";
-	      edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
+        edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
         nvcfg = "nvim ~/nixdots/home-manager/modules/neovim/nixvim.nix";
 
         nxgb = "nix-collect-garbage -d";
