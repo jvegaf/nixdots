@@ -4,13 +4,14 @@
     # ./lazynixvim/lazyvim.nix
     ./alacritty.nix
     ./bat.nix
+    ./gnome.nix
     # ./chromium.nix
     ./eza.nix
     ./firefox.nix
     ./fonts.nix
     ./git.nix
     ./hyprland
-    ./neovim
+    # ./neovim
     ./lazygit.nix
     # ./obsidian.nix
     ./opencode.nix

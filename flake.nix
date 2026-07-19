@@ -7,21 +7,22 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nixvim = {
+    #   url = "github:nix-community/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    Akari.url = "github:spector700/Akari";
   };
 
   outputs =
     inputs@{
       nixpkgs,
       home-manager,
-      nixvim,
       ...
     }:
     {
-      nixosConfigurations.fs0ciety = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.razer-blade = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = { inherit inputs; };
         modules = [

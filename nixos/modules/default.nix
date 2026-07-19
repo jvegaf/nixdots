@@ -5,11 +5,12 @@
     ./bluetooth.nix
     ./boot.nix
     ./env.nix
-    ./desktop.nix
+    # ./desktop.nix
     ./docker.nix
     ./graphics.nix
-    ./creality-print.nix
-    ./hyprland.nix
+    # ./creality-print.nix
+    # ./hyprland.nix
+    ./gnome.nix
     ./kernel.nix
     ./services.nix
     # ./mime.nix
