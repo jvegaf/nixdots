@@ -7,12 +7,16 @@
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # nixvim = {
-    #   url = "github:nix-community/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
 
-    Akari.url = "github:spector700/Akari";
+    # Akari.url = "github:spector700/Akari";
+    khanelivim.url = "github:khaneliman/khanelivim";
+
+    # Skills plugin for opencode
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
+
   };
 
   outputs =

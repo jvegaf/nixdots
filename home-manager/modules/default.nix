@@ -2,6 +2,7 @@
   imports = [
     # ./android-studio.nix
     # ./lazynixvim/lazyvim.nix
+    ./packages.nix
     ./alacritty.nix
     ./bat.nix
     ./gnome.nix
@@ -14,7 +15,7 @@
     # ./neovim
     ./lazygit.nix
     # ./obsidian.nix
-    ./opencode.nix
+    ./opencode
     ./starship.nix
     # ./stylix.nix
     ./swaync
@@ -23,8 +24,12 @@
     # ./tor-browser.nix
     ./waybar
     ./wofi
-    ./yazi.nix
+    ./yazi
     ./zathura.nix
     ./zsh.nix
+    ./zellij
+    ./ghostty.nix
+    # ./nix-index.nix
+    ./nix-search-tv.nix
   ];
 }

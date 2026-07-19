@@ -3,39 +3,21 @@
   nixpkgs.config.allowUnfree = true;
 
   home.packages = with pkgs; [
-    inputs.Akari.packages.${system}.default
-    alacritty
-    # bat
-    # btop
-    codex
+    # inputs.Akari.packages.${system}.default
+    inputs.khanelivim.packages.${pkgs.system}.default
     eza
-    filezilla
-    # freecad
-    # fzf
-    git
-    git-extras
-    git-lfs
-    kitty
-    lazygit
-    luarocks
-    luaPackages.tree-sitter-cli
     open-sans
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
-    orca-slicer
-    opencode
     platformio-core
     qbittorrent
     ripgrep
     rofi
-    rustup
     sad
-    starship
     stylua
     speedtest-cli
     sshfs
     tealdeer
-    tmux
     telegram-desktop
     tor-browser
     unar
@@ -43,12 +25,6 @@
     unzip
     uv
     wireguard-tools
-    yazi
-    zoxide
-    zsh
-    zed-editor
-
-    omnix
 
     # Unix tools
     fd

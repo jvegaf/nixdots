@@ -1,14 +1,15 @@
-{ lib, ... } : {
+{ lib, ... }:
+{
 
   programs.ssh = {
     enable = true;
     enableDefaultConfig = false;
 
-    matchBlocks = {
+    settings = {
       "github" = {
-        host = "github.com";
-        identityFile = "~/.ssh/jvegaf_ed25519";
-        addKeysToAgent = "yes";
+        HostName = "github.com";
+        IdentityFile = "~/.ssh/jvegaf_ed25519";
+        AddKeysToAgent = "yes";
       };
     };
   };

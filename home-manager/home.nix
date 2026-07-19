@@ -1,7 +1,6 @@
 { inputs, ... }:
 {
   imports = [
-    ./home-packages.nix
     ./modules
   ];
 

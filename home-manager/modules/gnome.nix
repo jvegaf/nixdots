@@ -43,6 +43,10 @@
       focus-mode = "click";
     };
 
+    "org/gnome/desktop/wm/keybinds" = {
+      close = [ "<Super>q" ];
+    };
+
     # Dash to Dock settings
     "org/gnome/shell/extensions/dash-to-dock" = {
       dock-position = "BOTTOM";
@@ -74,7 +78,7 @@
 
     # Night Light
     "org/gnome/settings-daemon/plugins/color" = {
-      night-light-enabled = true;
+      night-light-enabled = false;
       night-light-temperature = lib.hm.gvariant.mkUint32 3500;
     };
 
@@ -91,7 +95,7 @@
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = [ "<Super><Return>" ];
+      binding = [ "<Super>Return" ];
       command = "alacritty";
       name = "Alacritty";
     };

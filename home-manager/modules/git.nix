@@ -5,6 +5,8 @@
     settings.user.email = "josevega234@gmail.com";
   };
 
+  programs.git-lfs.enable = true;
+
   programs.gh = {
     enable = true;
     gitCredentialHelper = {
