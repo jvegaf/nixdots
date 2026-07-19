@@ -19,7 +19,7 @@ in
   imports = [
     ./permission.nix
     ./lsp.nix
-    ./oh-my-opencode.nix
+    # ./oh-my-opencode.nix
   ];
 
   # options.modules.shell.opencode = {
@@ -66,8 +66,8 @@ in
       ];
     };
 
-    inherit (aiTools.opencode) commands;
-    agents = aiTools.opencode.renderAgents;
+    # inherit (aiTools.opencode) commands;
+    # agents = aiTools.opencode.renderAgents;
 
     skills = {
       skills = ../ai-tools/skills;
