@@ -95,7 +95,7 @@
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = [ "<Super>Return" ];
+      binding = [ "<Super>t" ];
       command = "alacritty";
       name = "Alacritty";
     };

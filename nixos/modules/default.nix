@@ -1,5 +1,6 @@
 {
   imports = [
+    ./packages.nix
     ./1password.nix
     ./audio.nix
     ./bluetooth.nix
@@ -9,7 +10,7 @@
     ./docker.nix
     ./graphics.nix
     # ./creality-print.nix
-    # ./hyprland.nix
+    ./hyprland.nix
     ./gnome.nix
     ./kernel.nix
     ./services.nix
