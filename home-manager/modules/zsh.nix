@@ -56,6 +56,7 @@
         gps = "git push";
         gpl = "git pull --rebase --autostash";
         gco = "git checkout";
+        gcl = "git clone";
 
         ".." = "cd ..";
         "..." = "cd ../..";

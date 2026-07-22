@@ -2,11 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ ... }:
 {
   imports = [
     ./hardware-configuration.nix
-    ./nixos/modules
+    ../../nixos/modules
+    ../../nixos/modules/graphics.nix
   ];
 
   # programs.creality-print.enable = true;

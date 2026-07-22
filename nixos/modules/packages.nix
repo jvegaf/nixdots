@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 {
 
   # Allow unfree packages
@@ -9,15 +9,11 @@
   environment.systemPackages = with pkgs; [
     pciutils
     lshw
-    nvtopPackages.nvidia
-    nvtopPackages.intel
     nmap
     curl
-    gnome-keyring
     nh
     ntfs3g
     openssh
-    power-profiles-daemon
     wget
     wl-clipboard
     xclip

@@ -1,19 +1,32 @@
 { pkgs, ... }:
 {
-  services.displayManager.gdm.enable = true;
-  services.desktopManager.gnome.enable = true;
-
-    # Keyboard layout
-    services.xserver.xkb = {
+  services = {
+    displayManager.gdm.enable = true;
+    desktopManager.gnome.enable = true;
+    xserver.xkb = {
       layout = "us";
       variant = "";
     };
+    libinput.enable = true;
+  };
 
-    # Touchpad support
-    services.libinput.enable = true;
+  # GNOME-specific packages
+  environment.systemPackages = with pkgs; [
+    ghostty
+    file-roller
+  ];
 
-    # GNOME-specific packages
-    environment.systemPackages = with pkgs; [
-      ghostty
-    ];
+  environment.gnome.excludePackages = with pkgs; [
+    baobab
+    decibels
+    gnome-characters
+    gnome-connections
+    gnome-contacts
+    gnome-maps
+    gnome-tour
+    seahorse
+    showtime
+    snapshot
+    yelp
+  ];
 }

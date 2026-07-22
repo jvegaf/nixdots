@@ -4,7 +4,8 @@
 
   home.packages = with pkgs; [
     # inputs.Akari.packages.${system}.default
-    inputs.khanelivim.packages.${pkgs.system}.default
+    # inputs.khanelivim.packages.${pkgs.system}.default
+    inputs.nvix.packages.${pkgs.system}.core
     eza
     open-sans
     nerd-fonts.fantasque-sans-mono
@@ -12,9 +13,7 @@
     platformio-core
     qbittorrent
     ripgrep
-    rofi
     sad
-    stylua
     speedtest-cli
     sshfs
     tealdeer
@@ -169,5 +168,6 @@
     fzf.enable = true;
     jq.enable = true;
     btop.enable = true;
+    zoxide.enable = true;
   };
 }

@@ -43,7 +43,7 @@
       focus-mode = "click";
     };
 
-    "org/gnome/desktop/wm/keybinds" = {
+    "org/gnome/desktop/wm/keybindings" = {
       close = [ "<Super>q" ];
     };
 

@@ -6,14 +6,15 @@
     ./bluetooth.nix
     ./boot.nix
     ./env.nix
+    ./avahi.nix
     # ./desktop.nix
-    ./docker.nix
-    ./graphics.nix
-    # ./creality-print.nix
+    # ./docker.nix
+    # ./graphics.nix
     ./hyprland.nix
     ./gnome.nix
     ./kernel.nix
     ./services.nix
+    ./gnome-services.nix
     # ./mime.nix
     ./net.nix
     # ./nh.nix

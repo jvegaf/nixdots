@@ -1,5 +1,5 @@
 # Configures all graphics and GPU-related settings, including AMD/NVIDIA drivers, OpenGL, and hybrid graphics.
-{ config, ... }:
+{ config, pkgs, ... }:
 
 {
   hardware = {
@@ -25,5 +25,13 @@
   boot.initrd.kernelModules = [ "i915" ];
 
   # Configure X.Org Server to use both drivers for the hybrid setup
-  services.xserver.videoDrivers = [ "modesetting" "nvidia" ];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia
+    nvtopPackages.intel
+  ];
 }

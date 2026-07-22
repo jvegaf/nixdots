@@ -8,10 +8,10 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "input"
-       "uucp"
-       "kvm"
-       "libvirtd"
+      # "input"
+      #  "uucp"
+      #  "kvm"
+      #  "libvirtd"
     ];
     shell = pkgs.zsh;
     # packages = with pkgs; [
@@ -21,5 +21,5 @@
 
   };
 
-  virtualisation.libvirtd.enable = true;
+  # virtualisation.libvirtd.enable = true;
 }
