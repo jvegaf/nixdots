@@ -13,6 +13,7 @@
     ./git.nix
     ./hyprland
     # ./neovim
+    ./nvix
     ./lazygit.nix
     # ./obsidian.nix
     ./opencode
