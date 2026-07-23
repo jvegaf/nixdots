@@ -8,9 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Akari.url = "github:spector700/Akari";
-    # khanelivim.url = "github:khaneliman/khanelivim";
-    nvix.url = "github:semi710/nvix";
+    nixvim = {
+      url = "github:jvegaf/nixvim";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     # Skills plugin for opencode
     superpowers = {
@@ -32,9 +33,7 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
+            { nixpkgs.config.allowUnfree = true; }
             ./hosts/razer-blade/configuration.nix
             home-manager.nixosModules.home-manager
             {

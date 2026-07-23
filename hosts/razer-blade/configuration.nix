@@ -10,6 +10,8 @@
     ../../nixos/modules/graphics.nix
   ];
 
+  nixpkgs.config.allowUnfree = true;
+  networking.hostName = "razer-blade";
   # programs.creality-print.enable = true;
 
   # This value determines the NixOS release from which the default

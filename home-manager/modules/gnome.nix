@@ -23,9 +23,9 @@
         "gsconnect@andyholmes.github.io"
       ];
       favorite-apps = [
+        "ghostty.desktop"
         "firefox.desktop"
         "org.gnome.Nautilus.desktop"
-        "ghostty.desktop"
       ];
     };
 
@@ -98,6 +98,12 @@
       binding = "<Super>t";
       command = "alacritty";
       name = "Term";
+    };
+
+    "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+      binding = "<Super>period";
+      command = "ghostty";
+      name = "Ghostty";
     };
 
   };

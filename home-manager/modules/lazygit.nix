@@ -87,19 +87,16 @@
               key = "CommitMsg";
               command = ''
                 bash -c "
-                # Check for staged changes
-                diff=\$(git diff --cached | head -n 10)
-                if [ -z \"\$diff\" ]; then
-                  echo \"No changes in staging. Add changes first.\"
-                  exit 1
-                fi
+                  diff=\$(git diff --cached | head -n 10)
+                  if [ -z \"\$diff\" ]; then
+                    echo \"No changes in staging. Add changes first.\"
+                    exit 1
+                  fi
 
-                SELECTED_TYPE=\"{{.Form.Type}}\"
-                COMMITS_TO_SUGGEST=8
+                  SELECTED_TYPE=\"{{.Form.Type}}\"
+                  COMMITS_TO_SUGGEST=8
 
-                # opencode run -m \"google/gemini-2.5-flash-lite\" \"
-                opencode run 
-                  You are an expert at writing Git commits. Your job is to write commit messages that follow the Conventional Commits format.
+                  PROMPT=\"You are an expert at writing Git commits. Your job is to write commit messages that follow the Conventional Commits format.
 
                   The user has selected: \$SELECTED_TYPE
 
@@ -130,7 +127,7 @@
                   - Add scope in parentheses if applicable (e.g., auth, api, ui, config)
                   - Use exclamation mark (!) after type/scope for breaking changes: type(scope)!: description
                   - Use lowercase for description (except proper nouns)
-                  - Use imperative mood (\\\"add\\\", not \\\"added\\\")
+                  - Use imperative mood ('add', not 'added')
                   - Keep description under 50 characters when possible
                   - No period at the end of subject line
 
@@ -159,8 +156,9 @@
 
                   Changes to analyze:
                   \$(git diff --cached --stat)
-                  \$(git diff --cached)
-                  \"
+                  \$(git diff --cached | head -c 100000)\"
+
+                  opencode run \"\$PROMPT\"
                 "
               '';
             }

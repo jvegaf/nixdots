@@ -11,8 +11,7 @@
 
   # Packages that should be installed to the user profile.
   # home.packages = [
-  #   pkgs.htop
-  #   pkgs.fortune
+  #   inputs.nixvim.packages.x86_64-linux.default
   # ];
 
   # This value determines the Home Manager release that your
@@ -26,8 +25,9 @@
   home.stateVersion = "26.05";
 
   # Let Home Manager install and manage itself.
-  programs.home-manager.enable = true;
-
+  programs.home-manager = {
+   enable = true;
+  };
   # services.gpg-agent = {
   #   enable = true;
   #   defaultCacheTtl = 1800;

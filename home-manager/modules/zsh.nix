@@ -7,14 +7,14 @@
 
     shellAliases =
       let
-        flakeDir = "~/flake";
+        flakeDir = "~/flakes";
       in
       {
         sw = "nh os switch";
         upd = "nh os switch --update";
         hms = "nh home switch";
 
-        pkgs = "nvim ${flakeDir}/nixos/packages.nix";
+        cdf = "cd ${flakeDir}";
 
         ls = "eza -lh --group-directories-first --icons=auto";
         l = "ls";
@@ -43,7 +43,6 @@
         jctl = "journalctl -p 3 -xb";
         lzd = "lazydocker";
         edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
-        nvcfg = "nvim ~/nixdots/home-manager/modules/neovim/nixvim.nix";
 
         nxgb = "nix-collect-garbage -d";
         nxclean = "nh clean all --keep 3";

@@ -41,7 +41,7 @@
       bind -n M-S-Down resize-pane -D 3
 
       bind c new-window -c "#{pane_current_path}"
-      bind '"' split-window -c "#{pane_current_path}"
+      bind '-' split-window -c "#{pane_current_path}"
       unbind .
       bind . split-window -h -c "#{pane_current_path}"
 

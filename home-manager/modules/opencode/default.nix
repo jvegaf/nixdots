@@ -2,6 +2,7 @@
   inputs,
   config,
   lib,
+  pkgs,
   ...
 }:
 let
@@ -22,11 +23,6 @@ in
     # ./oh-my-opencode.nix
   ];
 
-  # options.modules.shell.opencode = {
-  #   enable = mkEnableOption "OpenCode configuration";
-  # };
-
-  # config = mkIf cfg.enable {
   programs.opencode = {
     enable = true;
 
@@ -75,6 +71,10 @@ in
     };
 
     context = builtins.readFile ../ai-tools/base.md;
+
+    # extraPackages = with pkgs; [
+    #
+    # ];
+
   };
-  # };
 }
