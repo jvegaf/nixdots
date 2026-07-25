@@ -6,8 +6,6 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ../../nixos/modules
-    ../../nixos/modules/graphics.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

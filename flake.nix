@@ -35,6 +35,8 @@
           modules = [
             { nixpkgs.config.allowUnfree = true; }
             ./hosts/razer-blade/configuration.nix
+            ./nixos/modules/graphics.nix
+            ./nixos/modules
             home-manager.nixosModules.home-manager
             {
               home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
@@ -54,6 +56,7 @@
               nixpkgs.config.allowUnfree = true;
             }
             ./hosts/surface-pro/configuration.nix
+            ./nixos/modules
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = { inherit inputs; };

@@ -6,6 +6,11 @@
     lfs.enable = true;
   };
 
+  programs.delta = {
+    enable = true;
+    enableGitIntegration = true;
+  };
+
   programs.gh = {
     enable = true;
     gitCredentialHelper = {

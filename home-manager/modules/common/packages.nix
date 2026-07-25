@@ -9,19 +9,15 @@
   };
 
   home.packages = with pkgs; [
-    eza
     open-sans
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
     platformio-core
     qbittorrent
-    ripgrep
     sad
     speedtest-cli
     sshfs
-    tealdeer
     telegram-desktop
-    tor-browser
     unar
     unrar
     unzip
@@ -29,7 +25,6 @@
     wireguard-tools
 
     # Unix tools
-    fd
     sd
     tree
     gnumake
@@ -43,10 +38,11 @@
   ];
 
   programs = {
-    bat.enable = true;
+    fd.enable = true;
+    ripgrep.enable = true;
     fzf.enable = true;
     jq.enable = true;
-    btop.enable = true;
     zoxide.enable = true;
+    tealdeer.enable = true;
   };
 }

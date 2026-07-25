@@ -7,7 +7,6 @@
     ./boot.nix
     ./env.nix
     ./avahi.nix
-    ./neovim.nix
     # ./docker.nix
     # ./graphics.nix
     ./hyprland.nix

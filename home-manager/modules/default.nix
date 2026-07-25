@@ -1,29 +1,11 @@
 {
   imports = [
-    ./alacritty.nix
-    ./bat.nix
-    ./eza.nix
-    ./firefox.nix
-    ./fonts.nix
-    ./ghostty.nix
-    ./git.nix
-    ./gnome.nix
-    ./hyprland
-    ./kitty.nix
-    ./lazygit.nix
-    ./nix-search-tv.nix
+    ./browsers
+    ./common
+    ./desktop
+    ./editors
     ./opencode
-    ./packages.nix
-    ./ssh.nix
-    ./starship.nix
-    ./swaync
-    ./tmux.nix
-    ./waybar
-    ./wofi
-    ./yazi
-    ./zathura.nix
-    ./zed.nix
-    ./zellij
-    ./zsh.nix
+    ./shell
+    ./terminals
   ];
 }
