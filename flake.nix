@@ -13,6 +13,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nur.url = "github:nix-community/NUR";
+    yazi.url = "github:sxyazi/yazi";
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    stylix.url = "github:nix-community/stylix";
+
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";
@@ -35,7 +41,7 @@
           modules = [
             { nixpkgs.config.allowUnfree = true; }
             ./hosts/razer-blade/configuration.nix
-            ./nixos/modules/graphics.nix
+            ./nixos/modules/razer-blade.nix
             ./nixos/modules
             home-manager.nixosModules.home-manager
             {

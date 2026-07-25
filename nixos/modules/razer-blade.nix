@@ -2,7 +2,12 @@
 # This module configures hybrid graphics (Intel + NVIDIA), Openrazer for RGB,
 # TLP for power management, and kernel parameters specific to Razer laptops.
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
   ##############################
@@ -11,12 +16,12 @@
   nixpkgs.config.allowUnfree = true;
 
   # Enable systemd-boot
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
+  # boot.loader.systemd-boot.enable = true;
+  # boot.loader.efi.canTouchEfiVariables = true;
 
   # Kernel moderno (recomendado para 11th gen + RTX 30xx)
   # Use linuxPackages_latest for better hardware support
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Fix típico de Razer: problema con el cierre de tapa
   # AIDEV-NOTE: Algunos usuarios reportan problemas con lid, ajustar si es necesario
@@ -26,7 +31,7 @@
   ];
 
   # Timezone (ajustar según ubicación)
-  time.timeZone = lib.mkDefault "Europe/Madrid";
+  # time.timeZone = lib.mkDefault "Europe/Madrid";
 
   ##############################
   # 💻 GPU - Intel + NVIDIA RTX 3070 (Optimus/PRIME)
@@ -35,17 +40,21 @@
   services.xserver.enable = true;
   services.xserver.videoDrivers = [ "nvidia" ];
 
-  # OpenGL para aceleración híbrida
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
-    driSupport = true;
-    driSupport32Bit = true;
+    enable32Bit = true;
   };
+
+  # Disable power-profiles-daemon (conflicts with TLP)
+  services.power-profiles-daemon.enable = false;
 
   # Configuración NVIDIA con PRIME sync
   hardware.nvidia = {
     # Drivers estables
     package = config.boot.kernelPackages.nvidiaPackages.stable;
+
+    # Use open-source kernel module
+    open = true;
 
     # Modesetting del kernel para mejor rendimiento
     modesetting.enable = true;
@@ -94,7 +103,7 @@
 
       # NVIDIA
       NVIDIA_POWER_PROFILE_ON_AC = "performance";
-      NVIDIA_POWER_PROFILE_ON_BAT = "auto";  # Modo dinámico
+      NVIDIA_POWER_PROFILE_ON_BAT = "auto"; # Modo dinámico
 
       # PCIe
       PCI_D3_ON_AC = "y";
@@ -115,16 +124,16 @@
   hardware.openrazer = {
     enable = true;
     # AIDEV-NOTE: enableVerbose = true para debugging si hay problemas
-    enableVerbose = false;
-    packages = with pkgs; [
-      openrazer-daemon
-      polychromatic  # GUI para controlar RGB
-      razercfg       # Alternativa CLI
-    ];
+    # enableVerbose = false;
+    # packages = with pkgs; [
+    #   openrazer-daemon
+    #   polychromatic # GUI para controlar RGB
+    #   razercfg # Alternativa CLI
+    # ];
   };
 
   # AIDEV-NOTE: El usuario debe estar en el grupo 'openrazer'
-  users.users.${config.users.users ? th3g3ntl3man ? "th3g3ntl3man" ? "amper"} = lib.mkIf (config.users.users ? th3g3ntl3man) {
+  users.users.th3g3ntl3man = {
     extraGroups = [ "openrazer" ];
   };
 
@@ -133,55 +142,41 @@
   ##############################
   # AIDEV-NOTE: Razer Blade puede necesitar gestión térmica adicional
   # Considerar: thermald para gestión de热量
-  services.thermald.enable = lib.mkDefault true;
+  services.thermald.enable = true;
 
   # AIDEV-NOTE: Limitación de TDP para laptops (opcional, requiere kernel config)
   # boot.extraModulePackages = with pkgs; [ ];  # Añadir modules de thermald si es necesario
 
   ##############################
-  # 🔊 AUDIO - PipeWire
-  ##############################
-  services.pipewire = {
-    enable = true;
-    alsa.enable = true;
-    alsa.support32Bit = true;
-    pulse.enable = true;
-    # Low latency configuration for audio profesional
-    lowLatency.enable = lib.mkDefault false;
-  };
-
-  ##############################
   # 🌐 NETWORK - NetworkManager
   ##############################
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # WiFi power saving (puede causar problemas con algunos adaptadores)
-  networking.wireless.powerSave = false;
+  # networking.wireless.powerSave = false;
 
   ##############################
   # 🔥 FIREWALL
   ##############################
-  networking.firewall.enable = true;
+  # networking.firewall.enable = true;
 
   ##############################
   # 📦 PAQUETES ADICIONALES
   ##############################
   environment.systemPackages = with pkgs; [
     # Utilidades GPU
-    pciutils                               # lspci, etc.
-    glxinfo                                # Info OpenGL
-    nvtop                                  # Monitor de GPU
-    nvidia-settings                        # Config NVIDIA
-    nvidia-smi                             # Monitor CLI
+    pciutils # lspci, etc.
+    mesa-demos # Info OpenGL (glxinfo)
+    nvtopPackages.nvidia # Monitor de GPU
 
     # Utilidades Razer
     openrazer-daemon
     polychromatic
 
     # Utilidades sistema
-    lm_sensors                             # Sensores de temperatura
-    powertop                              # Análisis de energía
-    cpupower                              # Control CPU
+    lm_sensors # Sensores de temperatura
+    powertop # Análisis de energía
+    linuxPackages.cpupower # Control CPU
   ];
 
   ##############################
@@ -190,10 +185,10 @@
   ##############################
   # El módulo hyprland ya está importado en fs0ciety/configuration.nix
   # Pero aseguramos que las dependencias de NVIDIA estén presentes para Wayland
-  wayland.windowManager.hyprland = {
-    enable = true;
-    xwayland.enable = true;
-  };
+  # wayland.windowManager.hyprland = {
+  #   enable = true;
+  #   xwayland.enable = true;
+  # };
 
   # AIDEV-NOTE: Para NVIDIA + Wayland, configurar variables de entorno
   environment.sessionVariables = {
