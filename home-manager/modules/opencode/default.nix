@@ -62,8 +62,8 @@ in
       ];
     };
 
-    # inherit (aiTools.opencode) commands;
-    # agents = aiTools.opencode.renderAgents;
+    commands = ../ai-tools/commands;
+    agents = ../ai-tools/agents;
 
     skills = {
       skills = ../ai-tools/skills;
