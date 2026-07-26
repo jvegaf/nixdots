@@ -4,12 +4,14 @@
 
 {
   config,
-  lib,
+  inputs,
   pkgs,
   ...
 }:
 
 {
+  imports = [ inputs.razerdaemon.nixosModules.default ];
+  services.razer-laptop-control.enable = true;
   ##############################
   # 🧠 BASICS
   ##############################
@@ -168,6 +170,7 @@
     pciutils # lspci, etc.
     mesa-demos # Info OpenGL (glxinfo)
     nvtopPackages.nvidia # Monitor de GPU
+    nvtopPackages.intel # Monitor de GPU
 
     # Utilidades Razer
     openrazer-daemon

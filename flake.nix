@@ -19,6 +19,10 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
 
+    razerdaemon = {
+      url = "github:encomjp/razer-control-revived";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";
