@@ -13,10 +13,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nvix = {
-        url = "github:semi710/nvix";
-        inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # nvix = {
+    #     url = "github:semi710/nvix";
+    #     inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
