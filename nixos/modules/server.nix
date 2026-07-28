@@ -15,7 +15,7 @@
     ./services.nix
     # ./gnome-services.nix
     # ./mime.nix
-    ./net.nix
+    # ./net.nix
     # ./nh.nix
     ./nix.nix
     # ./ollama.nix

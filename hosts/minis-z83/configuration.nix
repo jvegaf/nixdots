@@ -2,13 +2,18 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -19,7 +24,8 @@
   networking.hostName = "minis-z83"; # Define your hostname.
 
   # Configure network connections interactively with nmcli or nmtui.
-  # networking.networkmanager.enable = true;
+  networking.networkmanager.enable = true;
+  networking.wireless.enable = false;
 
   # Set your time zone.
   # time.timeZone = "Europe/Madrid";
@@ -38,9 +44,6 @@
 
   # Enable the X11 windowing system.
   # services.xserver.enable = true;
-
-
-  
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -74,7 +77,7 @@
   # List packages installed in system profile.
   # You can use https://search.nixos.org/ to find more packages (and options).
   # environment.systemPackages = with pkgs; [
-  #   neovim 
+  #   neovim
   #   wget
   #   git
   #   yazi
@@ -125,4 +128,3 @@
   system.stateVersion = "26.05"; # Did you read the comment?
 
 }
-
