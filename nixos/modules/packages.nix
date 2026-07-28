@@ -18,6 +18,7 @@
     wl-clipboard
     xclip
     xsel
+    p7zip
   ];
 
 }

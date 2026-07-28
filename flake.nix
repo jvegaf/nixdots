@@ -13,6 +13,11 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    nvix = {
+        url = "github:semi710/nvix";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
@@ -53,6 +58,27 @@
               home-manager.useUserPackages = true;
               home-manager.backupFileExtension = "backup";
               home-manager.extraSpecialArgs = { inherit inputs; };
+
+            }
+          ];
+        };
+
+
+        minis-z83 = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
+          modules = [
+            {
+              nixpkgs.config.allowUnfree = true;
+            }
+            ./hosts/minis-z83/configuration.nix
+            ./nixos/modules/server.nix
+            home-manager.nixosModules.home-manager
+            {
+              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.useUserPackages = true;
+              home-manager.users.th3g3ntl3man = ./home-manager/minimal.nix;
+              home-manager.backupFileExtension = "backup";
 
             }
           ];

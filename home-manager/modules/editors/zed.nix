@@ -15,7 +15,7 @@
         light = "Vague";
       };
       buffer_font_family = "JetBrainsMono Nerd Font Mono";
-      buffer_font_size = 12;
+      buffer_font_size = 14;
       buffer_font_weight = 500;
       buffer_line_height = "standard";
       ui_font_family = "JetBrainsMono Nerd Font Mono";

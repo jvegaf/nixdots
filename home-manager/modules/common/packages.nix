@@ -17,12 +17,12 @@
     sad
     speedtest-cli
     sshfs
-    telegram-desktop
+    # telegram-desktop
     unar
-    unrar
-    unzip
-    uv
-    wireguard-tools
+    # unrar
+    # unzip
+    # uv
+    # wireguard-tools
 
     # Unix tools
     sd

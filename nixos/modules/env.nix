@@ -1,9 +1,9 @@
 {
   environment.sessionVariables = rec {
-    TERMINAL = "alacritty";
+    # TERMINAL = "alacritty";
     EDITOR = "nvim";
     VISUAL = "nvim";
-    FILE_MANAGER = "nautilus";
+    # FILE_MANAGER = "nautilus";
     XDG_BIN_HOME = "$HOME/.local/bin";
     PATH = [
       "${XDG_BIN_HOME}"
