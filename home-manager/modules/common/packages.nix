@@ -30,6 +30,7 @@
     gnumake
 
     # Nix dev
+    just
     cachix
     nil # Nix language server
     nix-info

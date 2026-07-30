@@ -7,7 +7,7 @@
 
       font = {
         builtin_box_drawing = true;
-        size = 14;
+        size = 13;
         normal = {
           style = lib.mkForce "Bold";
           family = "Fantasque SansM Nerd Font";

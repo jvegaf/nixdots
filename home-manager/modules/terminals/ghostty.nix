@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   home.file = {
     ".config/ghostty/config" = {
       text = ''
@@ -6,7 +6,7 @@
         gtk-titlebar = false
         window-padding-x = 10
         window-padding-y = 10
-        background-opacity = 0.9
+        background-opacity = 0.8
         font-size = 12
 
         palette = 0=#252b37

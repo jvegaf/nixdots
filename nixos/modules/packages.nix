@@ -11,7 +11,6 @@
     lshw
     nmap
     curl
-    nh
     ntfs3g
     openssh
     wget

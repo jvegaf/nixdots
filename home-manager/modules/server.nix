@@ -3,7 +3,7 @@
     ./browsers
     ./common
     ./desktop/server.nix
-    ./editors
+    ./editors/nvfvim
     # ./editors/nvix.nix
     # ./opencode
     ./shell
