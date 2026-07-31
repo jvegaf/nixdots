@@ -21,7 +21,7 @@
 
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    hardware.url = "github:NixOS/nixos-hardware/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
 

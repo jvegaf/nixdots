@@ -23,7 +23,7 @@
 
   # Kernel moderno (recomendado para 11th gen + RTX 30xx)
   # Use linuxPackages_latest for better hardware support
-  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackages_latest;
 
   # Fix típico de Razer: problema con el cierre de tapa
   # AIDEV-NOTE: Algunos usuarios reportan problemas con lid, ajustar si es necesario

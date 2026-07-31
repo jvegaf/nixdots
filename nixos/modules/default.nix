@@ -11,7 +11,7 @@
     # ./graphics.nix
     ./hyprland.nix
     ./gnome.nix
-    ./kernel.nix
+    # ./kernel.nix
     ./services.nix
     ./gnome-services.nix
     # ./mime.nix
