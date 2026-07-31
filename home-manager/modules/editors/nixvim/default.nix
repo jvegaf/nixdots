@@ -92,27 +92,6 @@
       };
     };
 
-    # keymaps = [
-    #   {
-    #     mode = "n";
-    #     key = "<leader>vn";
-    #     action = ":set number! number? relativenumber! relativenumber?<CR>";
-    #     options = {
-    #       desc = "Toggle line numbers";
-    #     };
-    #   }
-    #   {
-    #     mode = "x";
-    #     key = "<";
-    #     action = "<gv";
-    #   }
-    #   {
-    #     mode = "x";
-    #     key = ">";
-    #     action = ">gv|";
-    #   }
-    # ];
-
     plugins = {
       better-escape = {
         enable = true;
@@ -146,6 +125,7 @@
         enable = true;
       };
       tmux-navigator.enable = true;
+      nvim-ufo.enable = true;
       web-devicons.enable = true;
       which-key = {
         enable = true;

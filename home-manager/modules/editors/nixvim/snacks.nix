@@ -283,6 +283,17 @@
   plugins = {
     snacks = {
       enable = true;
+
+      luaConfig.pre = ''
+        picker = {
+          sources = {
+            explorer = {
+              focus = "input",
+              auto_close = true,
+            },
+          },
+        },
+      '';
       settings = {
         bigfile.enabled = true;
         explorer = {

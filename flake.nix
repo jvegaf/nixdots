@@ -3,21 +3,11 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    treefmt-nix = {
-      url = "github:numtide/treefmt-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # lazyvim.url = "github:pfassina/lazyvim-nix";
-
-    # NVF (Neovim framework)
-    # nvf.url = "github:notashelf/nvf";
-    # nvf.inputs.nixpkgs.follows = "nixpkgs";
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
@@ -25,18 +15,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
 
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs = {
-        nixpkgs.follows = "nixpkgs";
-        flake-parts.follows = "flake-parts";
-      };
-    };
+    nixvim url = "github:nix-community/nixvim";
+    nixvim.inputs.flake-parts.follows = "flake-parts";
 
-    razerdaemon = {
-      url = "github:encomjp/razer-control-revived";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    razerdaemon.url = "github:encomjp/razer-control-revived";
+    razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";

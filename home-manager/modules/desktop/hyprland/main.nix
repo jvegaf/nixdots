@@ -15,10 +15,10 @@
         "XDG_SCREENSHOTS_DIR,$HOME/screens"
       ];
 
-      monitor = ",preferred,auto,1.33";
+      monitor = ",preferred,auto, auto";
       "$mainMod" = "SUPER";
       "$terminal" = "alacritty";
-      "$fileManager" = "$terminal -e sh -c 'ranger'";
+      "$fileManager" = "nautilus";
       "$menu" = "wofi";
 
       exec-once = [
