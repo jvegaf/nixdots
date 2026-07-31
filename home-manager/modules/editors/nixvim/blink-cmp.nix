@@ -16,6 +16,10 @@
           };
         };
 
+         keymap = {
+          preset = "enter";
+         }; 
+
         sources = {
           default = [
             "lsp"

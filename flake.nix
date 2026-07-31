@@ -8,21 +8,16 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # nixvim = {
-    #   url = "github:jvegaf/nixvim";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
-
     treefmt-nix = {
       url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    lazyvim.url = "github:pfassina/lazyvim-nix";
+    # lazyvim.url = "github:pfassina/lazyvim-nix";
 
     # NVF (Neovim framework)
-    nvf.url = "github:notashelf/nvf";
-    nvf.inputs.nixpkgs.follows = "nixpkgs";
+    # nvf.url = "github:notashelf/nvf";
+    # nvf.inputs.nixpkgs.follows = "nixpkgs";
 
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
@@ -45,6 +40,11 @@
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";
+      flake = false;
+    };
+
+    gentle-ai = {
+      url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
       flake = false;
     };
 
@@ -101,7 +101,10 @@
 
         surface-pro = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; host = "surface-pro"; };
+          specialArgs = {
+            inherit inputs;
+            host = "surface-pro";
+          };
           modules = [
             {
               nixpkgs.config.allowUnfree = true;
@@ -110,7 +113,10 @@
             ./nixos/modules
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = { inherit inputs; host = "surface-pro"; };
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+                host = "surface-pro";
+              };
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
               home-manager.users.th3g3ntl3man = ./home-manager/home.nix;

@@ -14,6 +14,7 @@
 
   programs.nixvim = {
     imports = [
+      ./keymaps.nix
       ./barbar.nix
       ./blink-cmp.nix
       ./comment.nix
@@ -83,34 +84,34 @@
       };
     };
 
-    colorscheme = "base16-chalk";
+    colorscheme = "base16-ayu-dark";
     colorschemes = {
       base16 = {
         enable = true;
-        colorscheme = "chalk";
+        colorscheme = "ayu-dark";
       };
     };
 
-    keymaps = [
-      {
-        mode = "n";
-        key = "<leader>vn";
-        action = ":set number! number? relativenumber! relativenumber?<CR>";
-        options = {
-          desc = "Toggle line numbers";
-        };
-      }
-      {
-        mode = "x";
-        key = "<";
-        action = "<gv";
-      }
-      {
-        mode = "x";
-        key = ">";
-        action = ">gv|";
-      }
-    ];
+    # keymaps = [
+    #   {
+    #     mode = "n";
+    #     key = "<leader>vn";
+    #     action = ":set number! number? relativenumber! relativenumber?<CR>";
+    #     options = {
+    #       desc = "Toggle line numbers";
+    #     };
+    #   }
+    #   {
+    #     mode = "x";
+    #     key = "<";
+    #     action = "<gv";
+    #   }
+    #   {
+    #     mode = "x";
+    #     key = ">";
+    #     action = ">gv|";
+    #   }
+    # ];
 
     plugins = {
       better-escape = {
@@ -144,6 +145,7 @@
       nvim-surround = {
         enable = true;
       };
+      tmux-navigator.enable = true;
       web-devicons.enable = true;
       which-key = {
         enable = true;

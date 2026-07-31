@@ -63,6 +63,7 @@
           clang_format.command = lib.getExe' pkgs.clang-tools "clang-format";
           stylua.command = lib.getExe pkgs.stylua;
           shfmt.command = lib.getExe pkgs.shfmt;
+          nixfmt.command = lib.getExe pkgs.nixfmt;
         };
         format_on_save = # Lua
           ''
