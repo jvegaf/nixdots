@@ -1,0 +1,209 @@
+{ pkgs, ... }:
+{
+  plugins = {
+    treesitter = {
+      enable = true;
+      nixvimInjections = true;
+
+      grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
+        ada
+        agda
+        awk
+        asm
+        bash
+        bibtex
+        c
+        caddy
+        cairo
+        clojure
+        cmake
+        comment
+        commonlisp
+        cpp
+        c-sharp
+        css
+        csv
+        cuda
+        d
+        dart
+        desktop
+        devicetree
+        dhall
+        diff
+        disassembly
+        dockerfile
+        dot
+        doxygen
+        dtd
+        ebnf
+        editorconfig
+        elixir
+        elm
+        elvish
+        embedded-template
+        erlang
+        fish
+        fsh
+        fsharp
+        git-config
+        git-rebase
+        gitattributes
+        gitcommit
+        gitignore
+        gleam
+        glsl
+        gnuplot
+        go
+        godot-resource
+        gomod
+        gosum
+        gotmpl
+        gpg
+        graphql
+        gstlaunch
+        haskell
+        hcl
+        helm
+        hjson
+        html
+        htmldjango
+        http
+        hyprlang
+        idris
+        ini
+        java
+        javascript
+        jinja
+        jinja-inline
+        jq
+        jsdoc
+        json
+        json5
+        jsonnet
+        just
+        kcl
+        kdl
+        latex
+        ledger
+        liquidsoap
+        llvm
+        lua
+        luadoc
+        make
+        markdown
+        markdown-inline
+        matlab
+        mermaid
+        meson
+        nasm
+        nginx
+        nim
+        nim-format-string
+        ninja
+        nix
+        nu
+        objc
+        objdump
+        ocaml
+        ocaml-interface
+        odin
+        pascal
+        passwd
+        pem
+        perl
+        php
+        phpdoc
+        po
+        pod
+        pony
+        printf
+        promql
+        properties
+        proto
+        puppet
+        purescript
+        pymanifest
+        python
+        ql
+        qmldir
+        qmljs
+        query
+        r
+        racket
+        re2c
+        readline
+        regex
+        requirements
+        robots-txt
+        ron
+        rst
+        ruby
+        rust
+        scala
+        scfg
+        scheme
+        scss
+        sflog
+        slang
+        slim
+        slint
+        smithy
+        sql
+        ssh-config
+        starlark
+        strace
+        supercollider
+        svelte
+        swift
+        systemtap
+        tcl
+        terraform
+        textproto
+        todotxt
+        toml
+        tsv
+        tsx
+        twig
+        typescript
+        typespec
+        typst
+        udev
+        ungrammar
+        unison
+        v
+        vala
+        vim
+        vimdoc
+        vue
+        wgsl
+        wgsl-bevy
+        wxml
+        xcompose
+        xml
+        xresources
+        yaml
+        zig
+        ziggy
+        ziggy-schema
+        zsh
+      ];
+      settings = {
+        highlight = {
+          enable = true;
+          additional_vim_regex_highlighting = true;
+        };
+        indent.enable = true;
+        incremental_selection.enable = true;
+      };
+    };
+    treesitter-refactor = {
+      enable = false; # XXX: broken
+      settings = {
+        highlight_definitions.enable = true;
+      };
+    };
+    ts-autotag = {
+      enable = true;
+    };
+  };
+}

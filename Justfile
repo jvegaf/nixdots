@@ -6,25 +6,15 @@
 #
 ############################################################################
 
-# dpl_razer:
-#   nixos-rebuild switch --flake .#razer-blade --use-remote-sudo
-#
-# dpl_sf:
-#   nixos-rebuild switch --flake .#surface-pro --use-remote-sudo
-#
-# dpl_minis:
-#   nixos-rebuild switch --flake .#razer-blade --use-remote-sudo
-#
-
 # HOSTNAME := env_var('HOST')
 HOSTNAME := `hostname`
 # HOSTNAME := `cat /etc/hostname 2>/dev/null || echo "localhost"`
 
 deploy:
-  nixos-rebuild switch --flake .#{{HOSTNAME}} --use-remote-sudo
+  nixos-rebuild switch --flake .#{{HOSTNAME}} --elevate=sudo
 
 debug:
-  nixos-rebuild switch --flake .#{{HOSTNAME}} --use-remote-sudo --show-trace --verbose
+  nixos-rebuild switch --flake .#{{HOSTNAME}} --elevate=sudo --show-trace --verbose
 
 up:
   nix flake update

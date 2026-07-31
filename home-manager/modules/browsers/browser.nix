@@ -1,0 +1,151 @@
+{
+  lib,
+  config,
+  pkgs,
+  inputs,
+  ...
+}:
+let
+  extraPrefs = ''
+    pref("ui.systemUsesDarkTheme", 1);
+    pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
+    pref("privacy.webrtc.legacyGlobalIndicator", false);
+    pref("media.ffmpeg.vaapi.enabled", true);
+    pref("gfx.webrender.enabled", true);
+    pref("gfx.webrender.all", true);
+    pref("gfx.webrender.compositor", true);
+    pref("network.dns.echconfig.enabled", true);
+    pref("network.dns.http3_echconfig.enabled", true);
+    pref("geo.enabled", false);
+    pref("media.videocontrols.picture-in-picture.video-toggle.enabled", false);
+    pref("browser.compactmode.show", true);
+    pref("identity.fxaccounts.toolbar.pxiToolbarEnabled.monitorEnabled", false);
+    pref("widget.gtk.rounded-bottom-corners.enabled", true);
+    pref("browser.uidensity", 1);
+    pref("network.proxy.type", 0);
+    pref("privacy.donottrackheader.enabled", true);
+    pref("security.OCSP.require", false);
+    pref("intl.regional_prefs.use_os_locales", true);
+  '';
+  policies = {
+    ExtensionSettings = {
+      "uBlock0@raymondhill.net" = {
+        default_area = "menupanel";
+        install_url = "https://addons.mozilla.org/firefox/downloads/latest/ublock-origin/latest.xpi";
+        installation_mode = "force_installed";
+        private_browsing = true;
+      };
+    };
+    DisableFirefoxStudies = true;
+    DisableTelemetry = true;
+    DNSOverHTTPS.Enabled = false;
+    DontCheckDefaultBrowser = true;
+    OfferToSaveLogins = false;
+    PictureInPicture = true;
+    PostQuantumKeyAgreementEnabled = true;
+    SkipTermsOfUse = true;
+  };
+
+in
+{
+
+  home.sessionVariables = {
+    BROWSER = "firefox";
+    DEFAULT_BROWSER = "firefox";
+    MOZ_USE_XINPUT2 = "1";
+    MOZ_DBUS_REMOTE = "1";
+  };
+
+  xdg.mimeApps = {
+    defaultApplications = lib.genAttrs [
+      "application/x-extension-htm"
+      "application/x-extension-html"
+      "application/x-extension-shtml"
+      "application/xhtml+xml"
+      "application/x-extension-xhtml"
+      "application/x-extension-xht"
+      "text/html"
+      "x-scheme-handler/http"
+      "x-scheme-handler/https"
+      "x-scheme-handler/about"
+      "x-scheme-handler/unknown"
+    ] (_: "firefox.desktop");
+  };
+
+  programs.librewolf = {
+    enable = true;
+    package = pkgs.librewolf.override (_attrs: {
+      extraPrefs = ''
+        pref("webgl.disabled", false);
+        pref("privacy.resistFingerprinting", false);
+        pref("identity.fxaccounts.enabled", true);
+        pref("ultima.disable.windowcontrols.button", true);
+        pref("ultima.sidebery.autohide", true);
+      ''
+      + extraPrefs;
+    });
+    inherit policies;
+    nativeMessagingHosts = [
+      pkgs.keepassxc
+      pkgs.tridactyl-native
+    ];
+  };
+
+  programs.firefox = {
+    enable = true;
+    package = pkgs.firefox.override (_: {
+      inherit extraPrefs;
+    });
+    inherit policies;
+    nativeMessagingHosts = [
+      pkgs.tridactyl-native
+    ];
+  };
+
+  programs.qutebrowser = {
+    enable = true;
+    keyBindings = {
+      normal = {
+        ",v" = "spawn mpv {url}";
+        ",V" = "hint links spawn mpv {hint-url}";
+      };
+    };
+    quickmarks = {
+      nixpkgs = "https://github.com/NixOS/nixpkgs";
+    };
+    searchEngines = {
+      DEFAULT = "https://www.startpage.com/sp/search?query={}";
+      no = "https://noogle.dev/q?term={}";
+      nw = "https://wiki.nixos.org/index.php?search={}";
+      w = "https://en.wikipedia.org/wiki/Special:Search?search={}&go=Go&ns0=1";
+    };
+    settings = {
+      auto_save = {
+        interval = 60000;
+      };
+      colors = {
+        webpage = {
+          preferred_color_scheme = "dark";
+          darkmode.enabled = true;
+        };
+      };
+      content = {
+        dns_prefetch = false;
+        cookies.accept = "no-3rdparty";
+        geolocation = false;
+      };
+      fonts = {
+        default_family = "0xProto";
+        web.family = {
+          standard = "Recursive Sans Casual Static";
+          fixed = "0xProto";
+          sans_serif = "Recursive Sans Casual Static";
+        };
+      };
+      url = {
+        default_page = "about:blank";
+        start_pages = "about:blank";
+      };
+    };
+  };
+}

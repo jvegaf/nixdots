@@ -9,7 +9,7 @@
     ./avahi.nix
     # ./docker.nix
     # ./graphics.nix
-    # ./hyprland.nix
+    ./hyprland.nix
     ./gnome.nix
     ./kernel.nix
     ./services.nix

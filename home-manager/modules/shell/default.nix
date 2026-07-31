@@ -7,6 +7,7 @@
     ./nh.nix
     ./ssh.nix
     ./starship.nix
+    ./tealdeer.nix
     ./tmux.nix
     ./yazi
     ./zellij

@@ -9,6 +9,11 @@
   programs.delta = {
     enable = true;
     enableGitIntegration = true;
+    options = {
+      dark = true;
+      line-numbers = false;
+      hyperlinks = true;
+    };
   };
 
   programs.gh = {

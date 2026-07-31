@@ -8,8 +8,13 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    nixvim = {
-      url = "github:jvegaf/nixvim";
+    # nixvim = {
+    #   url = "github:jvegaf/nixvim";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
+
+    treefmt-nix = {
+      url = "github:numtide/treefmt-nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -24,6 +29,14 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
+
+    nixvim = {
+      url = "github:nix-community/nixvim";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        flake-parts.follows = "flake-parts";
+      };
+    };
 
     razerdaemon = {
       url = "github:encomjp/razer-control-revived";
@@ -88,7 +101,7 @@
 
         surface-pro = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
+          specialArgs = { inherit inputs; host = "surface-pro"; };
           modules = [
             {
               nixpkgs.config.allowUnfree = true;
@@ -97,7 +110,7 @@
             ./nixos/modules
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit inputs; host = "surface-pro"; };
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
               home-manager.users.th3g3ntl3man = ./home-manager/home.nix;

@@ -12,8 +12,8 @@
     open-sans
     nerd-fonts.fantasque-sans-mono
     nerd-fonts.jetbrains-mono
-    platformio-core
-    qbittorrent
+    # platformio-core
+    # qbittorrent
     sad
     speedtest-cli
     sshfs
@@ -44,6 +44,5 @@
     fzf.enable = true;
     jq.enable = true;
     zoxide.enable = true;
-    tealdeer.enable = true;
   };
 }

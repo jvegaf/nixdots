@@ -47,35 +47,6 @@ return {
     priority = 1000,
   },
   {
-    'nyoom-engineering/oxocarbon.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      --   require("NeoSolarized").setup({
-      --     theme = "light", -- dark or light
-      --   })
-      -- vim.cmd([[ colorscheme oxocarbon ]])
-    end,
-  },
-  {
-    'scottmckendry/cyberdream.nvim',
-    priority = 1000,
-    lazy = false,
-    -- config = function()
-    --   require("modus-themes").setup({})
-    --   -- vim.cmd("colorscheme modus")
-    -- end,
-  },
-  {
-    'oxfist/night-owl.nvim',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    -- config = function()
-    --   require("night-owl").setup({})
-    --   -- vim.cmd([[ colorscheme night-owl ]])
-    -- end,
-  },
-  {
     'folke/tokyonight.nvim',
     opts = {
       style = 'night',
@@ -85,28 +56,6 @@ return {
       --   floats = 'transparent',
       -- },
     },
-  },
-  {
-    'eldritch-theme/eldritch.nvim',
-    lazy = false,
-    priority = 1000,
-    opts = {},
-  },
-  {
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    opts = {
-      variant = 'moon',
-      -- disable_background = is_transparent,
-      -- disable_float_background = is_transparent,
-      styles = {
-        bold = true,
-        italic = true,
-        -- transparency = is_transparent,
-      },
-    },
-    lazy = false,
-    priority = 1000,
   },
   {
     'Shatur/neovim-ayu',
