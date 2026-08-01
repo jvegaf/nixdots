@@ -26,7 +26,7 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
-      # ./numb.nix
+      ./nvim-tree.nix
       ./snacks.nix
       ./treesitter.nix
       ./treesj.nix
@@ -41,6 +41,14 @@
     enableMan = false;
 
     withRuby = false;
+
+    colorscheme = "base16-eldritch";
+    colorschemes = {
+      base16 = {
+        enable = true;
+        colorscheme = "eldritch";
+      };
+    };
 
     performance = {
       byteCompileLua = {
@@ -83,14 +91,6 @@
         wl-copy.enable = true;
         xsel.enable = true;
         xclip.enable = true;
-      };
-    };
-
-    colorscheme = "base16-ayu-light";
-    colorschemes = {
-      base16 = {
-        enable = true;
-        colorscheme = "ayu-light";
       };
     };
 

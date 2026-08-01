@@ -1,8 +1,6 @@
 {
   imports = [
-    ./zed.nix
-    # ./neovim.nix
-    # ./lazyvim
+    ./zed
     ./nixvim
     ./evil-helix.nix
   ];
