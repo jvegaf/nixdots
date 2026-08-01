@@ -1,72 +1,114 @@
-# starship is a minimal, fast, and extremely customizable prompt for any shell!
+{ lib, ... }:
 {
-  config,
-  lib,
-  host,
-  ...
-}:
-let
-  variables = import ../../../hosts/${host}/variables.nix;
-  defaultShell = variables.defaultShell or "zsh";
-
-  stylix = config.lib.stylix or null;
-in
-{
-  programs.starship = {
-    # Disable starship for Fish (it has its own custom prompt)
-    enable = defaultShell != "fish";
-    settings =
-      let
-        accent = if stylix != null then "#${stylix.colors.base0D}" else "cyan";
-        background-alt = if stylix != null then "#${stylix.colors.base01}" else "bright-black";
-      in
-      {
-        add_newline = false;
+  programs = {
+    starship = {
+      enable = true;
+      settings = {
         format = lib.concatStrings [
-          "$nix_shell"
-          "$hostname"
+          "[](#3B4252)"
+          "[](bg:#434C5E fg:#3B4252)"
           "$directory"
+          "[](fg:#434C5E bg:#4C566A)"
           "$git_branch"
-          "$git_state"
           "$git_status"
-          "\n"
-          "$character"
+          "[](fg:#4C566A bg:#86BBD8)"
+          "$python"
+          "$c"
+          "$elixir"
+          "$golang"
+          "$java"
+          "$nodejs"
+          "$rust"
+          "[](fg:#86BBD8 bg:#06969A)"
+          "$docker_context"
+          "[](fg:#06969A bg:#33658A)"
+          "$time"
+          "[ ](fg:#33658A)"
         ];
+
+        # Disable the blank line at the start of the prompt
+        # add_newline = false
+
         directory = {
-          style = accent;
+          style = "bg:#434C5E";
+          format = "[ $path ]($style)";
+          truncation_length = 3;
+          truncation_symbol = "…/";
         };
 
-        character = {
-          success_symbol = "[❯](${accent})";
-          error_symbol = "[❯](red)";
-          vimcmd_symbol = "[❮](cyan)";
+        # Here is how you can shorten some long paths by text replacement
+        # similar to mapped_locations in Oh My Posh:
+        directory.substitutions = {
+          "Documents" = " ";
+          "Downloads" = " ";
+          "Music" = " ";
+          "Pictures" = " ";
+        };
+        # Keep in mind that the order matters. For example:
+        # "Important Documents" = "  "
+        # will not be replaced, because "Documents" was already substituted before.
+        # So either put "Important Documents" before "Documents" or use the substituted version:
+        # "Important  " = "  "
+
+        python = {
+          format = "[$symbol(($virtualenv) )]($style)";
+          style = "bg:#86BBD8";
+          symbol = "";
         };
 
-        nix_shell = {
-          format = "[$symbol]($style) ";
-          symbol = "🐚";
-          style = "";
+        c = {
+          symbol = " ";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
+        };
+
+        docker_context = {
+          symbol = " ";
+          style = "bg:#06969A";
+          format = "[ $symbol $context ]($style) $path";
+        };
+
+        elixir = {
+          symbol = " ";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
         };
 
         git_branch = {
-          symbol = "[](${background-alt}) ";
-          style = "fg:${accent} bg:${background-alt}";
-          format = "on [$symbol$branch]($style)[](${background-alt}) ";
+          symbol = "";
+          style = "bg:#4C566A";
+          format = "[ $symbol $branch (:$remote_branch)]($style)";
         };
 
         git_status = {
-          format = "[[(*$conflicted$untracked$modified$staged$renamed$deleted)](218)($ahead_behind$stashed)]($style)";
-          style = "cyan";
-          conflicted = "";
-          renamed = "";
-          deleted = "";
-          stashed = "≡";
+          style = "bg:#4C566A";
+          format = "[$all_status$ahead_behind ]($style)";
         };
 
-        git_state = {
-          format = "([$state( $progress_current/$progress_total)]($style)) ";
-          style = "bright-black";
+        golang = {
+          symbol = " ";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
+        };
+
+        java = {
+          symbol = " ";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
+        };
+
+        nodejs = {
+          symbol = "";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
+        };
+
+        rust = {
+          symbol = "";
+          style = "bg:#86BBD8";
+          format = "[ $symbol ($version) ]($style)";
         };
       };
+    };
   };
 }
