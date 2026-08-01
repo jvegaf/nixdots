@@ -6,8 +6,8 @@
     installVimSyntax = true;
     settings = {
       theme = "dark:Ayu ,light:Farmhouse Light";
-      font = "JetBrainsMono NF";
-      font-size = "13";
+      font-family = "JetBrainsMono NF";
+      font-size = 13;
     };
   };
 }

@@ -1,5 +1,6 @@
 {
   imports = [
+    ./telegram.nix
     ./direnv.nix
     ./fonts.nix
     ./git.nix
