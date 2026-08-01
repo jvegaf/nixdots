@@ -7,7 +7,7 @@
     settings = {
       theme = "dark:Ayu ,light:Farmhouse Light";
       font = "JetBrainsMono NF";
-      font-size = "14";
+      font-size = "13";
     };
   };
 }

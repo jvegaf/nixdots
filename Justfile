@@ -37,4 +37,3 @@ clean:
 gc:
   # recolecta como basura todas las entradas sin usar del store de nix
   sudo nix-collect-garbage --delete-old
-
