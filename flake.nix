@@ -15,7 +15,7 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
 
-    nixvim url = "github:nix-community/nixvim";
+    nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
 
     razerdaemon.url = "github:encomjp/razer-control-revived";

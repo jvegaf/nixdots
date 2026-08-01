@@ -70,6 +70,8 @@
       hlsearch = true;
       undofile = true;
       spell = false;
+      foldlevel = 99;
+      foldlevelstart = 99;
       list = true;
       updatetime = 2000;
       termguicolors = true;
@@ -84,11 +86,11 @@
       };
     };
 
-    colorscheme = "base16-ayu-dark";
+    colorscheme = "base16-ayu-light";
     colorschemes = {
       base16 = {
         enable = true;
-        colorscheme = "ayu-dark";
+        colorscheme = "ayu-light";
       };
     };
 

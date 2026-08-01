@@ -1,25 +1,45 @@
+# Git
+#
+{ config, ... }:
 {
-  programs.git = {
-    enable = true;
-    settings.user.name = "Jose Vega";
-    settings.user.email = "josevega234@gmail.com";
-    lfs.enable = true;
-  };
-
-  programs.delta = {
-    enable = true;
-    enableGitIntegration = true;
-    options = {
-      dark = true;
-      line-numbers = false;
-      hyperlinks = true;
-    };
-  };
-
-  programs.gh = {
-    enable = true;
-    gitCredentialHelper = {
+  programs = {
+    git = {
       enable = true;
+      lfs.enable = true;
+
+      ignores = [
+        ".direnv"
+        "result"
+        "node_modules"
+      ];
+
+      settings = {
+        extraConfig = {
+          init = {
+            defaultBranch = "main";
+          };
+
+          diff.colorMoved = "default";
+          # commit.gpgSign = true;
+          # gpg.format = "ssh";
+          # user.signingkey = "${config.home.homeDirectory}/.ssh/gitkey";
+
+          push = {
+            default = "current";
+            followTags = true;
+            autoSetupRemote = true;
+          };
+          # signing = {
+          #   signByDefault = true;
+          #   key = "${config.home.homeDirectory}/.ssh/gitkey";
+          # };
+        };
+
+        user = {
+          email = "72362399+jvegaf@users.noreply.github.com";
+          name = "jvegaf";
+        };
+      };
     };
   };
 }
