@@ -6,6 +6,9 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
+    sops-nix.url = "github:mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
@@ -15,11 +18,33 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
 
-    nixvim url = "github:nix-community/nixvim";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
 
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
+
+    niri-flake.url = "github:sodiboo/niri-flake";
+    niri-flake.inputs.nixpkgs.follows = "nixpkgs";
+
+    dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell";
+    dankMaterialShell.inputs.nixpkgs.follows = "nixpkgs";
+
+    impermanence.url = "github:nix-community/impermanence";
+    # create nix project automatically
+    dev-assistant.url = "github:spector700/DevAssistant";
+
+    noctalia.url = "github:noctalia-dev/noctalia-shell";
+    noctalia.inputs.nixpkgs.follows = "nixpkgs";
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";
@@ -34,79 +59,39 @@
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      ...
-    }:
-    {
-      nixosConfigurations = {
-        razer-blade = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            { nixpkgs.config.allowUnfree = true; }
-            ./hosts/razer-blade/configuration.nix
-            ./nixos/modules/razer-blade.nix
-            ./nixos/modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
+    inputs@{ self, flake-parts, ... }:
+    let
+      # custom lib functions
+      lib' = import ./lib;
+      # main user for location
+      user = "th3g3ntl3man";
+      # Location of the nixos config
+      location = "/home/${user}/nixdots";
+    in
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      # systems for which the `perSystem` attributes will be built
+      systems = [
+        "x86_64-linux"
+        "aarch64-linux"
+      ];
 
-            }
-          ];
-        };
+      imports = [
+        inputs.treefmt-nix.flakeModule
 
-        minis-z83 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
-            ./hosts/minis-z83/configuration.nix
-            ./nixos/modules/server.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./home-manager/minimal.nix;
-              home-manager.backupFileExtension = "backup";
+        # the flake utilities
+        ./flake
+        ./pkgs
+      ];
 
-            }
-          ];
-        };
-
-        surface-pro = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-            host = "surface-pro";
-          };
-          modules = [
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
-            ./hosts/surface-pro/configuration.nix
-            ./nixos/modules
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                host = "surface-pro";
-              };
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
-              home-manager.backupFileExtension = "backup";
-
-            }
-          ];
+      flake = {
+        # entry-point for nixosConfigurations
+        nixosConfigurations = import ./hosts/profiles.nix {
+          inherit
+            inputs
+            self
+            lib'
+            location
+            ;
         };
       };
     };

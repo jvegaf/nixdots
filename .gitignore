@@ -1,2 +1,4 @@
 *.zip
 result
+/.direnv/flake-inputs
+/.direnv

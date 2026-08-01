@@ -1,0 +1,132 @@
+{
+  pkgs,
+  config,
+  osConfig,
+  lib,
+  ...
+}:
+let
+  screenshotarea = "hyprctl keyword animation 'fadeOut,0,8,slow'; ${getExe pkgs.grimblast} --notify copysave area; hyprctl keyword animation 'fadeOut,1,8,slow'";
+
+  volume = "${pkgs.wireplumber}/bin/wpctl";
+  brightness = "${getExe pkgs.brightnessctl}";
+  media = "${getExe pkgs.playerctl}";
+
+  inherit (config.modules.desktop) bar;
+  inherit (lib) optionals mkIf;
+
+  # binds $mod + [alt + Shift] {1..10} to [move to] workspace {1..10}
+  workspaces = builtins.concatLists (
+    builtins.genList (
+      x:
+      let
+        ws =
+          let
+            c = (x + 1) / 10;
+          in
+          toString (x + 1 - (c * 10));
+      in
+      [
+        "$mod, ${ws}, workspace, ${toString (x + 1)}"
+        "ALT SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+      ]
+    ) 10
+  );
+
+  inherit (lib) getExe;
+in
+{
+  # l -> locked, will also work when an input inhibitor (e.g. a lockscreen) is active.
+  # r -> release, will trigger on release of a key.
+  # e -> repeat, will repeat when held.
+  # n -> non-consuming, key/mouse events will be passed to the active window in addition to triggering the dispatcher.
+  # m -> mouse.
+  # t -> transparent, cannot be shadowed by other binds.
+  # i -> ignore mods, will ignore modifiers.
+  # s -> separate, will arbitrarily combine keys between each mod/key, see [Keysym combos](#keysym-combos) above.
+  # d -> has description, will allow you to write a description for your bind.
+
+  wayland.windowManager.hyprland.settings = {
+    "$mod" = "SUPER";
+
+    # Mouse Moveements
+    bindm = [
+      "$mod, mouse:272, movewindow"
+      "$mod, mouse:273, resizewindow"
+    ];
+
+    bindd = [
+      "Super, Tab, Toggle overview, global, quickshell:overviewToggle"
+    ];
+
+    # Binds
+    bind =
+      let
+        uexec = program: "exec, uwsm app -- ${program}";
+      in
+      [
+        # Compositor
+        "$mod, Q, killactive,"
+        "$mod, F, fullscreen,"
+        "$mod, G, togglefloating"
+
+        # move focus
+        "$mod, left, movefocus, l"
+        "$mod, right, movefocus, r"
+        "$mod, up, movefocus, u"
+        "$mod, down, movefocus, d"
+        "ALT, Tab, focuscurrentorlast"
+
+        # move window
+        "$mod SHIFT, left, movewindow, l"
+        "$mod SHIFT, right, movewindow, r"
+        "$mod SHIFT, up, movewindow, u"
+        "$mod SHIFT, down, movewindow, d"
+
+        # special workspaces
+        "$mod, S, togglespecialworkspace, special"
+        "ALT SHIFT, S, movetoworkspace, special:special"
+
+        # terminal
+        "$mod, T, ${uexec (getExe pkgs.kitty)}"
+        "$mod, E, ${uexec (getExe pkgs.kitty)} -e yazi"
+        "CTRL SHIFT, Escape, ${uexec (getExe pkgs.kitty)} -e btop"
+
+        # Programs
+        "$mod, B, ${uexec (getExe pkgs.firefox)}"
+        "$mod SHIFT, E, ${uexec "thunar"}"
+
+        # Screenshot
+        ", Print, exec, ${screenshotarea}"
+      ]
+      ++ workspaces;
+
+    binde = [
+      # resize with arrowkeys
+      "$mod CTRL, UP, resizeactive, 0 -20"
+      "$mod CTRL, DOWN, resizeactive, 0 20"
+      "$mod CTRL, LEFT, resizeactive, -20 0"
+      "$mod CTRL, RIGHT, resizeactive, 20 0"
+    ];
+
+    bindl = [
+      # Media Controls
+      ", XF86AudioPlay, exec, ${media} play-pause"
+      ", XF86AudioNext, exec, ${media} next"
+      ", XF86AudioPrev, exec, ${media} previous"
+      # Mute
+      ", XF86AudioMute, exec, ${volume} set-mute @DEFAULT_SINK@ toggle"
+      ", XF86AudioMicMute, exec, ${volume} set-mute @DEFAULT_SOURCE@ toggle"
+    ];
+
+    bindle = mkIf osConfig.modules.roles.laptop.enable [
+      # Volume
+      ", XF86AudioRaiseVolume, exec, ${volume} set-volume -l '1.0' @DEFAULT_SINK@ 5%+"
+      ", XF86AudioLowerVolume, exec, ${volume} set-volume -l '1.0' @DEFAULT_SINK@ 5%-"
+
+      # Brightness
+      ", XF86MonBrightnessUp, exec, ${brightness} s 5%+"
+      ", XF86MonBrightnessDown, exec, ${brightness} s 5%-"
+    ];
+  };
+}
