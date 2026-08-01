@@ -27,10 +27,12 @@
       ./lsp.nix
       ./neogit.nix
       ./nvim-tree.nix
+      ./sidekick.nix
       ./snacks.nix
       ./treesitter.nix
       ./treesj.nix
       ./trouble.nix
+      ./whichkey.nix
       ./yanky.nix
     ];
 
@@ -42,11 +44,11 @@
 
     withRuby = false;
 
-    colorscheme = "base16-eldritch";
+    colorscheme = "base16-ayu-dark";
     colorschemes = {
       base16 = {
         enable = true;
-        colorscheme = "eldritch";
+        colorscheme = "ayu-dark";
       };
     };
 
@@ -110,7 +112,7 @@
         enable = true;
         settings = {
           globalstatus = true;
-          theme = "base16-chalk";
+          theme = "base16-ayu-dark";
         };
       };
       luasnip.enable = true;
@@ -129,9 +131,6 @@
       tmux-navigator.enable = true;
       nvim-ufo.enable = true;
       web-devicons.enable = true;
-      which-key = {
-        enable = true;
-      };
     };
   };
 }

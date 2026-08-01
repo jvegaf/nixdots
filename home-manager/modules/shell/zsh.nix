@@ -23,6 +23,8 @@
         llt = "lt -a";
         rebuild = "sudo nixos-rebuild switch";
         freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade";
+        jup = "just up";
+        jde = "just deploy";
         r = "ranger";
         v = "nvim";
         se = "sudoedit";
@@ -44,8 +46,8 @@
         lzd = "lazydocker";
         edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
 
-        nxgb = "nix-collect-garbage -d";
-        nxclean = "nh clean all --keep 3";
+        gb = "nix-collect-garbage -d";
+        clean = "nh clean all --keep 3";
 
         g = "lazygit";
         gs = "git status";
