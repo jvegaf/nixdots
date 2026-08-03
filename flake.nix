@@ -45,13 +45,10 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            { nixpkgs.config.allowUnfree = true; }
             ./hosts/razer-blade/configuration.nix
-            ./nixos/modules/razer-blade.nix
-            ./nixos/modules
             home-manager.nixosModules.home-manager
             {
-              home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
+              home-manager.users.th3g3ntl3man = ./modules/home/home.nix;
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
               home-manager.backupFileExtension = "backup";
@@ -65,9 +62,6 @@
           system = "x86_64-linux";
           specialArgs = { inherit inputs; };
           modules = [
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
             ./hosts/minis-z83/configuration.nix
             ./nixos/modules/server.nix
             home-manager.nixosModules.home-manager
@@ -75,7 +69,7 @@
               home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./home-manager/minimal.nix;
+              home-manager.users.th3g3ntl3man = ./modules/home/minimal.nix;
               home-manager.backupFileExtension = "backup";
 
             }
@@ -89,11 +83,7 @@
             host = "surface-pro";
           };
           modules = [
-            {
-              nixpkgs.config.allowUnfree = true;
-            }
             ./hosts/surface-pro/configuration.nix
-            ./nixos/modules
             home-manager.nixosModules.home-manager
             {
               home-manager.extraSpecialArgs = {
@@ -102,7 +92,7 @@
               };
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./home-manager/home.nix;
+              home-manager.users.th3g3ntl3man = ./modules/home/home.nix;
               home-manager.backupFileExtension = "backup";
 
             }

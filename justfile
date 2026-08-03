@@ -10,6 +10,13 @@
 HOSTNAME := `hostname`
 # HOSTNAME := `cat /etc/hostname 2>/dev/null || echo "localhost"`
 
+
+build:
+  nixos-rebuild build --flake .#{{HOSTNAME}} --elevate=sudo
+
+boot:
+  nixos-rebuild boot --flake .#{{HOSTNAME}} --elevate=sudo
+
 deploy:
   nixos-rebuild switch --flake .#{{HOSTNAME}} --elevate=sudo
 

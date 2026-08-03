@@ -6,6 +6,8 @@
   ];
   # GNOME extensions
   home.packages = with pkgs; [
+    decibels
+    parole
     gnome-tweaks
     gnomeExtensions.appindicator
     gnomeExtensions.dash-to-dock
@@ -14,7 +16,6 @@
     gnomeExtensions.gsconnect
     gnomeExtensions.tophat
   ];
-
 
   # Set Microsoft Edge as default browser
   xdg.mimeApps = {

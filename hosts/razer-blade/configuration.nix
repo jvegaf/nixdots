@@ -6,6 +6,12 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./razer-blade.nix
+    ../../modules/nixos/hardware
+    ../../modules/nixos/os
+    ../../modules/nixos/programs
+    ../../modules/nixos/desktop/gnome
+    ../../modules/nixos/desktop/hyprland
   ];
 
   nixpkgs.config.allowUnfree = true;

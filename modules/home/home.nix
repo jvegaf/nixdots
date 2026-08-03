@@ -1,7 +1,13 @@
-{ inputs, ... }:
+{ ... }:
 {
   imports = [
-    ./modules
+    ./browsers
+    ./common
+    ./desktop
+    ./editors
+    ./opencode
+    ./shell
+    ./terminals
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -26,7 +32,7 @@
 
   # Let Home Manager install and manage itself.
   programs.home-manager = {
-   enable = true;
+    enable = true;
   };
   # services.gpg-agent = {
   #   enable = true;

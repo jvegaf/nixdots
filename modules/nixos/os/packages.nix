@@ -12,7 +12,6 @@
     nmap
     curl
     ntfs3g
-    openssh
     wget
     wl-clipboard
     xclip
