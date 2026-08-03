@@ -3,5 +3,7 @@
     ./common
     ./gnome
     ./hyprland
+    ./niri
+    ./waybar
   ];
 }
