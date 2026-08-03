@@ -40,12 +40,11 @@ binds {
     Mod+Shift+H                    { show-hotkey-overlay; }
 
     // ─── Applications ───
-    Mod+Return                          hotkey-overlay-title="Open Terminal: Alacritty" { spawn "alacritty"; }
-    MOD+D                               hotkey-overlay-title="Open App Launcher: rofi" { spawn-sh "rofi -show drun"; }
+    Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
+    MOD+D                               hotkey-overlay-title="Open App Launcher: fuzzel" { spawn "fuzzel"; }
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
-    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn-sh "firefox"; }
-    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn-sh "swaylock"; }
-    MOD+Shift+B                         hotkey-overlay-title="Reset Waybar" { spawn-sh "~/.config/waybar_1/waybar-niri.sh"; }
+    MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
+    MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn "swaylock"; }
 
     // ─── Media Controls ───
     XF86AudioRaiseVolume                allow-when-locked=true { spawn-sh "qs -c noctalia-shell ipc call volume increase"; }
@@ -173,7 +172,7 @@ binds {
 
 output "eDP-1" {
     mode "2560x1440@60.000" // Set resolution and refresh rate
-    scale 1.2 // No scaling (use 2 for HiDPI)
+    scale 1.33 // No scaling (use 2 for HiDPI)
 }
 
 
@@ -189,7 +188,7 @@ layout {
     }
 
     focus-ring {
-        width 1
+        width 3
         active-color "#00ac89"
         inactive-color "#4F4F4F"
     }

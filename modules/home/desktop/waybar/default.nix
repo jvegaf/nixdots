@@ -13,7 +13,7 @@
     enable = true;
     systemd = {
       enable = true;
-      target = "niri.service";
+      targets = [ "niri.service" ];
     };
 
     style = builtins.readFile ./style.css;

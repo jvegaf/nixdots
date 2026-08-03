@@ -1,5 +1,9 @@
 { pkgs, ... }: {
-  # xdg.configFile."niri/config.kdl".source = ./config.kdl;
+  home.packages = with pkgs; [
+    swaybg # wallpaper
+    xwayland-satellite
+  ];
+
   xdg.configFile."niri/config.kdl".source =
     pkgs.runCommand "niri-config-checked"
       {
@@ -17,9 +21,5 @@
   services.mako.enable = true; # notification daemon
   services.swayidle.enable = true; # idle management daemon
   services.polkit-gnome.enable = true; # polkit
-  home.packages = with pkgs; [
-    swaybg # wallpaper
-    xwayland-satellite
-  ];
 
 }

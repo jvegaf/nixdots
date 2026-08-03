@@ -1,6 +1,7 @@
-{ ... }:
+{ inputs, pkgs, ... }:
 {
   imports = [
+    inputs.noctalia.homeModules.default
     ./browsers
     ./common
     ./desktop
@@ -10,6 +11,7 @@
     ./terminals
   ];
 
+  programs.noctalia.package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
   # Home Manager needs a bit of information about you and the
   # paths it should manage.
   home.username = "th3g3ntl3man";
