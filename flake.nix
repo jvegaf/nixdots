@@ -95,10 +95,7 @@
             ./hosts/surface-pro/configuration.nix
             home-manager.nixosModules.home-manager
             {
-              home-manager.extraSpecialArgs = {
-                inherit inputs;
-                host = "surface-pro";
-              };
+              home-manager.extraSpecialArgs = { inherit inputs; };
               home-manager.useUserPackages = true;
               home-manager.overwriteBackup = true;
               home-manager.users.th3g3ntl3man = ./modules/home/home.nix;

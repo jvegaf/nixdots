@@ -10,6 +10,8 @@
       font-size = 12;
       gtk-titlebar = false;
       background-opacity = 0.8;
+      shell-integration = "detect";
+      unfocused-split-opacity = 0.4;
     };
   };
 }

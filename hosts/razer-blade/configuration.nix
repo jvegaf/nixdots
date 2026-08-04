@@ -12,7 +12,6 @@
     ../../modules/nixos/programs
     ../../modules/nixos/desktop/gnome
     ../../modules/nixos/desktop/niri
-    # ../../modules/nixos/desktop/noctalia
   ];
 
   nixpkgs.config.allowUnfree = true;

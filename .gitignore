@@ -1,3 +1,9 @@
 *.zip
 result
 /.direnv
+/modules/home/dotfiles/OrcaSlicer/cache
+/modules/home/dotfiles/OrcaSlicer/log
+log/
+cache/
+*.tmp
+GCode/
