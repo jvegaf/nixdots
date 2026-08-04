@@ -47,6 +47,8 @@
       ...
     }:
     {
+      devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShell { };
+
       nixosConfigurations = {
         razer-blade = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

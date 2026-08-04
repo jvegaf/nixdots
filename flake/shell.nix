@@ -1,6 +1,6 @@
 {
   perSystem =
-    { pkgs, config, ... }:
+    { pkgs, ... }:
     {
       devShells.default = pkgs.mkShell {
         name = "nixos-config";
@@ -13,7 +13,7 @@
         #
         packages = with pkgs; [
           # the treefmt command
-          config.treefmt.build.wrapper
+          nix-output-monitor
           just
           pre-commit
           yq-go

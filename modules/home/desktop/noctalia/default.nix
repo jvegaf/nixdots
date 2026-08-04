@@ -4,10 +4,15 @@
     enable = true;
     settings = {
       theme = {
+        builtin = "Tokyo-Night";
         mode = "dark";
-        source = "builtin";
-        builtin = "Catppuccin";
-      }; # configure options
+        source = "community";
+        communityPalette = "Oxocarbon";
+      };
+      wallpaper = {
+        enabled = true;
+        default.path = "${../wallpapers/bg_2.jpg}";
+      };
     };
   };
 }

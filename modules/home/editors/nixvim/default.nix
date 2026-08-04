@@ -129,6 +129,7 @@
         enable = true;
       };
       tmux-navigator.enable = true;
+      lazygit.enable = true;
       nvim-ufo.enable = true;
       web-devicons.enable = true;
     };

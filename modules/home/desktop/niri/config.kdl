@@ -9,6 +9,7 @@
 // spawn-sh-at-startup "awww img ~/.config/wallpapers/bg_0.jpg" // Set wallpaper
 // spawn-sh-at-startup "~/.config/waybar_1/waybar-niri.sh" // Launch waybar
 // spawn-sh-at-startup "~/.bin/init_gtk"
+spawn-at-startup "noctalia"
 
 
 // ────────────── Input Configuration ──────────────
@@ -41,7 +42,7 @@ binds {
 
     // ─── Applications ───
     Mod+Return                          hotkey-overlay-title="Open Terminal: Ghostty" { spawn "ghostty"; }
-    MOD+D                               hotkey-overlay-title="Open App Launcher: fuzzel" { spawn "fuzzel"; }
+    Mod+D                               hotkey-overlay-title="Open App Launcher: noctalia" { spawn "noctalia" "msg" "panel-toggle" "launcher"; }
     Mod+E                               hotkey-overlay-title="File Manager: Nautilus" { spawn "nautilus"; }
     MOD+B                               hotkey-overlay-title="Open Browser: firefox" { spawn "firefox"; }
     MOD+ALT+L                           hotkey-overlay-title="Lock Screen: swaylock" { spawn "swaylock"; }
