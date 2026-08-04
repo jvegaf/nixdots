@@ -27,6 +27,7 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
+
     # Skills plugin for opencode
     superpowers = {
       url = "github:obra/superpowers";
@@ -37,73 +38,67 @@
       url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
       flake = false;
     };
-
   };
 
   outputs =
-    inputs@{
-      nixpkgs,
-      home-manager,
-      ...
-    }:
-    {
-      devShells.x86_64-linux.default = nixpkgs.legacyPackages.x86_64-linux.mkShell { };
+    inputs@{ flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [ "x86_64-linux" ];
 
-      nixosConfigurations = {
-        razer-blade = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/razer-blade/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.users.th3g3ntl3man = ./modules/home/home.nix;
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.backupFileExtension = "backup";
-              home-manager.extraSpecialArgs = { inherit inputs; };
-
-            }
-          ];
-        };
-
-        minis-z83 = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = { inherit inputs; };
-          modules = [
-            ./hosts/minis-z83/configuration.nix
-            ./nixos/modules/server.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./modules/home/minimal.nix;
-              home-manager.backupFileExtension = "backup";
-
-            }
-          ];
-        };
-
-        surface-pro = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          specialArgs = {
-            inherit inputs;
-            host = "surface-pro";
-          };
-          modules = [
-            ./hosts/surface-pro/configuration.nix
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.extraSpecialArgs = { inherit inputs; };
-              home-manager.useUserPackages = true;
-              home-manager.overwriteBackup = true;
-              home-manager.users.th3g3ntl3man = ./modules/home/home.nix;
-              home-manager.backupFileExtension = "backup";
-
-            }
-          ];
-        };
+      # Configuración de herramientas por arquitectura (devShells, treefmt, etc.)
+      perSystem = { pkgs, ... }: {
+        devShells.default = pkgs.mkShell { };
       };
+
+      # Salidas globales del Flake
+      flake =
+        let
+          mkHost =
+            {
+              hostName,
+              extraModules ? [ ],
+              userModule ? ./modules/home/home.nix,
+              extraSpecialArgs ? { },
+            }:
+            inputs.nixpkgs.lib.nixosSystem {
+              system = "x86_64-linux";
+              specialArgs = {
+                inherit inputs;
+              }
+              // extraSpecialArgs;
+              modules = [
+                ./hosts/${hostName}/configuration.nix
+                inputs.home-manager.nixosModules.home-manager
+                {
+                  home-manager.useUserPackages = true;
+                  home-manager.overwriteBackup = true;
+                  home-manager.backupFileExtension = "backup";
+                  home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.users.th3g3ntl3man = userModule;
+                }
+              ]
+              ++ extraModules;
+            };
+        in
+        {
+          nixosConfigurations = {
+            razer-blade = mkHost {
+              hostName = "razer-blade";
+            };
+
+            minis-z83 = mkHost {
+              hostName = "minis-z83";
+              userModule = ./modules/home/minimal.nix;
+              extraModules = [ ./nixos/modules/server.nix ];
+            };
+
+            surface-pro = mkHost {
+              hostName = "surface-pro";
+              extraSpecialArgs = {
+                host = "surface-pro";
+              };
+            };
+          };
+        };
     };
 }

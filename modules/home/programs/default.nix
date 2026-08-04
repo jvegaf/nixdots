@@ -2,5 +2,6 @@
   imports = [
     ./orcaslicer
     ./telegram
+    ./freecad
   ];
 }
