@@ -26,7 +26,8 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
-      ./nvim-tree.nix
+      # ./nvim-tree.nix
+      ./neo-tree.nix
       ./sidekick.nix
       ./snacks.nix
       ./treesitter.nix
@@ -44,11 +45,12 @@
 
     withRuby = false;
 
-    colorscheme = "base16-ayu-dark";
+    # colorscheme = "ayu-dark";
     colorschemes = {
-      base16 = {
+      catppuccin = {
         enable = true;
-        colorscheme = "ayu-dark";
+        settings.flavour = "frappe";
+        settings.default_integrations = true;
       };
     };
 
@@ -112,7 +114,7 @@
         enable = true;
         settings = {
           globalstatus = true;
-          theme = "base16-ayu-dark";
+          theme = "ayu-dark";
         };
       };
       luasnip.enable = true;

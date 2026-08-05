@@ -5,7 +5,7 @@
     installBatSyntax = true;
     installVimSyntax = true;
     settings = {
-      theme = "dark:Ayu , light:Farmhouse Light";
+      theme = "dark:Catppuccin Frappe , light:Farmhouse Light";
       font-family = "JetBrainsMono NF";
       font-size = 12;
       gtk-titlebar = false;

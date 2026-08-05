@@ -5,11 +5,6 @@
 
   keymaps = [
     {
-      key = "<leader>e";
-      action = "<cmd>NvimTreeFocus<cr>";
-      options.desc = "File Explorer";
-    }
-    {
       mode = [
         "n"
         "x"

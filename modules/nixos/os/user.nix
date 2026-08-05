@@ -8,8 +8,8 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      # "input"
-      #  "uucp"
+      "input"
+      "uucp"
       #  "kvm"
       #  "libvirtd"
     ];
