@@ -1,8 +1,8 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }: # <-- Añadir inputs aquí
 
 let
-  # Importar el conjunto de extensiones del repositorio de rycee en NUR
-  firefox-addons = pkgs.nur.repos.rycee.firefox-addons;
+  # Obtener rycee directamente desde el input de NUR
+  firefox-addons = inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons;
 in
 {
   programs.firefox = {
@@ -227,10 +227,10 @@ in
       };
 
       # Motores de búsqueda personalizados
-      search = {
-        force = true;
-        default = "DuckDuckGo";
-      };
+      # search = {
+      #   force = true;
+      #   default = "DuckDuckGo";
+      # };
     };
   };
 }

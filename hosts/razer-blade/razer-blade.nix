@@ -40,7 +40,10 @@
   # AIDEV-NOTE: Los Bus IDs pueden variar, verificar con: lspci | grep -E "VGA|3D"
   ##############################
   services.xserver.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
 
   hardware.graphics = {
     enable = true;
@@ -54,16 +57,12 @@
   hardware.nvidia = {
     # Drivers estables
     package = config.boot.kernelPackages.nvidiaPackages.stable;
-
     # Use open-source kernel module
     open = true;
-
     # Modesetting del kernel para mejor rendimiento
     modesetting.enable = true;
-
     # Power management (freq scaling)
     powerManagement.enable = true;
-
     # AIDEV-NOTE: Verificar estos Bus IDs en el equipo específico
     # Ejecutar: lspci | grep -E "VGA|3D"
     # Ejemplo típico para Razer Blade 15 2021:
@@ -71,8 +70,8 @@
     #   01:00.0 VGA compatible controller: NVIDIA Corporation RTX 3070
     prime = {
       # Sincronización de frames para evitar tearing en modo híbrido
-      sync.enable = true;
-
+      # sync.enable = true;
+      offload.enable = true;
       # Bus IDs verificados en este hardware (lspci | grep -E "VGA|3D")
       #   00:02.0 Intel UHD Graphics (CometLake-H GT2)
       #   01:00.0 NVIDIA RTX 3070 Mobile
@@ -160,7 +159,7 @@
   ##############################
   # 🔥 FIREWALL
   ##############################
-  # networking.firewall.enable = true;
+  networking.firewall.enable = true;
 
   ##############################
   # 📦 PAQUETES ADICIONALES
