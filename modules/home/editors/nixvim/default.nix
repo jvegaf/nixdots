@@ -35,6 +35,7 @@
       ./trouble.nix
       ./whichkey.nix
       ./yanky.nix
+      ./extra_plugins.nix
     ];
 
     enable = true;

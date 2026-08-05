@@ -10,8 +10,9 @@
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
+    ../../modules/nixos/programs/thunar.nix
     ../../modules/nixos/desktop/gnome
-    # ../../modules/nixos/desktop/niri
+    ../../modules/nixos/desktop/hyprland
   ];
 
   nixpkgs.config.allowUnfree = true;

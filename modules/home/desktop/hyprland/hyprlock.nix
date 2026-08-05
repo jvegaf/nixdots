@@ -3,22 +3,20 @@
     enable = true;
     settings = {
       general = {
-        disable_loading_bar = true;
-        grace = 10;
         hide_cursor = true;
-        no_fade_in = false;
+        ignore_empty_input = true;
       };
 
-      label = {
-        text = "$TIME";
-        font_size = 96;
-        font_family = "JetBrains Mono";
-        color = "rgba(235, 219, 178, 1.0)";
-        position = "0, 600";
-        halign = "center";
-        walign = "center";
-
-        shadow_passes = 1;
+      animations = {
+        enabled = true;
+        fade_in = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
+        fade_out = {
+          duration = 300;
+          bezier = "easeOutQuint";
+        };
       };
 
       background = [
@@ -35,12 +33,13 @@
           position = "0, -80";
           monitor = "";
           dots_center = true;
-          font_color = "rgb(235, 219, 178)";
-          inner_color = "rgb(40, 40, 40)";
-          outer_color = "rgb(60, 56, 54)";
+          fade_on_empty = false;
+          font_color = "rgb(202, 211, 245)";
+          inner_color = "rgb(91, 96, 120)";
+          outer_color = "rgb(24, 25, 38)";
           outline_thickness = 5;
-          placeholder_text = "sussy baka";
-          shadow_passes = 1;
+          placeholder_text = "Password";
+          shadow_passes = 2;
         }
       ];
     };
