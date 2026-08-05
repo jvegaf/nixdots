@@ -11,7 +11,7 @@
     ../../modules/nixos/os
     ../../modules/nixos/programs
     ../../modules/nixos/desktop/gnome
-    ../../modules/nixos/desktop/niri
+    # ../../modules/nixos/desktop/niri
   ];
 
   nixpkgs.config.allowUnfree = true;

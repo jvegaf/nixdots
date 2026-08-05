@@ -67,6 +67,7 @@
               }
               // extraSpecialArgs;
               modules = [
+                { nixpkgs.overlays = [ inputs.nur.overlays.default ]; }
                 ./hosts/${hostName}/configuration.nix
                 inputs.home-manager.nixosModules.home-manager
                 {

@@ -2,7 +2,7 @@
   imports = [
     ./common
     ./gnome
-    ./niri
-    ./noctalia
+    # ./niri
+    # ./noctalia
   ];
 }
