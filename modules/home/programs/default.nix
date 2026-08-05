@@ -3,6 +3,6 @@
     ./orcaslicer
     ./telegram
     ./freecad
-    ./vial
+    # ./vial
   ];
 }

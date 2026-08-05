@@ -1,5 +1,5 @@
 # GNOME desktop configuration (extensions, dconf, GTK theme)
-{ lib, pkgs, ... }:
+{ pkgs, ... }:
 {
   imports = [
     ./dconf.nix
@@ -10,7 +10,8 @@
     parole
     gnome-tweaks
     gnomeExtensions.appindicator
-    gnomeExtensions.dash-to-dock
+    gnomeExtensions.cpu-temp-hwmon
+    # gnomeExtensions.dash-to-dock
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnomeExtensions.gsconnect

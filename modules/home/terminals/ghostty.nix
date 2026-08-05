@@ -12,6 +12,7 @@
       background-opacity = 0.8;
       shell-integration = "detect";
       unfocused-split-opacity = 0.4;
+      maximize = true;
     };
   };
 }
