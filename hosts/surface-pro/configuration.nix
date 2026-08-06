@@ -7,7 +7,7 @@
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/desktop/xfce
+    ../../modules/nixos/desktop/budgie
   ];
 
   # Use patched kernel 6.15 for better webcam support (hopefully)
