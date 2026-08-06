@@ -1,5 +1,8 @@
 { ... }:
 {
+  imports = [
+    ../../programs/thunar.nix
+  ];
   # services.xserver.libinput.enable = true;
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
@@ -18,5 +21,4 @@
     variant = "";
   };
 
-  programs.thunar.enable = true;
 }

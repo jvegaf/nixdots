@@ -1,8 +1,8 @@
 {
   imports = [
     ./common
-    ./gnome
-    ./hyprland
+    # ./gnome
+    # ./hyprland
     # ./niri
     # ./noctalia
   ];

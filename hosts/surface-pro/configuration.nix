@@ -5,9 +5,9 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ../../modules/nixos/hardware
-    ../../modules/nixos/os/
+    ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/desktop/gnome
+    ../../modules/nixos/desktop/xfce
   ];
 
   # Use patched kernel 6.15 for better webcam support (hopefully)
