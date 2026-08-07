@@ -4,5 +4,6 @@
     ./telegram
     ./freecad
     # ./vial
+    ./testdisk
   ];
 }
