@@ -3,7 +3,7 @@
     ./orcaslicer
     ./telegram
     ./freecad
-    # ./vial
-    ./testdisk
+    ./common
+    # ./testdisk
   ];
 }
