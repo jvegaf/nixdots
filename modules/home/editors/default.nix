@@ -3,6 +3,5 @@
     ./zed
     ./nixvim
     ./evil-helix.nix
-    ./emacs
   ];
 }
