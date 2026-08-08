@@ -1,4 +1,4 @@
-{inputs, ...}: {
+{ inputs, ... }: {
   imports = [
     inputs.mango.hmModules.mango
   ];
@@ -8,8 +8,8 @@
     settings = {
       # Monitors
       monitorrule = [
-        "name:eDP-1, width:2560, height:1440, refresh:165, x:0, y:10, vrr:1"
-        "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
+        "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1"
+        # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
       ];
 
       # Keyboard

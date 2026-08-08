@@ -32,6 +32,8 @@
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
+    mangowm.url = "github:mangowm/mango";
+    mangowm.inputs.nixpkgs.follows = "nixpkgs";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
