@@ -12,7 +12,7 @@ in
     ./hardware-configuration.nix
     inputs.disko.nixosModules.disko
     inputs.razerdaemon.nixosModules.default
-    (import ../disks/lvm-btrfs.nix { disks = [ "/dev/nvme1n1" ]; })
+    (import ../disks/lvm-btrfs.nix { disks = [ "/dev/nvme0n1" ]; })
   ];
 
   boot = {
@@ -144,7 +144,7 @@ in
           resolution = "2580x1440";
           position = "auto";
           refreshRate = 60;
-          scale = "1.33";
+          scale = "1.50";
           primary = true;
           workspaces = [
             1
