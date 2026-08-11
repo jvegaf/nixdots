@@ -19,8 +19,13 @@
     networkmanagerapplet
     wmenu
     fuzzel
-
+    thunar
+    thunar-archive-plugin
+    thunar-volman
+    thunar-media-tags-plugin
   ];
+
+  programs.i3status-rust.enable = true;
 
   services.gnome-keyring.enable = true;
 
@@ -48,10 +53,11 @@
         in
         lib.mkOptionDefault {
           "${mod}+Shift+e" = "exit";
-          "${mod}+Shift+f" = "exec firefox";
+          "${mod}+b" = "exec firefox";
+          "${mod}+e" = "exec thunar";
           "${mod}+Shift+s" = "exec slack --logLevel=error";
           "${mod}+m" = "output eDP-1 enable";
-          "${mod}+Shift+m" = "output eDP-1 disable";
+          # "${mod}+Shift+m" = "output eDP-1 disable";
           "XF86AudioPlay" = "exec playerctl play-pause";
           "XF86AudioNext" = "exec playerctl next";
           "XF86AudioPrev" = "exec playerctl previous";
@@ -102,7 +108,7 @@
       };
       bars = [
         {
-          statusCommand = "i3status-rs ~/.config/i3status-rust/config-bottom.toml";
+          statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
           fonts = {
             names = [
               "Iosevka"
@@ -111,7 +117,7 @@
             ];
             size = 10.0;
           };
-          position = "bottom";
+          position = "top";
           colors = {
             background = "#3c3836";
             separator = "#666666";
