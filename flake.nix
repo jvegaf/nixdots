@@ -105,6 +105,7 @@
 
             surface-pro = mkHost {
               hostName = "surface-pro";
+              userModule = ./modules/home/sway.nix;
               extraSpecialArgs = {
                 host = "surface-pro";
               };

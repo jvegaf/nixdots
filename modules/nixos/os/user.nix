@@ -10,6 +10,7 @@
       "wheel"
       "input"
       "uucp"
+      "video"
       #  "kvm"
       #  "libvirtd"
     ];
