@@ -46,7 +46,7 @@ in
         stylix.enable = false;
       };
 
-      services.nextcloud-client.enable = false;
+      # services.nextcloud-client.enable = false;
 
       programs = {
         zathura.enable = true;
@@ -56,9 +56,9 @@ in
   };
 
   services = {
-    fprintd = {
-      enable = true; # run sudo fprintd-enroll
-    };
+    # fprintd = {
+    #   enable = true; # run sudo fprintd-enroll
+    # };
 
     power-profiles-daemon.enable = false;
     thermald.enable = true;
@@ -120,10 +120,10 @@ in
       laptop.enable = true;
     };
 
-    networking = {
-      tailscale.enable = false;
-      optomizeTcp = false;
-    };
+    # networking = {
+    #   tailscale.enable = false;
+    #   optomizeTcp = false;
+    # };
 
     hardware = {
       cpu.type = "intel";
@@ -131,7 +131,7 @@ in
       sound.enable = true;
 
       bluetooth.enable = true;
-      printing.enable = true;
+      printing.enable = false;
     };
 
     display = {
@@ -171,7 +171,7 @@ in
     };
 
     boot = {
-      enableKernelTweaks = false;
+      enableKernelTweaks = true;
       impermanence.enable = true;
     };
   };
