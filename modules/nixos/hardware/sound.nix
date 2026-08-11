@@ -24,7 +24,7 @@ in
     # able to change scheduling policies, e.g. to SCHED_RR
     # sounds server use RealtimeKit (rtkti) to acquire
     # realtime priority
-    security.rtkit.enable = true;
+    # security.rtkit.enable = true;
 
     services = {
       pulseaudio.enable = mkForce false; # disable pulseAudio

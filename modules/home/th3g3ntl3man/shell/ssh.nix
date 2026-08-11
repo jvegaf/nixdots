@@ -30,7 +30,7 @@ in
 
       "github.com" = {
         hostname = "github.com";
-        identityFile = "${homeDirectory}/.ssh/gitkey";
+        identityFile = "${homeDirectory}/.ssh/jvegaf_ed25519";
       };
 
       "minis-z83" = {
