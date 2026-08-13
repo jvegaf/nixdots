@@ -32,8 +32,8 @@ in
     };
 
     programs.niri = {
-      enable = true;
-      package = pkgs.niri-unstable;
+      enable = false;
+      package = pkgs.niri-stable;
     };
 
     environment.variables = {

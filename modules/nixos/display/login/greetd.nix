@@ -55,7 +55,7 @@ in
     security.pam.services =
       let
         gnupg = {
-          enable = true;
+          enable = false;
           noAutostart = true;
           storeOnly = true;
         };

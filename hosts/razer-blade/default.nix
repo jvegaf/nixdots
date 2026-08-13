@@ -31,14 +31,15 @@ in
   home-manager.users.${user}.config = {
 
     home.packages = with pkgs; [
-      moonlight-qt
+      # moonlight-qt
       parsec-bin
     ];
 
     ## HOME MANAGER
     modules = {
       desktop = {
-        bar = "dankMaterialShell";
+        # bar = "dankMaterialShell";
+        bar = "waybar";
       };
 
       theme = {
@@ -137,6 +138,7 @@ in
     display = {
       gpuAcceleration.enable = true;
       desktop.sway.enable = true;
+      desktop.niri.enable = false;
 
       monitors = [
         {

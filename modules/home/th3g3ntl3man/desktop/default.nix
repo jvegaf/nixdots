@@ -13,6 +13,7 @@ in
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix
+    ./sway.nix
   ];
 
   options.modules.desktop = {
