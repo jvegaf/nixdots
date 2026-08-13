@@ -353,14 +353,14 @@ in
             # }
           ];
 
-          layer-rules = [
-            {
-              matches = [
-                { namespace = "^noctalia-wallpaper*"; }
-              ];
-              place-within-backdrop = true;
-            }
-          ];
+          # layer-rules = [
+          #   {
+          #     matches = [
+          #       { namespace = "^noctalia-wallpaper*"; }
+          #     ];
+          #     place-within-backdrop = true;
+          #   }
+          # ];
 
           # spawn-at-startup =
           # optionals config.programs.nixcord.vesktop.enable [

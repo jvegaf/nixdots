@@ -36,7 +36,7 @@ in
 
     programs.niri = {
       enable = true;
-      package = pkgs.niri-stable;
+      package = pkgs.niri-unstable;
 
       settings =
         let
@@ -365,16 +365,16 @@ in
             }
           ];
 
-          layer-rules = [
-            {
-              matches = [
-                {
-                  namespace = "^noctalia-wallpaper*";
-                }
-              ];
-              place-within-backdrop = true;
-            }
-          ];
+          # layer-rules = [
+          #   {
+          #     matches = [
+          #       {
+          #         namespace = "^noctalia-wallpaper*";
+          #       }
+          #     ];
+          #     place-within-backdrop = true;
+          #   }
+          # ];
 
           spawn-at-startup = [
             # { command = [ noctaliaExe ]; }

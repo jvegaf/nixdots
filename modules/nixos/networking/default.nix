@@ -6,7 +6,7 @@ in
   imports = [
     ./avahi.nix
     # ./optomize.nix
-    ./ssh.nix
+    # ./ssh.nix
     # ./tailscale.nix
   ];
 

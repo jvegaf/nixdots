@@ -15,29 +15,12 @@ in
     enableDefaultConfig = false;
 
     settings = {
-      "*" = {
-        host = builtins.concatStringsSep " " hostnames;
-        forwardAgent = true;
-        compression = true;
-        serverAliveInterval = 0;
-        serverAliveCountMax = 3;
-        hashKnownHosts = true;
-        userKnownHostsFile = "~/.ssh/known_hosts";
-        controlMaster = "no";
-        controlPath = "~/.ssh/master-%r@%n:%p";
-        controlPersist = "no";
-      };
 
       "github.com" = {
         hostname = "github.com";
         identityFile = "${homeDirectory}/.ssh/jvegaf_ed25519";
       };
 
-      "minis-z83" = {
-        hostname = "2a01:4f9:c010:eb77::1";
-        inherit user;
-        identityFile = "${homeDirectory}/.ssh/id_th3g3ntl3man";
-      };
     };
   };
 }

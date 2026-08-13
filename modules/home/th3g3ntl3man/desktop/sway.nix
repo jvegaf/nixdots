@@ -14,10 +14,6 @@ in
 
   config = mkIf cfg.sway.enable {
 
-    # programs.noctalia-shell = {
-    #   enable = true;
-    #   package = inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default;
-    # };
 
       home.packages = with pkgs; [
     grim # screenshot functionality

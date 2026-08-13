@@ -2,7 +2,7 @@
   imports = [
     ./fs.nix
     ./logrotate.nix
-    ./sunshine.nix
+    # ./sunshine.nix
     # ./syncthing.nix
     ./systemd.nix
   ];

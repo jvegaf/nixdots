@@ -27,7 +27,7 @@ in
       if [ -e "$TARGET" ] && [ ! -L "$TARGET" ]; then
         rm -rf "$TARGET"
       fi
-      ln -sfn "$HOME/nixos-config/modules/home/spector/desktop/bar/dankMaterialShell/config" "$TARGET"
+      ln -sfn "$HOME/nixdots/modules/home/th3g3ntl3man/desktop/bar/dankMaterialShell/config" "$TARGET"
     '';
 
     programs.dank-material-shell = {

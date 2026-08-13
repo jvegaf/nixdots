@@ -27,7 +27,7 @@
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
 
-    niri-flake.url = "github:sodiboo/niri-flake";
+    niri-flake.url = "github:epireyn/niri-flake";
     niri-flake.inputs.nixpkgs.follows = "nixpkgs";
 
     dankMaterialShell.url = "github:AvengeMedia/DankMaterialShell";
