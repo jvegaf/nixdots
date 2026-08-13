@@ -37,11 +37,6 @@
       action.__raw = "function() Snacks.picker.notifications() end";
       options.desc = "Notification History";
     }
-    {
-      key = "<leader>e";
-      action.__raw = "function() Snacks.explorer() end";
-      options.desc = "File Explorer";
-    }
     # find
     {
       key = "<leader>fb";

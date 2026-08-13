@@ -114,7 +114,7 @@ in
               };
               repeat-rate = 40;
               repeat-delay = 250;
-              numlock = true;
+              numlock = false;
             };
 
             touchpad = {

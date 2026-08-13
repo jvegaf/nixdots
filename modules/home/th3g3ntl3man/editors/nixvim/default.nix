@@ -1,4 +1,4 @@
-{ inputs, ... }:
+{ pkgs, inputs, ... }:
 {
 
   imports = [
@@ -26,12 +26,16 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
-      # ./numb.nix
+      # ./nvim-tree.nix
+      ./neo-tree.nix
+      ./sidekick.nix
       ./snacks.nix
       ./treesitter.nix
       ./treesj.nix
       ./trouble.nix
+      ./whichkey.nix
       ./yanky.nix
+      ./extra_plugins.nix
     ];
 
     enable = true;
@@ -41,6 +45,15 @@
     enableMan = false;
 
     withRuby = false;
+
+    # colorscheme = "ayu-dark";
+    colorschemes = {
+      catppuccin = {
+        enable = true;
+        settings.flavour = "frappe";
+        settings.default_integrations = true;
+      };
+    };
 
     performance = {
       byteCompileLua = {
@@ -70,9 +83,9 @@
       hlsearch = true;
       undofile = true;
       spell = false;
-      list = true;
       foldlevel = 99;
-      foldlevelstarr = 99;
+      foldlevelstart = 99;
+      list = true;
       updatetime = 2000;
       termguicolors = true;
     };
@@ -83,14 +96,6 @@
         wl-copy.enable = true;
         xsel.enable = true;
         xclip.enable = true;
-      };
-    };
-
-    colorscheme = "base16-ayu-light";
-    colorschemes = {
-      base16 = {
-        enable = true;
-        colorscheme = "ayu-light";
       };
     };
 
@@ -110,7 +115,7 @@
         enable = true;
         settings = {
           globalstatus = true;
-          theme = "base16-ayu-light";
+          theme = "ayu-dark";
         };
       };
       luasnip.enable = true;
@@ -127,11 +132,9 @@
         enable = true;
       };
       tmux-navigator.enable = true;
+      lazygit.enable = true;
       nvim-ufo.enable = true;
       web-devicons.enable = true;
-      which-key = {
-        enable = true;
-      };
     };
   };
 }

@@ -22,7 +22,7 @@
           core.askPass = "";
 
           diff.colorMoved = "default";
-          commit.gpgSign = true;
+          commit.gpgSign = false;
           gpg.format = "ssh";
           user.signingkey = "${config.home.homeDirectory}/.ssh/gitkey";
 
@@ -32,7 +32,7 @@
             autoSetupRemote = true;
           };
           signing = {
-            signByDefault = true;
+            signByDefault = false;
             key = "${config.home.homeDirectory}/.ssh/gitkey";
           };
         };

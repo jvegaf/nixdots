@@ -21,10 +21,11 @@ in
   options.modules.display.desktop = {
     hyprland.enable = mkEnableOption "Enable the hyprland desktop";
     niri.enable = mkEnableOption "Enable the Niri desktop";
+    sway.enable = mkEnableOption "Enable the Sway desktop";
 
     isWayland = mkOption {
       type = types.bool;
-      default = cfg.hyprland.enable || cfg.niri.enable;
+      default = cfg.hyprland.enable || cfg.niri.enable || cfg.sway.enable;
       description = ''
         Whether to enable Wayland exclusive modules, this contains a wariety
         of packages, modules, overlays, XDG portals and so on.
@@ -42,7 +43,9 @@ in
     modules.display.desktop.command =
       if cfg.hyprland.enable then
         "uwsm start hyprland-uwsm.desktop"
+      else if cfg.niri.enable then
+        "${config.programs.niri.package}/bin/niri-session"
       else
-        "${config.programs.niri.package}/bin/niri-session";
+        "${config.programs.sway.package}/bin/sway-session";
   };
 }

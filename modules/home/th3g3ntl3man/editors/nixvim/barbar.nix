@@ -26,7 +26,7 @@
     }
     {
       mode = "n";
-      key = "<A-c>";
+      key = "<A-q>";
       action = "<Cmd>BufferClose<CR>";
       options.silent = true;
     }

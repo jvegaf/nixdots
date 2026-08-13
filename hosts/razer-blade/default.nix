@@ -136,7 +136,7 @@ in
 
     display = {
       gpuAcceleration.enable = true;
-      desktop.niri.enable = true;
+      desktop.sway.enable = true;
 
       monitors = [
         {
