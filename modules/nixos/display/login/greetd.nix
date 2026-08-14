@@ -26,10 +26,8 @@ let
     command = concatStringsSep " " [
       (getExe pkgs.tuigreet)
       "--time"
-      "--remember"
-      "--remember-user-session"
-      "--asterisks"
-      "--sessions ${sessionPath}"
+      "--cmd"
+      "sway"
     ];
   };
 
@@ -47,7 +45,8 @@ in
         # in this case it'll be a TUI greeter
         default_session = defaultSession;
 
-        initial_session = mkIf os.autoLogin initialSession;
+        initial_session = mkIf os.autoLogin defaultSession;
+        # initial_session = mkIf os.autoLogin initialSession;
       };
     };
 
@@ -55,7 +54,7 @@ in
     security.pam.services =
       let
         gnupg = {
-          enable = false;
+          enable = true;
           noAutostart = true;
           storeOnly = true;
         };

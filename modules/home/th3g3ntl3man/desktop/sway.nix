@@ -7,6 +7,7 @@
   ...
 }:
 let
+  inherit (lib) mkIf;
   cfg = osConfig.modules.display.desktop;
 
 in
@@ -14,225 +15,236 @@ in
 
   config = mkIf cfg.sway.enable {
 
+    home.packages = with pkgs; [
+      grim # screenshot functionality
+      slurp # screenshot functionality
+      wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
+      mako # notification system developed by swaywm maintainer
+      libappindicator-gtk3
+      networkmanagerapplet
+      wmenu
+      fuzzel
+      thunar
+      thunar-archive-plugin
+      thunar-volman
+      thunar-media-tags-plugin
+    ];
 
-      home.packages = with pkgs; [
-    grim # screenshot functionality
-    slurp # screenshot functionality
-    wl-clipboard # wl-copy and wl-paste for copy/paste from stdin / stdout
-    mako # notification system developed by swaywm maintainer
-    libappindicator-gtk3
-    networkmanagerapplet
-    wmenu
-    fuzzel
-    thunar
-    thunar-archive-plugin
-    thunar-volman
-    thunar-media-tags-plugin
-  ];
+    # programs.i3status-rust.enable = true;
 
-  programs.i3status-rust.enable = true;
+    services.gnome-keyring.enable = true;
 
-  services.gnome-keyring.enable = true;
-
-  wayland.windowManager.sway = {
-    enable = true;
-    wrapperFeatures.gtk = true;
-    systemd.enable = true;
-    config = {
-      gaps = {
-        smartBorders = "on";
-      };
-      fonts = {
-        names = [
-          "Iosevka"
-          "Font Awesome 6 Free"
-          "Font Awesome 6 Brands"
-        ];
-      };
-      modifier = "Mod4";
-      menu = "fuzzel";
-      terminal = "ghostty";
-      keybindings =
-        let
-          mod = config.wayland.windowManager.sway.config.modifier;
-        in
-        lib.mkOptionDefault {
-          "${mod}+Shift+e" = "exit";
-          "${mod}+b" = "exec firefox";
-          "${mod}+e" = "exec thunar";
-          "${mod}+Shift+s" = "exec slack --logLevel=error";
-          "${mod}+m" = "output eDP-1 enable";
-          # "${mod}+Shift+m" = "output eDP-1 disable";
-          "XF86AudioPlay" = "exec playerctl play-pause";
-          "XF86AudioNext" = "exec playerctl next";
-          "XF86AudioPrev" = "exec playerctl previous";
-          "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
-          "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
-          "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
-          "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
-          "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
-          "--release Print" = "exec GRIM_DEFAULT_DIR=~/scr grim -g \"$(slurp)\"";
-          "--release ${mod}+Print" = "exec GRIM_DEFAULT_DIR=~/scr grim";
+    wayland.windowManager.sway = {
+      enable = true;
+      wrapperFeatures.gtk = true;
+      systemd.enable = true;
+      config = {
+        gaps = {
+          smartBorders = "on";
+          smartGaps = "on";
+          inner = 10;
+          outer = 10;
         };
-      colors = {
-        focused = {
-          background = "#b16286";
-          border = "#b16286";
-          childBorder = "#b16286";
-          indicator = "#b16286";
-          text = "#ebdbb2";
+        fonts = {
+          names = [
+            "Iosevka"
+            "Font Awesome 6 Free"
+            "Font Awesome 6 Brands"
+          ];
         };
-        focusedInactive = {
-          background = "#689d6a";
-          border = "#689d6a";
-          childBorder = "#689d6a";
-          indicator = "#689d6a";
-          text = "#ebdbb2";
-        };
-        unfocused = {
-          background = "#3c3836";
-          border = "#3c3836";
-          childBorder = "#3c3836";
-          indicator = "#3c3836";
-          text = "#ebdbb2";
-        };
-        urgent = {
-          background = "#cc241d";
-          border = "#cc241d";
-          childBorder = "#cc241d";
-          indicator = "#cc241d";
-          text = "#ebdbb2";
-        };
-        placeholder = {
-          background = "#000000";
-          border = "#000000";
-          childBorder = "#000000";
-          indicator = "#000000";
-          text = "#ebdbb2 ";
-        };
-      };
-      bars = [
-        {
-          statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
-          fonts = {
-            names = [
-              "Iosevka"
-              "Font Awesome 6 Free"
-              "Font Awesome 6 Brands"
-            ];
-            size = 10.0;
+        modifier = "Mod4";
+        menu = "fuzzel";
+        terminal = "ghostty";
+        keybindings =
+          let
+            mod = config.wayland.windowManager.sway.config.modifier;
+          in
+          lib.mkOptionDefault {
+            "${mod}+q" = "kill";
+            "${mod}+Shift+e" = "exit";
+            "${mod}+b" = "exec firefox";
+            "${mod}+e" = "exec thunar";
+            "${mod}+Shift+s" = "exec slack --logLevel=error";
+            "${mod}+m" = "output eDP-1 enable";
+            # "${mod}+Shift+m" = "output eDP-1 disable";
+            "XF86AudioPlay" = "exec playerctl play-pause";
+            "XF86AudioNext" = "exec playerctl next";
+            "XF86AudioPrev" = "exec playerctl previous";
+            "XF86AudioRaiseVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ +5%";
+            "XF86AudioLowerVolume" = "exec pactl set-sink-volume @DEFAULT_SINK@ -5%";
+            "XF86AudioMute" = "exec pactl set-sink-mute @DEFAULT_SINK@ toggle";
+            "XF86MonBrightnessDown" = "exec brightnessctl set 5%-";
+            "XF86MonBrightnessUp" = "exec brightnessctl set 5%+";
+            "--release Print" = "exec GRIM_DEFAULT_DIR=~/scr grim -g \"$(slurp)\"";
+            "--release ${mod}+Print" = "exec GRIM_DEFAULT_DIR=~/scr grim";
           };
-          position = "top";
-          colors = {
+        colors = {
+          focused = {
+            background = "#b16286";
+            border = "#b16286";
+            childBorder = "#b16286";
+            indicator = "#b16286";
+            text = "#ebdbb2";
+          };
+          focusedInactive = {
+            background = "#689d6a";
+            border = "#689d6a";
+            childBorder = "#689d6a";
+            indicator = "#689d6a";
+            text = "#ebdbb2";
+          };
+          unfocused = {
             background = "#3c3836";
-            separator = "#666666";
-            statusline = "#ebdbb2";
-            activeWorkspace = {
-              border = "#689d6a";
-              background = "#689d6a";
-              text = "#ebdbb2";
-            };
-            focusedWorkspace = {
-              border = "#b16286";
-              background = "#b16286";
-              text = "#ebdbb2";
-            };
-            inactiveWorkspace = {
-              border = "#3c3836";
-              background = "#3c3836";
-              text = "#ebdbb2";
-            };
-            urgentWorkspace = {
-              border = "#cc241d";
-              background = "#cc241d";
-              text = "#ebdbb2";
-            };
+            border = "#3c3836";
+            childBorder = "#3c3836";
+            indicator = "#3c3836";
+            text = "#ebdbb2";
           };
-        }
-      ];
-      input = {
-        "type:keyboard" = {
-          repeat_delay = "300";
-          repeat_rate = "20";
+          urgent = {
+            background = "#cc241d";
+            border = "#cc241d";
+            childBorder = "#cc241d";
+            indicator = "#cc241d";
+            text = "#ebdbb2";
+          };
+          placeholder = {
+            background = "#000000";
+            border = "#000000";
+            childBorder = "#000000";
+            indicator = "#000000";
+            text = "#ebdbb2 ";
+          };
         };
-        "type:touchpad" = {
-          dwt = "enabled";
-          middle_emulation = "enabled";
-          natural_scroll = "enabled";
-          tap = "enabled";
+        bars = [
+          # {
+          #   statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";
+          #   fonts = {
+          #     names = [
+          #       "Iosevka"
+          #       "Font Awesome 6 Free"
+          #       "Font Awesome 6 Brands"
+          #     ];
+          #     size = 10.0;
+          #   };
+          #   position = "top";
+          #   colors = {
+          #     background = "#3c3836";
+          #     separator = "#666666";
+          #     statusline = "#ebdbb2";
+          #     activeWorkspace = {
+          #       border = "#689d6a";
+          #       background = "#689d6a";
+          #       text = "#ebdbb2";
+          #     };
+          #     focusedWorkspace = {
+          #       border = "#b16286";
+          #       background = "#b16286";
+          #       text = "#ebdbb2";
+          #     };
+          #     inactiveWorkspace = {
+          #       border = "#3c3836";
+          #       background = "#3c3836";
+          #       text = "#ebdbb2";
+          #     };
+          #     urgentWorkspace = {
+          #       border = "#cc241d";
+          #       background = "#cc241d";
+          #       text = "#ebdbb2";
+          #     };
+          #   };
+          # }
+        ];
+        input = {
+          "type:keyboard" = {
+            repeat_delay = "300";
+            repeat_rate = "20";
+          };
+          "type:touchpad" = {
+            dwt = "enabled";
+            middle_emulation = "enabled";
+            natural_scroll = "enabled";
+            tap = "enabled";
+          };
         };
-      };
-      # output = {
-      #   "LG Electronics LG HDR 4K 0x0001C950" = {
-      #     pos = "0 0";
-      #     scale = "2";
-      #   };
-      #   eDP-1 = {
-      #     pos = "0 1080";
-      #     scale = "2.5";
-      #   };
-      # };
-      window = {
-        titlebar = false;
-        hideEdgeBorders = "smart";
-        commands = [
+        # output = {
+        #   "LG Electronics LG HDR 4K 0x0001C950" = {
+        #     pos = "0 0";
+        #     scale = "2";
+        #   };
+        #   eDP-1 = {
+        #     pos = "0 1080";
+        #     scale = "2.5";
+        #   };
+        # };
+        window = {
+          titlebar = false;
+          hideEdgeBorders = "smart";
+          commands = [
+            {
+              command = "floating enable";
+              criteria = {
+                app_id = "gsimplecal";
+              };
+            }
+            {
+              command = "floating enable";
+              criteria = {
+                app_id = "firefox";
+                title = "About Mozilla Firefox";
+              };
+            }
+            {
+              command = "move container to workspace 2";
+              criteria = {
+                app_id = "^(?i)slack$";
+              };
+            }
+            {
+              command = "move container to workspace 2";
+              criteria = {
+                app_id = "firefox";
+              };
+            }
+            {
+              command = "floating enable";
+              criteria = {
+                title = "Save File";
+              };
+            }
+            # browser zoom|meet|bluejeans
+            {
+              command = "inhibit_idle visible";
+              criteria = {
+                title = "(Blue Jeans)|(Meet)|(Zoom Meeting)";
+              };
+            }
+          ];
+        };
+        startup = [
           {
-            command = "floating enable";
-            criteria = {
-              app_id = "gsimplecal";
-            };
-          }
-          {
-            command = "floating enable";
-            criteria = {
-              app_id = "firefox";
-              title = "About Mozilla Firefox";
-            };
-          }
-          {
-            command = "move container to workspace 2";
-            criteria = {
-              app_id = "^(?i)slack$";
-            };
-          }
-          {
-            command = "move container to workspace 3";
-            criteria = {
-              app_id = "firefox";
-            };
-          }
-          {
-            command = "floating enable";
-            criteria = {
-              title = "Save File";
-            };
-          }
-          # browser zoom|meet|bluejeans
-          {
-            command = "inhibit_idle visible";
-            criteria = {
-              title = "(Blue Jeans)|(Meet)|(Zoom Meeting)";
-            };
+            command = ''
+              swayidle -w \
+                  timeout 300 'swaylock --daemonize --color 3c3836' \
+                  timeout 600 'swaymsg "output * dpms off"' \
+                       resume 'swaymsg "output * dpms on"' \
+                  before-sleep 'swaylock --daemonize --color 3c3836'
+            '';
           }
         ];
       };
-      startup = [
-        {
-          command = ''
-            swayidle -w \
-                timeout 300 'swaylock --daemonize --color 3c3836' \
-                timeout 600 'swaymsg "output * dpms off"' \
-                     resume 'swaymsg "output * dpms on"' \
-                before-sleep 'swaylock --daemonize --color 3c3836'
-          '';
-        }
-      ];
+      extraConfig = ''
+        seat seat0 xcursor_theme "capitaine-cursors"
+        seat seat0 hide_cursor 60000
+      '';
     };
-    extraConfig = ''
-      seat seat0 xcursor_theme "capitaine-cursors"
-      seat seat0 hide_cursor 60000
-    '';
-  };
 
+    home.file.".hm-graphical-session".text = pkgs.lib.concatStringsSep "\n" [
+      "export MOZ_ENABLE_WAYLAND=1"
+      "export NIXOS_OZONE_WL=1" # Electron
+    ];
+    programs.waybar = {
+      enable = true;
+      systemd.enable = true;
+    };
   };
 }

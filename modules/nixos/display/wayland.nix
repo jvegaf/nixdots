@@ -19,6 +19,7 @@ in
         ANKI_WAYLAND = "1";
         QT_WAYLAND_DISABLE_WINDOWDECORATION = "1";
         WLR_DRM_NO_ATOMIC = "1";
+        SWAY_UNSUPPORTED_GPU = "1";
       };
     })
 

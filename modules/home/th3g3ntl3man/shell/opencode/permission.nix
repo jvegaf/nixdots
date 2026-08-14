@@ -89,7 +89,7 @@
 
       # Package management
       "sudo*" = "ask";
-      "nixos-rebuild*" = "ask";
+      "nixos-rebuild*" = "allow";
 
       # Process management
       "kill*" = "ask";

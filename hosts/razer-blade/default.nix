@@ -52,6 +52,8 @@ in
       programs = {
         zathura.enable = true;
         rofi.enable = true;
+        firefox.enable = true;
+        orca-slicer.enable = true;
       };
     };
   };

@@ -41,6 +41,7 @@ in
             (mkIf (desktop.isWayland && (cfg.gpu == "hybrid-nv")) {
               #__NV_PRIME_RENDER_OFFLOAD = "1";
               #WLR_DRM_DEVICES = mkDefault "/dev/dri/card1:/dev/dri/card0";
+              SWAY_UNSUPPORTED_GPU = "1";
             })
 
             (mkIf (desktop.isWayland && (cfg == "vm")) { WLR_RENDERER_ALLOW_SOFTWARE = "1"; })
@@ -88,7 +89,7 @@ in
               finegrained = mkDefault false;
             };
 
-            nvidiaSettings = false;
+            nvidiaSettings = true;
             nvidiaPersistenced = true;
           };
         };
