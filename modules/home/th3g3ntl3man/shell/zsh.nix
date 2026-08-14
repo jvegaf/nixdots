@@ -68,9 +68,9 @@
         zstyle ':completion:*' verbose true
         _comp_options+=(globdots)
 
-        if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
-          tmux attach-session -t default || tmux new-session -s default
-        fi
+        # if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
+        #   tmux attach-session -t default || tmux new-session -s default
+        # fi
       '';
 
       shellAliases = {
@@ -107,8 +107,8 @@
         lzd = "lazydocker";
         # edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
 
-        nxgb = "nix-collect-garbage -d";
-        nxclean = "nh clean all --keep 3";
+        gb = "nix-collect-garbage -d";
+        clean = "nh clean all --keep 3";
 
         jup = "just up";
         jud = "just deploy";

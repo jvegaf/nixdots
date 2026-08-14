@@ -78,43 +78,43 @@ in
             "--release Print" = "exec GRIM_DEFAULT_DIR=~/scr grim -g \"$(slurp)\"";
             "--release ${mod}+Print" = "exec GRIM_DEFAULT_DIR=~/scr grim";
           };
-        colors = {
-          focused = {
-            background = "#b16286";
-            border = "#b16286";
-            childBorder = "#b16286";
-            indicator = "#b16286";
-            text = "#ebdbb2";
-          };
-          focusedInactive = {
-            background = "#689d6a";
-            border = "#689d6a";
-            childBorder = "#689d6a";
-            indicator = "#689d6a";
-            text = "#ebdbb2";
-          };
-          unfocused = {
-            background = "#3c3836";
-            border = "#3c3836";
-            childBorder = "#3c3836";
-            indicator = "#3c3836";
-            text = "#ebdbb2";
-          };
-          urgent = {
-            background = "#cc241d";
-            border = "#cc241d";
-            childBorder = "#cc241d";
-            indicator = "#cc241d";
-            text = "#ebdbb2";
-          };
-          placeholder = {
-            background = "#000000";
-            border = "#000000";
-            childBorder = "#000000";
-            indicator = "#000000";
-            text = "#ebdbb2 ";
-          };
-        };
+        # colors = {
+        #   focused = {
+        #     background = "#b16286";
+        #     border = "#b16286";
+        #     childBorder = "#b16286";
+        #     indicator = "#b16286";
+        #     text = "#ebdbb2";
+        #   };
+        #   focusedInactive = {
+        #     background = "#689d6a";
+        #     border = "#689d6a";
+        #     childBorder = "#689d6a";
+        #     indicator = "#689d6a";
+        #     text = "#ebdbb2";
+        #   };
+        #   unfocused = {
+        #     background = "#3c3836";
+        #     border = "#3c3836";
+        #     childBorder = "#3c3836";
+        #     indicator = "#3c3836";
+        #     text = "#ebdbb2";
+        #   };
+        #   urgent = {
+        #     background = "#cc241d";
+        #     border = "#cc241d";
+        #     childBorder = "#cc241d";
+        #     indicator = "#cc241d";
+        #     text = "#ebdbb2";
+        #   };
+        #   placeholder = {
+        #     background = "#000000";
+        #     border = "#000000";
+        #     childBorder = "#000000";
+        #     indicator = "#000000";
+        #     text = "#ebdbb2 ";
+        #   };
+        # };
         bars = [
           # {
           #   statusCommand = "i3status-rs ~/.config/i3status-rust/config-default.toml";

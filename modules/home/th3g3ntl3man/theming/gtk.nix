@@ -1,7 +1,8 @@
 { pkgs, ... }:
 {
   gtk = {
-    gtk4.theme = null;
+    colorScheme = "dark";
+    gtk3.colorScheme = "dark";
     enable = true;
     iconTheme = {
       name = "Papirus-Dark";

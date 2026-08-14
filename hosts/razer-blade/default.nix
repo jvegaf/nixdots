@@ -44,7 +44,7 @@ in
 
       theme = {
         wallpaper = ../../modules/home/th3g3ntl3man/theming/wallpaper2.png;
-        stylix.enable = false;
+        stylix.enable = true;
       };
 
       # services.nextcloud-client.enable = false;

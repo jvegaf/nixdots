@@ -11,7 +11,7 @@ in
   config = mkIf (cfg == "waybar") {
     programs.waybar = {
       enable = true;
-      style = ./style.css;
+      # style = ./style.css;
       settings = {
         mainBar = {
           layer = "top";

@@ -32,7 +32,7 @@ in
       # base16Scheme = "${pkgs.base16-schemes}/share/themes/tokyodark.yaml";
       polarity = "dark";
 
-      targets.qt.platform = "qtct";
+      targets.qt.platform = "qt5ct";
 
       image = config.modules.theme.wallpaper;
 
