@@ -128,13 +128,22 @@
           check_ts = true;
         };
       };
-      nvim-surround = {
+      mini-surround = {
         enable = true;
+        settings.mappings = {
+          add = "gaa";
+          delete = "gsd";
+          find = "gsf";
+          find_left = "gsF";
+          replate = "gsr";
+          update_n_lines = "gsn";
+        };
       };
       tmux-navigator.enable = true;
       lazygit.enable = true;
       nvim-ufo.enable = true;
       web-devicons.enable = true;
+      smear-cursor.enable = true;
     };
   };
 }

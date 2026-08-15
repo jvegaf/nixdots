@@ -117,7 +117,7 @@
       enabled-extensions = [
         "appindicatorsupport@rgcjonas.gmail.com"
         # "dash-to-dock@micxgx.gmail.com"
-        "cputemp@tdolan21.github.io"
+        "freon@UshakovVasilii_Github.yahoo.com"
         "blur-my-shell@aunetx"
         "caffeine@patapon.info"
         "gsconnect@andyholmes.github.io"

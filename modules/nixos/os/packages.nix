@@ -17,5 +17,6 @@
     xclip
     xsel
     p7zip
+    lm_sensors
   ];
 }

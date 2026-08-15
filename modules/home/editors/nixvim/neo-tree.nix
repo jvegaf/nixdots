@@ -1,7 +1,8 @@
-{ ... }:
+{ lib, ... }:
 {
   plugins.neo-tree = {
     enable = true;
+
     settings = {
       sources = [
         "filesystem"
@@ -11,6 +12,17 @@
       ];
       add_blank_line_at_top = false;
       close_if_last_window = true;
+
+      event_handlers = [
+        {
+          event = "file_opened";
+          handler = lib.nixvim.mkRaw ''
+            function(file_path)
+              require("neo-tree.command").execute({ action = "close" })
+            end
+          '';
+        }
+      ];
 
       filesystem = {
         bind_to_cwd = false;

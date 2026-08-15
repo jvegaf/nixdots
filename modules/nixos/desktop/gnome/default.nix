@@ -24,6 +24,8 @@
     gnome-contacts
     gnome-maps
     gnome-tour
+    gnome-terminal
+    gnome-software
     seahorse
     showtime
     snapshot

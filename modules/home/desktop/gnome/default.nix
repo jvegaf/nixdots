@@ -11,7 +11,7 @@
     gnome-tweaks
     gnomeExtensions.appindicator
     gnomeExtensions.cpu-temp-hwmon
-    # gnomeExtensions.dash-to-dock
+    gnomeExtensions.freon
     gnomeExtensions.blur-my-shell
     gnomeExtensions.caffeine
     gnomeExtensions.gsconnect
