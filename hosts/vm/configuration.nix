@@ -8,6 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
+    ./disko.nix
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/desktop/gnome

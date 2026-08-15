@@ -39,6 +39,8 @@
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     gentle-ai = {
       url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
@@ -119,6 +121,7 @@
 
             vm = mkHost {
               hostName = "vm";
+              extraModules = [ inputs.disko.nixosModules.disko ];
             };
           };
         };
