@@ -7,12 +7,14 @@
       "https://nix-community.cachix.org"
       "https://noctalia.cachix.org"
       "https://hyprland.cachix.org"
+      "https://cache.numtide.com"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
   };
 
@@ -38,16 +40,13 @@
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
 
-    # Skills plugin for opencode
-    superpowers = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
-
     gentle-ai = {
       url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
       flake = false;
     };
+
+    # Daily-built AI coding agents (opencode, claude-code, codex, ...)
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =

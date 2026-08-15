@@ -56,4 +56,4 @@ home-manager/modules/                   # Modularized home-manager components
 
 ## OpenCode
 
-The `opencode/` module configures OpenCode editor tooling (LSP, permissions, oh-my-opencode). `superpowers` flake input (obra/superpowers) contains OpenCode skills used by agents.
+The `opencode/` module configures OpenCode editor tooling (LSP, permissions, oh-my-opencode). The `opencode` binary comes from the `llm-agents` flake input (numtide/llm-agents.nix, daily builds), pinned via `programs.opencode.package`.
