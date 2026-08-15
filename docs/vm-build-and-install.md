@@ -152,7 +152,9 @@ any build.
 Two options:
 
 **With disko** (declarative, one command — the layout lives in
-`hosts/vm/disko.nix`: GPT, ESP 512M vfat at `/boot`, root ext4 at `/`):
+`hosts/disks/gpt-ext4.nix`, parametrized by device; the VM passes
+`device = "/dev/sda"` from `hosts/vm/configuration.nix`. Layout: GPT,
+ESP 512M vfat at `/boot`, root ext4 at `/`):
 
 ```bash
 nix run github:nix-community/disko -- --mode disko --flake github:jvegaf/nixdots#vm

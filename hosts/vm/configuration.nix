@@ -8,7 +8,7 @@
 {
   imports = [
     ./hardware-configuration.nix
-    ./disko.nix
+    (import ../disks/gpt-ext4.nix { device = "/dev/sda"; })
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/desktop/gnome
