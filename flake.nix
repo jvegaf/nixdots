@@ -77,7 +77,14 @@
               }
               // extraSpecialArgs;
               modules = [
-                { nixpkgs.overlays = [ inputs.nur.overlays.default ]; }
+                {
+                  nixpkgs.overlays = [
+                    inputs.nur.overlays.default
+                    (final: prev: {
+                      gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                    })
+                  ];
+                }
                 ./hosts/${hostName}/configuration.nix
                 inputs.home-manager.nixosModules.home-manager
                 {
