@@ -116,6 +116,10 @@
                 host = "surface-pro";
               };
             };
+
+            vm = mkHost {
+              hostName = "vm";
+            };
           };
         };
     };
