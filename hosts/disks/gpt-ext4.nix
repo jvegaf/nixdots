@@ -7,12 +7,14 @@
 #     --flake .#vm
 #
 # The device is a parameter: each host passes its own disk path when
-# importing this layout (e.g. `{ device = "/dev/sda"; }`).
+# importing this layout (e.g. `{ device = "/dev/sda"; }`). Swap is
+# optional: pass `swapSize` (e.g. `"4G"`) to add a swap partition.
 #
 # Layout: GPT with an EFI System Partition (vfat, mounted at /boot) and
 # the root filesystem (ext4, mounted at /).
 {
   device ? throw "Set this to your disk device, e.g. /dev/sda",
+  swapSize ? null,
   ...
 }:
 {
@@ -42,7 +44,15 @@
                 mountpoint = "/";
               };
             };
-          };
+          }
+          // (if swapSize == null then { } else {
+            swap = {
+              size = swapSize;
+              content = {
+                type = "swap";
+              };
+            };
+          });
         };
       };
     };

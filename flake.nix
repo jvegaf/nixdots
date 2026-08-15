@@ -104,6 +104,7 @@
           nixosConfigurations = {
             razer-blade = mkHost {
               hostName = "razer-blade";
+              extraModules = [ inputs.disko.nixosModules.disko ];
             };
 
             minis-z83 = mkHost {
@@ -118,6 +119,7 @@
               extraSpecialArgs = {
                 host = "surface-pro";
               };
+              extraModules = [ inputs.disko.nixosModules.disko ];
             };
 
             vm = mkHost {
