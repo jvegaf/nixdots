@@ -13,6 +13,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    (import ../disks/gpt-ext4.nix { device = "/dev/sda"; swapSize = "4G"; })
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/desktop/xfce

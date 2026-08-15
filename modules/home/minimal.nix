@@ -1,7 +1,7 @@
 { config, lib, ... }:
 {
   imports = [
-    ./modules/server.nix
+    ./server.nix
   ];
 
   # Home Manager needs a bit of information about you and the

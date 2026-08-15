@@ -110,7 +110,7 @@
             minis-z83 = mkHost {
               hostName = "minis-z83";
               userModule = ./modules/home/minimal.nix;
-              extraModules = [ ./nixos/modules/server.nix ];
+              extraModules = [ inputs.disko.nixosModules.disko ];
             };
 
             surface-pro = mkHost {

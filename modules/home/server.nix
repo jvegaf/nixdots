@@ -4,7 +4,7 @@
     ./common
     ./desktop/server.nix
     # ./editors/nvfvim
-    ./editors/lazyvim
+    ./editors
     # ./editors/nvix.nix
     # ./opencode
     ./shell
