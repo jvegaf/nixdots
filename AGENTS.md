@@ -1,6 +1,6 @@
 # nixdots — NixOS flake configuration
 
-Personal NixOS flake managing 3 hosts for user `th3g3ntl3man` (José Vega, josevega234@gmail.com).
+Personal NixOS flake managing 4 hosts for user `th3g3ntl3man` (José Vega, josevega234@gmail.com).
 
 ## Hosts
 
@@ -9,6 +9,12 @@ Personal NixOS flake managing 3 hosts for user `th3g3ntl3man` (José Vega, josev
 | `razer-blade` | `./nixos/modules`       | `home-manager/home.nix` | Desktop/laptop (full) |
 | `minis-z83`   | `./nixos/modules/server.nix` | `home-manager/minimal.nix` | Server (minimal) |
 | `surface-pro` | `./nixos/modules`       | `home-manager/home.nix` | Desktop (full) |
+| `vm`          | `./hosts/vm` (disko)    | `modules/home/home.nix` | VirtualBox test host (GNOME + Hyprland) |
+
+The `vm` host is a VirtualBox test machine mirroring the razer-blade desktop
+so desktop changes can be validated before touching real hardware. Its disk
+layout is declared with disko (`hosts/vm/disko.nix`); see
+`docs/vm-build-and-install.md` for the full build-and-install flow.
 
 `home-manager/th3g3ntl3man.nix` is imported for **all** hosts via `lib.filesystem.listFilesRecursive` — it contains stylix, packages, and programs shared everywhere. The `minimal.nix` and `server.nix` import fewer modules.
 
@@ -30,8 +36,10 @@ Only `x86_64-linux` supported. `allowUnfree = true` is set globally. `nixpkgs` f
 ## Structure
 
 ```
-flake.nix                              # Entrypoint: 3 nixosConfigurations
+flake.nix                              # Entrypoint: 4 nixosConfigurations
 hosts/<hostname>/                      # Host-specific config + hardware scan
+hosts/vm/disko.nix                     # vm disk layout (GPT: ESP vfat /boot + ext4 /)
+docs/vm-build-and-install.md           # Full flow: Nix on Arch, build, VM install
 nixos/modules/                         # System-level NixOS modules
 nixos/modules/default.nix              # Desktop module set
 nixos/modules/server.nix               # Server module set (subset, commented switches)
