@@ -5,11 +5,20 @@
   # ];
 
   security.polkit.enable = true;
+  # Enable the X11/Wayland base support if needed
+  services.xserver.enable = true;
 
+  # Enable Sway
+  programs.sway.enable = true;
+
+  # Enable SDDM and its Wayland capabilities
   services.displayManager.sddm = {
     enable = true;
-    wayland.enable = true;
+    wayland.enable = true; # optional, runs SDDM under Wayland if supported
   };
+
+  # Set Sway as the default pre-selected or auto-login session
+  services.displayManager.defaultSession = "sway";
 
   xdg.portal = {
     enable = true;

@@ -25,9 +25,9 @@
       sway.enable = true;
       fuzzel.enable = true;
       zed.enable = false;
-      ghostty.enable = false;
+      ghostty.enable = true;
       alacritty.enable = false;
-      kitty.enable = false;
+      kitty.enable = true;
       wofi.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
@@ -36,7 +36,7 @@
 
     cursor = {
       name = "DMZ-Black";
-      size = 24;
+      size = 48;
       package = pkgs.vanilla-dmz;
     };
 

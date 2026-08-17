@@ -49,7 +49,7 @@ in
       };
       modifier = "Mod4";
       menu = "fuzzel";
-      terminal = "ghostty";
+      terminal = "kitty";
       keybindings =
         let
           mod = config.wayland.windowManager.sway.config.modifier;
@@ -200,7 +200,7 @@ in
       mainBar = {
         layer = "top";
         position = "top";
-        height = 30;
+        height = 23;
         output = [
           "eDP-1"
         ];
@@ -302,26 +302,26 @@ in
       ''
         * {
           font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 16px;
+          font-size: 12px;
           border-radius: 0px;
           border: none;
           min-height: 0px;
         }
         window#waybar {
-          background: rgba(0,0,0,0);
+          background: transparent;
         }
         #workspaces {
           color: #${config.lib.stylix.colors.base00};
           background: #${config.lib.stylix.colors.base01};
           margin: 4px 4px;
           padding: 5px 5px;
-          border-radius: 16px;
+          border-radius: 10px;
         }
         #workspaces button {
           font-weight: bold;
           padding: 0px 5px;
           margin: 0px 3px;
-          border-radius: 16px;
+          border-radius: 10px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           opacity: 0.5;
@@ -331,7 +331,7 @@ in
           font-weight: bold;
           padding: 0px 5px;
           margin: 0px 3px;
-          border-radius: 16px;
+          border-radius: 10px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           transition: ${betterTransition};
@@ -340,7 +340,7 @@ in
         }
         #workspaces button:hover {
           font-weight: bold;
-          border-radius: 16px;
+          border-radius: 10px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           opacity: 0.8;
@@ -349,7 +349,7 @@ in
         tooltip {
           background: #${config.lib.stylix.colors.base00};
           border: 1px solid #${config.lib.stylix.colors.base08};
-          border-radius: 12px;
+          border-radius: 8px;
         }
         tooltip label {
           color: #${config.lib.stylix.colors.base08};
@@ -361,15 +361,15 @@ in
           padding: 0px 18px;
           background: #${config.lib.stylix.colors.base04};
           color: #${config.lib.stylix.colors.base00};
-          border-radius: 24px 10px 24px 10px;
+          border-radius: 10px;
         }
         #custom-startmenu {
           color: #${config.lib.stylix.colors.base0B};
           background: #${config.lib.stylix.colors.base02};
           font-size: 28px;
           margin: 0px;
-          padding: 0px 30px 0px 15px;
-          border-radius: 0px 0px 40px 0px;
+          padding: 0px 12px 0px 15px;
+          border-radius: 10px ;
         }
         #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
@@ -378,16 +378,16 @@ in
           color: #${config.lib.stylix.colors.base00};
           margin: 4px 0px;
           margin-right: 7px;
-          border-radius: 10px 24px 10px 24px;
-          padding: 0px 18px;
+          border-radius: 10px;
+          padding: 0px 12px;
         }
         #clock {
           font-weight: bold;
           color: #0D0E15;
           background: linear-gradient(90deg, #${config.lib.stylix.colors.base0E}, #${config.lib.stylix.colors.base0C});
           margin: 0px;
-          padding: 0px 15px 0px 30px;
-          border-radius: 0px 0px 0px 40px;
+          padding: 0px 15px 0px 15px;
+          border-radius: 10px;
         }
       ''
     ];
