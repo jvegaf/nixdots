@@ -127,7 +127,7 @@ in
       output = {
         eDP-1 = {
           pos = "0 0";
-          scale = "2";
+          scale = "1.66";
         };
       };
       window = {
@@ -154,7 +154,7 @@ in
             };
           }
           {
-            command = "move container to workspace 3";
+            command = "move container to workspace 2";
             criteria = {
               app_id = "firefox";
             };
@@ -302,26 +302,24 @@ in
       ''
         * {
           font-family: JetBrainsMono Nerd Font Mono;
-          font-size: 12px;
+          font-size: 14px;
           border-radius: 0px;
           border: none;
           min-height: 0px;
         }
         window#waybar {
-          background: transparent;
+          background-color: transparent;
         }
         #workspaces {
           color: #${config.lib.stylix.colors.base00};
           background: #${config.lib.stylix.colors.base01};
           margin: 4px 4px;
-          padding: 5px 5px;
-          border-radius: 10px;
+          border-radius: 5px;
         }
         #workspaces button {
           font-weight: bold;
-          padding: 0px 5px;
           margin: 0px 3px;
-          border-radius: 10px;
+          border-radius: 5px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           opacity: 0.5;
@@ -329,18 +327,17 @@ in
         }
         #workspaces button.active {
           font-weight: bold;
-          padding: 0px 5px;
           margin: 0px 3px;
-          border-radius: 10px;
+          border-radius: 5px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           transition: ${betterTransition};
           opacity: 1.0;
-          min-width: 40px;
+          min-width: 20px;
         }
         #workspaces button:hover {
           font-weight: bold;
-          border-radius: 10px;
+          border-radius: 5px;
           color: #${config.lib.stylix.colors.base00};
           background: linear-gradient(45deg, #${config.lib.stylix.colors.base08}, #${config.lib.stylix.colors.base0D});
           opacity: 0.8;
@@ -358,18 +355,16 @@ in
           font-weight: bold;
           margin: 4px 0px;
           margin-left: 7px;
-          padding: 0px 18px;
           background: #${config.lib.stylix.colors.base04};
           color: #${config.lib.stylix.colors.base00};
-          border-radius: 10px;
+          border-radius: 5px;
         }
         #custom-startmenu {
           color: #${config.lib.stylix.colors.base0B};
           background: #${config.lib.stylix.colors.base02};
           font-size: 28px;
           margin: 0px;
-          padding: 0px 12px 0px 15px;
-          border-radius: 10px ;
+          border-radius: 5px ;
         }
         #custom-hyprbindings, #network, #battery,
         #custom-notification, #tray, #custom-exit {
@@ -378,16 +373,14 @@ in
           color: #${config.lib.stylix.colors.base00};
           margin: 4px 0px;
           margin-right: 7px;
-          border-radius: 10px;
-          padding: 0px 12px;
+          border-radius: 5px;
         }
         #clock {
           font-weight: bold;
           color: #0D0E15;
           background: linear-gradient(90deg, #${config.lib.stylix.colors.base0E}, #${config.lib.stylix.colors.base0C});
           margin: 0px;
-          padding: 0px 15px 0px 15px;
-          border-radius: 10px;
+          border-radius: 5px;
         }
       ''
     ];

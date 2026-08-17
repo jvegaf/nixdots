@@ -42,6 +42,7 @@
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
+    llm-agents.url = "github:numtide/llm-agents.nix";
 
     gentle-ai = {
       url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
@@ -49,7 +50,6 @@
     };
 
     # Daily-built AI coding agents (opencode, claude-code, codex, ...)
-    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs =

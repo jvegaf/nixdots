@@ -27,6 +27,20 @@
           format = "{14}:{17}:{20}";
         }
         "break"
+        "os"
+        "kernel"
+        "packages"
+        "shell"
+        "wm"
+        "icons"
+        "terminal"
+        "host"
+        "cpu"
+        "gpu"
+        "display"
+        "memory"
+        "swap"
+        "break"
         "player"
         "media"
       ];

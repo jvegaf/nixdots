@@ -36,9 +36,16 @@
         };
 
         user = {
-          email = "72362399+jvegaf@users.noreply.github.com";
-          name = "jvegaf";
+          email = "josevega234@gmail.com";
+          name = "Jose Vega";
         };
+      };
+    };
+
+    gh = {
+      enable = true;
+      gitCredentialHelper = {
+        enable = true;
       };
     };
   };

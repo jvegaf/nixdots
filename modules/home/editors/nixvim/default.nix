@@ -118,6 +118,7 @@
           theme = "ayu-dark";
         };
       };
+      grug-far.enable = true;
       luasnip.enable = true;
       nix.enable = true;
       nix-develop.enable = true;
