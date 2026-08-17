@@ -1,5 +1,5 @@
 { pkgs, inputs, ... }: {
-  imports = [ inputs.stylix.homeManagerModules.stylix ];
+  imports = [ inputs.stylix.homeModules.stylix ];
 
   home.packages = with pkgs; [
     dejavu_fonts
@@ -7,11 +7,11 @@
     noto-fonts
     noto-fonts-lgc-plus
     texlivePackages.hebrew-fonts
-    noto-fonts-emoji
+    noto-fonts-color-emoji
     font-awesome
     powerline-fonts
     powerline-symbols
-    (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
+    # (nerdfonts.override { fonts = [ "NerdFontsSymbolsOnly" ]; })
   ];
 
   stylix = {
@@ -24,9 +24,14 @@
       waybar.enable = true;
       sway.enable = true;
       fuzzel.enable = true;
+      zed.enable = false;
+      ghostty.enable = false;
+      alacritty.enable = false;
+      kitty.enable = false;
       wofi.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
+      firefox.profileNames = [ "th3g3ntl3man" ];
     };
 
     cursor = {
@@ -59,7 +64,7 @@
       };
     };
 
-    iconTheme = {
+    icons = {
       enable = true;
       package = pkgs.papirus-icon-theme;
       dark = "Papirus-Dark";

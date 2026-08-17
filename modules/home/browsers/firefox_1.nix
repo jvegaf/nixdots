@@ -2,7 +2,7 @@
 
 let
   # Obtener rycee directamente desde el input de NUR
-  firefox-addons = inputs.nur.legacyPackages.${pkgs.system}.repos.rycee.firefox-addons;
+  firefox-addons = inputs.nur.legacyPackages.${pkgs.stdenv.hostPlatform.system}.repos.rycee.firefox-addons;
 in
 {
   programs.firefox = {

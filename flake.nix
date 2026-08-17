@@ -31,6 +31,7 @@
     hardware.url = "github:NixOS/nixos-hardware/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
+    stylix.inputs.nixpkgs.follows = "nixpkgs";
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
@@ -89,11 +90,21 @@
                 ./hosts/${hostName}/configuration.nix
                 inputs.home-manager.nixosModules.home-manager
                 {
-                  home-manager.useGlobalPkgs = true;
+                  home-manager.useGlobalPkgs = false;
                   home-manager.useUserPackages = true;
                   home-manager.overwriteBackup = true;
                   home-manager.backupFileExtension = "backup";
                   home-manager.extraSpecialArgs = { inherit inputs; };
+                  home-manager.sharedModules = [
+                    {
+                      nixpkgs.overlays = [
+                        inputs.nur.overlays.default
+                        (final: prev: {
+                          gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                        })
+                      ];
+                    }
+                  ];
                   home-manager.users.th3g3ntl3man = userModule;
                 }
               ]

@@ -21,7 +21,7 @@ in
     enable = true;
 
     # Daily-built opencode from numtide/llm-agents.nix (binary cache)
-    package = inputs.llm-agents.packages.${pkgs.system}.opencode;
+    package = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.opencode;
 
     enableMcpIntegration = true;
 
