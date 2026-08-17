@@ -1,6 +1,7 @@
 {
   imports = [
-    ./qt.nix
+    # ./qt.nix
     ./zathura.nix
+    ./stylix.nix
   ];
 }

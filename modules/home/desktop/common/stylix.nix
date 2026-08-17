@@ -21,7 +21,9 @@
 
     targets = {
       neovim.enable = false;
-      waybar.enable = false;
+      waybar.enable = true;
+      sway.enable = true;
+      fuzzel.enable = true;
       wofi.enable = false;
       hyprland.enable = false;
       hyprlock.enable = false;
