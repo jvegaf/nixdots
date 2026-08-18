@@ -131,7 +131,11 @@ just clean          # wipe profiles older than 7d
 All wrapped programs are available as `nix run` commands:
 
 ```bash
+nix run .#neovim             # Neovim with LSPs + plugins
 nix run .#kitty              # Terminal with Catppuccin Mocha
+nix run .#niri               # Niri compositor with which-key menu
+nix run .#noctalia-shell     # Desktop shell
+nix run .#yazi               # Yazi with plugins (gvfs, chmod)
 nix run .#git                # Git with custom env vars
 nix run .#lazygit            # Lazygit with YAML config
 nix run .#zsh                # Zsh with plugins
@@ -142,7 +146,6 @@ nix run .#eza                # Eza with icons + git
 nix run .#btop               # System monitor
 nix run .#tmux               # Tmux with custom config
 nix run .#zellij             # Zellij with custom layout
-nix run .#yazi               # Yazi with plugins
 nix run .#starship           # Starship prompt
 nix run .#nh                 # Nix helper
 nix run .#fastfetch          # System info
@@ -173,7 +176,7 @@ nix run .#environment        # Full shell with all programs
 
   flake.nixosModules.host<Name> = {pkgs, ...}: {
     imports = [
-      self.nixosModules.hostBase     # home-manager + NUR + disko
+      self.nixosModules.hostBase     # NUR + disko
       self.nixosModules.base
       self.nixosModules.general
       # ... more features
@@ -222,6 +225,25 @@ Create `wrappedPrograms/<name>.nix`:
 }
 ```
 
+### With wrapper-modules (recommended for complex programs)
+
+Create `wrappedPrograms/<name>.nix`:
+
+```nix
+{
+  inputs,
+  ...
+}: {
+  perSystem = {pkgs, ...}: {
+    packages.<name> = inputs.wrapper-modules.wrappers.<name>.wrap {
+      inherit pkgs;
+      # settings = { ... };
+      # plugins = { ... };
+    };
+  };
+}
+```
+
 ### With config files (directory)
 
 Create `wrappedPrograms/<name>/` with:
@@ -261,14 +283,11 @@ Reference from other packages using `self'.packages.<name>`.
 | Input | Purpose |
 |-------|---------|
 | `nixpkgs` | nixos-unstable |
-| `home-manager` | User environment |
 | `flake-parts` | Flake structure |
-| `wrapper-modules` | BirdeeHub nix-wrapper-modules |
 | `wrappers` | Lassulus wrappers |
+| `wrapper-modules` | BirdeeHub nix-wrapper-modules |
 | `disko` | Declarative disk partitioning |
 | `stylix` | System theming |
-| `nixvim` | Neovim configuration |
-| `noctalia` | Desktop shell |
 | `nur` | Nix User Repository |
 | `nix-index-database` | Pre-built nix-index |
 | `llm-agents` | AI coding agents |
@@ -282,8 +301,15 @@ flake.nix
 parts.nix
 wrappedPrograms/              # Wrapped programs (nix run .#<name>)
   default.nix                 # Index
+  wrappers.nix                # wrapperModules: kitty, niri, which-key
   environment.nix             # Full shell environment
-  kitty.nix, git.nix, ...     # Simple programs
+  neovim/                     # wrapper-modules neovim with LSPs
+    neovim.nix
+    lua/
+  noctalia/                   # wrapper-modules noctalia-shell
+    default.nix
+  yazi.nix                    # wrapper-modules yazi
+  git.nix, lazygit.nix, ...   # Simple programs
   alacritty/                  # Programs with config
     default.nix
     alacritty.toml
@@ -303,10 +329,6 @@ nixos/
     vm/
 hosts/
   disks/                      # Disko configurations
-modules/
-  home/                       # Home Manager modules
-  nixos/
-    desktop/                  # Desktop environment configs
 ```
 
 ## License

@@ -9,7 +9,7 @@ Uses `flake-parts` with composable NixOS modules (`nixosModules`) and
 
 Each host has its own directory under `nixos/hosts/` with a `configuration.nix`
 that defines both `flake.nixosModules` and `flake.nixosConfigurations`. The
-`hostBase` module wires home-manager, NUR overlay, and disko automatically.
+`hostBase` module wires NUR overlay and disko automatically.
 
 ## Hosts
 
@@ -36,10 +36,20 @@ flake.nix                              # Entrypoint: flake-parts imports
 parts.nix                              # flake-parts config (wrappers)
 wrappedPrograms/                       # Wrapped programs (self'.packages)
   default.nix                          # Index of all wrapped programs
+  wrappers.nix                         # wrapperModules: kitty, niri, which-key
   environment.nix                      # Full shell with all programs
-  kitty.nix, git.nix, ...              # Simple programs (single .nix)
+  neovim/                              # wrapper-modules neovim
+    neovim.nix                         #   wrapper with inline LSP configs
+    lua/                               #   Lua config files
+    after/ftplugin/                    #   Filetype overrides
+    colors/                            #   Custom colorscheme
+    queries/                           #   Treesitter queries
+  noctalia/                            # wrapper-modules noctalia-shell
+    default.nix
+  yazi.nix                             # wrapper-modules yazi (plugins: gvfs, chmod)
+  git.nix, lazygit.nix, ...            # Simple programs (single .nix)
   alacritty/                           # Programs with config files
-    default.nix                        #   wrapPackage with ./alacritty.toml
+    default.nix
     alacritty.toml
   tealdeer/
     default.nix
@@ -48,20 +58,20 @@ wrappedPrograms/                       # Wrapped programs (self'.packages)
     default.nix
     zellij-config.kdl
   zed/
-    default.nix                        #   wrapPackage with LSPs
+    default.nix
     zed-config/
       settings.json
       keymap.json
 nixos/
   base/                                # Custom NixOS options
-    host-base.nix                      # home-manager + NUR + disko wiring
+    host-base.nix                      # NUR + disko wiring
     user.nix                           # preferences.user.name
     monitors.nix                       # preferences.monitors
     keymap.nix                         # preferences.keymap, autostart
   features/                            # Composable feature modules
     general.nix                        # User setup + nix settings
     nix.nix                            # Nix config, direnv, nix-index
-    desktop.nix                        # Desktop (fonts, locales, hardware)
+    desktop.nix                        # Desktop (fonts, locales, niri)
     gtk.nix                            # GTK theme (Catppuccin Mocha)
     pipewire.nix                       # Audio
     firefox.nix                        # Firefox
@@ -70,11 +80,14 @@ nixos/
     1password.nix                      # 1Password
     docker.nix                         # Docker
     ollama.nix                         # Ollama (ROCm)
+    wallpaper/                         # Gruvbox wallpaper
+      wallpaper.nix
+      gruvbox-mountain-village.png
   hosts/                               # One directory per host
     razer-blade/
-      configuration.nix                #   flake.nixosModules.hostRazerBlade
-      hardware-configuration.nix       #   nixos-generate-config output
-      razer-blade.nix                  #   NVIDIA, TLP, OpenRazer
+      configuration.nix
+      hardware-configuration.nix
+      razer-blade.nix                  # NVIDIA, TLP, OpenRazer
     minis/
       configuration.nix
       hardware-configuration.nix
@@ -86,33 +99,19 @@ nixos/
       hardware-configuration.nix
 hosts/
   disks/                               # Disko configurations
-    gpt-ext4.nix                       #   Referenced by host configurations
-modules/
-  home/                                # Home Manager modules
-    home.nix                           # Full desktop config
-    minimal.nix                        # Minimal config
-    common/                            # direnv, fonts, packages
-    shell/                             # ssh only
-    browsers/                          # Firefox
-    desktop/                           # WM configs (Hyprland, Sway, GNOME)
-    opencode/                          # AI coding tools
-  nixos/
-    desktop/                           # Desktop environment configs
-      gnome/default.nix
-      hyprland/default.nix
-      sway/default.nix
-      xfce/default.nix
-      ...
+    gpt-ext4.nix
 ```
 
 ## Conventions
 
 - **Host composition**: each host imports `hostBase` + features via `imports = [ self.nixosModules.<name> ]`
-- **Wrapped programs**: use `inputs.wrappers.lib.wrapPackage` for simple wraps
-- **Complex wraps**: use `inputs.wrappers.wrapperModules.<name>.apply` (e.g. kitty)
+- **Wrapped programs (wrapper-modules)**: use `inputs.wrapper-modules.wrappers.<name>.wrap` for rich programs with settings
+- **Wrapped programs (Lassulus)**: use `inputs.wrappers.lib.wrapPackage` for simple wraps
+- **Complex wraps**: use `flake.wrappersModules.<name>` + `inputs.wrappers.wrapperModules.<name>.apply` (kitty, niri, which-key)
 - **Programs with configs**: group into a directory with `default.nix` + config files
 - **Cross-references**: use `self'.packages.<name>` inside `perSystem` blocks
-- **`result/`** is a build artifact — never track
+- **All `flake.wrappersModules` definitions** must be in a single file (`wrappers.nix`) to avoid merge conflicts
+- **Gruvbox theme**: hardcoded colors where joyer_nc used `self.theme.*`
 
 ## NixOS Features
 
@@ -121,7 +120,7 @@ Hosts compose them in `nixos/hosts/<host>/configuration.nix`:
 
 ```nix
 imports = [
-  self.nixosModules.hostBase     # home-manager + NUR + disko
+  self.nixosModules.hostBase     # NUR + disko
   self.nixosModules.base
   self.nixosModules.general
   self.nixosModules.desktop
@@ -134,24 +133,42 @@ imports = [
 Programs are wrapped using `nix-wrapper-modules` and available as
 `packages.x86_64-linux.<name>`:
 
-- **Simple**: `inputs.wrappers.lib.wrapPackage { ... }` → single `.nix` file
-- **With config**: directory with `default.nix` + config files
-- **Module-based**: `inputs.wrappers.wrapperModules.<name>.apply { ... }`
-- **Environment**: `self'.packages.environment` aggregates all programs
+| Program | Wrapper | Notes |
+|---------|---------|-------|
+| `neovim` | `wrapper-modules.wrappers.neovim.wrap` | Inline LSP configs, lua config dir |
+| `kitty` | `wrappers.wrapperModules.kitty.apply` | Catppuccin Mocha theme |
+| `niri` | `wrapper-modules.wrappers.niri.wrap` | wlr-which-key menu, gruvbox colors |
+| `noctalia-shell` | `wrapper-modules.wrappers.noctalia-shell.wrap` | Desktop shell |
+| `yazi` | `wrapper-modules.wrappers.yazi.wrap` | Plugins: gvfs, chmod |
+| `alacritty` | `wrappers.lib.wrapPackage` | Config file |
+| `zed` | `wrappers.lib.wrapPackage` | vim keymaps + LSPs |
+| `helix` | `wrappers.lib.wrapPackage` | Evil-helix |
+| `git` | `wrappers.lib.wrapPackage` | Custom env vars |
+| `lazygit` | `wrappers.lib.wrapPackage` | YAML config |
+| `zsh` | `wrappers.lib.wrapPackage` | Plugins |
+| `starship` | `wrappers.lib.wrapPackage` | Prompt |
+| `bat` | `wrappers.lib.wrapPackage` | Catppuccin theme |
+| `eza` | `wrappers.lib.wrapPackage` | Icons + git |
+| `btop` | `wrappers.lib.wrapPackage` | System monitor |
+| `tmux` | `wrappers.lib.wrapPackage` | Custom config |
+| `zellij` | `wrappers.lib.wrapPackage` | Custom layout |
+| `nh` | `wrappers.lib.wrapPackage` | Nix helper |
+| `fastfetch` | `wrappers.lib.wrapPackage` | System info |
+| `tealdeer` | `wrappers.lib.wrapPackage` | Tldr client |
+| `ghostty` | `wrappers.lib.wrapPackage` | Terminal |
+| `ns` | `wrappers.lib.wrapPackage` | Nix search TV |
+| `environment` | `wrappers.lib.wrapPackage` | Full shell aggregator |
 
 ## Flake inputs
 
 | Input | Purpose |
 |-------|---------|
 | `nixpkgs` | nixos-unstable |
-| `home-manager` | User environment management |
 | `flake-parts` | Flake structure |
 | `wrappers` | Lassulus wrappers |
 | `wrapper-modules` | BirdeeHub nix-wrapper-modules |
 | `disko` | Declarative disk partitioning |
 | `stylix` | System theming |
-| `nixvim` | Neovim configuration |
-| `noctalia` | Desktop shell |
 | `nur` | Nix User Repository |
 | `nix-index-database` | Pre-built nix-index database |
 | `llm-agents` | AI coding agents (opencode, etc.) |
