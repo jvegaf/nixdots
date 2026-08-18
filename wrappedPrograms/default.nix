@@ -1,5 +1,6 @@
 {
   imports = [
+    # Simple (single .nix)
     ./kitty.nix
     ./git.nix
     ./lazygit.nix
@@ -11,14 +12,18 @@
     ./nh.nix
     ./fastfetch.nix
     ./tmux.nix
-    ./zellij.nix
     ./yazi.nix
     ./helix.nix
-    ./tealdeer.nix
-    ./alacritty.nix
     ./ghostty.nix
-    ./zed.nix
     ./nix-search-tv.nix
+
+    # With config files (directory)
+    ./alacritty
+    ./tealdeer
+    ./zellij
+    ./zed
+
+    # Aggregator
     ./environment.nix
   ];
 }
