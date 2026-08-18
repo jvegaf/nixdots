@@ -44,6 +44,7 @@
 
         # Wrapped programs
         self'.packages.kitty
+        self'.packages.neovim
         self'.packages.git
         self'.packages.lazygit
         self'.packages.zsh

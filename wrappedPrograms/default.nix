@@ -1,7 +1,12 @@
 {
   imports = [
+    # Wrapper-modules (kitty, niri, which-key)
+    ./wrappers.nix
+
+    # Neovim (wrapper-modules)
+    ./neovim/neovim.nix
+
     # Simple (single .nix)
-    ./kitty.nix
     ./git.nix
     ./lazygit.nix
     ./zsh.nix
@@ -22,6 +27,7 @@
     ./tealdeer
     ./zellij
     ./zed
+    ./noctalia
 
     # Aggregator
     ./environment.nix
