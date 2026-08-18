@@ -1,0 +1,11 @@
+[window]
+opacity = 0.8
+
+[font]
+builtin_box_drawing = true
+
+[font.normal]
+style = "Bold"
+family = "Fantasque SansM Nerd Font"
+
+[font.size] = 13.0

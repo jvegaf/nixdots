@@ -1,0 +1,23 @@
+{
+  imports = [
+    ./kitty.nix
+    ./git.nix
+    ./lazygit.nix
+    ./zsh.nix
+    ./starship.nix
+    ./bat.nix
+    ./eza.nix
+    ./btop.nix
+    ./nh.nix
+    ./fastfetch.nix
+    ./tmux.nix
+    ./zellij.nix
+    ./yazi.nix
+    ./helix.nix
+    ./tealdeer.nix
+    ./alacritty.nix
+    ./ghostty.nix
+    ./zed.nix
+    ./nix-search-tv.nix
+  ];
+}

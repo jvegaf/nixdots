@@ -38,15 +38,14 @@
     mangowm.url = "github:mangowm/mango";
     mangowm.inputs.nixpkgs.follows = "nixpkgs";
     noctalia.url = "github:noctalia-dev/noctalia/cachix";
+    wrappers.url = "github:Lassulus/wrappers";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    gentle-ai = {
-      url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
-      flake = false;
-    };
+
 
     # Daily-built AI coding agents (opencode, claude-code, codex, ...)
     llm-agents.url = "github:numtide/llm-agents.nix";
@@ -55,6 +54,11 @@
   outputs =
     inputs@{ flake-parts, ... }:
     flake-parts.lib.mkFlake { inherit inputs; } {
+      imports = [
+        ./parts.nix
+        ./wrappedPrograms
+      ];
+
       systems = [ "x86_64-linux" ];
 
       # Configuración de herramientas por arquitectura (devShells, treefmt, etc.)
@@ -82,9 +86,6 @@
                 {
                   nixpkgs.overlays = [
                     inputs.nur.overlays.default
-                    (final: prev: {
-                      gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                    })
                   ];
                 }
                 ./hosts/${hostName}/configuration.nix
@@ -99,9 +100,6 @@
                     {
                       nixpkgs.overlays = [
                         inputs.nur.overlays.default
-                        (final: prev: {
-                          gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                        })
                       ];
                     }
                   ];

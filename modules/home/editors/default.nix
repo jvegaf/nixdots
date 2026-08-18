@@ -1,7 +1,3 @@
 {
-  imports = [
-    ./zed
-    ./nixvim
-    ./evil-helix.nix
-  ];
+  imports = [];
 }
