@@ -7,7 +7,7 @@ Personal NixOS configuration for 4 hosts using `flake-parts`,
 
 | Host | Desktop | Disk | Notes |
 |------|---------|------|-------|
-| `razer-blade` | GNOME + Hyprland | `/dev/nvme0n1` | Full desktop |
+| `razer-blade` | GNOME + Hyprland | `/dev/nvme0n1` | NVIDIA RTX 3070, full desktop |
 | `minis-z83` | XFCE | `/dev/sda` | Minimal server |
 | `surface-pro` | Sway | `/dev/nvme0n1` | Touch + pen |
 | `vm` | GNOME + Hyprland | `/dev/sda` | VirtualBox test |
@@ -84,7 +84,7 @@ Copy the generated hardware configuration to the host directory:
 ```bash
 # For razer-blade:
 sudo cp /mnt/etc/nixos/hardware-configuration.nix \
-  /mnt/etc/nixos/hosts/razer-blade/hardware-configuration.nix
+  nixos/hosts/razer-blade/hardware-configuration.nix
 
 # Repeat for your host
 ```
@@ -155,15 +155,27 @@ nix run .#environment        # Full shell with all programs
 
 ## Adding a New Host
 
-1. Create `nixos/hosts/<name>.nix`:
+1. Create `nixos/hosts/<name>/` directory with:
+
+**`configuration.nix`:**
 
 ```nix
-{inputs, ...}: {
+{
+  inputs,
+  self,
+  ...
+}: {
+  flake.nixosConfigurations.<name> = inputs.nixpkgs.lib.nixosSystem {
+    modules = [
+      self.nixosModules.host<Name>
+    ];
+  };
+
   flake.nixosModules.host<Name> = {pkgs, ...}: {
     imports = [
-      inputs.self.nixosModules.base
-      inputs.self.nixosModules.general
-      inputs.self.nixosModules.desktop
+      self.nixosModules.hostBase     # home-manager + NUR + disko
+      self.nixosModules.base
+      self.nixosModules.general
       # ... more features
     ];
 
@@ -173,21 +185,23 @@ nix run .#environment        # Full shell with all programs
 }
 ```
 
-2. Add to `flake.nix`:
+**`hardware-configuration.nix`:**
+
+```bash
+# Generate with nixos-generate-config and copy here
+```
+
+2. Add to `flake.nix` imports:
 
 ```nix
-./nixos/hosts/<name>.nix  # in imports list
-
-# and in nixosConfigurations:
-<name> = mkHost {
-  hostModule = inputs.self.nixosModules.host<Name>;
-  extraModules = [ inputs.disko.nixosModules.disko ];
-};
+./nixos/hosts/<name>/configuration.nix
 ```
 
 3. Create disko config if needed (see `hosts/disks/gpt-ext4.nix`).
 
 ## Adding a Wrapped Program
+
+### Simple (single .nix file)
 
 Create `wrappedPrograms/<name>.nix`:
 
@@ -208,10 +222,36 @@ Create `wrappedPrograms/<name>.nix`:
 }
 ```
 
+### With config files (directory)
+
+Create `wrappedPrograms/<name>/` with:
+
+**`default.nix`:**
+
+```nix
+{
+  inputs,
+  ...
+}: {
+  perSystem = {pkgs, ...}: {
+    packages.<name> = inputs.wrappers.lib.wrapPackage {
+      inherit pkgs;
+      package = pkgs.<name>;
+      flags = {
+        "--config-file" = ./config.toml;
+      };
+    };
+  };
+}
+```
+
+**`config.toml`** (or whatever config files needed).
+
 Add to `wrappedPrograms/default.nix` imports:
 
 ```nix
-./<name>.nix
+./<name>.nix          # for simple programs
+./<name>              # for directories (imports default.nix)
 ```
 
 Reference from other packages using `self'.packages.<name>`.
@@ -233,28 +273,40 @@ Reference from other packages using `self'.packages.<name>`.
 | `nix-index-database` | Pre-built nix-index |
 | `llm-agents` | AI coding agents |
 | `hardware` | NixOS hardware quirks |
+| `razerdaemon` | Razer device control |
 
 ## Directory Structure
 
 ```
 flake.nix
-wrappedPrograms/          # Wrapped programs (nix run .#<name>)
-  default.nix
-  environment.nix         # Full shell environment
-  kitty.nix, git.nix, ...
+parts.nix
+wrappedPrograms/              # Wrapped programs (nix run .#<name>)
+  default.nix                 # Index
+  environment.nix             # Full shell environment
+  kitty.nix, git.nix, ...     # Simple programs
+  alacritty/                  # Programs with config
+    default.nix
+    alacritty.toml
+  zed/
+    default.nix
+    zed-config/
 nixos/
-  base/                   # Custom NixOS options
-  features/               # Composable feature modules
-  hosts/                  # Host-specific configs
+  base/                       # Custom NixOS options + hostBase
+  features/                   # Composable feature modules
+  hosts/                      # One directory per host
+    razer-blade/
+      configuration.nix
+      hardware-configuration.nix
+      razer-blade.nix
+    minis/
+    surface/
+    vm/
+hosts/
+  disks/                      # Disko configurations
 modules/
-  home/                   # Home Manager modules
-    home.nix              # Full desktop
-    minimal.nix           # Minimal/server
-    common/               # direnv, fonts, packages
-    shell/                # ssh
-    browsers/             # Firefox
-    desktop/              # WM configs
-    opencode/             # AI tools
+  home/                       # Home Manager modules
+  nixos/
+    desktop/                  # Desktop environment configs
 ```
 
 ## License
