@@ -72,10 +72,11 @@
         ./nixos/features/1password.nix
         ./nixos/features/docker.nix
         ./nixos/features/ollama.nix
-        ./nixos/hosts/razer-blade.nix
-        ./nixos/hosts/minis.nix
-        ./nixos/hosts/surface.nix
-        ./nixos/hosts/vm.nix
+        ./nixos/base/host-base.nix
+        ./nixos/hosts/razer-blade/configuration.nix
+        ./nixos/hosts/minis/configuration.nix
+        ./nixos/hosts/surface/configuration.nix
+        ./nixos/hosts/vm/configuration.nix
       ];
 
       systems = [ "x86_64-linux" ];
@@ -84,77 +85,5 @@
       perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShell { };
       };
-
-      # Salidas globales del Flake
-      flake =
-        let
-          mkHost =
-            {
-              hostModule,
-              userModule ? ./modules/home/home.nix,
-              extraModules ? [ ],
-              extraSpecialArgs ? { },
-            }:
-            inputs.nixpkgs.lib.nixosSystem {
-              system = "x86_64-linux";
-              specialArgs = {
-                inherit inputs;
-              }
-              // extraSpecialArgs;
-              modules = [
-                {
-                  nixpkgs.overlays = [
-                    inputs.nur.overlays.default
-                  ];
-                }
-                hostModule
-                inputs.home-manager.nixosModules.home-manager
-                {
-                  home-manager.useGlobalPkgs = false;
-                  home-manager.useUserPackages = true;
-                  home-manager.overwriteBackup = true;
-                  home-manager.backupFileExtension = "backup";
-                  home-manager.extraSpecialArgs = { inherit inputs; };
-                  home-manager.sharedModules = [
-                    {
-                      nixpkgs.overlays = [
-                        inputs.nur.overlays.default
-                      ];
-                    }
-                  ];
-                  home-manager.users.th3g3ntl3man = userModule;
-                }
-              ]
-              ++ extraModules;
-            };
-        in
-        {
-          nixosConfigurations = {
-            razer-blade = mkHost {
-              hostModule = inputs.self.nixosModules.hostRazerBlade;
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-
-            minis-z83 = mkHost {
-              hostModule = inputs.self.nixosModules.hostMinis;
-              userModule = ./modules/home/minimal.nix;
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-
-            surface-pro = mkHost {
-              hostModule = inputs.self.nixosModules.hostSurface;
-              userModule = ./modules/home/sway.nix;
-              extraSpecialArgs = {
-                host = "surface-pro";
-              };
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-
-            vm = mkHost {
-              hostModule = inputs.self.nixosModules.hostVm;
-              extraModules = [ inputs.disko.nixosModules.disko ];
-            };
-          };
-        };
     };
 }
