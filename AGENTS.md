@@ -1,66 +1,126 @@
 # nixdots — NixOS flake configuration
 
-Personal NixOS flake managing 4 hosts for user `th3g3ntl3man` (José Vega, josevega234@gmail.com).
+Personal NixOS flake managing 4 hosts for user `th3g3ntl3man`.
+
+## Architecture
+
+Uses `flake-parts` with composable NixOS modules (`nixosModules`) and
+`nix-wrapper-modules` for portable wrapped programs via `self'.packages`.
 
 ## Hosts
 
-| Host         | NixOS modules           | Home config         | Role         |
-|-------------|------------------------|--------------------|-------------|
-| `razer-blade` | `./nixos/modules`       | `home-manager/home.nix` | Desktop/laptop (full) |
-| `minis-z83`   | `./nixos/modules/server.nix` | `home-manager/minimal.nix` | Server (minimal) |
-| `surface-pro` | `./nixos/modules`       | `home-manager/home.nix` | Desktop (full) |
-| `vm`          | `./hosts/vm` (disko)    | `modules/home/home.nix` | VirtualBox test host (GNOME + Hyprland) |
-
-The `vm` host is a VirtualBox test machine mirroring the razer-blade desktop
-so desktop changes can be validated before touching real hardware. Its disk
-layout is declared with disko (`hosts/vm/disko.nix`); see
-`docs/vm-build-and-install.md` for the full build-and-install flow.
-
-`home-manager/th3g3ntl3man.nix` is imported for **all** hosts via `lib.filesystem.listFilesRecursive` — it contains stylix, packages, and programs shared everywhere. The `minimal.nix` and `server.nix` import fewer modules.
+| Host | Features | Home config | Role |
+|------|----------|-------------|------|
+| `razer-blade` | general, desktop, thunar, 1password, gnome, hyprland | `home.nix` | Desktop/laptop (full) |
+| `minis-z83` | general, xfce | `minimal.nix` | Server (minimal) |
+| `surface-pro` | general, thunar, sway | `sway.nix` | Desktop (full) |
+| `vm` | general, gnome, hyprland | `home.nix` | VirtualBox test host |
 
 ## Key commands
 
 ```sh
-just deploy         # nixos-rebuild switch --flake .#$(hostname) --elevate=sudo
-just debug          # same with --show-trace --verbose
-just up             # nix flake update (all inputs)
-just upp i=<input>  # nix flake update <input> (single input)
-just clean          # wipe profiles older than 7d
-just gc             # nix-collect-garbage --delete-old
+nixos-rebuild switch --flake .#$(hostname)    # deploy
+nix flake update                              # update all inputs
+nix run .#<package>                           # run wrapped program
+nix run .#environment                         # full shell environment
 ```
-
-Deploy **requires `--elevate=sudo`** (used in Justfile). The flake auto-detects hostname — never pass `--flake` manually.
-
-Only `x86_64-linux` supported. `allowUnfree = true` is set globally. `nixpkgs` follows `nixos-unstable`.
 
 ## Structure
 
 ```
-flake.nix                              # Entrypoint: 4 nixosConfigurations
-hosts/<hostname>/                      # Host-specific config + hardware scan
-hosts/vm/disko.nix                     # vm disk layout (GPT: ESP vfat /boot + ext4 /)
-docs/vm-build-and-install.md           # Full flow: Nix on Arch, build, VM install
-nixos/modules/                         # System-level NixOS modules
-nixos/modules/default.nix              # Desktop module set
-nixos/modules/server.nix               # Server module set (subset, commented switches)
-home-manager/home.nix                  # Full desktop home-manager config
-home-manager/minimal.nix               # Minimal/server home-manager config
-home-manager/th3g3ntl3man.nix          # Shared user config (stylix, packages, programs)
-home-manager/modules/                   # Modularized home-manager components
-  browsers/  common/  desktop/  editors/
-  opencode/  shell/   terminals/
+flake.nix                          # Entrypoint: flake-parts + mkHost
+parts.nix                          # flake-parts config (wrappers)
+wrappedPrograms/                   # Wrapped programs (self'.packages)
+  default.nix                      # Index of all wrapped programs
+  environment.nix                  # Full shell with all programs
+  kitty.nix, git.nix, ...          # Individual wrapped programs
+nixos/
+  base/                            # Custom NixOS options
+    user.nix                       # preferences.user.name
+    monitors.nix                   # preferences.monitors
+    keymap.nix                     # preferences.keymap, autostart
+  features/                        # Composable feature modules
+    general.nix                    # User setup + nix settings
+    nix.nix                        # Nix config, direnv, nix-index
+    desktop.nix                    # Desktop (fonts, locales, hardware)
+    gtk.nix                        # GTK theme (Catppuccin Mocha)
+    pipewire.nix                   # Audio
+    firefox.nix                    # Firefox
+    chromium.nix                   # Chromium
+    thunar.nix                     # Thunar file manager
+    1password.nix                  # 1Password
+    docker.nix                     # Docker
+    ollama.nix                     # Ollama (ROCm)
+  hosts/                           # Host modules (compose features)
+    razer-blade.nix
+    minis.nix
+    surface.nix
+    vm.nix
+  legacy/                          # Old modules (commented imports)
+    desktop/                       # Desktop environments (GNOME, Hyprland, etc.)
+    os/                            # OS-level configs
+    programs/                      # System programs
+    hardware/                      # Hardware configs
+modules/home/                      # Home Manager modules
+  home.nix                         # Full desktop config
+  minimal.nix                      # Minimal config
+  common/                          # direnv, fonts, packages
+  shell/                           # ssh only
+  browsers/                        # Firefox
+  desktop/                         # WM configs (Hyprland, Sway, GNOME)
+  opencode/                        # AI coding tools
 ```
-
-**Comment-out patterns** are used throughout for toggling modules — never delete disabled modules, just toggle their `#` in the relevant `default.nix` or `server.nix`.
 
 ## Conventions
 
-- **List all module imports explicitly** in `default.nix` / `server.nix` aggregate files. Individual config files are pure Nix modules.
-- **Stylix theming** is configured in `th3g3ntl3man.nix` using base16 chalk dark. Desktop targets (`gtk`, `qt`, `gnome`, etc.) are `lib.mkDefault false` so they can be overridden per desktop.
-- **Editors**: the active editor is `nixvim` (imported in `home-manager/modules/editors/default.nix`). Others (`nvf`, `lazyvim`, `nvfvim`) are present but commented out.
-- **Neovim spell/wordlist activation** runs `DirtytalkUpdate` as a home activation hook in `nvf.nix`.
-- **`result/`** is a build artifact (symlink forest into `/nix/store`). Do not track, do not touch.
-- **No CI**, **no formatter**, **no linter**, **no tests** configured. `treefmt-nix` is a flake input but unused. No pre-commit hooks. No devShell.
+- **Feature composition**: hosts compose features via `imports = [ self.nixosModules.<name> ]`
+- **Wrapped programs**: use `inputs.wrappers.lib.wrapPackage` for simple wraps
+- **Complex wraps**: use `inputs.wrappers.wrapperModules.<name>.apply` (e.g. kitty)
+- **Cross-references**: use `self'.packages.<name>` inside `perSystem` blocks
+- **Comment-out patterns**: never delete disabled modules, toggle with `#`
+- **`result/`** is a build artifact — never track
+
+## NixOS Features
+
+Features are defined as `flake.nixosModules.<name>` in `nixos/features/`.
+Hosts compose them in `nixos/hosts/<host>.nix`:
+
+```nix
+imports = [
+  inputs.self.nixosModules.base
+  inputs.self.nixosModules.general
+  inputs.self.nixosModules.desktop
+  # ... more features
+];
+```
+
+## Wrapped Programs
+
+Programs are wrapped using `nix-wrapper-modules` and available as
+`packages.x86_64-linux.<name>`:
+
+- **Simple**: `inputs.wrappers.lib.wrapPackage { ... }`
+- **Module-based**: `inputs.wrappers.wrapperModules.<name>.apply { ... }`
+- **Environment**: `self'.packages.environment` aggregates all programs
+
+## Flake inputs
+
+| Input | Purpose |
+|-------|---------|
+| `nixpkgs` | nixos-unstable |
+| `home-manager` | User environment management |
+| `flake-parts` | Flake structure |
+| `wrappers` | Lassulus wrappers |
+| `wrapper-modules` | BirdeeHub nix-wrapper-modules |
+| `disko` | Declarative disk partitioning |
+| `stylix` | System theming |
+| `nixvim` | Neovim configuration |
+| `noctalia` | Desktop shell |
+| `nur` | Nix User Repository |
+| `nix-index-database` | Pre-built nix-index database |
+| `llm-agents` | AI coding agents (opencode, etc.) |
+| `hardware` | NixOS hardware quirks |
+| `razerdaemon` | Razer device control |
 
 ## OpenCode
 
