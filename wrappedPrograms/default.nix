@@ -19,5 +19,6 @@
     ./ghostty.nix
     ./zed.nix
     ./nix-search-tv.nix
+    ./environment.nix
   ];
 }

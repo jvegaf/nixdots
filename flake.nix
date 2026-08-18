@@ -45,7 +45,8 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
 
-
+    nix-index-database.url = "github:nix-community/nix-index-database";
+    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
 
     # Daily-built AI coding agents (opencode, claude-code, codex, ...)
     llm-agents.url = "github:numtide/llm-agents.nix";
@@ -57,6 +58,24 @@
       imports = [
         ./parts.nix
         ./wrappedPrograms
+        ./nixos/base/user.nix
+        ./nixos/base/monitors.nix
+        ./nixos/base/keymap.nix
+        ./nixos/features/nix.nix
+        ./nixos/features/gtk.nix
+        ./nixos/features/pipewire.nix
+        ./nixos/features/desktop.nix
+        ./nixos/features/firefox.nix
+        ./nixos/features/chromium.nix
+        ./nixos/features/general.nix
+        ./nixos/features/thunar.nix
+        ./nixos/features/1password.nix
+        ./nixos/features/docker.nix
+        ./nixos/features/ollama.nix
+        ./nixos/hosts/razer-blade.nix
+        ./nixos/hosts/minis.nix
+        ./nixos/hosts/surface.nix
+        ./nixos/hosts/vm.nix
       ];
 
       systems = [ "x86_64-linux" ];
@@ -71,9 +90,9 @@
         let
           mkHost =
             {
-              hostName,
-              extraModules ? [ ],
+              hostModule,
               userModule ? ./modules/home/home.nix,
+              extraModules ? [ ],
               extraSpecialArgs ? { },
             }:
             inputs.nixpkgs.lib.nixosSystem {
@@ -88,7 +107,7 @@
                     inputs.nur.overlays.default
                   ];
                 }
-                ./hosts/${hostName}/configuration.nix
+                hostModule
                 inputs.home-manager.nixosModules.home-manager
                 {
                   home-manager.useGlobalPkgs = false;
@@ -112,18 +131,18 @@
         {
           nixosConfigurations = {
             razer-blade = mkHost {
-              hostName = "razer-blade";
+              hostModule = inputs.self.nixosModules.hostRazerBlade;
               extraModules = [ inputs.disko.nixosModules.disko ];
             };
 
             minis-z83 = mkHost {
-              hostName = "minis-z83";
+              hostModule = inputs.self.nixosModules.hostMinis;
               userModule = ./modules/home/minimal.nix;
               extraModules = [ inputs.disko.nixosModules.disko ];
             };
 
             surface-pro = mkHost {
-              hostName = "surface-pro";
+              hostModule = inputs.self.nixosModules.hostSurface;
               userModule = ./modules/home/sway.nix;
               extraSpecialArgs = {
                 host = "surface-pro";
@@ -132,7 +151,7 @@
             };
 
             vm = mkHost {
-              hostName = "vm";
+              hostModule = inputs.self.nixosModules.hostVm;
               extraModules = [ inputs.disko.nixosModules.disko ];
             };
           };
