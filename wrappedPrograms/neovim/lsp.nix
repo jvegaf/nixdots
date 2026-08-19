@@ -1,6 +1,6 @@
-{self, ...}: {
-  flake.modules.neovim.lua = {pkgs, ...}: {
-    extraPackages = [
+{ self, ... }: {
+  flake.modules.neovim.lua = { pkgs, ... }: {
+    runtimePkgs = [
       pkgs.lua-language-server
     ];
 
@@ -13,10 +13,10 @@
     };
   };
 
-  flake.modules.neovim.ts = {pkgs, ...}: {
-    extraPackages = [pkgs.typescript-language-server];
+  flake.modules.neovim.ts = { pkgs, ... }: {
+    runtimePkgs = [ pkgs.typescript-language-server ];
     specs.ts = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -32,11 +32,11 @@
     };
   };
 
-  flake.modules.neovim.astro = {pkgs, ...}: {
-    extraPackages = [pkgs.astro-language-server];
+  flake.modules.neovim.astro = { pkgs, ... }: {
+    runtimePkgs = [ pkgs.astro-language-server ];
 
     specs.astro = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -52,11 +52,11 @@
     };
   };
 
-  flake.modules.neovim.qml = {pkgs, ...}: {
-    extraPackages = [pkgs.kdePackages.qtdeclarative];
+  flake.modules.neovim.qml = { pkgs, ... }: {
+    runtimePkgs = [ pkgs.kdePackages.qtdeclarative ];
 
     specs.qml = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -68,11 +68,11 @@
     };
   };
 
-  flake.modules.neovim.rust = {pkgs, ...}: {
-    extraPackages = [pkgs.rust-analyzer];
+  flake.modules.neovim.rust = { pkgs, ... }: {
+    runtimePkgs = [ pkgs.rust-analyzer ];
 
     specs.rust = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -81,14 +81,14 @@
     };
   };
 
-  flake.modules.neovim.nix = {pkgs, ...}: {
-    extraPackages = [
+  flake.modules.neovim.nix = { pkgs, ... }: {
+    runtimePkgs = [
       pkgs.nixd
       pkgs.alejandra
     ];
 
     specs.nix = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -110,13 +110,13 @@
     };
   };
 
-  flake.modules.neovim.mdx = {pkgs, ...}: {
-    extraPackages = [
+  flake.modules.neovim.mdx = { pkgs, ... }: {
+    runtimePkgs = [
       pkgs.mdx-language-server
     ];
 
     specs.mdx = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config =
         #lua
         ''
@@ -130,38 +130,41 @@
     };
   };
 
-  flake.modules.neovim.gleam = {pkgs, ...}: {
+  flake.modules.neovim.gleam = { pkgs, ... }: {
     specs.gleam = {
-      data = [pkgs.vimPlugins.nvim-lspconfig];
+      data = [ pkgs.vimPlugins.nvim-lspconfig ];
       config = ''vim.lsp.enable("gleam")'';
     };
   };
 
-  flake.modules.neovim.vjxl = {pkgs, ...}: let
-    selfpkgs = self.packages."${pkgs.system}";
-  in {
-    extraPackages = [
-      selfpkgs.vjxl-format
-    ];
-
-    specs.vjxl = {
-      data = [
-        pkgs.vimPlugins.nvim-lspconfig
-        (pkgs.vimPlugins.nvim-treesitter.grammarToPlugin selfpkgs. vjxl-grammar)
+  flake.modules.neovim.vjxl =
+    { pkgs, ... }:
+    let
+      selfpkgs = self.packages."${pkgs.stdenv.hostPlatform.system}";
+    in
+    {
+      runtimePkgs = [
+        selfpkgs.vjxl-format
       ];
-      config =
-        #lua
-        ''
-          vim.lsp.config['parser4'] = {
-            cmd = { '/home/yurii/Videos/parser4/target/release/parser4', 'lsp' },
-            filetypes = { 'vjxl' },
-            root_markers = { '.git' },
-            root_dir = vim.fn.getcwd(),
-          }
-          vim.lsp.enable('parser4')
-        '';
+
+      specs.vjxl = {
+        data = [
+          pkgs.vimPlugins.nvim-lspconfig
+          (pkgs.vimPlugins.nvim-treesitter.grammarToPlugin selfpkgs.vjxl-grammar)
+        ];
+        config =
+          #lua
+          ''
+            vim.lsp.config['parser4'] = {
+              cmd = { '/home/yurii/Videos/parser4/target/release/parser4', 'lsp' },
+              filetypes = { 'vjxl' },
+              root_markers = { '.git' },
+              root_dir = vim.fn.getcwd(),
+            }
+            vim.lsp.enable('parser4')
+          '';
+      };
     };
-  };
 
   flake.modules.neovim.allServers = {
     imports = [
