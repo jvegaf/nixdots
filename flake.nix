@@ -19,62 +19,49 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-    treefmt-nix.url = "github:numtide/treefmt-nix";
-    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    nur.url = "github:nix-community/NUR";
-    hardware.url = "github:NixOS/nixos-hardware/master";
+    # The framework I use to structure the flake, module imports are automatic via custom function below
     flake-parts.url = "github:hercules-ci/flake-parts";
-    stylix.url = "github:nix-community/stylix";
-    stylix.inputs.nixpkgs.follows = "nixpkgs";
+
+    hardware.url = "github:NixOS/nixos-hardware/master";
+    impermanence.url = "github:nix-community/impermanence";
+    persist-retro.url = "github:Geometer1729/persist-retro";
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    nix-index-database = {
+      url = "github:Mic92/nix-index-database";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     wrappers.url = "github:Lassulus/wrappers";
     wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
+
+    hjem = {
+      url = "github:feel-co/hjem";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     razerdaemon.url = "github:encomjp/razer-control-revived";
     razerdaemon.inputs.nixpkgs.follows = "nixpkgs";
-    disko.url = "github:nix-community/disko";
-    disko.inputs.nixpkgs.follows = "nixpkgs";
 
-    nix-index-database.url = "github:nix-community/nix-index-database";
-    nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
-
-    # Daily-built AI coding agents (opencode, claude-code, codex, ...)
     llm-agents.url = "github:numtide/llm-agents.nix";
+
   };
 
+  # Import all .nix files from current directory except flake.nix recursively
   outputs =
-    inputs@{ flake-parts, ... }:
-    flake-parts.lib.mkFlake { inherit inputs; } {
-      imports = [
-        ./parts.nix
-        ./wrappedPrograms
-        ./nixos/base/user.nix
-        ./nixos/base/monitors.nix
-        ./nixos/base/keymap.nix
-        ./nixos/features/nix.nix
-        ./nixos/features/gtk.nix
-        ./nixos/features/pipewire.nix
-        ./nixos/features/desktop.nix
-        ./nixos/features/firefox.nix
-        ./nixos/features/chromium.nix
-        ./nixos/features/general.nix
-        ./nixos/features/thunar.nix
-        ./nixos/features/1password.nix
-        ./nixos/features/docker.nix
-        ./nixos/features/ollama.nix
-        ./nixos/features/wallpaper/wallpaper.nix
-        ./nixos/base/host-base.nix
-        ./nixos/hosts/razer-blade/configuration.nix
-        ./nixos/hosts/minis/configuration.nix
-        ./nixos/hosts/surface/configuration.nix
-        ./nixos/hosts/vm/configuration.nix
-      ];
+    inputs:
+    let
+      inherit (inputs.nixpkgs) lib;
+      inherit (lib.fileset) toList fileFilter;
 
-      systems = [ "x86_64-linux" ];
+      isNixModule = file: file.hasExt "nix" && file.name != "flake.nix" && !lib.hasPrefix "_" file.name;
 
-      # Configuración de herramientas por arquitectura (devShells, treefmt, etc.)
-      perSystem = { pkgs, ... }: {
-        devShells.default = pkgs.mkShell { };
-      };
-    };
+      importTree = path: toList (fileFilter isNixModule path);
+
+      mkFlake = inputs.flake-parts.lib.mkFlake { inherit inputs; };
+    in
+    mkFlake { imports = importTree ./.; };
 }

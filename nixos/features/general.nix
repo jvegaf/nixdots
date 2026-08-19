@@ -1,20 +1,48 @@
-{inputs, ...}: {
-  flake.nixosModules.general = {
-    pkgs,
-    config,
-    ...
-  }: {
-    imports = [
-      inputs.self.nixosModules.nix
-    ];
+{ self, ... }: {
+  flake.nixosModules.general =
+    {
+      pkgs,
+      config,
+      ...
+    }:
+    {
+      imports = [
+        self.nixosModules.extra_hjem
+        self.nixosModules.gtk
+        self.nixosModules.nix
+      ];
 
-    programs.zsh.enable = true;
+      users.users.${config.preferences.user.name} = {
+        isNormalUser = true;
+        description = "${config.preferences.user.name}'s account";
+        extraGroups = [
+          "wheel"
+          "networkmanager"
+        ];
+        shell = self.packages.${pkgs.system}.environment;
 
-    users.users.${config.preferences.user.name} = {
-      isNormalUser = true;
-      description = "${config.preferences.user.name}'s account";
-      extraGroups = ["wheel" "networkmanager"];
-      shell = pkgs.zsh;
+        hashedPasswordFile = "/persist/passwd";
+        initialPassword = "nixos";
+      };
+
+      persistance.data.directories = [
+        "nixdots"
+
+        "Videos"
+        "Documents"
+        "Code"
+        "Documents"
+
+        ".ssh"
+      ];
+
+      # todo: remove
+      persistance.cache.directories = [
+        ".local/share/zoxide"
+        ".local/share/direnv"
+        ".local/share/nvim"
+        ".local/share/fish"
+        ".config/nvim"
+      ];
     };
-  };
 }

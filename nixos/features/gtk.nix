@@ -4,23 +4,21 @@
     lib,
     ...
   }: let
-    theme-name = "Catppuccin-Mocha-Standard-Teal-Dark";
-    theme-package = pkgs.catppuccin-gtk.override {
-      variants = ["mocha"];
-      accents = ["teal"];
-      size = "standard";
+    theme-name = "Gruvbox-Green-Dark-Medium";
+    theme-package = pkgs.gruvbox-gtk-theme.override {
+      colorVariants = ["dark"];
+      sizeVariants = ["standard"];
+      themeVariants = ["green"];
+      tweakVariants = ["medium" "macos"];
     };
 
-    icon-theme-package = pkgs.catppuccin-papirus-folders.override {
-      accent = "teal";
-      flavor = "mocha";
-    };
-    icon-theme-name = "Papirus-Dark";
+    icon-theme-package = pkgs.gruvbox-plus-icons;
+    icon-theme-name = "Gruvbox-Plus-Dark";
 
     gtksettings = ''
       [Settings]
-      gtk-icon-theme-name=${icon-theme-name}
-      gtk-theme-name=${theme-name}
+      gtk-icon-theme-name = ${icon-theme-name}
+      gtk-theme-name = ${theme-name}
     '';
   in {
     environment = {

@@ -1,18 +1,25 @@
-{inputs, ...}: {
-  flake.nixosModules.desktop = {pkgs, ...}: {
+{self, ...}: {
+  flake.nixosModules.desktop = {pkgs, ...}: let
+    selfpkgs = self.packages."${pkgs.system}";
+  in {
     imports = [
-      inputs.self.nixosModules.gtk
-      inputs.self.nixosModules.pipewire
-      inputs.self.nixosModules.firefox
-      inputs.self.nixosModules.chromium
+      self.nixosModules.gtk
+
+      self.nixosModules.pipewire
+      self.nixosModules.firefox
+      self.nixosModules.chromium
     ];
 
     programs.niri.enable = true;
+    programs.niri.package = selfpkgs.niri;
 
-    preferences.autostart = [];
+    # preferences.autostart = [selfpkgs.quickshellWrapped];
+    preferences.autostart = [selfpkgs.noctalia-shell];
 
     environment.systemPackages = [
+      selfpkgs.terminal
       pkgs.pcmanfm
+      selfpkgs.noctalia-shell
     ];
 
     fonts.packages = with pkgs; [
@@ -29,18 +36,18 @@
       monospace = ["JetBrainsMono Nerd Font"];
     };
 
-    time.timeZone = "Europe/Madrid";
+    time.timeZone = "Europe/Kyiv";
     i18n.defaultLocale = "en_US.UTF-8";
     i18n.extraLocaleSettings = {
-      LC_ADDRESS = "es_ES.UTF-8";
-      LC_IDENTIFICATION = "es_ES.UTF-8";
-      LC_MEASUREMENT = "es_ES.UTF-8";
-      LC_MONETARY = "es_ES.UTF-8";
-      LC_NAME = "es_ES.UTF-8";
-      LC_NUMERIC = "es_ES.UTF-8";
-      LC_PAPER = "es_ES.UTF-8";
-      LC_TELEPHONE = "es_ES.UTF-8";
-      LC_TIME = "es_ES.UTF-8";
+      LC_ADDRESS = "uk_UA.UTF-8";
+      LC_IDENTIFICATION = "uk_UA.UTF-8";
+      LC_MEASUREMENT = "uk_UA.UTF-8";
+      LC_MONETARY = "uk_UA.UTF-8";
+      LC_NAME = "uk_UA.UTF-8";
+      LC_NUMERIC = "uk_UA.UTF-8";
+      LC_PAPER = "uk_UA.UTF-8";
+      LC_TELEPHONE = "uk_UA.UTF-8";
+      LC_TIME = "uk_UA.UTF-8";
     };
 
     services.upower.enable = true;

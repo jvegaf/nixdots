@@ -5,5 +5,9 @@
     environment.systemPackages = [
       pkgs.ungoogled-chromium
     ];
+
+    persistance.cache.directories = [
+      ".config/chromium"
+    ];
   };
 }
