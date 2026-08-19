@@ -22,7 +22,7 @@
         self.nixosModules.general
 
         # Hardware
-        ./hardware-configuration.nix
+        self.nixosModules.vmHardware
         # (import ../../hosts/disks/gpt-ext4.nix { device = "/dev/sda"; })
       ];
 

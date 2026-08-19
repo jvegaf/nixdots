@@ -52,10 +52,13 @@
           pkgs.wget
           pkgs.killall
           pkgs.sshfs
+          pkgs.eza
+          pkgs.btop
           pkgs.fzf
           pkgs.htop
           pkgs.fd
           pkgs.zoxide
+          pkgs.fastfetch
           pkgs.dust
           pkgs.ripgrep
           pkgs.tree-sitter
@@ -63,6 +66,7 @@
           pkgs.imv
           pkgs.ffmpeg-full
           pkgs.yt-dlp
+          pkgs.lazygit
 
           # wrapped
           self'.packages.neovimDynamic
@@ -72,23 +76,23 @@
           self'.packages.jujutsu
           self'.packages.nix-check-bin
 
-          self'.packages.neovim
-          self'.packages.lazygit
-          self'.packages.zsh
-          self'.packages.starship
-          self'.packages.bat
-          self'.packages.eza
-          self'.packages.btop
-          self'.packages.fastfetch
-          self'.packages.tmux
-          self'.packages.zellij
-          self'.packages.yazi
-          self'.packages.helix
-          self'.packages.tealdeer
-          self'.packages.alacritty
-          self'.packages.ghostty
-          self'.packages.zed
-          self'.packages.ns
+          # self'.packages.neovim
+          # self'.packages.lazygit
+          # self'.packages.zsh
+          # self'.packages.starship
+          # self'.packages.bat
+          # self'.packages.eza
+          # self'.packages.btop
+          # self'.packages.fastfetch
+          # self'.packages.tmux
+          # self'.packages.zellij
+          # self'.packages.yazi
+          # self'.packages.helix
+          # self'.packages.tealdeer
+          # self'.packages.alacritty
+          # self'.packages.ghostty
+          # self'.packages.zed
+          # self'.packages.ns
         ];
         env = {
           EDITOR = lib.getExe self'.packages.neovimDynamic;
