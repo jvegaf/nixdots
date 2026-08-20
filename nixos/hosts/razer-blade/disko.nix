@@ -1,5 +1,5 @@
 {
-  flake.nixosConfigurations.blade = {
+  flake.diskoConfigurations.razerBlade = {
     disko.devices = {
       disk = {
         main = {

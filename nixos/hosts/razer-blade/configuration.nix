@@ -26,8 +26,7 @@
 
         self.nixosModules.telegram
 
-        self.nixosModules.thunar
-        self.nixosModules.onepassword
+        # self.nixosModules.onepassword
 
         # Hardware
         self.nixosModules.razerBladeHardware
