@@ -24,17 +24,17 @@
       which_key = {
         enabled = true;
       };
-      # theme = {
-      #   dark = "Vague";
-      #   light = "Vague";
-      # };
-      # buffer_font_family = "JetBrainsMono Nerd Font Mono";
-      # buffer_font_size = 14;
-      # buffer_font_weight = 500;
-      # buffer_line_height = "standard";
-      # ui_font_family = "JetBrainsMono Nerd Font Mono";
-      # ui_font_weight = 500;
-      # ui_font_size = 14;
+      theme = {
+        dark = "Vague";
+        light = "Vague";
+      };
+      buffer_font_family = "JetBrainsMono Nerd Font Mono";
+      buffer_font_size = 14;
+      buffer_font_weight = 500;
+      buffer_line_height = "standard";
+      ui_font_family = "JetBrainsMono Nerd Font Mono";
+      ui_font_weight = 500;
+      ui_font_size = 14;
       active_pane_modifiers.border_size = 1;
       inline_code_actions = false;
       toolbar = {

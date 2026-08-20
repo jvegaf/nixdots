@@ -3,6 +3,6 @@
     ./nixvim
     # ./vscode.nix
     ./zed
-    # ./evil-helix.nix
+    ./evil-helix.nix
   ];
 }
