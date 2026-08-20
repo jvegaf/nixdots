@@ -1,6 +1,29 @@
 {
   description = "NixOS configuration";
 
+  nixConfig = {
+    extra-substituters = [
+      "https://cache.nixos.org"
+      "https://niri-epireyn.cachix.org"
+      "https://nix-community.cachix.org"
+      "https://noctalia.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://cache.numtide.com"
+      "https://pre-commit-hooks.cachix.org"
+      "https://nixpkgs-unfree.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "niri-epireyn.cachix.org-1:tlVyFN7CtsDT+ZcLPS+ekFWeT1X6X4OqvWqbBMyIzFA="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "pre-commit-hooks.cachix.org-1:Pkk3Panw5AW24TOv6kz3PvLhlH8puAsJTBbOPmBo7Rc="
+      "nixpkgs-unfree.cachix.org-1:hqvoInulhbV4nJ9yJOEr+4wxhDV4xq2d1DK7S6Nj6rs="
+    ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     home-manager.url = "github:nix-community/home-manager";
@@ -51,10 +74,10 @@
       flake = false;
     };
 
-    gentle-ai = {
-      url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
-      flake = false;
-    };
+    # gentle-ai = {
+    #   url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
+    #   flake = false;
+    # };
 
   };
 
@@ -80,7 +103,7 @@
 
         # the flake utilities
         ./flake
-        ./pkgs
+        # ./pkgs
       ];
 
       flake = {

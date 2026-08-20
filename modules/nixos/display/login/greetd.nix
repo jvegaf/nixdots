@@ -13,6 +13,8 @@ let
   inherit (config.modules.display) desktop;
   inherit (desktop) isWayland;
 
+  cfg = config.modules.display.desktop;
+
   sessionData = config.services.displayManager.sessionData.desktops;
   sessionPath = "${sessionData}/share/wayland-sessions";
 
@@ -36,7 +38,7 @@ in
   config = mkIf isWayland {
     # greetd display manager
     services.greetd = {
-      enable = true;
+      enable = !cfg.gnome.enable;
       restart = !os.autoLogin;
 
       # <https://man.sr.ht/~kennylevinsen/greetd/>

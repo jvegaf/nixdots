@@ -24,6 +24,7 @@ in
         ]
         ++ optionals config.networking.networkmanager.enable [ "networkmanager" ];
         # hashedPasswordFile = config.sops.secrets.${subPath}.path;
+        hashedPasswordFile = "/persist/passwd";
         initialPassword = "nixos";
         shell = pkgs.zsh; # Default shell
       };

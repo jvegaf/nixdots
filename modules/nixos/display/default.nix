@@ -22,10 +22,11 @@ in
     hyprland.enable = mkEnableOption "Enable the hyprland desktop";
     niri.enable = mkEnableOption "Enable the Niri desktop";
     sway.enable = mkEnableOption "Enable the Sway desktop";
+    gnome.enable = mkEnableOption "Enable the Gnome desktop";
 
     isWayland = mkOption {
       type = types.bool;
-      default = cfg.hyprland.enable || cfg.niri.enable || cfg.sway.enable;
+      default = cfg.hyprland.enable || cfg.gnome.enable || cfg.niri.enable || cfg.sway.enable;
       description = ''
         Whether to enable Wayland exclusive modules, this contains a wariety
         of packages, modules, overlays, XDG portals and so on.

@@ -10,6 +10,7 @@ in
   imports = [
     ./bar
     ./hyprland
+    ./gnome
     ./hypridle.nix
     ./hyprlock.nix
     ./hyprpaper.nix

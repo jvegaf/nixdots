@@ -39,12 +39,12 @@ in
     modules = {
       desktop = {
         # bar = "dankMaterialShell";
-        bar = "waybar";
+        # bar = "waybar";
       };
 
       theme = {
         wallpaper = ../../modules/home/th3g3ntl3man/theming/wallpaper2.png;
-        stylix.enable = true;
+        stylix.enable = false;
       };
 
       # services.nextcloud-client.enable = false;
@@ -121,6 +121,7 @@ in
   modules = {
     roles = {
       laptop.enable = true;
+      development.enable = true;
     };
 
     # networking = {
@@ -139,8 +140,9 @@ in
 
     display = {
       gpuAcceleration.enable = true;
-      desktop.sway.enable = true;
+      desktop.sway.enable = false;
       desktop.niri.enable = false;
+      desktop.gnome.enable = true;
 
       monitors = [
         {
@@ -166,7 +168,7 @@ in
     };
 
     programs = {
-      thunar.enable = true;
+      thunar.enable = false;
     };
 
     os = {

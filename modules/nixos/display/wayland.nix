@@ -23,6 +23,40 @@ in
       };
     })
 
+    (mkIf cfg.gnome.enable {
+      services = {
+        displayManager.gdm.enable = true;
+        desktopManager.gnome.enable = true;
+        xserver.xkb = {
+          layout = "us";
+          variant = "";
+        };
+        libinput.enable = true;
+      };
+
+      # GNOME-specific packages
+      environment.systemPackages = with pkgs; [
+        ghostty
+        file-roller
+      ];
+
+      environment.gnome.excludePackages = with pkgs; [
+        baobab
+        decibels
+        gnome-characters
+        gnome-connections
+        gnome-contacts
+        gnome-maps
+        gnome-tour
+        gnome-terminal
+        gnome-software
+        seahorse
+        showtime
+        snapshot
+        yelp
+      ];
+    })
+
     # Session for greetd
     (mkIf cfg.hyprland.enable {
       programs.hyprland = {
