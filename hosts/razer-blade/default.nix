@@ -124,6 +124,8 @@ in
       development.enable = true;
     };
 
+    editor.neovim = "lazyvim";
+
     # networking = {
     #   tailscale.enable = false;
     #   optomizeTcp = false;

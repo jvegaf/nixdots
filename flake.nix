@@ -40,6 +40,7 @@
     hardware.url = "github:NixOS/nixos-hardware/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
+    lazyvim.url = "github:pfassina/lazyvim-nix";
 
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
