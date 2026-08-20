@@ -20,11 +20,12 @@ in
   imports = [
     ./permission.nix
     ./lsp.nix
-    # ./oh-my-opencode.nix
   ];
 
   programs.opencode = {
     enable = true;
+
+    package = inputs.llm-agents.packages.${pkgs.system}.opencode;
 
     enableMcpIntegration = true;
 
@@ -56,6 +57,9 @@ in
         "@tarquinen/opencode-dcp@latest"
         # Support background shell commands
         "opencode-pty"
+
+        "@mohak34/opencode-notifier@latest"
+        "@tarquinen/opencode-smart-title"
 
         # "oh-my-opencode@latest"
         "@simonwjackson/opencode-direnv@latest"

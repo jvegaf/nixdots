@@ -61,6 +61,8 @@
     # create nix project automatically
     dev-assistant.url = "github:spector700/DevAssistant";
 
+    llm-agents.url = "github:numtide/llm-agents.nix";
+
     noctalia.url = "github:noctalia-dev/noctalia-shell";
     noctalia.inputs.nixpkgs.follows = "nixpkgs";
 
