@@ -23,7 +23,9 @@
 
         # Hardware
         self.nixosModules.vmHardware
-        # (import ../../hosts/disks/gpt-ext4.nix { device = "/dev/sda"; })
+
+        inputs.disko.nixosModules.disko
+        self.diskoConfigurations.vm
       ];
 
       nixpkgs.config.allowUnfree = true;
