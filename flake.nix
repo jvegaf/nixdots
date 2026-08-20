@@ -74,6 +74,11 @@
       flake = false;
     };
 
+    plasma-manager = {
+      url = "github:nix-community/plasma-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.home-manager.follows = "home-manager";
+    };
     # gentle-ai = {
     #   url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
     #   flake = false;

@@ -13,6 +13,8 @@
       shell-integration = "detect";
       unfocused-split-opacity = 0.4;
       maximize = true;
+      confirm-close-surface = false;
+      quit-after-last-window-closed = true;
     };
   };
 }

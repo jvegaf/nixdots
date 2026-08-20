@@ -7,7 +7,7 @@
 {
 
   imports = [
-    # ./plugins/git.nix
+    ./plugins/git.nix
     ./plugins/mediainfo.nix
     ./plugins/ouch.nix
     # ./plugins/starship.nix

@@ -15,7 +15,6 @@ in
     enableDefaultConfig = false;
 
     settings = {
-
       "github.com" = {
         hostname = "github.com";
         identityFile = "${homeDirectory}/.ssh/jvegaf_ed25519";
