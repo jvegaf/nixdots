@@ -42,6 +42,8 @@ in
         # bar = "waybar";
       };
 
+      editor.neovim = "lazyvim";
+
       theme = {
         wallpaper = ../../modules/home/th3g3ntl3man/theming/wallpaper2.png;
         stylix.enable = false;
@@ -53,6 +55,7 @@ in
         zathura.enable = true;
         rofi.enable = true;
         firefox.enable = true;
+        brave.enable = true;
         orca-slicer.enable = true;
       };
     };
@@ -123,8 +126,6 @@ in
       laptop.enable = true;
       development.enable = true;
     };
-
-    editor.neovim = "lazyvim";
 
     # networking = {
     #   tailscale.enable = false;

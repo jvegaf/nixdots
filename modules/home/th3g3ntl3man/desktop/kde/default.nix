@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
   # home.stateVersion = "23.11";
+
+  imports = [
+    inputs.plasma-manager.homeModules.plasma-manager
+  ];
 
   programs.plasma = {
     enable = true;

@@ -72,6 +72,7 @@
       lshw
       nmap
       curl
+      qbittorrent
     ];
 
     variables = {

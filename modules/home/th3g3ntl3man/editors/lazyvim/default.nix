@@ -10,11 +10,11 @@ let
   cfg = config.modules.editor.neovim;
 in
 {
-  config = mkIf (cfg == "lazyvim") {
+  imports = [
+    inputs.lazyvim.homeManagerModules.default
+  ];
 
-    imports = [
-      inputs.lazyvim.homeManagerModules.default
-    ];
+  config = mkIf (cfg == "lazyvim") {
 
     programs.lazyvim = {
       enable = true;
@@ -64,8 +64,8 @@ in
         };
 
         editor = {
-          snacks_explorer.enable = true;
-          snacks_picker.enable = true;
+          snacks-explorer.enable = true;
+          snacks-picker.enable = true;
           outline.enable = true;
           illuminate.enable = true;
           inc-rename.enable = true;

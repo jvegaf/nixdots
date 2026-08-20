@@ -21,7 +21,6 @@ in
         nullOr (enum [
           "lazyvim"
           "nixvim"
-          "nvf"
         ]);
       default = null;
       description = "Which neovim module to use";

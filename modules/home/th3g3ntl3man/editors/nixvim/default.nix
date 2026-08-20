@@ -9,18 +9,11 @@ let
   cfg = config.modules.editor.neovim;
 in
 {
+  imports = [
+    inputs.nixvim.homeModules.nixvim
+  ];
+
   config = mkIf (cfg == "nixvim") {
-
-    imports = [
-      inputs.nixvim.homeModules.nixvim
-    ];
-
-    nixpkgs = {
-      config = {
-        allowUnfree = true;
-        allowUnfreePredicate = _: true;
-      };
-    };
 
     programs.nixvim = {
       imports = [
@@ -49,8 +42,6 @@ in
       ];
 
       enable = true;
-
-      nixpkgs.config.allowUnfree = true;
 
       enableMan = false;
 

@@ -11,7 +11,6 @@ let
   # combine hm flake input and the home module to be imported together
   homeManager = [
     inputs.home-manager.nixosModules.home-manager
-    inputs.plasma-manager.homeModules.plasma-manager
     # inputs.zen-browser.homeModules.twilight
     ../modules/home # home-manager configurations for hosts that need home-manager
   ];
