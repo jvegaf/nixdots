@@ -82,9 +82,9 @@
                 {
                   nixpkgs.overlays = [
                     inputs.nur.overlays.default
-                    (final: prev: {
-                      gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                    })
+                    # (final: prev: {
+                    #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                    # })
                   ];
                 }
                 ./hosts/${hostName}/configuration.nix
@@ -99,9 +99,9 @@
                     {
                       nixpkgs.overlays = [
                         inputs.nur.overlays.default
-                        (final: prev: {
-                          gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                        })
+                        # (final: prev: {
+                        #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                        # })
                       ];
                     }
                   ];
@@ -126,7 +126,7 @@
 
             surface-pro = mkHost {
               hostName = "surface-pro";
-              userModule = ./modules/home/sway.nix;
+              # userModule = ./modules/home/sway.nix;
               extraSpecialArgs = {
                 host = "surface-pro";
               };

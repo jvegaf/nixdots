@@ -4,11 +4,15 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    (import ../disks/gpt-ext4.nix { device = "/dev/nvme0n1"; swapSize = "4G"; })
+    (import ../disks/gpt-ext4.nix {
+      device = "/dev/nvme0n1";
+      swapSize = "4G";
+    })
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/desktop/sway
+    ../../modules/nixos/desktop/gnome
+    # ../../modules/nixos/desktop/hyprland
   ];
 
   # Use patched kernel 6.15 for better webcam support (hopefully)

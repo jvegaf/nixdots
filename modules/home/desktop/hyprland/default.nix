@@ -1,12 +1,18 @@
-{ pkgs, ... }: {
+{
+  inputs,
+  pkgs,
+  lib,
+  ...
+}:
+{
   imports = [
     ./hyprlock.nix
-    ../waybar/default.nix
   ];
 
   home.packages = with pkgs; [
     ags
     awww
+    inputs.noctalia.packages.${pkgs.stdenv.hostPlatform.system}.default
   ];
 
   wayland.windowManager.hyprland = {
@@ -23,7 +29,7 @@
     settings =
       let
         # Hyprland
-        border_size = 0;
+        border_size = 2;
         gaps_in = 5;
         gaps_out = 10;
         gaps_ws = -10;
@@ -32,7 +38,6 @@
         inactive_border_col = "rgba(86aaeccc) rgba(93cee9cc) 45deg";
 
         # Apps
-        terminal = "ghostty";
         floating_terminal = "ghostty start --class ghostty-floating";
         editor = "ghostty -e nvim";
         browser = "firefox";
@@ -45,8 +50,8 @@
         #-- Output
         # See https://wiki.hyprland.org/Configuring/Monitors
         monitor = [
-          "eDP-1,2560x1440@60,0x0,1,33"
-          "HDMI-A-1,preferred,0x-1440,1"
+          "eDP-1,2736x1824@60,0x0,1,9"
+          # "HDMI-A-1,preferred,0x-1440,1"
         ];
 
         #-- Input: Keyboard, Mouse, Touchpad
@@ -190,7 +195,7 @@
 
         bind = [
           # apps
-          "SUPER, Return, exec, ${terminal}"
+          "SUPER, Return, exec, ${lib.getExe pkgs.ghostty}"
           "SUPER, Space, exec, vicinae toggle"
           "SUPER, F, exec, ${filemanager}"
           "SUPER, E, exec, ${editor}"
@@ -252,15 +257,15 @@
           "SUPER_SHIFT, 7, movetoworkspacesilent, 7"
         ];
 
-        workspace = [
-          "1, monitor:HDMI-A-1, default:true"
-          "2, monitor:HDMI-A-1"
-          "3, monitor:HDMI-A-1"
-          "4, monitor:HDMI-A-1"
-          "5, monitor:HDMI-A-1"
-          "6, monitor:eDP-1"
-          "7, monitor:eDP-1"
-        ];
+        # workspace = [
+        #   "1, monitor:HDMI-A-1, default:true"
+        #   "2, monitor:HDMI-A-1"
+        #   "3, monitor:HDMI-A-1"
+        #   "4, monitor:HDMI-A-1"
+        #   "5, monitor:HDMI-A-1"
+        #   "6, monitor:eDP-1"
+        #   "7, monitor:eDP-1"
+        # ];
 
         binde = [
           # resize active
@@ -295,12 +300,13 @@
 
         "exec-once" = [
           # load hyprland plugins
+          "noctalia"
           # "hyprctl plugin load '$HYPR_PLUGIN_DIR/lib/libhyprexpo.so'"
 
           "easyeffects --w"
           "awww-daemon"
           # "${pkgs.tpanel}/bin/tpanel"
-          "waybar"
+          # "waybar"
           "kdeconnectd"
           "kdeconnect-indicator"
         ];

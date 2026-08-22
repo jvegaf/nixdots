@@ -2,7 +2,7 @@
   imports = [
     ./common
     ./gnome
-    ./hyprland-lua
+    # ./hyprland-lua
     # ./hyprland
     # ./niri
     # ./noctalia
