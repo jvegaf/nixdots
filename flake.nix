@@ -44,10 +44,10 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    # gentle-ai = {
-    #   url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
-    #   flake = false;
-    # };
+    superpowers = {
+      url = "github:obra/superpowers";
+      flake = false;
+    };
 
     # Daily-built AI coding agents (opencode, claude-code, codex, ...)
   };

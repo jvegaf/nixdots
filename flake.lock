@@ -377,11 +377,11 @@
         "treefmt-nix": "treefmt-nix"
       },
       "locked": {
-        "lastModified": 1787685817,
-        "narHash": "sha256-p0OeLu0T5RCjJBEzIn8oqXS3x8Ax+sy3VyUj8YUrLdA=",
+        "lastModified": 1787689371,
+        "narHash": "sha256-649+dbEjb/AY7Pr+qpZCxA1LaSxEptvZjoGwvXMt0J0=",
         "owner": "numtide",
         "repo": "llm-agents.nix",
-        "rev": "75d0500bdfd718c5cc4b11b3c1d06821194db711",
+        "rev": "ab1d7904070d60b2e988ba5691e09d09472f1f4c",
         "type": "github"
       },
       "original": {
@@ -557,11 +557,11 @@
         "systems": "systems_3"
       },
       "locked": {
-        "lastModified": 1787665745,
-        "narHash": "sha256-JzAp6bfS6o6nsUfjAh5dpZW0ezuNZnW8XqcYOLaggSM=",
+        "lastModified": 1787690150,
+        "narHash": "sha256-AOSb/u8r0KtrZ7L6EETZVkG2A6U/ygO9+FgrLnsEtN0=",
         "owner": "nix-community",
         "repo": "nixvim",
-        "rev": "6936df86ee44236ee55725b3b2e2a7213e1c29df",
+        "rev": "6ab631caaf59ad8cfd45e3af6722b3c6d9c8f23b",
         "type": "github"
       },
       "original": {
@@ -595,11 +595,11 @@
         "nixpkgs": "nixpkgs_6"
       },
       "locked": {
-        "lastModified": 1787684321,
-        "narHash": "sha256-OThBreiW73KY3uG/4Al/LlYBIGUoOrEgPVnr/9pEUyY=",
+        "lastModified": 1787690206,
+        "narHash": "sha256-YATKUVcFVXb19cDLHvu7YdD5ZbYzoJxgKk+SApK0WnY=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "8cbfe0d9d6fa8fa48627cc34a01ce9dcfefe4467",
+        "rev": "0fbdb0d7302474fce37ddafa8489fcd6748f9fc9",
         "type": "github"
       },
       "original": {
@@ -668,6 +668,7 @@
         "nur": "nur",
         "razerdaemon": "razerdaemon",
         "stylix": "stylix",
+        "superpowers": "superpowers",
         "treefmt-nix": "treefmt-nix_2",
         "yazi": "yazi"
       }
@@ -746,6 +747,22 @@
       "original": {
         "owner": "nix-community",
         "repo": "stylix",
+        "type": "github"
+      }
+    },
+    "superpowers": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1786553601,
+        "narHash": "sha256-EsGNO0dULWf5Bx6bGrCv2kI2Z8aKH0kRvGiuN23wChQ=",
+        "owner": "obra",
+        "repo": "superpowers",
+        "rev": "b36e0829c6d0140e93cfef2ca599b1b07d4a7797",
+        "type": "github"
+      },
+      "original": {
+        "owner": "obra",
+        "repo": "superpowers",
         "type": "github"
       }
     },
