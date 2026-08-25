@@ -7,6 +7,7 @@
 {
   imports = [
     # Include the results of the hardware scan.
+    (import ../disks/gpt-ext4.nix { device = "/dev/nvme0n1"; })
     ./hardware-configuration.nix
     ../../modules/nixos/hardware
     ../../modules/nixos/os
