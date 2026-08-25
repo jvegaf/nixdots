@@ -5,14 +5,14 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
     ../../modules/nixos/desktop/gnome
-    ];
+  ];
 
   # nix.settings.experimental-features = ["nix-command" "flakes"];
   #
@@ -29,7 +29,44 @@
   };
   networking.hostName = "fs0ciety"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  services.xserver.enable = true;
+  services.xserver.videoDrivers = [
+    "modesetting"
+    "nvidia"
+  ];
 
+  hardware.nvidia = {
+    # Requerido para Wayland (vital para Hyprland/Niri)
+    modesetting.enable = true;
+
+    # Gestión de energía de NVIDIA
+    powerManagement.enable = true;
+
+    # La MX150 es Pascal, por lo que requiere los drivers cerrados (open = false)
+    open = false;
+
+    # Habilita el menú de configuración de NVIDIA (nvidia-settings)
+    nvidiaSettings = true;
+
+    # Configuración de gráficos híbridos (PRIME) en modo Offload
+    prime = {
+      offload = {
+        enable = true;
+        enableOffloadCmd = true;
+      };
+      # Bus IDs de tu Xiaomi Notebook Pro 15
+      intelBusId = "PCI:0:2:0";
+      nvidiaBusId = "PCI:1:0:0";
+    };
+  };
+
+  environment.systemPackages = with pkgs; [
+    nvtopPackages.nvidia # Monitor de GPU
+    nvtopPackages.intel # Monitor de GPU
+
+    # Utilidades sistema
+    lm_sensors # Sensores de temperatura
+  ];
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
@@ -89,7 +126,7 @@
   # };
   #
   # # Enable touchpad support (enabled default in most desktopManager).
-  # # services.xserver.libinput.enable = true;
+  services.libinput.enable = true;
   #
   # # Define a user account. Don't forget to set a password with ‘passwd’.
   # # users.users."th3g3ntl3man" = {

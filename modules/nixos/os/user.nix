@@ -11,6 +11,7 @@
       "input"
       "uucp"
       "video"
+      "audio"
       #  "kvm"
       #  "libvirtd"
     ];
