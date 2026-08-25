@@ -1,67 +1,65 @@
-# nixdots — NixOS flake configuration
+# NixOS Configuration (nix-dots)
 
-Personal NixOS flake managing 4 hosts for user `th3g3ntl3man` (José Vega, josevega234@gmail.com).
+Personal NixOS + Home Manager configuration managed as a Nix flake with flake-parts.
 
-## Hosts
+## Quick Commands
 
-| Host         | NixOS modules           | Home config         | Role         |
-|-------------|------------------------|--------------------|-------------|
-| `razer-blade` | `./nixos/modules`       | `home-manager/home.nix` | Desktop/laptop (full) |
-| `minis-z83`   | `./nixos/modules/server.nix` | `home-manager/minimal.nix` | Server (minimal) |
-| `surface-pro` | `./nixos/modules`       | `home-manager/home.nix` | Desktop (full) |
-| `vm`          | `./hosts/vm` (disko)    | `modules/home/home.nix` | VirtualBox test host (GNOME + Hyprland) |
+```bash
+# Deploy (requires sudo)
+just deploy
 
-The `vm` host is a VirtualBox test machine mirroring the razer-blade desktop
-so desktop changes can be validated before touching real hardware. Its disk
-layout is declared with disko (`hosts/vm/disko.nix`); see
-`docs/vm-build-and-install.md` for the full build-and-install flow.
+# Build without activating
+just build
 
-`home-manager/th3g3ntl3man.nix` is imported for **all** hosts via `lib.filesystem.listFilesRecursive` — it contains stylix, packages, and programs shared everywhere. The `minimal.nix` and `server.nix` import fewer modules.
+# Update all flake inputs
+just up
 
-## Key commands
+# Update specific input (e.g., home-manager)
+just upp i=home-manager
 
-```sh
-just deploy         # nixos-rebuild switch --flake .#$(hostname) --elevate=sudo
-just debug          # same with --show-trace --verbose
-just up             # nix flake update (all inputs)
-just upp i=<input>  # nix flake update <input> (single input)
-just clean          # wipe profiles older than 7d
-just gc             # nix-collect-garbage --delete-old
+# Format code
+nix fmt
+
+# Run pre-commit checks
+pre-commit run --all-files
 ```
 
-Deploy **requires `--elevate=sudo`** (used in Justfile). The flake auto-detects hostname — never pass `--flake` manually.
-
-Only `x86_64-linux` supported. `allowUnfree = true` is set globally. `nixpkgs` follows `nixos-unstable`.
-
-## Structure
+## Architecture
 
 ```
-flake.nix                              # Entrypoint: 4 nixosConfigurations
-hosts/<hostname>/                      # Host-specific config + hardware scan
-hosts/vm/disko.nix                     # vm disk layout (GPT: ESP vfat /boot + ext4 /)
-docs/vm-build-and-install.md           # Full flow: Nix on Arch, build, VM install
-nixos/modules/                         # System-level NixOS modules
-nixos/modules/default.nix              # Desktop module set
-nixos/modules/server.nix               # Server module set (subset, commented switches)
-home-manager/home.nix                  # Full desktop home-manager config
-home-manager/minimal.nix               # Minimal/server home-manager config
-home-manager/th3g3ntl3man.nix          # Shared user config (stylix, packages, programs)
-home-manager/modules/                   # Modularized home-manager components
-  browsers/  common/  desktop/  editors/
-  opencode/  shell/   terminals/
+flake.nix              # Flake entry point, defines hosts
+flake/                 # flake-parts: formatting, devShell, pre-commit hooks
+hosts/<name>/          # Per-host NixOS config (hardware-configuration.nix, configuration.nix)
+modules/nixos/         # NixOS system modules (OS, hardware, desktops, programs)
+modules/home/          # Home Manager modules (user config, desktops, editors, ai-tools)
+pkgs/                  # Custom packages (currently empty)
 ```
 
-**Comment-out patterns** are used throughout for toggling modules — never delete disabled modules, just toggle their `#` in the relevant `default.nix` or `server.nix`.
+### Hosts
 
-## Conventions
+Each host has its own directory under `hosts/`. Hosts are defined in `flake.nix` via the `mkHost` helper which wires up:
+- `hosts/<name>/configuration.nix` (imports system modules)
+- Home Manager with user `th3g3ntl3man` (default: `modules/home/home.nix`)
 
-- **List all module imports explicitly** in `default.nix` / `server.nix` aggregate files. Individual config files are pure Nix modules.
-- **Stylix theming** is configured in `th3g3ntl3man.nix` using base16 chalk dark. Desktop targets (`gtk`, `qt`, `gnome`, etc.) are `lib.mkDefault false` so they can be overridden per desktop.
-- **Editors**: the active editor is `nixvim` (imported in `home-manager/modules/editors/default.nix`). Others (`nvf`, `lazyvim`, `nvfvim`) are present but commented out.
-- **Neovim spell/wordlist activation** runs `DirtytalkUpdate` as a home activation hook in `nvf.nix`.
-- **`result/`** is a build artifact (symlink forest into `/nix/store`). Do not track, do not touch.
-- **No CI**, **no formatter**, **no linter**, **no tests** configured. `treefmt-nix` is a flake input but unused. No pre-commit hooks. No devShell.
+Active hosts: `razer-blade`, `fs0ciety`, `minis-z83`, `surface-pro`, `vm`
 
-## OpenCode
+### Desktop Environments
 
-The `opencode/` module configures OpenCode editor tooling (LSP, permissions, oh-my-opencode). The `opencode` binary comes from the `llm-agents` flake input (numtide/llm-agents.nix, daily builds), pinned via `programs.opencode.package`.
+NixOS-level DE modules: `modules/nixos/desktop/{hyprland,sway,gnome,kde,niri,noctalia,xfce,budgie}/`
+Home-level DE modules: `modules/home/desktop/{hyprland,hyprland_2,sway,gnome,niri,noctalia,rofi,waybar,wofi,...}/`
+
+Hosts import specific DEs in their `configuration.nix`.
+
+## Code Style
+
+- **Formatter**: `nix fmt` runs treefmt with `nixfmt` (primary), `statix`, and `shfmt`
+- **Pre-commit hooks**: actionlint, luacheck, detect-private-keys, trim-trailing-whitespace, check-case-conflicts, check-symlinks, end-of-file-fixer, treefmt
+- **Excluded from hooks**: `flake.lock`, `*.age`, `*.sh`
+
+## Gotchas
+
+- `just deploy` / `nixos-rebuild switch` needs `--elevate=sudo`
+- Host is auto-detected via `hostname` in the justfile
+- The flake uses `flake-parts` with `perSystem` — custom packages go in `pkgs/default.nix` as `perSystem.packages`
+- direnv integration: `.envrc` calls `use flake` to activate the devShell automatically
+- Home Manager backup behavior: `overwriteBackup = true`, `backupFileExtension = "backup"`
