@@ -39,7 +39,7 @@
     # Gentle AI (custom package, see pkgs/gentle-ai)
     # gentle-ai
     # Engram (persistent memory, NUR congee: Gentleman-Programming/engram)
-    nur.repos.congee.engram
+    # nur.repos.congee.engram
 
   ];
 

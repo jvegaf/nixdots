@@ -5,15 +5,15 @@
     extra-substituters = [
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
-      "https://noctalia.cachix.org"
-      "https://hyprland.cachix.org"
+      # "https://noctalia.cachix.org"
+      # "https://hyprland.cachix.org"
       "https://cache.numtide.com"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
-      "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      # "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
+      # "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
     ];
   };
@@ -44,10 +44,10 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     llm-agents.url = "github:numtide/llm-agents.nix";
 
-    gentle-ai = {
-      url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
-      flake = false;
-    };
+    # gentle-ai = {
+    #   url = "github:decode2/gentle-ai/feat/issue-110-nixos-support";
+    #   flake = false;
+    # };
 
     # Daily-built AI coding agents (opencode, claude-code, codex, ...)
   };
@@ -81,7 +81,7 @@
               modules = [
                 {
                   nixpkgs.overlays = [
-                    inputs.nur.overlays.default
+                    # inputs.nur.overlays.default
                     # (final: prev: {
                     #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
                     # })
@@ -96,14 +96,14 @@
                   home-manager.backupFileExtension = "backup";
                   home-manager.extraSpecialArgs = { inherit inputs; };
                   home-manager.sharedModules = [
-                    {
-                      nixpkgs.overlays = [
-                        inputs.nur.overlays.default
-                        # (final: prev: {
-                        #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                        # })
-                      ];
-                    }
+                    # {
+                    #   nixpkgs.overlays = [
+                    #     inputs.nur.overlays.default
+                    #     # (final: prev: {
+                    #     #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                    #     # })
+                    #   ];
+                    # }
                   ];
                   home-manager.users.th3g3ntl3man = userModule;
                 }
@@ -115,6 +115,12 @@
           nixosConfigurations = {
             razer-blade = mkHost {
               hostName = "razer-blade";
+              extraModules = [ inputs.disko.nixosModules.disko ];
+            };
+
+            fs0ciety = mkHost {
+              hostName = "fs0ciety";
+              userModule = ./modules/home/fsociety.nix;
               extraModules = [ inputs.disko.nixosModules.disko ];
             };
 

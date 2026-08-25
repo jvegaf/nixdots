@@ -19,16 +19,19 @@
             defaultBranch = "main";
           };
 
+          core.editor = "nvim";
+          pull.rebase = true;
+
           diff.colorMoved = "default";
           # commit.gpgSign = true;
           # gpg.format = "ssh";
           # user.signingkey = "${config.home.homeDirectory}/.ssh/gitkey";
 
-          push = {
-            default = "current";
-            followTags = true;
-            autoSetupRemote = true;
-          };
+          # push = {
+          #   default = "current";
+          #   followTags = true;
+          #   autoSetupRemote = true;
+          # };
           # signing = {
           #   signByDefault = true;
           #   key = "${config.home.homeDirectory}/.ssh/gitkey";
@@ -46,6 +49,11 @@
       enable = true;
       gitCredentialHelper = {
         enable = true;
+      };
+
+      settings = {
+        git_protocol = "ssh";
+        prompt = "enabled";
       };
     };
   };
