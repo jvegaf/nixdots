@@ -23,6 +23,7 @@
         llt = "lt -a";
         rebuild = "sudo nixos-rebuild switch";
         freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade";
+        frem = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety";
         jup = "just up";
         jde = "just deploy";
         r = "ranger";
@@ -72,6 +73,8 @@
       # if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
       #   tmux attach-session -t default || tmux new-session -s default
       # fi
+
+      fastfetch
 
       # Start UWSM
       # if uwsm check may-start > /dev/null && uwsm select; then

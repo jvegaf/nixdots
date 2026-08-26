@@ -5,7 +5,7 @@
     ./common
     ./desktop
     ./editors
-    # ./opencode
+    ./opencode
     ./shell
     ./terminals
     # ./programs

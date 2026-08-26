@@ -2,12 +2,19 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 
 {
   imports = [
     # Include the results of the hardware scan.
     (import ../disks/gpt-ext4.nix { device = "/dev/nvme0n1"; })
+    (inputs.hardware + "/common/cpu/intel")
+    (inputs.hardware + "/common/gpu/intel/kaby-lake")
     ./hardware-configuration.nix
     ../../modules/nixos/hardware
     ../../modules/nixos/os
