@@ -22,7 +22,7 @@
       enable-hot-corners = true;
       show-battery-percentage = true;
       accent-color = "blue";
-      clock-show-weekday = true;
+      clock-show-weekday = false;
       color-scheme = "prefer-dark";
       font-antialiasing = "rgba";
       font-hinting = "slight";
@@ -102,13 +102,13 @@
       www = [ "<Super>b" ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>t";
-      command = "alacritty";
+      binding = "<Super>period";
+      command = "kitty";
       name = "Term";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>period";
+      binding = "<Super>t";
       command = "ghostty";
       name = "Ghostty";
     };
@@ -124,11 +124,11 @@
         "tophat@fflewddur.github.io"
       ];
       favorite-apps = [
-        "com.mitchellh.ghostty.desktop"
+        "kitty.desktop"
         "firefox.desktop"
         "org.gnome.Nautilus.desktop"
+        "com.mitchellh.ghostty.desktop"
         "alacritty.desktop"
-        "kitty.desktop"
         "org.gnome.Settings.desktop"
       ];
     };
