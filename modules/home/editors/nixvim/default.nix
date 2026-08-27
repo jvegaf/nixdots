@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ inputs, ... }:
 {
 
   imports = [
@@ -15,6 +15,7 @@
   programs.nixvim = {
     imports = [
       ./keymaps.nix
+      ./actions-preview.nix
       ./barbar.nix
       ./blink-cmp.nix
       ./comment.nix
@@ -23,6 +24,7 @@
       ./dropbar.nix
       ./flash.nix
       ./gitsigns.nix
+      ./harpoon.nix
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix

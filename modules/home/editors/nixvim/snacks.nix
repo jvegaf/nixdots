@@ -157,12 +157,12 @@
       options.desc = "Commands";
     }
     {
-      key = "<leader>sd";
+      key = "<leader>sD";
       action.__raw = "function() Snacks.picker.diagnostics() end";
       options.desc = "Diagnostics";
     }
     {
-      key = "<leader>sD";
+      key = "<leader>sd";
       action.__raw = "function() Snacks.picker.diagnostics_buffer() end";
       options.desc = "Buffer Diagnostics";
     }
