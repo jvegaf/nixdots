@@ -9,7 +9,7 @@
   services.xserver.enable = true;
 
   services.displayManager.defaultSession = "budgie-desktop";
-  services.xserver.desktopManager.budgie.enable = true;
+  services.desktopManager.budgie.enable = true;
 
   # Enable CUPS to print documents.
   # services.printing.enable = true;
@@ -19,8 +19,17 @@
     variant = "";
   };
 
+  environment.systemPackages = with pkgs; [
+    adapta-gtk-theme
+    adapta-backgrounds
+    tela-icon-theme
+    papirus-icon-theme
+    ristretto
+    parole
+  ];
+
   environment.budgie.excludePackages = with pkgs; [
-    mate.mate-terminal
+    mate-terminal
     nano
   ];
 

@@ -7,12 +7,14 @@
       "https://nix-community.cachix.org"
       "https://hyprland.cachix.org"
       "https://cache.numtide.com"
+      "https://vicinae.cachix.org"
     ];
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
       "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
       "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
     ];
   };
 
@@ -30,6 +32,11 @@
     flake-parts.url = "github:hercules-ci/flake-parts";
     stylix.url = "github:nix-community/stylix";
     stylix.inputs.nixpkgs.follows = "nixpkgs";
+    vicinae.url = "github:vicinaehq/vicinae";
+    vicinae-extensions = {
+      url = "github:vicinaehq/extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";

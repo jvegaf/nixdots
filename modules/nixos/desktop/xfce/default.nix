@@ -12,18 +12,18 @@
       xterm.enable = false;
       xfce = {
         enable = true;
-        noDesktop = true;
-        enableXfwm = false;
+        # noDesktop = true;
+        enableXfwm = true;
       };
     };
-    windowManager.i3.enable = true;
+    # windowManager.i3.enable = true;
     xkb = {
       layout = "us";
       variant = "";
     };
   };
 
-  programs.dconf.enable = true;
+  programs.xfconf.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.defaultSession = "xfce";

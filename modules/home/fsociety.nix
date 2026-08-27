@@ -4,6 +4,8 @@
     ./browsers
     ./common
     ./desktop/common
+    ./desktop/vicinae
+    # ./desktop/xfconf.nix
     ./editors
     ./opencode
     ./shell
