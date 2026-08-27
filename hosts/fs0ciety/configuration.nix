@@ -31,9 +31,22 @@
   # # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
+  hardware = {
+    intelgpu.driver = "i915";
+    enableRedistributableFirmware = true;
+    nvidia = {
+      open = false;
+      package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      prime = {
+        offload.enable = true;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
+    };
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+    };
   };
   networking.hostName = "fs0ciety"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -43,29 +56,29 @@
     "nvidia"
   ];
 
-  hardware.nvidia = {
-    package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
-    modesetting.enable = true;
-
-    # Gestión de energía de NVIDIA
-    powerManagement.enable = true;
-
-    # La MX150 es Pascal, por lo que requiere los drivers cerrados (open = false)
-    open = false;
-
-    # Habilita el menú de configuración de NVIDIA (nvidia-settings)
-    nvidiaSettings = true;
-
-    # Configuración de gráficos híbridos (PRIME) en modo Offload
-    prime = {
-      offload = {
-        enable = true;
-        enableOffloadCmd = true;
-      };
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
-    };
-  };
+  # hardware.nvidia = {
+  #   package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+  #   modesetting.enable = true;
+  #
+  #   # Gestión de energía de NVIDIA
+  #   powerManagement.enable = true;
+  #
+  #   # La MX150 es Pascal, por lo que requiere los drivers cerrados (open = false)
+  #   open = false;
+  #
+  #   # Habilita el menú de configuración de NVIDIA (nvidia-settings)
+  #   nvidiaSettings = true;
+  #
+  #   # Configuración de gráficos híbridos (PRIME) en modo Offload
+  #   prime = {
+  #     offload = {
+  #       enable = true;
+  #       enableOffloadCmd = true;
+  #     };
+  #     intelBusId = "PCI:0:2:0";
+  #     nvidiaBusId = "PCI:1:0:0";
+  #   };
+  # };
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.nvidia # Monitor de GPU
