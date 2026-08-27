@@ -16,6 +16,7 @@
 
         cdf = "cd ${flakeDir}";
 
+        env-ini = "devenv init --include-envrc";
         ls = "eza -lh --group-directories-first --icons=auto";
         l = "ls";
         ll = "ls -a";

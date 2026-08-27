@@ -9,11 +9,8 @@
   };
 
   home.packages = with pkgs; [
-    open-sans
-    nerd-fonts.fantasque-sans-mono
-    nerd-fonts.jetbrains-mono
     # platformio-core
-    # qbittorrent
+    qbittorrent
     sad
     speedtest-cli
     sshfs
@@ -35,6 +32,7 @@
     nil # Nix language server
     nix-info
     nixpkgs-fmt
+    devenv
 
     # Gentle AI (custom package, see pkgs/gentle-ai)
     # gentle-ai
