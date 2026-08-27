@@ -25,59 +25,90 @@
   # Use linuxPackages_latest for better hardware support
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
+  boot = {
+    kernelParams = [
+      "nvidia-drm.modeset=1" # Required for Wayland
+      "nvidia-drm.fbdev=1" # Fixes external-monitor flicker on niri: without a DRM
+      "button.lid_init_state=open"
+      # fbdev the NVIDIA driver drops the surface in the vblank callback on the
+      # second dGPU-driven CRTC ("missing surface in vblank callback").
+      "nvidia.NVreg_PreserveVideoMemoryAllocations=1" # Helps with suspend/resume
+      "nvidia.NVreg_TemporaryFilePath=/tmp" # Fix for temp file issues
+    ];
+
+    # Early load NVIDIA modules
+    initrd.kernelModules = [
+      "nvidia"
+      "nvidia_modeset"
+      "nvidia_uvm"
+      "nvidia_drm"
+    ];
+  };
   # Fix típico de Razer: problema con el cierre de tapa
   # AIDEV-NOTE: Algunos usuarios reportan problemas con lid, ajustar si es necesario
-  boot.kernelParams = [
-    "button.lid_init_state=open"
-    # "nvidia.NVreg_PreserveVideoMemoryAllocations=1"  # Para suspender correctamente
-  ];
 
-  # Timezone (ajustar según ubicación)
-  # time.timeZone = lib.mkDefault "Europe/Madrid";
-
-  ##############################
-  # 💻 GPU - Intel + NVIDIA RTX 3070 (Optimus/PRIME)
-  # AIDEV-NOTE: Los Bus IDs pueden variar, verificar con: lspci | grep -E "VGA|3D"
-  ##############################
   services.xserver.enable = true;
   services.xserver.videoDrivers = [
-    "modesetting"
     "nvidia"
   ];
-
-  hardware.graphics = {
-    enable = true;
-    enable32Bit = true;
-  };
 
   # Disable power-profiles-daemon (conflicts with TLP)
   services.power-profiles-daemon.enable = false;
 
   # Configuración NVIDIA con PRIME sync
-  hardware.nvidia = {
-    # Drivers estables
-    package = config.boot.kernelPackages.nvidiaPackages.stable;
-    # Use open-source kernel module
-    open = true;
-    # Modesetting del kernel para mejor rendimiento
-    modesetting.enable = true;
-    # Power management (freq scaling)
-    powerManagement.enable = true;
-    # AIDEV-NOTE: Verificar estos Bus IDs en el equipo específico
-    # Ejecutar: lspci | grep -E "VGA|3D"
-    # Ejemplo típico para Razer Blade 15 2021:
-    #   00:02.0 VGA compatible controller: Intel Corporation (iGPU)
-    #   01:00.0 VGA compatible controller: NVIDIA Corporation RTX 3070
-    prime = {
-      # Sincronización de frames para evitar tearing en modo híbrido
-      # sync.enable = true;
-      offload.enable = true;
-      # Bus IDs verificados en este hardware (lspci | grep -E "VGA|3D")
-      #   00:02.0 Intel UHD Graphics (CometLake-H GT2)
-      #   01:00.0 NVIDIA RTX 3070 Mobile
-      intelBusId = "PCI:0:2:0";
-      nvidiaBusId = "PCI:1:0:0";
+  hardware = {
+    nvidia = {
+      modesetting.enable = true;
+      powerManagement.enable = true;
+      powerManagement.finegrained = false;
+      nvidiaPersistenced = false;
+      open = true; # NVIDIA 590+ requires open kernel modules for Turing GPUs (RTX 2070 Super)
+      nvidiaSettings = true;
+      # beta (595.45.04) fails to build against kernel 7.1 — it includes
+      # linux/of_gpio.h, removed in 7.x. latest (610.43.02) handles the removal.
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
+
+      prime = {
+        sync.enable = true;
+        offload.enable = false;
+        intelBusId = "PCI:0:2:0";
+        nvidiaBusId = "PCI:1:0:0";
+      };
     };
+
+    graphics = {
+      enable = true;
+      enable32Bit = true;
+      extraPackages = with pkgs; [
+        # Vulkan support
+        # vulkan-validation-layers dropped: debug-only layer, broken build on
+        # nixpkgs 1.4.350.0 (update_deps.py git-clones in the sandbox).
+        vulkan-loader
+        vulkan-tools
+
+        # Video acceleration
+        libva-vdpau-driver
+        nvidia-vaapi-driver
+
+        # Intel iGPU video decode (Optimus: the Intel chip drives the panel and
+        # should do video, leaving the dGPU idle). Without this there is NO
+        # Intel VA-API driver in the closure at all — /run/opengl-driver/lib/dri
+        # had neither iHD nor i965 — so browsers and players fell back to
+        # software decode and burned battery.
+        #
+        # Deliberately NOT paired with LIBVA_DRIVER_NAME=nvidia: forcing VA-API
+        # at the dGPU on a hybrid laptop defeats exactly this. Leave the driver
+        # unset so libva picks per-device.
+        intel-media-driver
+
+        # # CUDA support
+        # cudaPackages.cudatoolkit
+        # cudaPackages.cudnn
+      ];
+    };
+
+    # Docker NVIDIA support
+    nvidia-container-toolkit.enable = true;
   };
 
   # NVIDIA TGP Control (opcional, para limitar consumo GPU)
@@ -145,17 +176,6 @@
   # Considerar: thermald para gestión de热量
   services.thermald.enable = true;
 
-  # AIDEV-NOTE: Limitación de TDP para laptops (opcional, requiere kernel config)
-  # boot.extraModulePackages = with pkgs; [ ];  # Añadir modules de thermald si es necesario
-
-  ##############################
-  # 🌐 NETWORK - NetworkManager
-  ##############################
-  # networking.networkmanager.enable = true;
-
-  # WiFi power saving (puede causar problemas con algunos adaptadores)
-  # networking.wireless.powerSave = false;
-
   ##############################
   # 🔥 FIREWALL
   ##############################
@@ -171,6 +191,8 @@
     nvtopPackages.nvidia # Monitor de GPU
     nvtopPackages.intel # Monitor de GPU
 
+    libva
+    libva-utils
     # Utilidades Razer
     openrazer-daemon
     polychromatic
