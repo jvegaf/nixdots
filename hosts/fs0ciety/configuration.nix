@@ -19,7 +19,7 @@
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/desktop/gnome
+    ../../modules/nixos/desktop/xfce
   ];
 
   # nix.settings.experimental-features = ["nix-command" "flakes"];

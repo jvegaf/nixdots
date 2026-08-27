@@ -3,7 +3,7 @@
   imports = [
     ./browsers
     ./common
-    ./desktop
+    ./desktop/common
     ./editors
     ./opencode
     ./shell

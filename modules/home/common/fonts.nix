@@ -1,16 +1,16 @@
-
-{ ... }:
+{ pkgs, ... }:
 {
 
-  fonts = {
-    # packages = [
-    #   pkgs.nerd-fonts.fantasque-sans-mono
-    #   pkgs.nerd-fonts.jetbrains-mono
-    #   pkgs.open-sans
-    #   pkgs.noto-fonts
-    # ];
+  home.packages = with pkgs; [
+    nerd-fonts.fantasque-sans-mono
+    nerd-fonts.jetbrains-mono
+    nerd-fonts.fira-code
+    open-sans
+    noto-fonts
+    liberation_ttf_v2
+    dejavu_fonts
+    cantarell-fonts
+  ];
 
-    fontconfig.enable = true;
-  };
-
+  fonts.fontconfig.enable = true;
 }

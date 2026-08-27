@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   imports = [
     ../../programs/thunar.nix
@@ -6,19 +6,48 @@
   # services.xserver.libinput.enable = true;
   # Enable the X11 windowing system.
   # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
+  services.xserver = {
+    enable = true;
+    desktopManager = {
+      xterm.enable = false;
+      xfce = {
+        enable = true;
+        noDesktop = true;
+        enableXfwm = false;
+      };
+    };
+    windowManager.i3.enable = true;
+    xkb = {
+      layout = "us";
+      variant = "";
+    };
+  };
+
+  programs.dconf.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.defaultSession = "xfce";
-  services.xserver.desktopManager.xfce.enable = true;
 
-  # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  environment.systemPackages = with pkgs; [
+    xsel
+    xclip
+    xfce4-cpugraph-plugin
+    xfce4-cpufreq-plugin
+    xfce4-sensors-plugin
+    elementary-xfce-icon-theme
+    xfce4-icon-theme
+    adapta-gtk-theme
+    adapta-backgrounds
+    whitesur-gtk-theme
+    whitesur-cursors
+    whitesur-icon-theme
+    tela-icon-theme
+    papirus-icon-theme
+    ristretto
+    parole
+    blueman
+    file-roller
 
-  # Configure keymap in X11
-  services.xserver.xkb = {
-    layout = "us";
-    variant = "";
-  };
+  ];
 
 }
