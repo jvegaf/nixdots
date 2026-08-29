@@ -7,7 +7,7 @@
   imports = [
     ./hardware-configuration.nix
     ./razer-blade.nix
-    (import ../disks/gpt-ext4.nix { device = "/dev/nvme0n1"; })
+    (import ../disks/gpt-ext4.nix { device = "/dev/disk/by-id/nvme-CT500P1SSD8_2004E284F1D7"; })
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
