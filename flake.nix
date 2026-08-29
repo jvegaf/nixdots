@@ -45,6 +45,7 @@
     disko.url = "github:nix-community/disko";
     disko.inputs.nixpkgs.follows = "nixpkgs";
     llm-agents.url = "github:numtide/llm-agents.nix";
+    lazyvim.url = "github:pfassina/lazyvim-nix";
 
     superpowers = {
       url = "github:obra/superpowers";
