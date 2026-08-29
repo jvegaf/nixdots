@@ -11,7 +11,6 @@
 
 {
   imports = [ inputs.razerdaemon.nixosModules.default ];
-  services.razer-laptop-control.enable = true;
   ##############################
   # 🧠 BASICS
   ##############################
@@ -44,33 +43,78 @@
       "nvidia_drm"
     ];
   };
-  # Fix típico de Razer: problema con el cierre de tapa
-  # AIDEV-NOTE: Algunos usuarios reportan problemas con lid, ajustar si es necesario
+  services = {
+    razer-laptop-control.enable = true;
+    # Fix típico de Razer: problema con el cierre de tapa
+    # AIDEV-NOTE: Algunos usuarios reportan problemas con lid, ajustar si es necesario
 
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [
-    "nvidia"
-  ];
+    xserver.enable = true;
+    # xserver.videoDrivers = [
+    #   "nvidia"
+    # ];
 
-  # Disable power-profiles-daemon (conflicts with TLP)
-  services.power-profiles-daemon.enable = false;
+    # Disable power-profiles-daemon (conflicts with TLP)
+    power-profiles-daemon.enable = false;
+
+    # NVIDIA TGP Control (opcional, para limitar consumo GPU)
+    # AIDEV-NOTE: Puede requerir nvidia-smi del paquete nvidia-utils
+    # hardware.nvidia.powerManagement.enable = true;  # Experimental
+
+    ##############################
+    # 🔋 POWER MANAGEMENT - TLP
+    # AIDEV-NOTE: TLP y auto-cpufreq no se deben usar juntos
+    ##############################
+    tlp = {
+      enable = true;
+      settings = {
+        # AIDEV-NOTE: Configuración optimizada para RTX 3070
+        # Batería
+        CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
+        CPU_SCALING_GOVERNOR_ON_BAT = "powersafe";
+        CPU_SCALING_MIN_FREQ_ON_BAT = "400000";
+        CPU_SCALING_MAX_FRED_ON_BAT = "2400000";
+
+        # Cargador
+        CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
+        CPU_SCALING_GOVERNOR_ON_AC = "performance";
+
+        # NVIDIA
+        NVIDIA_POWER_PROFILE_ON_AC = "performance";
+        NVIDIA_POWER_PROFILE_ON_BAT = "auto"; # Modo dinámico
+
+        # PCIe
+        PCI_D3_ON_AC = "y";
+        PCI_D3_ON_BAT = "y";
+
+        # SATA
+        SATA_ALPM_ON_BAT = "min_power";
+      };
+    };
+
+    ##############################
+    # 🌡️ THERMAL MANAGEMENT
+    ##############################
+    # AIDEV-NOTE: Razer Blade puede necesitar gestión térmica adicional
+    # Considerar: thermald para gestión de热量
+    thermald.enable = true;
+  };
 
   # Configuración NVIDIA con PRIME sync
   hardware = {
     nvidia = {
-      modesetting.enable = true;
+      # modesetting.enable = true;
       powerManagement.enable = true;
       powerManagement.finegrained = false;
-      nvidiaPersistenced = false;
+      # nvidiaPersistenced = false;
       open = true; # NVIDIA 590+ requires open kernel modules for Turing GPUs (RTX 2070 Super)
       nvidiaSettings = true;
       # beta (595.45.04) fails to build against kernel 7.1 — it includes
       # linux/of_gpio.h, removed in 7.x. latest (610.43.02) handles the removal.
-      package = config.boot.kernelPackages.nvidiaPackages.latest;
+      package = config.boot.kernelPackages.nvidiaPackages.stable;
 
       prime = {
         sync.enable = true;
-        offload.enable = false;
+        # offload.enable = false;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
@@ -108,42 +152,7 @@
     };
 
     # Docker NVIDIA support
-    nvidia-container-toolkit.enable = true;
-  };
-
-  # NVIDIA TGP Control (opcional, para limitar consumo GPU)
-  # AIDEV-NOTE: Puede requerir nvidia-smi del paquete nvidia-utils
-  # hardware.nvidia.powerManagement.enable = true;  # Experimental
-
-  ##############################
-  # 🔋 POWER MANAGEMENT - TLP
-  # AIDEV-NOTE: TLP y auto-cpufreq no se deben usar juntos
-  ##############################
-  services.tlp = {
-    enable = true;
-    settings = {
-      # AIDEV-NOTE: Configuración optimizada para RTX 3070
-      # Batería
-      CPU_ENERGY_PERF_POLICY_ON_BAT = "powersave";
-      CPU_SCALING_GOVERNOR_ON_BAT = "powersafe";
-      CPU_SCALING_MIN_FREQ_ON_BAT = "400000";
-      CPU_SCALING_MAX_FRED_ON_BAT = "2400000";
-
-      # Cargador
-      CPU_ENERGY_PERF_POLICY_ON_AC = "performance";
-      CPU_SCALING_GOVERNOR_ON_AC = "performance";
-
-      # NVIDIA
-      NVIDIA_POWER_PROFILE_ON_AC = "performance";
-      NVIDIA_POWER_PROFILE_ON_BAT = "auto"; # Modo dinámico
-
-      # PCIe
-      PCI_D3_ON_AC = "y";
-      PCI_D3_ON_BAT = "y";
-
-      # SATA
-      SATA_ALPM_ON_BAT = "min_power";
-    };
+    # nvidia-container-toolkit.enable = true;
   };
 
   # Governor de CPU
@@ -168,13 +177,6 @@
   users.users.th3g3ntl3man = {
     extraGroups = [ "openrazer" ];
   };
-
-  ##############################
-  # 🌡️ THERMAL MANAGEMENT
-  ##############################
-  # AIDEV-NOTE: Razer Blade puede necesitar gestión térmica adicional
-  # Considerar: thermald para gestión de热量
-  services.thermald.enable = true;
 
   ##############################
   # 🔥 FIREWALL
