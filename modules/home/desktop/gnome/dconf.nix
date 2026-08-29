@@ -39,6 +39,23 @@
       show-mounts = false;
     };
 
+    "org/gnome/shell/extensions/freon" = {
+      hot-sensors = [
+        "NVIDIA GeForce RTX 3070 Laptop GPU"
+        "Package id 0"
+      ];
+      use-gpu-nvidia = true;
+    };
+
+    "org/gnome/shell/extensions/tophat" = {
+      cpu-display = "both";
+      mem-abs-units = true;
+      mem-display = "both";
+      mount-to-monitor = "/";
+      network-device = "Automatic";
+      show-disk = true;
+      show-fs = false;
+    };
     # Blur my shell
     "org/gnome/shell/extensions/blur-my-shell/panel" = {
       blur = true;
@@ -57,7 +74,7 @@
       power-button-action = "interactive";
     };
     "org/gnome/desktop/peripherals/mouse".accel-profile = "flat";
-    "org/gnome/desktop/privacy".remember-recent-files = false;
+    "org/gnome/desktop/privacy".remember-recent-files = true;
     "org/gnome/desktop/wm/keybindings" = {
       activate-window-menu = [ ];
       begin-move = [ ];
@@ -102,7 +119,7 @@
       www = [ "<Super>b" ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>period";
+      binding = "<Super>Return";
       command = "kitty";
       name = "Term";
     };
@@ -129,6 +146,7 @@
         "org.gnome.Nautilus.desktop"
         "com.mitchellh.ghostty.desktop"
         "alacritty.desktop"
+        "dev.zed.Zed.desktop"
         "org.gnome.Settings.desktop"
       ];
     };
