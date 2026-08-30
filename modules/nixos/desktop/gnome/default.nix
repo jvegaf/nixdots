@@ -13,7 +13,7 @@
   # GNOME-specific packages
   environment.systemPackages = with pkgs; [
     ghostty
-    file-roller
+    wl-clipboard
   ];
 
   environment.gnome.excludePackages = with pkgs; [

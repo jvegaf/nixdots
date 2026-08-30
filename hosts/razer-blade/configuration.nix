@@ -11,8 +11,8 @@
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/programs/thunar.nix
     ../../modules/nixos/desktop/gnome
+    ../../modules/nixos/desktop/xfce
     # ../../modules/nixos/desktop/hyprland
   ];
 
@@ -20,12 +20,12 @@
   networking.hostName = "razer-blade";
   # programs.creality-print.enable = true;
 
-  virtualisation.virtualbox.host.enable = true;
-  virtualisation.virtualbox.host.enableExtensionPack = true;
+  # virtualisation.virtualbox.host.enable = true;
+  # virtualisation.virtualbox.host.enableExtensionPack = true;
+  # users.extraGroups.vboxusers.members = [ "th3g3ntl3man" ];
+  # virtualisation.virtualbox.host.enableHardening = true;
   # virtualisation.virtualbox.guest.enable = true;
   # virtualisation.virtualbox.guest.dragAndDrop = true;
-  users.extraGroups.vboxusers.members = [ "th3g3ntl3man" ];
-  virtualisation.virtualbox.host.enableHardening = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

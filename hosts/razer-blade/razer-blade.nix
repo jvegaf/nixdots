@@ -26,21 +26,21 @@
 
   boot = {
     kernelParams = [
-      "nvidia-drm.modeset=1" # Required for Wayland
-      "nvidia-drm.fbdev=1" # Fixes external-monitor flicker on niri: without a DRM
-      "button.lid_init_state=open"
+      # "nvidia-drm.modeset=1" # Required for Wayland
+      # "nvidia-drm.fbdev=1" # Fixes external-monitor flicker on niri: without a DRM
+      # "button.lid_init_state=open"
       # fbdev the NVIDIA driver drops the surface in the vblank callback on the
       # second dGPU-driven CRTC ("missing surface in vblank callback").
-      "nvidia.NVreg_PreserveVideoMemoryAllocations=1" # Helps with suspend/resume
-      "nvidia.NVreg_TemporaryFilePath=/tmp" # Fix for temp file issues
+      # "nvidia.NVreg_PreserveVideoMemoryAllocations=1" # Helps with suspend/resume
+      # "nvidia.NVreg_TemporaryFilePath=/tmp" # Fix for temp file issues
     ];
 
     # Early load NVIDIA modules
     initrd.kernelModules = [
-      "nvidia"
-      "nvidia_modeset"
-      "nvidia_uvm"
-      "nvidia_drm"
+      # "nvidia"
+      # "nvidia_modeset"
+      # "nvidia_uvm"
+      # "nvidia_drm"
     ];
   };
   services = {
@@ -54,7 +54,7 @@
     # ];
 
     # Disable power-profiles-daemon (conflicts with TLP)
-    power-profiles-daemon.enable = false;
+    power-profiles-daemon.enable = true;
 
     # NVIDIA TGP Control (opcional, para limitar consumo GPU)
     # AIDEV-NOTE: Puede requerir nvidia-smi del paquete nvidia-utils
@@ -65,7 +65,7 @@
     # AIDEV-NOTE: TLP y auto-cpufreq no se deben usar juntos
     ##############################
     tlp = {
-      enable = true;
+      enable = false;
       settings = {
         # AIDEV-NOTE: Configuración optimizada para RTX 3070
         # Batería
@@ -103,14 +103,14 @@
   hardware = {
     nvidia = {
       # modesetting.enable = true;
-      powerManagement.enable = true;
-      powerManagement.finegrained = false;
+      # powerManagement.enable = true;
+      # powerManagement.finegrained = false;
       # nvidiaPersistenced = false;
       open = true; # NVIDIA 590+ requires open kernel modules for Turing GPUs (RTX 2070 Super)
       nvidiaSettings = true;
       # beta (595.45.04) fails to build against kernel 7.1 — it includes
       # linux/of_gpio.h, removed in 7.x. latest (610.43.02) handles the removal.
-      package = config.boot.kernelPackages.nvidiaPackages.stable;
+      package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {
         sync.enable = true;
@@ -123,32 +123,32 @@
     graphics = {
       enable = true;
       enable32Bit = true;
-      extraPackages = with pkgs; [
-        # Vulkan support
-        # vulkan-validation-layers dropped: debug-only layer, broken build on
-        # nixpkgs 1.4.350.0 (update_deps.py git-clones in the sandbox).
-        vulkan-loader
-        vulkan-tools
-
-        # Video acceleration
-        libva-vdpau-driver
-        nvidia-vaapi-driver
-
-        # Intel iGPU video decode (Optimus: the Intel chip drives the panel and
-        # should do video, leaving the dGPU idle). Without this there is NO
-        # Intel VA-API driver in the closure at all — /run/opengl-driver/lib/dri
-        # had neither iHD nor i965 — so browsers and players fell back to
-        # software decode and burned battery.
-        #
-        # Deliberately NOT paired with LIBVA_DRIVER_NAME=nvidia: forcing VA-API
-        # at the dGPU on a hybrid laptop defeats exactly this. Leave the driver
-        # unset so libva picks per-device.
-        intel-media-driver
-
-        # # CUDA support
-        # cudaPackages.cudatoolkit
-        # cudaPackages.cudnn
-      ];
+      # extraPackages = with pkgs; [
+      #   # Vulkan support
+      #   # vulkan-validation-layers dropped: debug-only layer, broken build on
+      #   # nixpkgs 1.4.350.0 (update_deps.py git-clones in the sandbox).
+      #   vulkan-loader
+      #   vulkan-tools
+      #
+      #   # Video acceleration
+      #   libva-vdpau-driver
+      #   nvidia-vaapi-driver
+      #
+      #   # Intel iGPU video decode (Optimus: the Intel chip drives the panel and
+      #   # should do video, leaving the dGPU idle). Without this there is NO
+      #   # Intel VA-API driver in the closure at all — /run/opengl-driver/lib/dri
+      #   # had neither iHD nor i965 — so browsers and players fell back to
+      #   # software decode and burned battery.
+      #   #
+      #   # Deliberately NOT paired with LIBVA_DRIVER_NAME=nvidia: forcing VA-API
+      #   # at the dGPU on a hybrid laptop defeats exactly this. Leave the driver
+      #   # unset so libva picks per-device.
+      #   intel-media-driver
+      #
+      #   # # CUDA support
+      #   # cudaPackages.cudatoolkit
+      #   # cudaPackages.cudnn
+      # ];
     };
 
     # Docker NVIDIA support
