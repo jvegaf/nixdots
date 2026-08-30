@@ -32,17 +32,13 @@
     sessionVariables.ADW_DEBUG_COLOR_SCHEME = "prefer-dark";
     pathsToLink = [ "/share/backgrounds" ];
     xfce.excludePackages = with pkgs; [
-      gnome-themes-extra
-      parole
-      pavucontrol
-      ristretto
-      xfce4-notifyd
       xfce4-screensaver
       xfce4-screenshooter
       xfce4-terminal
       xfce4-volumed-pulse
     ];
     systemPackages = with pkgs; [
+      gnome-themes-extra
       adapta-backgrounds
       adapta-gtk-theme
       blueman
@@ -50,6 +46,9 @@
       deja-dup
       elementary-xfce-icon-theme
       epiphany
+      evince
+      foliate
+      gnome-disk-utility
       file-roller
       gigolo
       papirus-icon-theme

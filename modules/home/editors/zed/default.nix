@@ -13,6 +13,11 @@
       shellcheck
       shfmt
       stylua
+      jdt-language-server
+      yaml-language-server
+      kotlin-language-server
+      google-java-format
+      lemminx
     ];
     userSettings = {
       vim_mode = true;
@@ -83,6 +88,10 @@
         "nix" = true;
         "toml" = true;
         "vague" = true;
+        "java" = true;
+        "yaml" = true;
+        "kotlin" = true;
+        "xml" = true;
       };
       languages = {
         Lua = {
@@ -106,6 +115,14 @@
             "!nil"
           ];
         };
+        Java = {
+          format_on_save = "off";
+          formatter.external.command = "google-java-format";
+          language_servers = [
+            "jdt-language-server"
+          ];
+        };
+
       };
       lsp.lua-language-server.settings.Lua = {
         diagnostics.globals = [ "vim" ];

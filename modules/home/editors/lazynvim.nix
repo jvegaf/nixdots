@@ -97,7 +97,7 @@
                 opts = function()
                   vim.keymap.set("n", "<leader>e", "<Cmd>Neotree<CR>")
                   require("neo-tree").setup({
-                    close_if_last_window = false, -- Close Neo-tree if it is the last window left in the tab
+                    close_if_last_window = true, -- Close Neo-tree if it is the last window left in the tab
                     popup_border_style = "NC", -- or "" to use 'winborder' on Neovim v0.11+
                     clipboard = {
                       sync = "none", -- or "global"/"universal" to share a clipboard for each/all Neovim instance(s), respectively
@@ -816,6 +816,11 @@
       '';
 
       autocmds = ''
+        vim.api.nvim_create_autocmd("BufEnter", {
+          callback = function()
+            if vim.bo.buftype == "" then vim.cmd("Neotree close") end
+          end,
+        })
 
         vim.api.nvim_create_autocmd("FileType", {
           pattern = "make",
