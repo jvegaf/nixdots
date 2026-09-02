@@ -23,7 +23,7 @@
         layer = "top";
         position = "top";
         exclusive = true;
-        height = 38;
+        height = 24;
 
         modules-left = [
           "niri/workspaces"

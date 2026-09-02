@@ -11,7 +11,7 @@ window#waybar {
 .modules-right > widget > * {
   padding: 1px 10px;
   margin: 1px 5px;
-  border-radius: 2px;
+  border-radius: 20px;
   color: #2c3e41;
   font-weight: bold;
 

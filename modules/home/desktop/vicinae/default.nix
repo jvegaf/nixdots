@@ -15,7 +15,7 @@
       enable = true;
       autoStart = true;
     };
-    useLayerShell = true;
+    # useLayerShell = true;
     extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [
       # bluetooth
       nix

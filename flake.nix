@@ -26,7 +26,6 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    niri-flake.url = "github:sodiboo/niri-flake";
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
     hardware.url = "github:NixOS/nixos-hardware/master";
@@ -82,15 +81,6 @@
               }
               // extraSpecialArgs;
               modules = [
-                inputs.niri-flake.nixosModules.niri
-                # {
-                # nixpkgs.overlays = [
-                #   # inputs.nur.overlays.default
-                #   # (final: prev: {
-                #   #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                #   # })
-                # ];
-                # }
                 ./hosts/${hostName}/configuration.nix
                 inputs.home-manager.nixosModules.home-manager
                 {
