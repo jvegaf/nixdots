@@ -539,6 +539,11 @@
       mode = "i";
     }
     {
+      action = "<ESC>";
+      key = "jj";
+      mode = "i";
+    }
+    {
       action = "<cmd>LazyGit<CR>";
       key = "<leader>gg";
     }

@@ -7,7 +7,7 @@
   keymaps = [
     {
       mode = "n";
-      key = "<leader>l";
+      key = "<leader>ul";
       action.__raw = ''
         function()
           vim.diagnostic.config({ virtual_lines = not vim.diagnostic.config().virtual_lines, virtual_text = vim.diagnostic.config().virtual_lines })
@@ -17,7 +17,7 @@
     }
     {
       mode = "n";
-      key = "<leader>L";
+      key = "<leader>uL";
       action.__raw = ''
         function()
           vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
@@ -34,11 +34,13 @@
       clangd.enable = true;
       cssls.enable = true;
       # gopls.enable = true;
+      jdtls.enable = true;
       html.enable = true;
       jsonls.enable = true;
       just.enable = true;
       lemminx.enable = true;
       lua_ls.enable = false;
+      nil_ls.enable = true;
       nixd = {
         enable = true;
         # config =
@@ -58,6 +60,7 @@
       markdown_oxide.enable = true;
       pylsp.enable = true;
       ruff.enable = true;
+      statix.enable = true;
       taplo.enable = true;
       texlab.enable = false;
       yamlls.enable = true;
@@ -125,6 +128,8 @@
         expose_as_code_action = "all";
       };
     };
-    otter.enable = true;
+    jdtls.enable = true;
+    spring-boot.enable = true;
+    # otter.enable = true;
   };
 }

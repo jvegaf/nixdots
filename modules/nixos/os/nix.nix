@@ -20,16 +20,28 @@
     };
   };
 
-  # nix.settings = {
-  #   extra-substituters = [ "https://noctalia.cachix.org" ];
-  #   extra-trusted-public-keys = [
-  #     "noctalia.cachix.org-1:pCOR47nnMEo5thcxNDtzWpOxNFQsBRglJzxWPp3dkU4="
-  #   ];
-  # };
+  nix.settings = {
+    trusted-users = [
+      "root"
+      "th3g3ntl3man"
+      "@wheel"
+    ];
+    extra-substituters = [
+      "https://cache.nixos.org"
+      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
+      "https://cache.numtide.com"
+      "https://vicinae.cachix.org"
+      "https://niri.cachix.org"
+    ];
+    extra-trusted-public-keys = [
+      "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+      "niks3.numtide.com-1:DTx8wZduET09hRmMtKdQDxNNthLQETkc/yaX7M4qK0g="
+      "vicinae.cachix.org-1:1kDrfienkGHPYbkpNj1mWTr7Fm1+zcenzgTizIcI3oc="
+      "niri.cachix.org-1:Wv0OmO7PsuocRKzfDoJ3mulSl7Z6oezYhGhR+3W2964="
+    ];
+  };
 
-  nix.settings.trusted-users = [
-    "root"
-    "@wheel"
-    "th3g3ntl3man"
-  ];
 }

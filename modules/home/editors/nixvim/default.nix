@@ -28,7 +28,6 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
-      # ./nvim-tree.nix
       ./neo-tree.nix
       ./sidekick.nix
       ./snacks.nix
@@ -48,12 +47,25 @@
 
     withRuby = false;
 
-    # colorscheme = "ayu-dark";
     colorschemes = {
-      catppuccin = {
+      tokyonight = {
         enable = true;
-        settings.flavour = "frappe";
-        settings.default_integrations = true;
+        settings = {
+          # light_style = "day";
+          # style = "moon";
+          styles = {
+            comments = {
+              italic = true;
+            };
+            floats = "dark";
+            keywords = {
+              italic = true;
+            };
+            sidebars = "dark";
+          };
+          terminal_colors = true;
+          transparent = true;
+        };
       };
     };
 
@@ -117,7 +129,7 @@
         enable = true;
         settings = {
           globalstatus = true;
-          theme = "ayu-dark";
+          theme = "tokyonight";
         };
       };
       grug-far.enable = true;
