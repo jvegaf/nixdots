@@ -2,7 +2,7 @@
   imports = [
     ./common
     ./gnome
-    ./xfce.nix
+    # ./xfce.nix
     # ./hyprland-lua
     # ./hyprland
     # ./niri
