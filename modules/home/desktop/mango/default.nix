@@ -1,14 +1,16 @@
 { inputs, ... }: {
   imports = [
-    inputs.mango.hmModules.mango
+    inputs.mangowm.hmModules.mango
+    inputs.dms.homeModules.dank-material-shell
   ];
 
   wayland.windowManager.mango = {
     enable = true;
+    systemd.enable = true;
     settings = {
       # Monitors
       monitorrule = [
-        "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1"
+        "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
         # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
       ];
 
@@ -24,20 +26,16 @@
       tap_and_drag = 1;
       drag_lock = 1;
       trackpad_natural_scrolling = 1;
-      disable_while_typing = 1;
-      left_handed = 0;
-      middle_button_emulation = 0;
       swipe_min_threshold = 1;
 
       # Mouse
       mouse_natural_scrolling = 0;
-      accel_profile = 0;
 
       # Theme
-      border_radius = 8;
+      border_radius = 15;
       no_radius_when_single = 0;
       focused_opacity = 1.0;
-      unfocused_opacity = 1.0;
+      unfocused_opacity = 0.4;
 
       # Scroller Layout Setting
       scroller_structs = 0;
@@ -49,19 +47,33 @@
       new_is_master = 0;
       default_mfact = 0.5;
       default_nmaster = 1;
-      smartgaps = 0;
+      smartgaps = 1;
 
       # Overview Setting
       hotarea_size = 10;
       enable_hotarea = 1;
-      ov_tab_mode = 0;
       overviewgappi = 15;
       overviewgappo = 15;
 
+      windowrule = [
+        "appid:firefox, isfakefullscreen:1"
+        "appid:FreeCAD, isfakefullscreen:1"
+        "appid:kicad, isfakefullscreen:1"
+        "appid:code, isfakefullscreen:1"
+        "appid:dev.zed.Zed, isfakefullscreen:1"
+        "appid:firefox, title:Picture-in-Picture, isfloating:1"
+        "appid:org.gnome.Nautilus, isfloating:1"
+        "appid:1password, isfloating:1"
+        "appid:blueman-manager, isfloating:1"
+        "appid:nm-connection-editor, isfloating:1"
+        "appid:org.pulseaudio.pavucontrol, isfloating:1"
+        "appid:com.danklinux.dms, isfloating:1"
+        "appid:org.qbittorrent.qBittorrent, isfloating:1"
+      ];
       # layouts
       tagrule = [
         "id:1, layout_name:tile"
-        "id:2, layout_name:tile"
+        "id:2, layout_name:scroller"
         "id:3, layout_name:tile"
         "id:4, layout_name:tile"
         "id:5, layout_name:tile"
@@ -82,19 +94,23 @@
 
       bind = [
         # apps
-        "SUPER, Return, spawn, wezterm"
-        "SUPER, Space, spawn, vicinae toggle"
-        "SUPER, B, spawn, brave"
-        "SUPER, V, spawn, vicinae vicinae://extensions/vicinae/clipboard/history"
-        "SUPER+SHIFT, W, spawn, vicinae vicinae://extensions/sovereign/awww-switcher/wpgrid"
+        "SUPER, Return, spawn, ghostty"
+        "SUPER, Space, spawn, dms ipc call spotlight toggle"
+        "SUPER, S, spawn, dms ipc call settings open"
+        "SUPER, B, spawn, firefox"
+        "SUPER, E, spawn, nautilus"
+        # "SUPER, V, spawn, vicinae vicinae://extensions/vicinae/clipboard/history"
+        # "SUPER+SHIFT, W, spawn, vicinae vicinae://extensions/sovereign/awww-switcher/wpgrid"
 
         # WM
         "SUPER, Q, killclient"
+        "SUPER, F, togglefakefullscreen"
         "SUPER+SHIFT, R, reload_config"
         "SUPER+SHIFT, F, togglefullscreen"
-        "SUPER+SHIFT, Space, togglefloating"
+        "SUPER+SHIFT, T, togglefloating"
 
-        "ALT, Tab, toggleoverview"
+        "SUPER, Tab, toggleoverview"
+        "SUPER, A, togglemaximizescreen"
         "ALT+SHIFT, minus, incgaps, -1"
         "ALT+SHIFT, equal, incgaps, 1"
         "ALT+SHIFT, R, togglegaps"
@@ -159,8 +175,8 @@
       blur_params_contrast = 0.9;
       blur_params_saturation = 1.2;
 
-      shadows = 0;
-      layer_shadows = 0;
+      shadows = 1;
+      layer_shadows = 1;
       shadow_only_floating = 1;
       shadows_size = 10;
       shadows_blur = 15;
@@ -196,30 +212,58 @@
       animation_curve_opafadein = "0.46, 1.0, 0.29, 1";
 
       # Appearance
-      borderpx = 0;
+      borderpx = 3;
       gappih = 10;
       gappiv = 10;
       gappoh = 10;
       gappov = 10;
 
-      rootcolor = "0x201b14ff";
-      bordercolor = "0x444444ff";
-      focuscolor = "0xc9b890ff";
-      maximizescreencolor = "0x89aa61ff";
-      urgentcolor = "0xad401fff";
-      scratchpadcolor = "0x516c93ff";
-      globalcolor = "0xb153a7ff";
-      overlaycolor = "0x14a57cff";
+      splitcolor = "0x9ece6aff";
+      dropcolor = "0x7aa2f780";
+      rootcolor = "0x1a1b26ff";
+      bordercolor = "0x586691ff";
+      focuscolor = "0x7aa2f7ff";
+      maximizescreencolor = " 0xbb9af7ff";
+      urgentcolor = "0xf7768eff";
+      scratchpadcolor = "0x9ece6aff";
+      globalcolor = "0x003dbfff";
+      overlaycolor = "0x4f00dfff";
 
       # Misc
       syncobj_enable = 1;
 
       exec-once = [
-        "awww-daemon"
-        "kdeconnectd"
-        "kdeconnect-indicator"
+        "dms run"
+        # "awww-daemon"
+        # "kdeconnectd"
+        # "kdeconnect-indicator"
         "dbus-update-activation-environment --systemd --all; systemctl --user reset-failed && systemctl --user start mango-session.target"
       ];
+    };
+  };
+
+  programs.dank-material-shell = {
+    enable = true;
+
+    settings = {
+      theme = "dark";
+      dynamicTheming = true;
+      # Add any other settings here
+    };
+
+    session = {
+      isLightMode = false;
+      # Add any other session state settings here
+    };
+
+    clipboardSettings = {
+      maxHistory = 25;
+      maxEntrySize = 5242880;
+      autoClearDays = 1;
+      clearAtStartup = true;
+      disabled = false;
+      disableHistory = false;
+      disablePersist = true;
     };
   };
 }

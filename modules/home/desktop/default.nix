@@ -2,7 +2,8 @@
   imports = [
     ./common
     ./gnome
-    ./niri
+    ./mango
+    # ./niri
     # ./xfce.nix
     # ./hyprland-lua
     # ./hyprland

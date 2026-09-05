@@ -7,14 +7,24 @@
 
     shellAliases =
       let
-        flakeDir = "~/flakes";
+        mngClients = ''
+          mmsg get all-clients | jq -r '
+            ["ID", "APP_ID", "TAG", "FLOAT", "FOCUS", "TITULO"],
+            ["--", "------", "---", "-----", "-----", "------"],
+            (.clients[] | [
+              .id,
+              .appid,
+              (.tags | join(",")),
+              .is_floating,
+              .is_focused,
+              .title
+            ]) | @tsv' | column -ts $'\t'
+        '';
       in
       {
         sw = "nh os switch";
         upd = "nh os switch --update";
         hms = "nh home switch";
-
-        cdf = "cd ${flakeDir}";
 
         env-ini = "devenv init --include-envrc";
         ls = "eza -lh --group-directories-first --icons=auto";
@@ -61,6 +71,7 @@
         gco = "git checkout";
         gcl = "git clone";
         grc = "gh repo clone";
+        mncl = mngClients;
 
         ".." = "cd ..";
         "..." = "cd ../..";

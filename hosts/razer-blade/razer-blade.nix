@@ -103,9 +103,9 @@
   hardware = {
     nvidia = {
       # modesetting.enable = true;
-      # powerManagement.enable = true;
+      powerManagement.enable = true;
       # powerManagement.finegrained = false;
-      # nvidiaPersistenced = false;
+      nvidiaPersistenced = true;
       open = true; # NVIDIA 590+ requires open kernel modules for Turing GPUs (RTX 2070 Super)
       nvidiaSettings = true;
       # beta (595.45.04) fails to build against kernel 7.1 — it includes
@@ -113,8 +113,8 @@
       package = config.boot.kernelPackages.nvidiaPackages.latest;
 
       prime = {
-        sync.enable = true;
-        # offload.enable = false;
+        # sync.enable = true;
+        offload.enable = true;
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };

@@ -12,7 +12,8 @@
     ../../modules/nixos/os
     ../../modules/nixos/programs
     ../../modules/nixos/desktop/gnome
-    ../../modules/nixos/desktop/niri
+    ../../modules/nixos/desktop/mangowm
+    # ../../modules/nixos/desktop/niri
     # ../../modules/nixos/desktop/xfce
     # ../../modules/nixos/desktop/hyprland
   ];
