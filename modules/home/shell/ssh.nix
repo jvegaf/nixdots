@@ -7,8 +7,8 @@
     enableDefaultConfig = false;
 
     settings = {
-      "github" = {
-        HostName = "github.com";
+      "*" = {
+        # HostName = "github.com";
         IdentityFile = "~/.ssh/jvegaf_ed25519";
         AddKeysToAgent = "yes";
       };

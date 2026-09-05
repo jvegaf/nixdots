@@ -46,7 +46,7 @@
         bt = "btop";
         jctl = "journalctl -p 3 -xb";
         lzd = "lazydocker";
-        edalias = "nvim ~/nixdots/home-manager/modules/zsh.nix";
+        edalias = "nvim ~/nixdots/modules/home/shell/zsh.nix";
 
         gb = "nix-collect-garbage -d";
         clean = "nh clean all --keep 3";
@@ -60,6 +60,7 @@
         gpl = "git pull --rebase --autostash";
         gco = "git checkout";
         gcl = "git clone";
+        grc = "gh repo clone";
 
         ".." = "cd ..";
         "..." = "cd ../..";

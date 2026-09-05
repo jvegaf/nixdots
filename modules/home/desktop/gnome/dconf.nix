@@ -119,13 +119,13 @@
       www = [ "<Super>b" ];
     };
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-      binding = "<Super>Return";
+      binding = "<Super>t";
       command = "kitty";
       name = "Term";
     };
 
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
-      binding = "<Super>t";
+      binding = "<Super>Return";
       command = "ghostty";
       name = "Ghostty";
     };
