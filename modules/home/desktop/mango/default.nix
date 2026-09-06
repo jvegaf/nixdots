@@ -1,7 +1,8 @@
-{ inputs, ... }: {
+{ inputs, pkgs, ... }: {
   imports = [
+    ../dank-material-shell
     inputs.mangowm.hmModules.mango
-    inputs.dms.homeModules.dank-material-shell
+    # inputs.dms.homeModules.dank-material-shell
   ];
 
   wayland.windowManager.mango = {
@@ -9,10 +10,10 @@
     systemd.enable = true;
     settings = {
       # Monitors
-      monitorrule = [
-        "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
-        # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
-      ];
+      # monitorrule = [
+      #   "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
+      #   # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
+      # ];
 
       # Keyboard
       repeat_rate = 25;
@@ -72,10 +73,10 @@
       ];
       # layouts
       tagrule = [
-        "id:1, layout_name:tile"
+        "id:1, layout_name:scroller"
         "id:2, layout_name:scroller"
-        "id:3, layout_name:tile"
-        "id:4, layout_name:tile"
+        "id:3, layout_name:scroller"
+        "id:4, layout_name:scroller"
         "id:5, layout_name:tile"
         "id:6, layout_name:scroller"
       ];
@@ -242,28 +243,34 @@
     };
   };
 
-  programs.dank-material-shell = {
-    enable = true;
+  # programs.dank-material-shell = {
+  #   enable = true;
+  #
+  #   settings = {
+  #     theme = "dark";
+  #     dynamicTheming = true;
+  #     # Add any other settings here
+  #   };
+  #
+  #   session = {
+  #     isLightMode = false;
+  #     # Add any other session state settings here
+  #   };
+  #
+  #   clipboardSettings = {
+  #     maxHistory = 25;
+  #     maxEntrySize = 5242880;
+  #     autoClearDays = 1;
+  #     clearAtStartup = true;
+  #     disabled = false;
+  #     disableHistory = false;
+  #     disablePersist = true;
+  #   };
+  # };
 
-    settings = {
-      theme = "dark";
-      dynamicTheming = true;
-      # Add any other settings here
-    };
-
-    session = {
-      isLightMode = false;
-      # Add any other session state settings here
-    };
-
-    clipboardSettings = {
-      maxHistory = 25;
-      maxEntrySize = 5242880;
-      autoClearDays = 1;
-      clearAtStartup = true;
-      disabled = false;
-      disableHistory = false;
-      disablePersist = true;
-    };
-  };
+  home.packages = with pkgs; [
+    nautilus
+    sushi
+    parole
+  ];
 }

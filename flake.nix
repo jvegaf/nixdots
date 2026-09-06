@@ -32,6 +32,7 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     mangowm.url = "github:mangowm/mango";
     mangowm.inputs.nixpkgs.follows = "nixpkgs";
+    voxtype.url = "github:peteonrails/voxtype";
     vicinae.url = "github:vicinaehq/vicinae";
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
@@ -39,6 +40,10 @@
     };
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nixvim.url = "github:nix-community/nixvim";

@@ -19,7 +19,7 @@
     ../../modules/nixos/hardware
     ../../modules/nixos/os
     ../../modules/nixos/programs
-    ../../modules/nixos/desktop/budgie
+    ../../modules/nixos/desktop/mangowm
   ];
 
   # nix.settings.experimental-features = ["nix-command" "flakes"];
@@ -32,13 +32,18 @@
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware = {
-    intelgpu.driver = "i915";
     enableRedistributableFirmware = true;
     nvidia = {
       open = false;
       package = config.boot.kernelPackages.nvidiaPackages.legacy_580;
+      powerManagement.enable = true;
+      modesetting.enable = true;
+      nvidiaSettings = true;
       prime = {
-        offload.enable = true;
+        offload = {
+          enable = true;
+          enableOffloadCmd = true;
+        };
         intelBusId = "PCI:0:2:0";
         nvidiaBusId = "PCI:1:0:0";
       };
@@ -81,8 +86,7 @@
   # };
 
   environment.systemPackages = with pkgs; [
-    nvtopPackages.nvidia # Monitor de GPU
-    nvtopPackages.intel # Monitor de GPU
+    nvtopPackages.full # Monitor de GPU
 
     mesa-demos # Info OpenGL (glxinfo)
     # Utilidades sistema

@@ -9,7 +9,7 @@
       # font-family = "JetBrainsMono NF";
       # font-size = 12;
       gtk-titlebar = false;
-      # background-opacity = 0.8;
+      background-opacity = 0.85;
       shell-integration = "detect";
       # unfocused-split-opacity = 0.4;
       maximize = true;

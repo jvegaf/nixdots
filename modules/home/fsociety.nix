@@ -4,13 +4,11 @@
     ./browsers
     ./common
     ./desktop/common
-    ./desktop/vicinae
-    # ./desktop/xfconf.nix
+    ./desktop/mango
     ./editors
     ./opencode
     ./shell
     ./terminals
-    # ./programs
   ];
 
   # Home Manager needs a bit of information about you and the
