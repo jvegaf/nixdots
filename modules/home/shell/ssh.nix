@@ -9,7 +9,7 @@
     settings = {
       "*" = {
         # HostName = "github.com";
-        IdentityFile = "~/.ssh/jvegaf_ed25519";
+        IdentityFile = "~/.ssh/id_ed25519";
         AddKeysToAgent = "yes";
       };
     };
