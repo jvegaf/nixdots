@@ -6,6 +6,7 @@
     ./desktop/common
     ./desktop/mango
     ./editors
+    ./programs/orcaslicer
     ./opencode
     ./shell
     ./terminals
