@@ -18,13 +18,13 @@
     # };
   };
 
-  services.displayManager = {
-    defaultSession = "mango"; # derived from mango.desktop filename
-    autoLogin = {
-      enable = true;
-      user = "th3g3ntl3man";
-    };
-  };
+  # services.displayManager = {
+  #   defaultSession = "mango"; # derived from mango.desktop filename
+  #   autoLogin = {
+  #     enable = true;
+  #     user = "th3g3ntl3man";
+  #   };
+  # };
 
   programs.mango.enable = true;
 }
