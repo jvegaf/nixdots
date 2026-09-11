@@ -5,8 +5,6 @@
   perSystem =
     { pkgs, ... }:
     {
-      # packages = {
-      #   koshi = pkgs.callPackage ./ags { inherit inputs; };
-      # };
+      packages.creality-print = pkgs.callPackage ./creality-print.nix { };
     };
 }

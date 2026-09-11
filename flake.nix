@@ -67,6 +67,8 @@
     flake-parts.lib.mkFlake { inherit inputs; } {
       systems = [ "x86_64-linux" ];
 
+      imports = [ ./pkgs ];
+
       # Configuración de herramientas por arquitectura (devShells, treefmt, etc.)
       perSystem = { pkgs, ... }: {
         devShells.default = pkgs.mkShell { };

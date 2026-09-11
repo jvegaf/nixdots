@@ -20,7 +20,7 @@
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "razer-blade";
-  # programs.creality-print.enable = true;
+  programs.creality-print.enable = true;
 
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
