@@ -6,14 +6,15 @@
   config,
   inputs,
   pkgs,
+  lib,
   ...
 }:
 {
   imports = [
     ./hardware-configuration.nix
+    inputs.razerdaemon.nixosModules.default
     (inputs.hardware + "/common/cpu/intel")
     (inputs.hardware + "/common/gpu/intel/comet-lake")
-    ./razer-blade.nix
     (import ../disks/gpt-ext4.nix { device = "/dev/disk/by-id/nvme-CT500P1SSD8_2004E284F1D7"; })
     ../../modules/nixos/hardware
     ../../modules/nixos/os
@@ -37,14 +38,40 @@
     mesa-demos # Info OpenGL (glxinfo)
     # Utilidades sistema
     lm_sensors # Sensores de temperatura
+
+    # Utilidades GPU
+    pciutils # lspci, etc.
+
+    libva
+    libva-utils
+    # Utilidades Razer
+    openrazer-daemon
+    polychromatic
+
+    # Utilidades sistema
+    powertop # Análisis de energía
+    linuxPackages.cpupower # Control CPU
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
   hardware = {
+    # Razer-specific utilities
+    openrazer = {
+      enable = true;
+      users = [ "th3g3ntl3man" ]; # Adjust to your username
+      syncEffectsEnabled = true;
+      devicesOffOnScreensaver = true;
+      batteryNotifier = {
+        enable = true;
+        frequency = 600;
+        percentage = 33;
+      };
+    };
     enableRedistributableFirmware = true;
     nvidia = {
       open = true;
+      nvidiaPersistenced = true;
       package = config.boot.kernelPackages.nvidiaPackages.latest;
       powerManagement.enable = true;
       modesetting.enable = true;
@@ -88,14 +115,23 @@
     };
   };
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [
-    # "modesetting"
-    "nvidia"
-  ];
   # Enable touchpad support (enabled default in most desktopManager).
   # Consolidated services configuration
   services = {
+    smartd = {
+      enable = true;
+      autodetect = true;
+    };
+    xserver = {
+      enable = true;
+      videoDrivers = [
+        # "modesetting"
+        "nvidia"
+      ];
+    };
+    razer-laptop-control.enable = true;
+    power-profiles-daemon.enable = true;
+    thermald.enable = true;
     # Trackpad and input device optimization - using updated option names
     libinput = {
       enable = true; # Previously services.xserver.libinput.enable
@@ -146,33 +182,17 @@
     options i915 enable_fbc=1 enable_guc=2
   '';
 
-  # Razer-specific utilities
-  hardware.openrazer = {
-    enable = true;
-    users = [ "th3g3ntl3man" ]; # Adjust to your username
-    syncEffectsEnabled = true;
-    devicesOffOnScreensaver = true;
-    batteryNotifier = {
-      enable = true;
-      frequency = 600;
-      percentage = 33;
-    };
+  environment.sessionVariables = {
+    # Necesario para NVIDIA + Wayland
+    LIBVA_DRIVER_NAME = "nvidia";
+    XDG_SESSION_TYPE = "wayland";
+    GBM_BACKEND = "nvidia-drm";
+    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+    NVD_BACKEND = "direct";
+    # AIDEV-NOTE: Para pantallas externas con NVIDIA
+    WLR_NO_HARDWARE_CURSORS = "1";
   };
-
-  # Add Razer utilities
-  # Razer hardware packages moved to main configuration.nix for consolidation
-
-  # SMART monitoring for the NVMe. p620 gets this from
-  # storage.performanceOptimization and p510 from its resilience module, but
-  # that whole storage module is p620-scoped (sysctls, tmpfs sizing), so wire
-  # up just the disk-health bit here rather than dragging the rest onto a
-  # laptop. A dying laptop SSD should not be a surprise.
-  # (smartmontools is added to the systemPackages list above — this file
   # already defines that attribute, so it cannot be assigned twice.)
-  services.smartd = {
-    enable = true;
-    autodetect = true;
-  };
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;
   # users.extraGroups.vboxusers.members = [ "th3g3ntl3man" ];
