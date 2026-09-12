@@ -15,12 +15,87 @@
       firstDayOfWeek = 1;
       theme = "dark";
       dynamicTheming = true;
+      clockDateFormat = " ";
       controlCenterWidgets = {
         battery.enable = true;
         iddleInhibitor.enable = true;
       };
       soundNewNotification = false;
       dankIslandBarId = "default";
+      dankIslandHomeLayout = [
+        {
+          id = "media";
+          enabled = true;
+        }
+        {
+          id = "weather";
+          enabled = true;
+        }
+        {
+          id = "clock";
+          enabled = true;
+        }
+        {
+          id = "status";
+          enabled = false;
+        }
+        {
+          id = "volume";
+          enabled = false;
+        }
+      ];
+      barConfigs = [
+        {
+          id = "default";
+          name = "Main Bar";
+          enabled = true;
+          position = 0;
+          screenPreferences = [
+            "all"
+          ];
+          showOnLastDisplay = true;
+          leftWidgets = [
+            "launcherButton"
+            "workspaceSwitcher"
+            "focusedWindow"
+          ];
+          centerWidgets = [
+            "music"
+            "clock"
+            "weather"
+          ];
+          rightWidgets = [
+            "systemTray"
+            "clipboard"
+            "cpuUsage"
+            "memUsage"
+            "notificationButton"
+            "battery"
+            "controlCenterButton"
+          ];
+          spacing = 4;
+          innerPadding = 4;
+          bottomGap = 0;
+          transparency = 1;
+          widgetTransparency = 1;
+          squareCorners = false;
+          noBackground = false;
+          gothCornersEnabled = false;
+          gothCornerRadiusOverride = false;
+          gothCornerRadiusValue = 12;
+          borderEnabled = false;
+          borderColor = "surfaceText";
+          borderOpacity = 1;
+          borderThickness = 1;
+          fontScale = 1;
+          autoHide = false;
+          autoHideDelay = 250;
+          openOnOverview = false;
+          visible = true;
+          popupGapsAuto = true;
+          popupGapsManual = 4;
+        }
+      ];
       # Add any other settings here
     };
 

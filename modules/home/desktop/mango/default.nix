@@ -10,10 +10,11 @@
     systemd.enable = true;
     settings = {
       # Monitors
-      monitorrule = [
-        "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
-        # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
-      ];
+      # monitorrule = [
+      #   # "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
+      #   "name:eDP-1, width:1920, height:1080, refresh:60, x:0, y:10, vrr:1"
+      #   # "name:HDMI-A-1, width:2560, height:1440, refresh:100, x:0, y:-1440, vrr:1"
+      # ];
 
       # Keyboard
       repeat_rate = 25;
@@ -234,6 +235,8 @@
       syncobj_enable = 1;
 
       exec-once = [
+
+        "wlr-randr --output eDP-1 --custom-mode 1920x1080@60"
         "dms run"
         # "awww-daemon"
         # "kdeconnectd"
