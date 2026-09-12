@@ -28,7 +28,11 @@
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "razer-blade";
-  programs.creality-print.enable = true;
+  programs = {
+    creality-print.enable = true;
+    blender.enable = true;
+    onepassword.enable = true;
+  };
 
   environment.systemPackages = with pkgs; [
     nvtopPackages.full # Monitor de GPU
