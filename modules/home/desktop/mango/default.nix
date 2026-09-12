@@ -58,11 +58,11 @@
       overviewgappo = 15;
 
       windowrule = [
-        "appid:firefox, isfakefullscreen:1"
-        "appid:FreeCAD, isfakefullscreen:1"
-        "appid:kicad, isfakefullscreen:1"
-        "appid:code, isfakefullscreen:1"
-        "appid:dev.zed.Zed, isfakefullscreen:1"
+        "appid:firefox, scroller_proportion:1"
+        "appid:FreeCAD, scroller_proportion:1"
+        "appid:kicad, scroller_proportion:1"
+        "appid:code, scroller_proportion:1"
+        "appid:dev.zed.Zed, scroller_proportion:1"
         "appid:firefox, title:Picture-in-Picture, isfloating:1"
         "appid:org.gnome.Nautilus, isfloating:1"
         "appid:1password, isfloating:1"
