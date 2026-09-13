@@ -3,7 +3,7 @@
     ./common
     ./gnome
     ./mango
-    # ./niri
+    ./niri
     # ./xfce.nix
     # ./hyprland-lua
     # ./hyprland

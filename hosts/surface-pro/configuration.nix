@@ -9,11 +9,8 @@
       device = "/dev/nvme0n1";
       swapSize = "4G";
     })
-    ../../modules/nixos/hardware
-    ../../modules/nixos/os
-    ../../modules/nixos/programs
-    ../../modules/nixos/desktop/gnome
-    # ../../modules/nixos/desktop/hyprland
+    ../../modules/nixos
+    ../../modules/nixos/desktop/gnome.nix
   ];
 
   hardware.graphics = {

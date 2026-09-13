@@ -3,9 +3,7 @@
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
 {
-  config,
   lib,
-  pkgs,
   ...
 }:
 
@@ -14,9 +12,8 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     (import ../disks/gpt-ext4.nix { device = "/dev/sda"; swapSize = "4G"; })
-    ../../modules/nixos/hardware
-    ../../modules/nixos/os
-    ../../modules/nixos/desktop/xfce
+    ../../modules/nixos
+    ../../modules/nixos/desktop/xfce.nix
   ];
 
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];

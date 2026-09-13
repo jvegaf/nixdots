@@ -1,6 +1,7 @@
-{ pkgs, ... }:
 {
-  environment.systemPackages = with pkgs; [
-    noctalia-shell
-  ];
+  programs.noctalia = {
+    enable = true;
+    systemd.enable = true;
+    recommendedServices.enable = true;
+  };
 }

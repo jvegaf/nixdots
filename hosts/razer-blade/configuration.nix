@@ -19,6 +19,7 @@
     ../../modules/nixos/services/dm/ly.nix
     ../../modules/nixos/desktop/gnome.nix
     ../../modules/nixos/desktop/mangowm.nix
+    ../../modules/nixos/desktop/niri.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -30,7 +31,7 @@
   };
   environment = {
     shellAliases = {
-        freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade --log-format internal-json -v |& nom --json";
+      freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade --log-format internal-json -v |& nom --json";
     };
 
     systemPackages = with pkgs; [

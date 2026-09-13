@@ -1,7 +1,7 @@
 { pkgs, ... }: {
 
   imports = [
-    ../waybar_3
+    ../noctalia
   ];
 
   home.packages = with pkgs; [
@@ -32,9 +32,15 @@
           spawn = [ "kitty" ];
         };
         "Mod+D" = {
-          _props.hotkey-overlay-title = "Open App Launcher: fuzzel";
-          spawn = [
-            "fuzzel"
+          _props.hotkey-overlay-title = "Open App Launcher";
+          spawn-sh = [
+            "noctalia msg panel-toggle launcher"
+          ];
+        };
+        "Mod+S" = {
+          _props.hotkey-overlay-title = "Open Control Center";
+          spawn-sh = [
+            "noctalia msg panel-toggle control-center"
           ];
         };
         "Mod+E" = {
@@ -52,15 +58,15 @@
 
         "XF86AudioRaiseVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume increase" ];
+          spawn-sh = [ "noctalia msg volume-up" ];
         };
         "XF86AudioLowerVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume decrease" ];
+          spawn-sh = [ "noctalia msg volume-down" ];
         };
         "XF86AudioMute" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume muteOutput" ];
+          spawn-sh = [ "noctalia msg volume-mute" ];
         };
         "XF86AudioMicMute" = {
           _props.allow-when-locked = true;
@@ -84,11 +90,11 @@
         };
         "XF86MonBrightnessUp" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call brightness increase" ];
+          spawn-sh = [ "noctalia msg brightness-up" ];
         };
         "XF86MonBrightnessDown" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call brightness decrease" ];
+          spawn-sh = [ "noctalia msg brightness-down" ];
         };
 
         "Mod+Q".close-window = { };
@@ -319,6 +325,8 @@
             { match._props.app-id = "org.pulseaudio.pavucontrol"; }
             { match._props.app-id = "nm-connection-editor"; }
             { match._props.title = "^Welcome to Android Studio$"; }
+            { match._props.app-id = "thunar"; }
+            { match._props.app-id = "org.gnome.Nautilus"; }
             { open-floating = true; }
           ];
         }
@@ -335,9 +343,9 @@
             { match._props.app-id = "org.QCAD.qcad-bin"; }
             { match._props.app-id = "code"; }
             { match._props.app-id = "code-insiders"; }
-            { match._props.app-id = "thunar"; }
             { match._props.app-id = "jetbrains-studio"; }
             { match._props.app-id = "kicad"; }
+            { match._props.app-id = "CrealityPrint"; }
             { open-maximized = true; }
           ];
         }

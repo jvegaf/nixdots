@@ -1,9 +1,9 @@
 {
   imports = [
-    ./orcaslicer
-    ./telegram
-    ./freecad
-    ./common
+    # ./orcaslicer
+    # ./telegram
+    # ./freecad
+    # ./common
     # ./testdisk
   ];
 }

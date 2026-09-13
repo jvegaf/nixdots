@@ -63,3 +63,67 @@ Hosts import specific DEs in their `configuration.nix`.
 - The flake uses `flake-parts` with `perSystem` — custom packages go in `pkgs/default.nix` as `perSystem.packages`
 - direnv integration: `.envrc` calls `use flake` to activate the devShell automatically
 - Home Manager backup behavior: `overwriteBackup = true`, `backupFileExtension = "backup"`
+
+
+## <samp>INSTALLATION (NixOS)</samp>
+
+- Download the current NixOS minimal ISO from the unstable channel.
+
+```bash
+wget -O nixos-minimal.iso https://channels.nixos.org/nixos-unstable/latest-nixos-minimal-x86_64-linux.iso
+```
+
+- Boot Into the Installer.
+
+- Format Partitions with Disko:
+
+```bash
+sudo nix --experimental-features "nix-command flakes" run github:nix-community/disko -- --mode disko --flake github:jvegaf/nixdots#hostname
+```
+
+- Install Dotfiles Using Flake
+
+```bash
+sudo nixos-install --flake github:jvegaf/nixdots#hostname --no-write-lock-file
+```
+
+- Reboot
+
+## Updating and validating
+
+Update flake inputs and review the resulting lock-file change:
+
+```bash
+just update
+```
+
+The repository also opens a weekly `flake.lock` update pull request through
+GitHub Actions. Review that pull request before merging it.
+
+Run the checks before switching a host:
+
+```bash
+nix flake check --all-systems
+nix build .#nixosConfigurations.<host>.config.system.build.toplevel
+```
+
+Compare a host's active generation with a freshly built configuration:
+
+```bash
+just diff <host>
+```
+
+Deploy a host remotely over the configured SSH port:
+
+```bash
+just rebuild-deploy <host>
+```
+
+Test a configuration without making it the default boot entry:
+
+```bash
+sudo nixos-rebuild test --flake .#<host>
+```
+
+If a switch needs to be reverted, select an earlier generation from the boot
+menu or run `sudo nixos-rebuild switch --rollback`.
