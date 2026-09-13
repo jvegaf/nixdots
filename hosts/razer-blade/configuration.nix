@@ -13,49 +13,57 @@
   imports = [
     ./hardware-configuration.nix
     inputs.razerdaemon.nixosModules.default
-    (inputs.hardware + "/common/cpu/intel")
-    (inputs.hardware + "/common/gpu/intel/comet-lake")
+    (inputs.hardware + "/common/cpu/intel/comet-lake")
     (import ../disks/gpt-ext4.nix { device = "/dev/disk/by-id/nvme-CT500P1SSD8_2004E284F1D7"; })
-    ../../modules/nixos/hardware
-    ../../modules/nixos/os
-    ../../modules/nixos/programs
-    ../../modules/nixos/desktop/gnome
-    ../../modules/nixos/desktop/mangowm
-    # ../../modules/nixos/desktop/niri
-    # ../../modules/nixos/desktop/xfce
-    # ../../modules/nixos/desktop/hyprland
+    ../../modules/nixos
+    ../../modules/nixos/services/dm/ly.nix
+    ../../modules/nixos/desktop/gnome.nix
+    ../../modules/nixos/desktop/mangowm.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "razer-blade";
   programs = {
     creality-print.enable = true;
-    blender.enable = true;
+    blender.enable = false;
     onepassword.enable = true;
   };
+  environment = {
+    shellAliases = {
+        freb = "sudo nixos-rebuild switch --flake ~/nixdots#razer-blade --log-format internal-json -v |& nom --json";
+    };
 
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.full # Monitor de GPU
+    systemPackages = with pkgs; [
+      nvtopPackages.full # Monitor de GPU
 
-    brightnessctl
-    smartmontools
-    mesa-demos # Info OpenGL (glxinfo)
-    # Utilidades sistema
-    lm_sensors # Sensores de temperatura
+      brightnessctl
+      smartmontools
+      mesa-demos # Info OpenGL (glxinfo)
+      # Utilidades sistema
+      lm_sensors # Sensores de temperatura
 
-    # Utilidades GPU
-    pciutils # lspci, etc.
+      libva
+      libva-utils
+      # Utilidades Razer
+      openrazer-daemon
+      polychromatic
 
-    libva
-    libva-utils
-    # Utilidades Razer
-    openrazer-daemon
-    polychromatic
+      # Utilidades sistema
+      powertop # Análisis de energía
+      linuxPackages.cpupower # Control CPU
+    ];
 
-    # Utilidades sistema
-    powertop # Análisis de energía
-    linuxPackages.cpupower # Control CPU
-  ];
+    sessionVariables = {
+      # Necesario para NVIDIA + Wayland
+      LIBVA_DRIVER_NAME = "nvidia";
+      XDG_SESSION_TYPE = "wayland";
+      GBM_BACKEND = "nvidia-drm";
+      __GLX_VENDOR_LIBRARY_NAME = "nvidia";
+      NVD_BACKEND = "direct";
+      # AIDEV-NOTE: Para pantallas externas con NVIDIA
+      WLR_NO_HARDWARE_CURSORS = "1";
+    };
+  };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
@@ -122,31 +130,13 @@
   # Enable touchpad support (enabled default in most desktopManager).
   # Consolidated services configuration
   services = {
-    smartd = {
-      enable = true;
-      autodetect = true;
-    };
     xserver = {
-      enable = true;
       videoDrivers = [
         # "modesetting"
         "nvidia"
       ];
     };
     razer-laptop-control.enable = true;
-    power-profiles-daemon.enable = true;
-    thermald.enable = true;
-    # Trackpad and input device optimization - using updated option names
-    libinput = {
-      enable = true; # Previously services.xserver.libinput.enable
-      touchpad = {
-        tapping = true;
-        naturalScrolling = true;
-        scrollMethod = "twofinger";
-        disableWhileTyping = true;
-        clickMethod = "clickfinger";
-      };
-    };
 
     # Backlight control key bindings
     actkbd = {
@@ -168,7 +158,6 @@
 
     # Battery optimization
     upower = {
-      enable = true;
       criticalPowerAction = "Hibernate";
     };
 
@@ -185,17 +174,6 @@
   boot.extraModprobeConfig = ''
     options i915 enable_fbc=1 enable_guc=2
   '';
-
-  environment.sessionVariables = {
-    # Necesario para NVIDIA + Wayland
-    LIBVA_DRIVER_NAME = "nvidia";
-    XDG_SESSION_TYPE = "wayland";
-    GBM_BACKEND = "nvidia-drm";
-    __GLX_VENDOR_LIBRARY_NAME = "nvidia";
-    NVD_BACKEND = "direct";
-    # AIDEV-NOTE: Para pantallas externas con NVIDIA
-    WLR_NO_HARDWARE_CURSORS = "1";
-  };
   # already defines that attribute, so it cannot be assigned twice.)
   # virtualisation.virtualbox.host.enable = true;
   # virtualisation.virtualbox.host.enableExtensionPack = true;

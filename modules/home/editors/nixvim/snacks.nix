@@ -13,6 +13,11 @@
   keymaps = [
     # top
     {
+      key = "<leader>e";
+      action.__raw = "function() Snacks.explorer() end";
+      options.desc = "File Tree";
+    }
+    {
       key = "<leader><space>";
       action.__raw = "function() Snacks.picker.smart() end";
       options.desc = "Smart Find Files";
@@ -279,16 +284,6 @@
     snacks = {
       enable = true;
 
-      luaConfig.pre = ''
-        picker = {
-          sources = {
-            explorer = {
-              focus = "input",
-              auto_close = true,
-            },
-          },
-        },
-      '';
       settings = {
         bigfile.enabled = true;
         explorer = {
@@ -313,7 +308,9 @@
         picker = {
           enabled = true;
           sources = {
-            explorer = { };
+            explorer = {
+              auto_close = true;
+            };
           };
           win = {
             input = {

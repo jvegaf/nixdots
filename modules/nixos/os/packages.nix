@@ -7,16 +7,28 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    pciutils
-    lshw
-    nmap
+    age
     curl
-    ntfs3g
-    wget
-    wl-clipboard
-    xclip
-    xsel
-    p7zip
+    fd
+    git
+    jq
+    less
     lm_sensors
+    lshw
+    nix-output-monitor
+    nmap
+    ntfs3g
+    p7zip
+    pciutils
+    procs
+    pv
+    ranger
+    ripgrep
+    sops
+    ssh-to-age
+    tree
+    unzip
+    unar
+    wget
   ];
 }

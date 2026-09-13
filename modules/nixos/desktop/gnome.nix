@@ -1,20 +1,8 @@
 { pkgs, ... }:
 {
   services = {
-    displayManager.gdm.enable = true;
     desktopManager.gnome.enable = true;
-    xserver.xkb = {
-      layout = "us";
-      variant = "";
-    };
-    libinput.enable = true;
   };
-
-  # GNOME-specific packages
-  environment.systemPackages = with pkgs; [
-    ghostty
-    wl-clipboard
-  ];
 
   environment.gnome.excludePackages = with pkgs; [
     baobab

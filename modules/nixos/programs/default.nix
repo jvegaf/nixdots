@@ -3,5 +3,6 @@
     ./1password.nix
     ./creality-print.nix
     ./blender.nix
+    ./thunar.nix
   ];
 }

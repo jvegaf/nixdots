@@ -1,7 +1,3 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
 {
   config,
   inputs,
@@ -11,25 +7,20 @@
 
 {
   imports = [
-    # Include the results of the hardware scan.
     (import ../disks/gpt-ext4.nix { device = "/dev/nvme0n1"; })
-    (inputs.hardware + "/common/cpu/intel")
-    (inputs.hardware + "/common/gpu/intel/kaby-lake")
+    (inputs.hardware + "/common/cpu/intel/kaby-lake")
     ./hardware-configuration.nix
-    ../../modules/nixos/hardware
-    ../../modules/nixos/os
-    ../../modules/nixos/programs
-    ../../modules/nixos/desktop/mangowm
+    ../../modules/nixos
+    ../../modules/nixos/services/dm/mng-auto.nix
+    ../../modules/nixos/desktop/mangowm.nix
   ];
 
-  # nix.settings.experimental-features = ["nix-command" "flakes"];
-  #
-  # # Bootloader.
-  # boot.loader.systemd-boot.enable = true;
-  # boot.loader.efi.canTouchEfiVariables = true;
-  #
-  # # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
+
+  programs = {
+    creality-print.enable = true;
+    onepassword.enable = true;
+  };
 
   hardware = {
     enableRedistributableFirmware = true;
@@ -53,24 +44,28 @@
       enable32Bit = true;
     };
   };
-  networking.hostName = "fs0ciety"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  services.xserver.enable = true;
-  services.xserver.videoDrivers = [
-    # "modesetting"
-    "nvidia"
-  ];
+  networking.hostName = "fs0ciety";
 
-  environment.systemPackages = with pkgs; [
-    nvtopPackages.full # Monitor de GPU
+  services = { # Define your hostname.
+    xserver.videoDrivers = [
+      # "modesetting"
+      "nvidia"
+    ];
 
-    mesa-demos # Info OpenGL (glxinfo)
-    # Utilidades sistema
-    lm_sensors # Sensores de temperatura
-  ];
+    # Enable touchpad support (enabled default in most desktopManager).
+  };
+  environment = {
+    shellAliases = {
+        freb = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety --log-format internal-json -v |& nom --json";
+    };
+    systemPackages = with pkgs; [
+      nvtopPackages.full # Monitor de GPU
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
+      mesa-demos # Info OpenGL (glxinfo)
+      # Utilidades sistema
+      lm_sensors # Sensores de temperatura
+    ];
+  };
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

@@ -16,10 +16,11 @@
     imports = [
       ./keymaps.nix
       ./actions-preview.nix
-      ./barbar.nix
+      ./bufferline.nix
       ./blink-cmp.nix
       ./comment.nix
       ./conform.nix
+      ./dashboard.nix
       ./dial.nix
       ./dropbar.nix
       ./flash.nix
@@ -28,7 +29,7 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
-      ./neo-tree.nix
+      ./oil.nix
       ./sidekick.nix
       ./snacks.nix
       ./treesitter.nix

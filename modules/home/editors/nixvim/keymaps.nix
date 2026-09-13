@@ -494,31 +494,17 @@
       options.silent = true;
     }
     {
-      action = "<cmd>bdelete<CR>";
-      key = "Q";
-      mode = "n";
-      options.silent = true;
-    }
-    {
       action = "V";
       key = "vv";
     }
     # {
-    #   action = "<cmd>BufferLineCyclePrev<cr>";
-    #   key = "H";
-    # }
-    # {
-    #   action = "<cmd>BufferLineCycleNext<cr>";
-    #   key = "L";
-    # }
-    # {
     #   action = ":nohlsearch<Bar>:echo<CR>";
     #   key = "<ESC>";
     # }
-    {
-      action = "gg<S-v>G";
-      key = "<C-a>";
-    }
+    # {
+    #   action = "gg<S-v>G";
+    #   key = "<C-a>";
+    # }
     {
       action = "<C-i>";
       key = "<C-m>";
@@ -567,10 +553,6 @@
       action = "<cmd>UrlView lazy<cr>";
       key = "<leader>zu";
     }
-    # {
-    #   action = "<cmd>TSJToggle<cr>";
-    #   key = "<leader>j";
-    # }
   ];
 }
 # nixfmt:enable

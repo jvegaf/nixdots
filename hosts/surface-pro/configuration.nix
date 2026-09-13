@@ -1,9 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
+    (inputs.hardware + "/common/cpu/intel/skylake")
     (import ../disks/gpt-ext4.nix {
       device = "/dev/nvme0n1";
       swapSize = "4G";
@@ -15,11 +16,13 @@
     # ../../modules/nixos/desktop/hyprland
   ];
 
-  # Use patched kernel 6.15 for better webcam support (hopefully)
-  # hardware.microsoft-surface.kernelVersion = "stable";
   hardware.graphics = {
     enable = true;
     enable32Bit = true;
+  };
+
+  environment.shellAliases = {
+      freb = "sudo nixos-rebuild switch --flake ~/nixdots#surface-pro --log-format internal-json -v |& nom --json";
   };
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
