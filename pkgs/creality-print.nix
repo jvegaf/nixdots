@@ -31,14 +31,20 @@ appimageTools.wrapAppImage rec {
   contents = appimageContents;
 
   # Añade este bloque para proporcionar las dependencias dinámicas que falten
-  extraPkgs =
-    pkgs: with pkgs; [
-      libdeflate
-      libsoup_3
-      webkitgtk_4_1
-      bzip2
-      zstd
-    ];
+  extraPkgs = pkgs: [
+    pkgs.libdeflate
+    pkgs.libsoup_3
+    pkgs.webkitgtk_4_1
+    pkgs.bzip2
+    pkgs.zstd
+    pkgs.glib-networking
+  ];
+
+  extraBwrapArgs = [
+    "--setenv"
+    "GIO_EXTRA_MODULES"
+    "${pkgs.glib-networking}/lib/gio/modules"
+  ];
 
   extraInstallCommands = ''
     # 1. Crear el directorio e instalar el archivo .desktop extraído del AppImage
