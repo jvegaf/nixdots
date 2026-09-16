@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   keymaps = [
     {
@@ -42,6 +42,15 @@
   plugins = {
     copilot-lua = {
       enable = true;
+      # v3.0.4 was retagged upstream; pin its immutable commit and source hash.
+      package = pkgs.vimPlugins.copilot-lua.overrideAttrs (_: {
+        src = pkgs.fetchFromGitHub {
+          owner = "zbirenbaum";
+          repo = "copilot.lua";
+          rev = "9d391a02dc0281713cbb7c3bc87cdd38287b92eb";
+          hash = "sha256-kDQOm7/N6T7wOw1JlkcxNMnQrDE4oTRyGCZkvT8HZQw=";
+        };
+      });
     };
 
     sidekick = {
