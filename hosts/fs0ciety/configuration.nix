@@ -11,8 +11,9 @@
     (inputs.hardware + "/common/cpu/intel/kaby-lake")
     ./hardware-configuration.nix
     ../../modules/nixos
-    ../../modules/nixos/services/dm/mng-auto.nix
+    ../../modules/nixos/services/dm/ly.nix
     ../../modules/nixos/desktop/mangowm.nix
+    ../../modules/nixos/desktop/niri.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;
@@ -46,7 +47,8 @@
   };
   networking.hostName = "fs0ciety";
 
-  services = { # Define your hostname.
+  services = {
+    # Define your hostname.
     xserver.videoDrivers = [
       # "modesetting"
       "nvidia"
@@ -56,7 +58,7 @@
   };
   environment = {
     shellAliases = {
-        freb = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety --log-format internal-json -v |& nom --json";
+      freb = "sudo nixos-rebuild switch --flake ~/nixdots#fs0ciety --log-format internal-json -v |& nom --json";
     };
     systemPackages = with pkgs; [
       nvtopPackages.full # Monitor de GPU

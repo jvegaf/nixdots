@@ -1,4 +1,4 @@
-{ pkgs, ... }: {
+{ pkgs, lib, ... }: {
 
   imports = [
     ../noctalia
@@ -14,7 +14,7 @@
     settings = {
       screenshot-path = null;
       prefer-no-csd = { };
-      # spawn-at-startup = [ "waybar" ];
+      spawn-at-startup = [ "noctalia-shell" ];
 
       input = {
         keyboard.xkb.layout = [ "us" ];
@@ -33,14 +33,14 @@
         };
         "Mod+D" = {
           _props.hotkey-overlay-title = "Open App Launcher";
-          spawn-sh = [
-            "noctalia msg panel-toggle launcher"
+          spawn = [
+            "noctalia-shell ipc call launcher toggle"
           ];
         };
         "Mod+S" = {
           _props.hotkey-overlay-title = "Open Control Center";
-          spawn-sh = [
-            "noctalia msg panel-toggle control-center"
+          spawn = [
+            "noctalia-shell ipc call settings toggle"
           ];
         };
         "Mod+E" = {
@@ -58,15 +58,15 @@
 
         "XF86AudioRaiseVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "noctalia msg volume-up" ];
+          spawn-sh = [ "qs -c noctalia-shell ipc call volume increase" ];
         };
         "XF86AudioLowerVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "noctalia msg volume-down" ];
+          spawn-sh = [ "qs -c noctalia-shell ipc call volume decrease" ];
         };
         "XF86AudioMute" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "noctalia msg volume-mute" ];
+          spawn-sh = [ "qs -c noctalia-shell ipc call volume muteOutput" ];
         };
         "XF86AudioMicMute" = {
           _props.allow-when-locked = true;
@@ -299,20 +299,20 @@
       hotkey-overlay.skip-at-startup = { };
 
       _children = [
-        {
-          output = {
-            _args = [ "eDP-1" ];
-            mode = [ "2560x1440@60.000" ];
-            scale = 1.33;
-          };
-        }
-        {
-          output = {
-            _args = [ "HDMI-A-1" ];
-            mode = [ "1920x1080@60.000" ];
-            scale = 1;
-          };
-        }
+        # {
+        #   output = {
+        #     _args = [ "eDP-1" ];
+        #     mode = [ "2560x1440@60.000" ];
+        #     scale = 1.33;
+        #   };
+        # }
+        # {
+        #   output = {
+        #     _args = [ "HDMI-A-1" ];
+        #     mode = [ "1920x1080@60.000" ];
+        #     scale = 1;
+        #   };
+        # }
         {
           window-rule._children = [
             {
@@ -353,8 +353,8 @@
     };
   };
 
-  programs.quickshell.enable = true;
-  programs.quickshell.systemd.enable = true;
+  # programs.quickshell.enable = true;
+  # programs.quickshell.systemd.enable = true;
   programs.fuzzel.enable = true;
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   services.swayidle.enable = true; # idle management daemon
