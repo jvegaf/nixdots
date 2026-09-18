@@ -18,6 +18,11 @@
       options.desc = "File Tree";
     }
     {
+      key = "<leader>ze";
+      action.__raw = "function() Snacks.explorer().reveal() end";
+      options.desc = "File Tree Reveal";
+    }
+    {
       key = "<leader><space>";
       action.__raw = "function() Snacks.picker.smart() end";
       options.desc = "Smart Find Files";

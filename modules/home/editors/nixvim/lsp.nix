@@ -43,18 +43,6 @@
       nil_ls.enable = true;
       nixd = {
         enable = true;
-        # config =
-        #   let
-        #     localFlake = ''(builtins.getFlake "/home/fpletz/src/flake")'';
-        #   in
-        #   {
-        #     nixpkgs.expr = "import <nixpkgs> {}";
-        #     formatting.command = [ (lib.getExe pkgs.nixfmt) ];
-        #     options = {
-        #       nixos.expr = "${localFlake}.nixosConfigurations.server.options";
-        #       home-manager.expr = "${localFlake}.homeConfigurations.fpletz.options";
-        #     };
-        #   };
       };
       marksman.enable = true;
       markdown_oxide.enable = true;
@@ -129,7 +117,6 @@
       };
     };
     jdtls.enable = true;
-    spring-boot.enable = true;
     # otter.enable = true;
   };
 }

@@ -64,43 +64,43 @@
 
         "XF86AudioRaiseVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume increase" ];
+          spawn-sh = [ "noctalia-shell ipc call volume increase" ];
         };
         "XF86AudioLowerVolume" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume decrease" ];
+          spawn-sh = [ "noctalia-shell ipc call volume decrease" ];
         };
         "XF86AudioMute" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume muteOutput" ];
+          spawn-sh = [ "noctalia-shell ipc call volume muteOutput" ];
         };
         "XF86AudioMicMute" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call volume muteInput" ];
+          spawn-sh = [ "noctalia-shell ipc call volume muteInput" ];
         };
         "XF86AudioNext" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call media next" ];
+          spawn-sh = [ "noctalia-shell ipc call media next" ];
         };
         "XF86AudioPrev" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call media previous" ];
+          spawn-sh = [ "noctalia-shell ipc call media previous" ];
         };
         "XF86AudioPlay" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call media playPause" ];
+          spawn-sh = [ "noctalia-shell ipc call media playPause" ];
         };
         "XF86AudioPause" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "qs -c noctalia-shell ipc call media playPause" ];
+          spawn-sh = [ "noctalia-shell ipc call media playPause" ];
         };
         "XF86MonBrightnessUp" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "noctalia msg brightness-up" ];
+          spawn-sh = [ "noctalia-shell ipc call brightness increase" ];
         };
         "XF86MonBrightnessDown" = {
           _props.allow-when-locked = true;
-          spawn-sh = [ "noctalia msg brightness-down" ];
+          spawn-sh = [ "noctalia-shell ipc call brightness decrease" ];
         };
 
         "Mod+Q".close-window = { };
@@ -201,7 +201,7 @@
       };
 
       layout = {
-        gaps = 12;
+        gaps = 15;
         center-focused-column = [ "never" ];
         preset-column-widths._children = [
           { proportion = 0.33333; }
@@ -305,20 +305,6 @@
       hotkey-overlay.skip-at-startup = { };
 
       _children = [
-        # {
-        #   output = {
-        #     _args = [ "eDP-1" ];
-        #     mode = [ "2560x1440@60.000" ];
-        #     scale = 1.33;
-        #   };
-        # }
-        # {
-        #   output = {
-        #     _args = [ "HDMI-A-1" ];
-        #     mode = [ "1920x1080@60.000" ];
-        #     scale = 1;
-        #   };
-        # }
         {
           window-rule._children = [
             {
@@ -338,7 +324,7 @@
         }
         {
           window-rule._children = [
-            { geometry-corner-radius = 10; }
+            { geometry-corner-radius = 15; }
             { clip-to-geometry = true; }
           ];
         }
@@ -359,11 +345,7 @@
     };
   };
 
-  # programs.quickshell.enable = true;
-  # programs.quickshell.systemd.enable = true;
-  programs.fuzzel.enable = true;
   programs.swaylock.enable = true; # Super+Alt+L in the default setting (screen locker)
   services.swayidle.enable = true; # idle management daemon
-  # services.polkit-gnome.enable = true; # polkit
 
 }

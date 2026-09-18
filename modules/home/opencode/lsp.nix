@@ -36,36 +36,6 @@
         ".jsonc"
       ];
     };
-    svelte = {
-      command = [
-        "svelteserver"
-        "--stdio"
-      ];
-      extensions = [ ".svelte" ];
-    };
-    emmet = {
-      command = [
-        "emmet-language-server"
-        "--stdio"
-      ];
-      extensions = [
-        ".html"
-        ".css"
-        ".jsx"
-        ".tsx"
-        ".vue"
-      ];
-    };
-    haskell = {
-      command = [
-        "haskell-language-server-wrapper"
-        "--lsp"
-      ];
-      extensions = [
-        ".hs"
-        ".lhs"
-      ];
-    };
     python = {
       command = [ "pylsp" ];
       extensions = [
