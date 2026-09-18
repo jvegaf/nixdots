@@ -7,15 +7,6 @@
 
   programs.noctalia-shell = {
     enable = true;
-    # settings = {
-    #   bar = {
-    #     position = "left";
-    #   };
-    #   wallpaper = {
-    #     overviewEnabled = false;
-    #   };
-    #   colorSchemes.predefinedScheme = "Catppuccin";
-    # };
     colors = {
       mError = "#fb4934";
       mHover = "#83a598";
@@ -35,6 +26,22 @@
       mTertiary = "#83a598";
     };
     settings = {
+      plugins = {
+        sources = [
+          {
+            enabled = true;
+            name = "Noctalia Plugins";
+            url = "https://github.com/noctalia-dev/noctalia-plugins";
+          }
+        ];
+        states = {
+          display-settings = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+        };
+        version = 2;
+      };
       appLauncher = {
         customLaunchPrefix = "";
         customLaunchPrefixEnabled = false;
@@ -122,12 +129,12 @@
             }
             {
               displayMode = "forceOpen";
-              id = "KeyboardLayout";
+              id = "plugin:display-settings";
             }
             {
               customFont = "";
               formatHorizontal = "HH:mm ddd, MMM dd";
-              formatVertical = "HH mm - dd MM";
+              formatVertical = "HH mm";
               id = "Clock";
               useCustomFont = false;
               usePrimaryColor = true;

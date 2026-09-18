@@ -40,6 +40,12 @@
         "Mod+S" = {
           _props.hotkey-overlay-title = "Open Control Center";
           spawn-sh = [
+            "noctalia-shell ipc call controlCenter toggle"
+          ];
+        };
+        "Mod+Comma" = {
+          _props.hotkey-overlay-title = "Open Settings";
+          spawn-sh = [
             "noctalia-shell ipc call settings toggle"
           ];
         };
@@ -175,10 +181,10 @@
         "Mod+CTRL+F".expand-column-to-available-width = { };
         "Mod+C".center-column = { };
         "Mod+CTRL+C".center-visible-columns = { };
-        "Mod+T".toggle-window-floating = { };
-        "MOD+F".maximize-column = { };
+        "Mod+F".toggle-window-floating = { };
+        "MOD+A".maximize-column = { };
         "MOD+SHIFT+F".fullscreen-window = { };
-        "Mod+W".toggle-column-tabbed-display = { };
+        "Mod+SHIFT+W".toggle-column-tabbed-display = { };
         "CTRL+Shift+1".screenshot = { };
         "CTRL+Shift+2".screenshot-screen = { };
         "CTRL+Shift+3".screenshot-window = { };
@@ -188,7 +194,7 @@
         };
         "CTRL+ALT+Delete".quit = { };
         "Mod+Shift+P".power-off-monitors = { };
-        "Mod+O" = {
+        "Mod+W" = {
           _props.repeat = false;
           toggle-overview = { };
         };
