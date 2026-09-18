@@ -12,7 +12,7 @@
     ./hardware-configuration.nix
     ../../modules/nixos
     ../../modules/nixos/services/dm/ly.nix
-    ../../modules/nixos/desktop/mangowm.nix
+    ../../modules/nixos/desktop/xfce.nix
     ../../modules/nixos/desktop/niri.nix
   ];
 

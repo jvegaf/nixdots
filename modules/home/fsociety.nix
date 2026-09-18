@@ -4,7 +4,7 @@
     ./browsers
     ./common
     ./desktop/common
-    ./desktop/mango
+    # ./desktop/mango
     ./desktop/niri
     ./editors
     ./programs/orcaslicer
