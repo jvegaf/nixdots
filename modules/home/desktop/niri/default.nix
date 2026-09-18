@@ -33,13 +33,13 @@
         };
         "Mod+D" = {
           _props.hotkey-overlay-title = "Open App Launcher";
-          spawn = [
+          spawn-sh = [
             "noctalia-shell ipc call launcher toggle"
           ];
         };
         "Mod+S" = {
           _props.hotkey-overlay-title = "Open Control Center";
-          spawn = [
+          spawn-sh = [
             "noctalia-shell ipc call settings toggle"
           ];
         };

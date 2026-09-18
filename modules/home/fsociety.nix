@@ -7,8 +7,8 @@
     # ./desktop/mango
     ./desktop/niri
     ./editors
-    ./programs/orcaslicer
-    ./opencode
+   # ./programs/orcaslicer
+   # ./opencode
     ./shell
     ./terminals
   ];

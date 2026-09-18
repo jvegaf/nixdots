@@ -30,7 +30,6 @@
       ./lsp.nix
       ./neogit.nix
       ./oil.nix
-      ./sidekick.nix
       ./snacks.nix
       ./treesitter.nix
       ./treesj.nix
