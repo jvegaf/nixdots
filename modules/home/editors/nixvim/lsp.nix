@@ -39,13 +39,13 @@
       jsonls.enable = true;
       just.enable = true;
       lemminx.enable = true;
-      lua_ls.enable = false;
+      lua_ls.enable = true;
       nil_ls.enable = true;
       nixd = {
         enable = true;
       };
-      marksman.enable = true;
-      markdown_oxide.enable = true;
+      marksman.enable = false;
+      markdown_oxide.enable = false;
       pylsp.enable = true;
       ruff.enable = true;
       statix.enable = true;
@@ -105,7 +105,7 @@
   plugins = {
     lsp.enable = true;
     rustaceanvim = {
-      enable = true;
+      enable = false;
       settings.server = {
         standalone = false;
       };

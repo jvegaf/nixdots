@@ -3,12 +3,14 @@
   imports = [
     ./browsers
     ./common
-    ./desktop
+    ./desktop/common
+    ./desktop/mango
+    ./desktop/gnome
     ./editors
     ./opencode
     ./shell
     ./terminals
-    ./programs
+    ./programs/orcaslicer
   ];
 
   # Home Manager needs a bit of information about you and the
@@ -21,6 +23,15 @@
   #   inputs.nixvim.packages.x86_64-linux.default
   # ];
 
+  home.packages = with pkgs; [
+    vlc
+    gnome-disk-utility
+    qbittorrent
+    wlr-randr
+    wl-clipboard
+    lxappearance
+    freecad
+  ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage
   # when a new Home Manager release introduces backwards

@@ -8,8 +8,6 @@
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
         c
-        cairo
-        clojure
         cmake
         comment
         cpp
@@ -18,7 +16,6 @@
         dockerfile
         dot
         doxygen
-        dtd
         editorconfig
         fish
         fsh
@@ -33,7 +30,6 @@
         ini
         java
         javascript
-        jinja
         jq
         jsdoc
         json
@@ -44,25 +40,19 @@
         luadoc
         make
         markdown
-        meson
-        nginx
-        ninja
         nix
         nu
         pod
-        properties
         python
         ql
         qmldir
         regex
         rust
-        scala
         scss
         sql
         ssh-config
         toml
         tsx
-        twig
         typescript
         vim
         vimdoc

@@ -1,0 +1,42 @@
+{
+	"compatible_printers": [
+		"K1C Road Runner"
+	],
+	"default_filament_colour": [
+		"#E5A50A"
+	],
+	"enable_pressure_advance": [
+		"1"
+	],
+	"fan_max_speed": [
+		"70"
+	],
+	"fan_min_speed": [
+		"50"
+	],
+	"filament_extruder_variant": [
+		"Direct Drive Standard"
+	],
+	"filament_flow_ratio": [
+		"0.931"
+	],
+	"filament_settings_id": [
+		"PLA Winkle @ K1C"
+	],
+	"filament_z_hop_types": [
+		"Slope Lift"
+	],
+	"from": "User",
+	"hot_plate_temp": [
+		"65"
+	],
+	"hot_plate_temp_initial_layer": [
+		"65"
+	],
+	"inherits": "Generic PLA @System",
+	"name": "PLA Winkle @ K1C",
+	"pressure_advance": [
+		"0.064"
+	],
+	"version": "2.3.0.3"
+}

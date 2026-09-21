@@ -29,6 +29,7 @@
       ./inc-rename.nix
       ./lsp.nix
       ./neogit.nix
+      ./neo-tree.nix
       ./oil.nix
       ./snacks.nix
       ./treesitter.nix

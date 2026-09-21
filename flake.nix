@@ -21,7 +21,7 @@
     vicinae.url = "github:vicinaehq/vicinae";
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
+      # inputs.nixpkgs.follows = "nixpkgs";
     };
 
     noctalia-shell.url = "github:noctalia-dev/noctalia-shell/legacy-v4";

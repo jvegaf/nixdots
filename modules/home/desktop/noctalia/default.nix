@@ -370,36 +370,24 @@
           {
             action = "lock";
             command = "";
-            countdownEnabled = true;
-            enabled = true;
-          }
-          {
-            action = "suspend";
-            command = "";
-            countdownEnabled = true;
-            enabled = true;
-          }
-          {
-            action = "hibernate";
-            command = "";
-            countdownEnabled = true;
+            countdownEnabled = false;
             enabled = true;
           }
           {
             action = "reboot";
-            command = "";
-            countdownEnabled = true;
+            command = "reboot";
+            countdownEnabled = false;
             enabled = true;
           }
           {
             action = "logout";
-            command = "";
-            countdownEnabled = true;
+            command = "killall mango";
+            countdownEnabled = false;
             enabled = true;
           }
           {
             action = "shutdown";
-            command = "";
+            command = "shutdown -h now";
             countdownEnabled = true;
             enabled = true;
           }

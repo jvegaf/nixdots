@@ -12,16 +12,16 @@
 
   keymaps = [
     # top
-    {
-      key = "<leader>e";
-      action.__raw = "function() Snacks.explorer() end";
-      options.desc = "File Tree";
-    }
-    {
-      key = "<leader>ze";
-      action.__raw = "function() Snacks.explorer().reveal() end";
-      options.desc = "File Tree Reveal";
-    }
+    # {
+    #   key = "<leader>e";
+    #   action.__raw = "function() Snacks.explorer() end";
+    #   options.desc = "File Tree";
+    # }
+    # {
+    #   key = "<leader>ze";
+    #   action.__raw = "function() Snacks.explorer().reveal() end";
+    #   options.desc = "File Tree Reveal";
+    # }
     {
       key = "<leader><space>";
       action.__raw = "function() Snacks.picker.smart() end";
@@ -292,8 +292,8 @@
       settings = {
         bigfile.enabled = true;
         explorer = {
-          enabled = true;
-          replace_netrw = true;
+          enabled = false;
+          # replace_netrw = true;
         };
         input = {
           enabled = true;
@@ -312,11 +312,11 @@
         };
         picker = {
           enabled = true;
-          sources = {
-            explorer = {
-              auto_close = true;
-            };
-          };
+          # sources = {
+          #   explorer = {
+          #     auto_close = true;
+          #   };
+          # };
           win = {
             input = {
               keys.__raw = ''

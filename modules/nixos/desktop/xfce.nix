@@ -21,6 +21,8 @@
     };
   };
 
+  services.displayManager.defaultSession = "xfce";
+
   security.pam.services.gdm.enableGnomeKeyring = true;
   # programs.xfconf.enable = true;
   programs.dconf.enable = true;
