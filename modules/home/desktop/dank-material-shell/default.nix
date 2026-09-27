@@ -58,9 +58,12 @@
             "launcherButton"
             "workspaceSwitcher"
             "focusedWindow"
+            {
+              id = "voxtype";
+              enabled = true;
+            }
           ];
           centerWidgets = [
-            "music"
             "clock"
             "weather"
           ];
@@ -101,9 +104,14 @@
 
     plugins = {
       # Simply enable plugins by their ID (from the registry)
-      dankBatteryAlerts.enable = true;
+      # dankBatteryAlerts.enable = true;
       colorPickerDms.enable = true;
       developerUtilities.enable = true;
+
+      voxtype.enable = true;
+      voxtypeActivityOverlay.enable = true;
+      # Registry key is `voxTypeOsd` (upstream typo, matches plugin.json id)
+      voxTypeOsd.enable = true;
 
       webSearch = {
         enable = true;

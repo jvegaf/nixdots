@@ -6,7 +6,7 @@
 
   programs.voxtype = {
     enable = true;
-    package = inputs.voxtype.packages.${pkgs.stdenv.hostPlatform.system}.cuda;
+    package = inputs.voxtype.packages.${pkgs.stdenv.hostPlatform.system}.vulkan;
     model.name = "small";
     service.enable = true;
     settings = {

@@ -1,7 +1,6 @@
 { inputs, pkgs, ... }: {
   imports = [
-    ../noctalia
-    ../vicinae
+    ../dank-material-shell
     inputs.mangowm.hmModules.mango
     # inputs.dms.homeModules.dank-material-shell
   ];
@@ -10,7 +9,7 @@
     enable = true;
     systemd.enable = true;
     settings = {
-      # Monits
+      # Monitors
       # monitorrule = [
       #   # "name:eDP-1, width:2560, height:1440, refresh:60, x:0, y:10, vrr:1, scale:1.33"
       #   "name:eDP-1, width:1920, height:1080, refresh:60, x:0, y:10, vrr:1"
@@ -44,7 +43,13 @@
       scroller_structs = 0;
       scroller_default_proportion = 0.5;
       scroller_ignore_proportion_single = 0;
-      scroller_default_proportion_single = 1;
+      scroller_default_proportion_single = 1.0;
+
+      # Master-Stack Layout Setting
+      new_is_master = 0;
+      default_mfact = 0.5;
+      default_nmaster = 1;
+      smartgaps = 1;
 
       # Overview Setting
       hotarea_size = 10;
@@ -69,9 +74,9 @@
       ];
       # layouts
       tagrule = [
-        "id:1, layout_name:dwindle"
+        "id:1, layout_name:scroller"
         "id:2, layout_name:scroller"
-        "id:3, layout_name:dwindle"
+        "id:3, layout_name:scroller"
         "id:4, layout_name:scroller"
         "id:5, layout_name:tile"
         "id:6, layout_name:scroller"
@@ -92,32 +97,31 @@
       bind = [
         # apps
         "SUPER, Return, spawn, ghostty"
-        #"SUPER, Space, spawn, noctalia-shell ipc call launcher toggle"
-        "SUPER, Space, spawn, vicinae toggle"
-        "SUPER, S, spawn, noctalia-shell ipc call controlCenter toggle"
+        "SUPER, Space, spawn, dms ipc call spotlight toggle"
+        "SUPER, S, spawn, dms ipc call settings open"
         "SUPER, B, spawn, firefox"
         "SUPER, E, spawn, nautilus"
+        "SUPER+SHIFT, S, spawn, voxtype record-toggle"
         # "SUPER, V, spawn, vicinae vicinae://extensions/vicinae/clipboard/history"
         # "SUPER+SHIFT, W, spawn, vicinae vicinae://extensions/sovereign/awww-switcher/wpgrid"
-        "SUPER+ALT, Z, spawn, voxtype record toggle"
 
         # WM
         "SUPER, Q, killclient"
-        "SUPER+SHIFT, Q, quit"
         "SUPER, F, togglefakefullscreen"
         "SUPER+SHIFT, R, reload_config"
         "SUPER+SHIFT, F, togglefullscreen"
         "SUPER+SHIFT, T, togglefloating"
 
-        "SUPER, W, toggleoverview"
+        "SUPER, Tab, toggleoverview"
         "SUPER, A, togglemaximizescreen"
         "ALT+SHIFT, minus, incgaps, -1"
         "ALT+SHIFT, equal, incgaps, 1"
         "ALT+SHIFT, R, togglegaps"
 
         # switch layout
-        "SUPER+SHIFT, D, setlayout, dwindle"
-        "SUPER+SHIFT, S, setlayout, scroller"
+        "SUPER+SHIFT, H, setlayout, tile"
+        "SUPER+SHIFT, V, setlayout, vertical_tile"
+        "SUPER+ALT, S, setlayout, scroller"
 
         # resize client
         "SUPER+CTRL, Up, resizewin, +0, -50"
@@ -132,7 +136,7 @@
         "SUPER+SHIFT, Right, exchange_client, right"
 
         # switch client focus
-        "SUPER, Tab, focusstack, next"
+        # "SUPER, Tab, focusstack, next"
         "SUPER, Left, focusdir, left"
         "SUPER, Right, focusdir, right"
         "SUPER, Up, focusdir, up"
@@ -234,15 +238,39 @@
       exec-once = [
 
         "wlr-randr --output eDP-1 --custom-mode 1920x1080@60"
-        # "dms run"
-        "noctalia-shell"
+        "dms run"
         # "awww-daemon"
         # "kdeconnectd"
         # "kdeconnect-indicator"
-        "dbus-update-activation-environment --systemd --all; systemctl --user reset-failed && systemctl --user start mango-session.target && systemctl --user add-wants mango-session.target noctalia.service"
+        "dbus-update-activation-environment --systemd --all; systemctl --user reset-failed && systemctl --user start mango-session.target"
       ];
     };
   };
+
+  # programs.dank-material-shell = {
+  #   enable = true;
+  #
+  #   settings = {
+  #     theme = "dark";
+  #     dynamicTheming = true;
+  #     # Add any other settings here
+  #   };
+  #
+  #   session = {
+  #     isLightMode = false;
+  #     # Add any other session state settings here
+  #   };
+  #
+  #   clipboardSettings = {
+  #     maxHistory = 25;
+  #     maxEntrySize = 5242880;
+  #     autoClearDays = 1;
+  #     clearAtStartup = true;
+  #     disabled = false;
+  #     disableHistory = false;
+  #     disablePersist = true;
+  #   };
+  # };
 
   home.packages = with pkgs; [
     nautilus
