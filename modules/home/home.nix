@@ -5,12 +5,12 @@
     ./common
     ./desktop/common
     ./desktop/mango
-    ./desktop/gnome
     ./editors
     ./opencode
     ./shell
     ./terminals
     ./programs/orcaslicer
+    ./programs/voxtype.nix
   ];
 
   # Home Manager needs a bit of information about you and the

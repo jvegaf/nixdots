@@ -17,10 +17,7 @@
     (import ../disks/gpt-ext4.nix { device = "/dev/disk/by-id/nvme-CT500P1SSD8_2004E284F1D7"; })
     ../../modules/nixos
     ../../modules/nixos/services/dm/ly.nix
-    # ../../modules/nixos/services/dm/sddm.nix
-    # ../../modules/nixos/desktop/gnome.nix
     ../../modules/nixos/desktop/mangowm.nix
-    # ../../modules/nixos/desktop/xfce.nix
   ];
 
   nixpkgs.config.allowUnfree = true;

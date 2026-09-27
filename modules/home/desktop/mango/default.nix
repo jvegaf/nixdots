@@ -99,6 +99,7 @@
         "SUPER, E, spawn, nautilus"
         # "SUPER, V, spawn, vicinae vicinae://extensions/vicinae/clipboard/history"
         # "SUPER+SHIFT, W, spawn, vicinae vicinae://extensions/sovereign/awww-switcher/wpgrid"
+        "SUPER+ALT, Z, spawn, voxtype record toggle"
 
         # WM
         "SUPER, Q, killclient"
@@ -108,7 +109,7 @@
         "SUPER+SHIFT, F, togglefullscreen"
         "SUPER+SHIFT, T, togglefloating"
 
-        "SUPER, Tab, toggleoverview"
+        "SUPER, W, toggleoverview"
         "SUPER, A, togglemaximizescreen"
         "ALT+SHIFT, minus, incgaps, -1"
         "ALT+SHIFT, equal, incgaps, 1"

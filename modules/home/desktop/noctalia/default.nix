@@ -33,11 +33,20 @@
             name = "Noctalia Plugins";
             url = "https://github.com/noctalia-dev/noctalia-plugins";
           }
+          {
+            enabled = true;
+            name = "Noctalia Community Plugins";
+            url = "https://github.com/noctalia-dev/community-plugins";
+          }
         ];
         states = {
           display-settings = {
             enabled = true;
             sourceUrl = "https://github.com/noctalia-dev/noctalia-plugins";
+          };
+          voxtype = {
+            enabled = true;
+            sourceUrl = "https://github.com/noctalia-dev/community-plugins";
           };
         };
         version = 2;
@@ -74,7 +83,7 @@
         marginVertical = 0.25;
         monitors = [ ];
         outerCorners = true;
-        position = "left";
+        position = "top";
         showCapsule = false;
         showOutline = false;
         transparent = false;
@@ -88,6 +97,9 @@
               enableColorization = true;
               id = "ControlCenter";
               useDistroLogo = true;
+            }
+            {
+              id = "voxtype";
             }
             {
               characterCount = 2;
