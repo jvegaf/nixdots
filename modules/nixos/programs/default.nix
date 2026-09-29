@@ -4,5 +4,6 @@
     ./creality-print.nix
     ./blender.nix
     ./thunar.nix
+    ./pi.nix
   ];
 }

@@ -27,6 +27,7 @@
     creality-print.enable = false;
     blender.enable = false;
     onepassword.enable = true;
+    pi-agent.enable = true;
   };
   environment = {
     shellAliases = {
