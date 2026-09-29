@@ -18,12 +18,13 @@
     ../../modules/nixos
     ../../modules/nixos/services/dm/ly.nix
     ../../modules/nixos/desktop/mangowm.nix
+    # ../../modules/nixos/desktop/noctalia.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "razer-blade";
   programs = {
-    creality-print.enable = true;
+    creality-print.enable = false;
     blender.enable = false;
     onepassword.enable = true;
   };

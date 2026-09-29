@@ -2,7 +2,7 @@
 
 let
   # Ruta absoluta a tu repositorio de dotfiles
-  dotfilesDir = "/home/th3g3ntl3man/nixdots";
+  dotfilesDir = "/home/th3g3ntl3man/nixdots/dotfiles";
 in
 {
   home.packages = with pkgs; [
@@ -11,5 +11,5 @@ in
 
   # Enlace simbólico fuera del Nix Store
   home.file.".config/OrcaSlicer".source =
-    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/modules/home/dotfiles/OrcaSlicer";
+    config.lib.file.mkOutOfStoreSymlink "${dotfilesDir}/OrcaSlicer";
 }

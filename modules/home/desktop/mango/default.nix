@@ -1,8 +1,7 @@
 { inputs, pkgs, ... }: {
   imports = [
-    ../dank-material-shell
+    ../noctalia
     inputs.mangowm.hmModules.mango
-    # inputs.dms.homeModules.dank-material-shell
   ];
 
   wayland.windowManager.mango = {
@@ -97,8 +96,9 @@
       bind = [
         # apps
         "SUPER, Return, spawn, ghostty"
-        "SUPER, Space, spawn, dms ipc call spotlight toggle"
-        "SUPER, S, spawn, dms ipc call settings open"
+        "SUPER, D, spawn, noctalia msg panel-toggle launcher"
+        "SUPER, S, spawn, noctalia msg panel-toggle control-center"
+        "SUPER, comma, spawn, noctalia msg settings-toggle"
         "SUPER, B, spawn, firefox"
         "SUPER, E, spawn, nautilus"
         "SUPER+SHIFT, S, spawn, voxtype record-toggle"
@@ -238,7 +238,7 @@
       exec-once = [
 
         "wlr-randr --output eDP-1 --custom-mode 1920x1080@60"
-        "dms run"
+        # "dms run"
         # "awww-daemon"
         # "kdeconnectd"
         # "kdeconnect-indicator"
