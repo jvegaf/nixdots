@@ -84,7 +84,7 @@
       # if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
       #   tmux attach-session -t default || tmux new-session -s default
       # fi
-
+      export PATH="$PATH:/home/th3g3ntl3man/.local/bin"
       fastfetch
 
       # Start UWSM

@@ -7,7 +7,7 @@
       qbittorrent
       wlr-randr
       wl-clipboard
-      lxappearance
+      nodejs
     ];
   };
 }
