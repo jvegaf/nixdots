@@ -60,15 +60,6 @@
         clean = "nh clean all --keep 3";
 
         g = "lazygit";
-        gs = "git status";
-        ga = "git add";
-        gaa = "git add .";
-        gc = "git commit";
-        gps = "git push";
-        gpl = "git pull --rebase --autostash";
-        gco = "git checkout";
-        gcl = "git clone";
-        grc = "gh repo clone";
         mncl = mngClients;
 
         ".." = "cd ..";
@@ -92,5 +83,12 @@
       #   exec systemd-cat -t uwsm_start uwsm start default
       # fi
     '';
+
+    initExtra = ''
+      function gcls() {
+        git clone "git@github.com:jvegaf/$1.git"
+      }
+    '';
+
   };
 }

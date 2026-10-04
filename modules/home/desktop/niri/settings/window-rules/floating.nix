@@ -15,7 +15,7 @@
     }
 
     {
-      match._props.app-id = "1password";
+      match._props.app-id = "com.onepassword.OnePassword";
       open-floating = true;
       default-column-width.proportion = 0.6;
       default-window-height.proportion = 0.6;

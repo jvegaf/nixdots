@@ -68,7 +68,7 @@ order = [ "main" ]
         capsule_opacity = 1.0
         capsule_padding = 6.0
         capsule_thickness = 0.75999999046325684
-        center = [ "clock", "date", "control-center", "privacy" ]
+        center = [ "caffeine", "clock", "date", "control-center", "privacy" ]
         concave_edge_corners = false
         contact_shadow = false
         enabled = true
@@ -335,7 +335,7 @@ up = [ "Up" ]
 validate = [ "Return", "KP_Enter" ]
 
 [location]
-address = "Belmopan, Belize"
+address = "Madrid, Spain"
 auto_locate = false
 custom_schedule = false
 sunrise = ""

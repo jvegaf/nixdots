@@ -2,7 +2,7 @@
   wayland.windowManager.niri.settings.window-rule = [
     # Cider
     {
-      match._props.app-id = "^cider$";
+      match._props.app-id = "org.freecad.FreeCAD";
       open-on-workspace = "media";
       open-maximized = true;
     }

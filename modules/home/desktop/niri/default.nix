@@ -1,5 +1,6 @@
 {
   inputs,
+  pkgs,
   ...
 }:
 {
@@ -25,4 +26,9 @@
 
   wayland.windowManager.niri.enable = true;
 
+  home.packages = with pkgs; [
+    nautilus
+    sushi
+    parole
+  ];
 }

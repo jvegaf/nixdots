@@ -57,4 +57,16 @@
       };
     };
   };
+
+  home.shellAliases = {
+    gs = "git status";
+    ga = "git add";
+    gaa = "git add .";
+    gc = "git commit";
+    gps = "git push";
+    gpl = "git pull --rebase --autostash";
+    gco = "git checkout";
+    gcl = "git clone";
+    grc = "gh repo clone";
+  };
 }
