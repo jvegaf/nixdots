@@ -43,10 +43,10 @@
     llm-agents.url = "github:numtide/llm-agents.nix";
     # lazyvim.url = "github:pfassina/lazyvim-nix";
 
-    # noctalia-greeter = {
-    #   url = "github:noctalia-dev/noctalia-greeter";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    noctalia-greeter = {
+      url = "github:noctalia-dev/noctalia-greeter";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     superpowers = {
       url = "github:obra/superpowers";
