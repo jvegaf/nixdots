@@ -1,13 +1,19 @@
+{ pkgs, inputs, ... }:
 {
+  imports = [ inputs.niri-nix.nixosModules.default ];
 
-  # imports = [
-  #   ./noctalia.nix
-  # ];
-
-  programs.niri.enable = true;
-  environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
-  xdg.portal.config.niri = {
-    "org.freedesktop.impl.portal.FileChooser" = [ "gtk" ]; # or "kde"
+  # Niri package overlay
+  # nixpkgs.overlays = [ inputs.niri-nix.overlays.niri-nix ];
+  programs.niri = {
+    enable = true;
+    # package = pkgs.niri-unstable;
   };
+
+  environment = {
+    systemPackages = with pkgs; [ xwayland-satellite ];
+    sessionVariables = {
+      NIXOS_OZONE_WL = "1";
+    };
+  };
+
 }
