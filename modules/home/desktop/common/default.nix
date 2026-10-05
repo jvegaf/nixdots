@@ -1,8 +1,9 @@
 { pkgs, ... }:
 {
   imports = [
-    # ./qt.nix
+    ./qt.nix
     ./zathura.nix
+    ./gtk.nix
     # ./stylix.nix
   ];
 
