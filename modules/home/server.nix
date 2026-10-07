@@ -1,7 +1,7 @@
 {
   imports = [
     #./browsers
-    ./common
+    #./common
     #./desktop/server.nix
     # ./editors/nvfvim
     ./editors/helix.nix
