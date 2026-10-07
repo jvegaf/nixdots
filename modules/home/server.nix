@@ -1,13 +1,13 @@
 {
   imports = [
-    ./browsers
+    #./browsers
     ./common
-    ./desktop/server.nix
+    #./desktop/server.nix
     # ./editors/nvfvim
-    ./editors
+    ./editors/helix.nix
     # ./editors/nvix.nix
     # ./opencode
     ./shell
-    ./terminals
+    #./terminals
   ];
 }
