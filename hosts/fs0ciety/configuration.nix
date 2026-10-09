@@ -11,7 +11,7 @@
     (inputs.hardware + "/common/cpu/intel/kaby-lake")
     ./hardware-configuration.nix
     ../../modules/nixos
-    ../../modules/nixos/services/dm/sddm.nix
+    ../../modules/nixos/services/dm/noctalia-greeter.nix
     ../../modules/nixos/desktop/xfce.nix
     ../../modules/nixos/desktop/niri.nix
   ];
