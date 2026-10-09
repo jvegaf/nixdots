@@ -29,29 +29,29 @@
 
   lsp = {
     servers = {
-      bashls.enable = true;
-      basedpyright.enable = true;
-      clangd.enable = true;
-      cssls.enable = true;
+      # bashls.enable = true;
+      # basedpyright.enable = true;
+      # clangd.enable = true;
+      # cssls.enable = true;
       # gopls.enable = true;
-      jdtls.enable = true;
-      html.enable = true;
-      jsonls.enable = true;
-      just.enable = true;
-      lemminx.enable = true;
+      # jdtls.enable = true;
+      # html.enable = true;
+      # jsonls.enable = true;
+      # just.enable = true;
+      # lemminx.enable = true;
       lua_ls.enable = true;
       nil_ls.enable = true;
       nixd = {
         enable = true;
       };
-      marksman.enable = false;
-      markdown_oxide.enable = false;
-      pylsp.enable = true;
-      ruff.enable = true;
+      # marksman.enable = false;
+      # markdown_oxide.enable = false;
+      # pylsp.enable = true;
+      # ruff.enable = true;
       statix.enable = true;
-      taplo.enable = true;
-      texlab.enable = false;
-      yamlls.enable = true;
+      # taplo.enable = true;
+      # texlab.enable = false;
+      # yamlls.enable = true;
       # zls.enable = true;  # XXX: broken
     };
     keymaps = [

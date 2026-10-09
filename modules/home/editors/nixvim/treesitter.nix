@@ -7,55 +7,20 @@
 
       grammarPackages = with pkgs.vimPlugins.nvim-treesitter.builtGrammars; [
         bash
-        c
-        cmake
-        comment
-        cpp
         css
-        csv
         dockerfile
-        dot
-        doxygen
         editorconfig
-        fish
-        fsh
-        git-config
-        git-rebase
-        gitattributes
-        gitcommit
         gitignore
-        html
-        http
-        hyprlang
-        ini
-        java
-        javascript
-        jq
-        jsdoc
         json
-        json5
         just
-        kdl
         lua
-        luadoc
-        make
         markdown
         nix
-        nu
-        pod
         python
-        ql
-        qmldir
-        regex
         rust
-        scss
-        sql
         ssh-config
         toml
-        tsx
-        typescript
         vim
-        vimdoc
         xml
         yaml
         zsh

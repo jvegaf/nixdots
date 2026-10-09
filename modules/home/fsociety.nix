@@ -5,7 +5,7 @@
     ./common
     ./desktop/common
     # ./desktop/mango
-    ./desktop/niri
+   # ./desktop/niri
     ./editors
    # ./programs/orcaslicer
    # ./opencode
