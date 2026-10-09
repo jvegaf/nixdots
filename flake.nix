@@ -19,7 +19,6 @@
     stylix.inputs.nixpkgs.follows = "nixpkgs";
     mangowm.url = "github:mangowm/mango";
     mangowm.inputs.nixpkgs.follows = "nixpkgs";
-    voxtype.url = "github:peteonrails/voxtype";
     vicinae.url = "github:vicinaehq/vicinae";
     vicinae-extensions = {
       url = "github:vicinaehq/extensions";

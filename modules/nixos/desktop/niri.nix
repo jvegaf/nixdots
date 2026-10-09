@@ -6,6 +6,7 @@
   # nixpkgs.overlays = [ inputs.niri-nix.overlays.niri-nix ];
   programs.niri = {
     enable = true;
+    # withUWSM = true;
     # package = pkgs.niri-unstable;
   };
 

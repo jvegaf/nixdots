@@ -23,7 +23,7 @@
 
       # Window Focus Ring
       focus-ring = {
-        width = 2;
+        width = 3;
         active-color = "#fdb00b";
         inactive-color = "#00000000";
       };

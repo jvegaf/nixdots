@@ -13,6 +13,7 @@
     ../../modules/nixos
     ../../modules/nixos/services/dm/sddm.nix
     ../../modules/nixos/desktop/xfce.nix
+    ../../modules/nixos/desktop/niri.nix
   ];
 
   boot.kernelPackages = pkgs.linuxPackages_latest;

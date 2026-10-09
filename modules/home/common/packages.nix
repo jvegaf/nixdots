@@ -34,6 +34,11 @@
     nixpkgs-fmt
     devenv
 
+    nodejs
+    go
+    bun
+    pnpm
+    yarn
     # Gentle AI (custom package, see pkgs/gentle-ai)
     # gentle-ai
     # Engram (persistent memory, NUR congee: Gentleman-Programming/engram)

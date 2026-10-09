@@ -5,10 +5,12 @@
     ./common
     ./desktop/common
     # ./desktop/mango
-   # ./desktop/niri
+    ./desktop/niri
     ./editors
-   # ./programs/orcaslicer
-   # ./opencode
+    # ./programs/orcaslicer
+    # ./desktop/vicinae
+    ./opencode
+    ./ai-tools/pi-agent.nix
     ./shell
     ./terminals
   ];

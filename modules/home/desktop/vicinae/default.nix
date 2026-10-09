@@ -20,6 +20,11 @@
       # bluetooth
       nix
       power-profile
+      process-manager
+      # silver-bullet
+      wifi-commander
+      port-killer
+      pulseaudio
       # Extension names can be found in the link below, it's just the folder names
     ];
     # extensions = with inputs.vicinae-extensions.packages.${pkgs.stdenv.hostPlatform.system}; [

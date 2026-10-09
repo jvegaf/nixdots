@@ -71,6 +71,9 @@
     history.path = "${config.xdg.dataHome}/zsh/history";
 
     initContent = ''
+      function gcls() {
+        git clone "git@github.com:jvegaf/$1.git"
+      }
       # Start Tmux automatically if not already running. No Tmux in TTY
       # if [ -z "$TMUX" ] && [ -n "$DISPLAY" ]; then
       #   tmux attach-session -t default || tmux new-session -s default
@@ -83,12 +86,5 @@
       #   exec systemd-cat -t uwsm_start uwsm start default
       # fi
     '';
-
-    initExtra = ''
-      function gcls() {
-        git clone "git@github.com:jvegaf/$1.git"
-      }
-    '';
-
   };
 }
