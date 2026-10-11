@@ -9,7 +9,7 @@
     ./opencode
     ./shell
     ./terminals
-    ./programs/orcaslicer
+    # ./programs/orcaslicer
     # ./programs/voxtype.nix
   ];
 

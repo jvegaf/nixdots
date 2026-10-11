@@ -28,6 +28,7 @@
     blender.enable = false;
     onepassword.enable = true;
     pi-agent.enable = true;
+    mpy-dev.enable = false;
   };
   environment = {
     shellAliases = {

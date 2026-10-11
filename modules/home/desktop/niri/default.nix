@@ -13,6 +13,7 @@
     ./settings/layout.nix
     ./settings/startup.nix
     ./settings/workspaces.nix
+    ./settings/outputs.nix
     ./settings/keybinds/columns.nix
     ./settings/keybinds/media.nix
     ./settings/keybinds/noctalia.nix

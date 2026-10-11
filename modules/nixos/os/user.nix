@@ -12,14 +12,15 @@
       "uucp"
       "video"
       "audio"
+      "dialout"
       #  "kvm"
       #  "libvirtd"
     ];
     shell = pkgs.zsh;
-    # packages = with pkgs; [
-    #   kdePackages.kate
-    # #  thunderbird
-    # ];
+    packages = with pkgs; [
+      zmk-studio
+      #  thunderbird
+    ];
 
   };
 

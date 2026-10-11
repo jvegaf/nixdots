@@ -9,8 +9,8 @@
 
     # Steam - Main Monitor
     {
-      match._props.app-id = "^steam$";
-      open-on-workspace = "main";
+      match._props.app-id = "CrealityPrint";
+      open-on-workspace = "media";
       open-maximized = true;
     }
 
