@@ -70,14 +70,14 @@
       };
     };
 
-    performance = {
-      byteCompileLua = {
-        enable = true;
-        luaLib = true;
-        nvimRuntime = true;
-        plugins = true;
-      };
-    };
+    # performance = {
+    #   byteCompileLua = {
+    #     enable = true;
+    #     luaLib = true;
+    #     nvimRuntime = true;
+    #     plugins = true;
+    #   };
+    # };
 
     globals = {
       mapleader = " ";

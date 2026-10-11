@@ -110,13 +110,13 @@
         standalone = false;
       };
     };
-    typescript-tools = {
-      enable = true;
-      settings.settings = {
-        expose_as_code_action = "all";
-      };
-    };
-    jdtls.enable = true;
+    # typescript-tools = {
+    #   enable = true;
+    #   settings.settings = {
+    #     expose_as_code_action = "all";
+    #   };
+    # };
+    # jdtls.enable = true;
     # otter.enable = true;
   };
 }
