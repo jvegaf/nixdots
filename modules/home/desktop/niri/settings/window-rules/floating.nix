@@ -39,6 +39,18 @@
       };
     }
 
+    {
+      match._props.title = "^Open$";
+      open-floating = true;
+      default-column-width.proportion = 0.6;
+      default-window-height.proportion = 0.6;
+
+      default-floating-position._props = {
+        x = 410;
+        y = 222;
+        relative-to = "top-left";
+      };
+    }
     # Firefox PIP
     {
       match._props = {

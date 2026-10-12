@@ -29,6 +29,7 @@
     onepassword.enable = true;
     pi-agent.enable = true;
     mpy-dev.enable = false;
+    flatcam.enable = true;
   };
   environment = {
     shellAliases = {

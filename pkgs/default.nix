@@ -6,5 +6,6 @@
     { pkgs, ... }:
     {
       packages.creality-print = pkgs.callPackage ./creality-print.nix { };
+      packages.flatcam = pkgs.callPackage ./flatcam.nix { };
     };
 }

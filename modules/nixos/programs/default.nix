@@ -6,5 +6,6 @@
     ./thunar.nix
     ./pi.nix
     ./mpy-dev.nix
+    ./flatcam.nix
   ];
 }
