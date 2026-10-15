@@ -9,7 +9,6 @@
     treefmt-nix.url = "github:numtide/treefmt-nix";
     treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
 
-    noctalia.url = "github:noctalia-dev/noctalia";
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
     nur.url = "github:nix-community/NUR";
     yazi.url = "github:sxyazi/yazi";
@@ -41,11 +40,6 @@
     disko.inputs.nixpkgs.follows = "nixpkgs";
     llm-agents.url = "github:numtide/llm-agents.nix";
     # lazyvim.url = "github:pfassina/lazyvim-nix";
-
-    noctalia-greeter = {
-      url = "github:noctalia-dev/noctalia-greeter";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     superpowers = {
       url = "github:obra/superpowers";
