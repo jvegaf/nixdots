@@ -24,12 +24,12 @@
   nixpkgs.config.allowUnfree = true;
   networking.hostName = "razer-blade";
   programs = {
-    creality-print.enable = true;
+    creality-print.enable = false;
     blender.enable = false;
     onepassword.enable = true;
-    pi-agent.enable = true;
+    pi-agent.enable = false;
     mpy-dev.enable = false;
-    flatcam.enable = true;
+    flatcam.enable = false;
   };
   environment = {
     shellAliases = {

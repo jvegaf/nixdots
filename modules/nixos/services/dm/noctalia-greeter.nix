@@ -2,7 +2,7 @@
   services.displayManager.noctalia-greeter = {
     enable = true;
 
-    greeter-args = "--session Niri";
+    extraArgs = [ "--session Niri" ];
     settings = {
       cursor = {
         theme = "Breeze_Light";
