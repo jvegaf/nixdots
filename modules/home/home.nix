@@ -6,11 +6,11 @@
     ./desktop/common
     ./desktop/niri
     ./editors
-    ./opencode
+    # ./opencode
     ./shell
     ./terminals
-    # ./programs/orcaslicer
-    # ./programs/voxtype.nix
+    ./programs/orcaslicer
+    ./programs/gentle-ai.nix
   ];
 
   # Home Manager needs a bit of information about you and the

@@ -6,9 +6,9 @@
   ...
 }:
 {
-  options.programs.pi-agent.enable = lib.mkEnableOption "Pi Agent";
+  options.programs.ai.pi-agent.enable = lib.mkEnableOption "Pi Agent";
 
-  config = lib.mkIf config.programs.pi-agent.enable {
+  config = lib.mkIf config.programs.ai.pi-agent.enable {
     environment.systemPackages = with inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}; [
       pi
     ];

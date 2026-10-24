@@ -18,7 +18,6 @@
     ../../modules/nixos
     ../../modules/nixos/services/dm/noctalia-greeter.nix
     ../../modules/nixos/desktop/niri.nix
-    # ../../modules/nixos/desktop/noctalia.nix
   ];
 
   nixpkgs.config.allowUnfree = true;
@@ -27,7 +26,8 @@
     creality-print.enable = false;
     blender.enable = false;
     onepassword.enable = true;
-    pi-agent.enable = false;
+    ai.pi-agent.enable = false;
+    ai.opencode.enable = true;
     mpy-dev.enable = false;
     flatcam.enable = false;
   };

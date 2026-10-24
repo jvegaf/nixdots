@@ -402,6 +402,27 @@
         "type": "github"
       }
     },
+    "gentle-ai-nix": {
+      "inputs": {
+        "home-manager": "home-manager",
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1792793055,
+        "narHash": "sha256-njFj7HdrzXgK0BdRiuXKfBu5jcviMTD8NjN0QuefSXQ=",
+        "owner": "0xErwin1",
+        "repo": "gentle-ai-nix",
+        "rev": "b380bd19294a4cf5aceb81a195c5b2e299301f32",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xErwin1",
+        "repo": "gentle-ai-nix",
+        "type": "github"
+      }
+    },
     "gnome-shell": {
       "flake": false,
       "locked": {
@@ -441,6 +462,27 @@
       }
     },
     "home-manager": {
+      "inputs": {
+        "nixpkgs": [
+          "gentle-ai-nix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1788651960,
+        "narHash": "sha256-v9wJd32eZ2bvhBzVOd7TIjLQd011P7nwOhjKtWlci5I=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "2c0350c759688177331b8f5242311fae8877bdb3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
       "inputs": {
         "nixpkgs": [
           "nixpkgs"
@@ -821,8 +863,9 @@
         "dms": "dms",
         "dms-plugin-registry": "dms-plugin-registry",
         "flake-parts": "flake-parts",
+        "gentle-ai-nix": "gentle-ai-nix",
         "hardware": "hardware",
-        "home-manager": "home-manager",
+        "home-manager": "home-manager_2",
         "llm-agents": "llm-agents",
         "mangowm": "mangowm",
         "niri-nix": "niri-nix",

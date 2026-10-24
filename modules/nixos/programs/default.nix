@@ -7,5 +7,6 @@
     ./pi.nix
     ./mpy-dev.nix
     ./flatcam.nix
+    ./opencode.nix
   ];
 }
