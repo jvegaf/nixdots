@@ -246,7 +246,6 @@ magnification_scale = 1.4500000476837158
 main_axis_padding = 16
 margin_edge = 8
 margin_ends = 0
-monitors = []
 pinned = []
 position = "bottom"
 radius = 8
@@ -561,7 +560,8 @@ enabled = [
     "noctalia/translator",
     "avivbintangaringga/nix-monitor",
     "davemhammer/tailscale",
-    "thepunkoff/pomodoro"
+    "thepunkoff/pomodoro",
+    "raycursive/niri-displays"
 ]
 
     [[plugins.source]]
@@ -830,7 +830,7 @@ transition_on_startup = true
 effects = true
 enabled = true
 refresh_minutes = 30
-unit = "imperial"
+unit = "metric"
 
 [widget.active_window]
 icon_size = 14.0
@@ -842,6 +842,10 @@ type = "active_window"
 [widget.audio_visualizer]
 anchor = true
 type = "audio_visualizer"
+
+[widget.bar]
+show_resolution = false
+type = "raycursive/niri-displays:bar"
 
 [widget.bongocat]
 audio_spectrum = true
