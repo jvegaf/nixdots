@@ -19,11 +19,8 @@
     mangowm.url = "github:mangowm/mango";
     mangowm.inputs.nixpkgs.follows = "nixpkgs";
     vicinae.url = "github:vicinaehq/vicinae";
-    vicinae-extensions = {
-      url = "github:vicinaehq/extensions";
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
-
+    vicinae-extensions.url = "github:vicinaehq/extensions";
+    sops-nix.url = "github:Mic92/sops-nix";
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -42,11 +39,6 @@
     # lazyvim.url = "github:pfassina/lazyvim-nix";
     gentle-ai-nix.url = "github:0xErwin1/gentle-ai-nix";
     gentle-ai-nix.inputs.nixpkgs.follows = "nixpkgs";
-
-    superpowers = {
-      url = "github:obra/superpowers";
-      flake = false;
-    };
 
   };
 

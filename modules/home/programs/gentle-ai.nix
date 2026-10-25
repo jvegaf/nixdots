@@ -18,6 +18,8 @@
       engram.enable = true;
     };
 
+    install.channel = "beta";
+
     communityTools.codegraph.enable = true;
 
     persona = "Gentleman";

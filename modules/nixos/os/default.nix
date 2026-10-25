@@ -8,5 +8,6 @@
     ./nix.nix
     ./timezone.nix
     ./user.nix
+    ./sops.nix
   ];
 }
