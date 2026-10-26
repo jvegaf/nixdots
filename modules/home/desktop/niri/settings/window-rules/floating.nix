@@ -15,6 +15,19 @@
     }
 
     {
+      match._props.title = "Inicia sesión: Cuentas de Google — Mozilla Firefox";
+      open-floating = true;
+      default-column-width.proportion = 0.5;
+      default-window-height.proportion = 0.5;
+
+      default-floating-position._props = {
+        x = 410;
+        y = 222;
+        relative-to = "top-left";
+      };
+    }
+
+    {
       match._props.app-id = "com.onepassword.OnePassword";
       open-floating = true;
       default-column-width.proportion = 0.6;
@@ -26,6 +39,7 @@
         relative-to = "top-left";
       };
     }
+
     {
       match._props.app-id = "org.gnome.Nautilus";
       open-floating = true;
