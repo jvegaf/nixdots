@@ -8,5 +8,6 @@
     ./mpy-dev.nix
     ./flatcam.nix
     ./opencode.nix
+    ./solidcraft.nix
   ];
 }

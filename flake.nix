@@ -21,14 +21,10 @@
     vicinae.url = "github:vicinaehq/vicinae";
     vicinae-extensions.url = "github:vicinaehq/extensions";
     sops-nix.url = "github:Mic92/sops-nix";
-    dms = {
-      url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    dms-plugin-registry = {
-      url = "github:AvengeMedia/dms-plugin-registry";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    dms.url = "github:AvengeMedia/DankMaterialShell/stable";
+    dms.inputs.nixpkgs.follows = "nixpkgs";
+    dms-plugin-registry.url = "github:AvengeMedia/dms-plugin-registry";
+    dms-plugin-registry.inputs.nixpkgs.follows = "nixpkgs";
     nixvim.url = "github:nix-community/nixvim";
     nixvim.inputs.flake-parts.follows = "flake-parts";
     razerdaemon.url = "github:encomjp/razer-control-revived";
@@ -39,6 +35,8 @@
     # lazyvim.url = "github:pfassina/lazyvim-nix";
     gentle-ai-nix.url = "github:0xErwin1/gentle-ai-nix";
     gentle-ai-nix.inputs.nixpkgs.follows = "nixpkgs";
+    solidcraft.url = "github:tangency-labs/solidcraft";
+    solidcraft.inputs.nixpkgs.follows = "nixpkgs";
 
   };
 

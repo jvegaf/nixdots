@@ -30,6 +30,7 @@
     ai.opencode.enable = true;
     mpy-dev.enable = false;
     flatcam.enable = false;
+    solidcraft.enable = true;
   };
   environment = {
     shellAliases = {
