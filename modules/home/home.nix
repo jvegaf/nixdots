@@ -11,6 +11,7 @@
     ./terminals
     ./programs/orcaslicer
     ./programs/gentle-ai.nix
+    # ./common/kokoro-tts.nix
   ];
 
   # Home Manager needs a bit of information about you and the

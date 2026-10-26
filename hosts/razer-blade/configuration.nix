@@ -31,6 +31,7 @@
     mpy-dev.enable = false;
     flatcam.enable = false;
     solidcraft.enable = true;
+    docker.enable = true;
   };
   environment = {
     shellAliases = {

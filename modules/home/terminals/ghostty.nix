@@ -6,8 +6,8 @@
     installVimSyntax = true;
     settings = {
       # theme = "dark:Catppuccin Frappe , light:Farmhouse Light";
-      # font-family = "JetBrainsMono NF";
-      # font-size = 12;
+      font-family = "JetBrainsMono NF";
+      font-size = 12;
       gtk-titlebar = false;
       background-opacity = 0.85;
       shell-integration = "detect";

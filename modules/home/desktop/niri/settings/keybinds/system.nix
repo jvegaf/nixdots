@@ -9,7 +9,7 @@
 
     # Applications
     "Mod+B".spawn = "firefox";
-    "Mod+Return".spawn = "alacritty";
+    "Mod+Return".spawn = "kitty";
     "Mod+S".spawn = [
       "kitty"
       "--class"
