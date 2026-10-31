@@ -26,11 +26,11 @@
     creality-print.enable = false;
     blender.enable = false;
     onepassword.enable = true;
-    ai.pi-agent.enable = false;
+    # ai.pi-agent.enable = false;
     ai.opencode.enable = true;
     mpy-dev.enable = false;
     flatcam.enable = false;
-    solidcraft.enable = true;
+    flatpak.enable = true;
     docker.enable = true;
   };
   environment = {

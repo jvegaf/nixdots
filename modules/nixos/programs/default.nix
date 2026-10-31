@@ -5,10 +5,9 @@
     ./docker.nix
     ./blender.nix
     ./thunar.nix
-    ./pi.nix
     ./mpy-dev.nix
     ./flatcam.nix
     ./opencode.nix
-    ./solidcraft.nix
+    ./flatpak.nix
   ];
 }

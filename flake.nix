@@ -11,6 +11,7 @@
 
     niri-nix.url = "git+https://codeberg.org/BANanaD3V/niri-nix";
     nur.url = "github:nix-community/NUR";
+    nur.inputs.nixpkgs.follows = "nixpkgs";
     yazi.url = "github:sxyazi/yazi";
     hardware.url = "github:NixOS/nixos-hardware/master";
     flake-parts.url = "github:hercules-ci/flake-parts";
@@ -35,8 +36,7 @@
     # lazyvim.url = "github:pfassina/lazyvim-nix";
     gentle-ai-nix.url = "github:0xErwin1/gentle-ai-nix";
     gentle-ai-nix.inputs.nixpkgs.follows = "nixpkgs";
-    solidcraft.url = "github:tangency-labs/solidcraft";
-    solidcraft.inputs.nixpkgs.follows = "nixpkgs";
+    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
 
   };
 
@@ -78,14 +78,14 @@
                   home-manager.backupFileExtension = "backup";
                   home-manager.extraSpecialArgs = { inherit inputs; };
                   home-manager.sharedModules = [
-                    # {
-                    #   nixpkgs.overlays = [
-                    #     inputs.nur.overlays.default
-                    #     # (final: prev: {
-                    #     #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
-                    #     # })
-                    #   ];
-                    # }
+                    {
+                      nixpkgs.overlays = [
+                        inputs.nur.overlays.default
+                        # (final: prev: {
+                        #   gentle-ai = final.callPackage ./pkgs/gentle-ai/default.nix { inherit inputs; };
+                        # })
+                      ];
+                    }
                   ];
                   home-manager.users.th3g3ntl3man = userModule;
                 }

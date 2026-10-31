@@ -6,13 +6,13 @@
 }:
 
 let
-  version = "7.2.1";
-  build = "5476";
+  version = "7.3.0";
+  build = "6149";
   pname = "creality-print"; # Cambiado a minúsculas según la convención de Nix
 
   src = fetchurl {
     url = "https://github.com/CrealityOfficial/CrealityPrint/releases/download/v${version}/CrealityPrint-V${version}.${build}-x86_64-Release.AppImage";
-    hash = "sha256-so9mwl0MZlLtauSdB2Z4D0aluDm5POGWjmOYI+H24vM=";
+    hash = "sha256-MT9/qGzztnAYAXH7NqRdeUrQZVGaHRYuFy3pu+QYeeA=";
   };
 
   appimageContents = appimageTools.extract {

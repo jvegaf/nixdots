@@ -7,6 +7,7 @@
     ./desktop/niri
     ./editors
     # ./opencode
+    ./ai-tools/pi-agent.nix
     ./shell
     ./terminals
     ./programs/orcaslicer
@@ -33,6 +34,9 @@
     lxappearance
     freecad
     tor-browser
+    nur.repos.quriosity.gridcraft
+    nur.repos.quriosity.wordcraft
+    nur.repos.quriosity.cadcraft
   ];
   # This value determines the Home Manager release that your
   # configuration is compatible with. This helps avoid breakage

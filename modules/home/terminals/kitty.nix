@@ -13,7 +13,7 @@
     settings = {
       # font_family = "Fantasque SansM Nerd Font";
       font_family = "JetBrainsMono Nerd Font";
-      font_size = 11;
+      font_size = 13;
       background_opacity = 0.7;
       # wheel_scroll_min_lines = 1;
       # window_padding_width = 4;
