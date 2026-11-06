@@ -6,13 +6,13 @@
 }:
 
 let
-  version = "7.3.0";
-  build = "6149";
+  version = "7.2.1";
+  build = "5476";
   pname = "creality-print"; # Cambiado a minúsculas según la convención de Nix
 
   src = fetchurl {
     url = "https://github.com/CrealityOfficial/CrealityPrint/releases/download/v${version}/CrealityPrint-V${version}.${build}-x86_64-Release.AppImage";
-    hash = "sha256-MT9/qGzztnAYAXH7NqRdeUrQZVGaHRYuFy3pu+QYeeA=";
+    hash = "sha256-so9mwl0MZlLtauSdB2Z4D0aluDm5POGWjmOYI+H24vM=";
   };
 
   appimageContents = appimageTools.extract {
@@ -50,7 +50,7 @@ appimageTools.wrapAppImage rec {
     # 1. Crear el directorio e instalar el archivo .desktop extraído del AppImage
     install -m 444 -D ${appimageContents}/CrealityPrint.desktop -t $out/share/applications
 
-    # Opcional pero recomendado: Instalar el icono para que se vea en el sistema. 
+    # Opcional pero recomendado: Instalar el icono para que se vea en el sistema.
     # (Nota: Verifica si dentro del AppImage el icono se llama CrealityPrint.png, .svg, o de otra forma)
     install -m 444 -D ${appimageContents}/CrealityPrint.png -t $out/share/icons/hicolor/256x256/apps || true
 
